@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>StarSyn AI — Automate. Augment. Accelerate.</title>
+<meta name="description" content="StarSyn AI builds intelligent AI agents and automation workflows for creators, startups, small businesses, and enterprises. Book a free consultation today."/>
+<meta name="keywords" content="AI automation, AI agents, n8n, workflow automation, AI internship, AI training, India, StarSyn AI"/>
+<meta name="author" content="StarSyn AI"/>
+<meta property="og:title" content="StarSyn AI — Automate. Augment. Accelerate."/>
+<meta property="og:description" content="We build intelligent AI agents that eliminate grunt work and accelerate your business growth."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta property="og:url" content="https://www.starsynai.com"/>
+<link rel="canonical" href="https://www.starsynai.com"/>
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5E94DWD6KF"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5E94DWD6KF');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "StarSyn AI",
+  "description": "AI automation agency building intelligent agents and workflows for creators, startups, and enterprises.",
+  "url": "https://www.starsynai.com",
+  "founder": {"@type": "Person", "name": "Hariharan Murthy", "jobTitle": "Founder & CEO", "sameAs": "https://www.linkedin.com/in/hariharan-murthy/"},
+  "contactPoint": {"@type": "ContactPoint", "telephone": "+91-88382-48494", "email": "connect@starsynai.com"},
+  "areaServed": "Worldwide"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg1:#07101e;--bg2:#0a1628;--bg3:#0d2137;
+  --surface:rgba(255,255,255,0.05);--surface2:rgba(255,255,255,0.08);
+  --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.16);
+  --accent:#38bdf8;--accent2:#06b6d4;--accent3:#67e8f9;
+  --neon:#00f5ff;--gold:#f59e0b;--green:#4ade80;
+  --text:#f0f9ff;--text2:rgba(240,249,255,0.68);--text3:rgba(240,249,255,0.42);
+  --serif:'Times New Roman','Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+  --r:16px;--rl:20px;
+  --sh:0 4px 24px rgba(0,0,0,0.25);--shl:0 8px 40px rgba(0,0,0,0.35);
+  --glow:0 0 20px rgba(56,189,248,0.18);--glowl:0 0 40px rgba(0,245,255,0.32);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:linear-gradient(160deg,#060e1b 0%,#091522 30%,#0b1d30 60%,#07121e 100%);color:var(--text);overflow-x:hidden;min-height:100vh;}
+
+.bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.bg-fx::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 65% 45% at 12% 8%,rgba(56,189,248,0.09) 0%,transparent 60%),
+  radial-gradient(ellipse 45% 35% at 88% 15%,rgba(6,182,212,0.07) 0%,transparent 55%),
+  radial-gradient(ellipse 35% 55% at 50% 90%,rgba(14,165,233,0.05) 0%,transparent 55%);}
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.008;
+  background-image:linear-gradient(rgba(56,189,248,1) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,1) 1px,transparent 1px);
+  background-size:55px 55px;}
+
+/* CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--neon);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 8px var(--neon);transition:width .15s,height .15s;}
+.cursor-ring{position:fixed;width:30px;height:30px;border:1px solid rgba(0,245,255,0.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+
+/* COOKIE */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:900;background:rgba(7,16,30,0.97);border-top:1px solid rgba(56,189,248,0.15);padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;backdrop-filter:blur(20px);transform:translateY(0);transition:transform .4s;}
+.cookie-banner.hidden{transform:translateY(110%);}
+.cookie-banner p{font-size:.82rem;color:var(--text2);max-width:600px;line-height:1.6;}
+.cookie-banner p a{color:var(--accent3);text-decoration:none;}
+.cookie-btns{display:flex;gap:.75rem;flex-shrink:0;}
+.c-accept{background:rgba(56,189,248,0.2);color:var(--accent3);border:1px solid rgba(56,189,248,0.4);padding:.45rem 1.2rem;border-radius:8px;font-size:.82rem;cursor:pointer;font-family:var(--sans);}
+.c-decline{background:none;border:1px solid var(--border);color:var(--text3);padding:.45rem 1.2rem;border-radius:8px;font-size:.82rem;cursor:pointer;font-family:var(--sans);}
+
+/* FLOATING */
+.float-wrap{position:fixed;bottom:2rem;right:2rem;z-index:800;display:flex;flex-direction:column;gap:.75rem;align-items:flex-end;}
+.float-cta{background:rgba(56,189,248,0.15);color:var(--accent3);border:1.5px solid rgba(56,189,248,0.4);padding:.7rem 1.4rem;border-radius:50px;font-size:.85rem;font-weight:500;cursor:pointer;font-family:var(--sans);box-shadow:var(--glow);display:flex;align-items:center;gap:8px;transition:all .2s;backdrop-filter:blur(12px);animation:fadeUp .6s 1.5s ease both;}
+.float-cta:hover{box-shadow:var(--glowl);border-color:var(--neon);color:var(--neon);}
+.float-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
+.wa-btn{width:48px;height:48px;background:#25d366;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,0.4);transition:all .2s;animation:fadeUp .6s 1.8s ease both;}
+.wa-btn:hover{transform:scale(1.1);}
+.wa-btn svg{width:26px;height:26px;fill:#fff;}
+
+/* NAVBAR */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1rem 3.5rem;border-bottom:1px solid rgba(56,189,248,0.08);backdrop-filter:blur(24px);background:rgba(6,14,27,0.82);animation:fadeDown .6s ease both;}
+.logo{font-family:var(--serif);font-weight:700;font-size:1.5rem;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:10px;}
+/* SVG LOGO */
+.logo-svg-wrap{position:relative;width:38px;height:38px;flex-shrink:0;}
+.logo-svg-wrap svg{width:38px;height:38px;}
+.logo-name{color:var(--text);}
+.logo-name span{color:var(--accent3);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.875rem;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--accent3);transition:width .25s;}
+.nav-links a:hover{color:var(--text);}
+.nav-links a:hover::after{width:100%;}
+.nav-right{display:flex;align-items:center;gap:.85rem;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--text2);transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px);}
+.mobile-menu{display:none;position:fixed;top:65px;left:0;right:0;background:rgba(6,14,27,0.98);border-bottom:1px solid rgba(56,189,248,0.1);padding:2rem 3rem;z-index:499;backdrop-filter:blur(20px);}
+.mobile-menu.open{display:block;}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:1.25rem;}
+.mobile-menu a{color:var(--text2);text-decoration:none;font-size:1rem;transition:color .2s;}
+.mobile-menu a:hover{color:var(--accent3);}
+.btn-ghost{background:none;border:1px solid var(--border);color:var(--text2);padding:.48rem 1.1rem;border-radius:8px;font-size:.85rem;cursor:pointer;transition:all .2s;font-family:var(--sans);}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent3);}
+.btn-primary{background:rgba(56,189,248,0.15);color:var(--accent3);border:1px solid rgba(56,189,248,0.4);padding:.55rem 1.3rem;border-radius:8px;font-size:.875rem;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .2s;}
+.btn-primary:hover{box-shadow:var(--glow);border-color:var(--neon);color:var(--neon);}
+
+/* SECTIONS */
+section{position:relative;z-index:1;}
+.container{max-width:1120px;margin:0 auto;padding:0 3rem;}
+.section-pad{padding:6rem 0;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:600;letter-spacing:3px;color:var(--accent3);text-transform:uppercase;margin-bottom:1rem;}
+.eyebrow-line{width:18px;height:1px;background:var(--accent3);}
+.section-title{font-family:var(--serif);font-size:clamp(2rem,3.8vw,3rem);font-weight:700;line-height:1.15;letter-spacing:-.3px;margin-bottom:1rem;color:var(--text);}
+.section-sub{color:var(--text2);font-size:1rem;line-height:1.8;max-width:520px;}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(56,189,248,0.12),transparent);}
+.surface-s{background:rgba(255,255,255,0.018);border-top:1px solid rgba(56,189,248,0.06);border-bottom:1px solid rgba(56,189,248,0.06);}
+.neon-click{cursor:pointer;}
+.neon-click.lit{box-shadow:0 0 0 2px var(--neon),0 0 22px rgba(0,245,255,0.32),inset 0 0 16px rgba(0,245,255,0.05)!important;border-color:var(--neon)!important;}
+
+/* HERO */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;overflow:hidden;}
+/* hero bg is pure CSS gradient — no image */
+.tool-tile{position:absolute;background:rgba(255,255,255,0.07);border:1px solid rgba(56,189,248,0.2);border-radius:14px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);animation:floatBob linear infinite;box-shadow:var(--sh);}
+.tt1{width:56px;height:56px;top:17%;left:7%;animation-duration:6s;}
+.tt2{width:52px;height:52px;top:28%;left:14%;animation-duration:7.5s;animation-delay:1s;}
+.tt3{width:60px;height:60px;top:15%;right:8%;animation-duration:5.5s;animation-delay:.4s;}
+.tt4{width:50px;height:50px;top:35%;right:6%;animation-duration:8s;animation-delay:1.6s;}
+.tt5{width:54px;height:54px;bottom:30%;left:5%;animation-duration:6.5s;animation-delay:2s;}
+.tt6{width:50px;height:50px;bottom:24%;right:11%;animation-duration:7s;animation-delay:.8s;}
+.tt7{width:58px;height:58px;top:54%;left:10%;animation-duration:6s;animation-delay:3s;}
+.tt8{width:52px;height:52px;top:46%;right:14%;animation-duration:9s;animation-delay:1.2s;}
+@keyframes floatBob{0%,100%{transform:translateY(0) rotate(0);}30%{transform:translateY(-10px) rotate(2deg);}70%{transform:translateY(7px) rotate(-2deg);}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:var(--accent3);font-size:.78rem;font-weight:500;padding:5px 18px;border-radius:100px;margin-bottom:2rem;letter-spacing:1px;position:relative;z-index:1;animation:fadeUp .6s .1s ease both;}
+.badge-pulse{width:7px;height:7px;background:var(--accent3);border-radius:50%;animation:pulse 2s infinite;}
+.hero h1{font-family:var(--serif);font-size:clamp(3rem,7vw,5.8rem);font-weight:700;line-height:1.06;letter-spacing:-.5px;max-width:900px;margin-bottom:1.5rem;position:relative;z-index:1;animation:fadeUp .7s .2s ease both;}
+.grad-text{background:linear-gradient(135deg,var(--accent3) 0%,#a5f3fc 50%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{color:var(--text2);font-size:1.1rem;line-height:1.8;max-width:560px;margin:0 auto 2.8rem;position:relative;z-index:1;animation:fadeUp .7s .3s ease both;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;animation:fadeUp .7s .4s ease both;margin-bottom:4rem;}
+.btn-lg{padding:.85rem 2.2rem;border-radius:12px;font-size:1rem;font-weight:500;font-family:var(--sans);cursor:pointer;transition:all .25s;}
+.btn-lg.primary{background:rgba(56,189,248,0.18);border:1.5px solid rgba(56,189,248,0.5);color:var(--accent3);backdrop-filter:blur(8px);}
+.btn-lg.primary:hover{box-shadow:0 0 30px rgba(0,245,255,0.4);border-color:var(--neon);color:var(--neon);}
+.btn-lg.ghost{background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text2);}
+.btn-lg.ghost:hover{border-color:var(--border2);color:var(--text);}
+.hero-stats{display:flex;gap:3rem;justify-content:center;position:relative;z-index:1;animation:fadeUp .7s .5s ease both;}
+.stat{text-align:center;}
+.stat-num{font-family:var(--serif);font-size:2.2rem;font-weight:700;background:linear-gradient(135deg,var(--accent3),#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-label{color:var(--text3);font-size:.78rem;margin-top:3px;letter-spacing:.5px;}
+.stat-divider{width:1px;background:rgba(56,189,248,0.18);align-self:stretch;}
+.scroll-ind{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text3);font-size:.7rem;letter-spacing:2px;}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--accent3),transparent);animation:scrollAnim 2s ease infinite;}
+
+/* TRUST BAR */
+.trust-bar{background:rgba(56,189,248,0.03);border-top:1px solid rgba(56,189,248,0.07);border-bottom:1px solid rgba(56,189,248,0.07);padding:2.5rem 3rem;}
+.trust-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;}
+.trust-num{font-family:var(--serif);font-size:2.4rem;font-weight:700;background:linear-gradient(135deg,var(--accent3),#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.trust-label{color:var(--text3);font-size:.82rem;margin-top:4px;}
+
+/* LOGO BAR */
+.logo-bar{padding:2.5rem 3rem;border-bottom:1px solid rgba(56,189,248,0.06);}
+.logo-bar p{text-align:center;color:var(--text3);font-size:.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1.75rem;}
+.logos-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.tool-logo{width:64px;height:64px;border-radius:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(56,189,248,0.14);display:flex;align-items:center;justify-content:center;transition:all .25s;box-shadow:var(--sh);}
+.tool-logo:hover{background:rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.38);box-shadow:var(--glow);transform:translateY(-2px);}
+.tool-logo svg{width:30px;height:30px;}
+
+/* PHOTO STRIP */
+.photo-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:3rem;}
+.photo-card{border-radius:var(--r);overflow:hidden;position:relative;height:220px;}
+.photo-card img{width:100%;height:100%;object-fit:cover;filter:saturate(0.7) brightness(0.75);transition:all .4s;}
+.photo-card:hover img{filter:saturate(0.9) brightness(0.85);transform:scale(1.03);}
+.photo-card-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.25rem;background:linear-gradient(to top,rgba(6,14,27,0.9),transparent);}
+.photo-card-overlay p{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--text);}
+.photo-card-overlay span{font-size:.78rem;color:var(--accent3);}
+
+/* AAA */
+.aaa-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;}
+.aaa-card{background:rgba(255,255,255,0.045);border:1px solid rgba(56,189,248,0.11);border-radius:var(--rl);padding:2.5rem 2rem 2rem;position:relative;overflow:hidden;transition:all .3s;}
+.aaa-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(56,189,248,0.4),transparent);opacity:0;transition:opacity .3s;}
+.aaa-card:hover,.aaa-card.lit{transform:translateY(-5px);box-shadow:var(--shl);}
+.aaa-card:hover::before,.aaa-card.lit::before{opacity:1;}
+.aaa-icon-area{position:relative;height:110px;margin-bottom:2rem;display:flex;align-items:center;justify-content:center;border-radius:12px;}
+.aaa-icon-area::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(56,189,248,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,0.07) 1px,transparent 1px);background-size:22px 22px;border-radius:12px;}
+.aaa-icon-svg{position:relative;z-index:1;width:56px;height:56px;stroke:rgba(240,249,255,0.45);fill:none;stroke-width:1.5;}
+.aaa-num{font-family:var(--serif);font-size:4rem;font-weight:700;color:rgba(56,189,248,0.06);position:absolute;top:.5rem;right:1.25rem;line-height:1;}
+.aaa-badge{font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 12px;border-radius:100px;margin-bottom:.75rem;display:inline-block;}
+.ba1{background:rgba(56,189,248,0.1);color:var(--accent3);border:1px solid rgba(56,189,248,0.22);}
+.ba2{background:rgba(14,165,233,0.1);color:#7dd3fc;border:1px solid rgba(14,165,233,0.22);}
+.ba3{background:rgba(103,232,249,0.08);color:#a5f3fc;border:1px solid rgba(103,232,249,0.18);}
+.aaa-card h3{font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:.65rem;color:var(--text);}
+.aaa-card>p{color:var(--text2);font-size:.9rem;line-height:1.75;}
+.aaa-examples{margin-top:1.5rem;display:flex;flex-direction:column;gap:.5rem;}
+.aaa-ex{display:flex;align-items:flex-start;gap:8px;font-size:.83rem;color:var(--text2);}
+.aaa-ex-dot{width:5px;height:5px;background:var(--accent3);border-radius:50%;flex-shrink:0;margin-top:6px;}
+
+/* SERVICES */
+.filter-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:1.5rem 0 2.5rem;}
+.tab{padding:.45rem 1.1rem;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:.82rem;cursor:pointer;transition:all .2s;font-family:var(--sans);}
+.tab.active,.tab:hover{background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.32);color:var(--accent3);}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem;}
+.scard{background:rgba(255,255,255,0.04);border:1px solid rgba(56,189,248,0.09);border-radius:var(--r);padding:2rem 1.75rem;transition:all .25s;position:relative;overflow:hidden;}
+.scard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent3));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.scard:hover,.scard.lit{border-color:rgba(56,189,248,0.22);transform:translateY(-3px);box-shadow:var(--sh);}
+.scard:hover::after,.scard.lit::after{transform:scaleX(1);}
+.scard-icon-tile{width:48px;height:48px;border-radius:10px;background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.14);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
+.scard-icon-tile svg{width:22px;height:22px;stroke:var(--accent3);fill:none;stroke-width:1.5;}
+.stag{font-size:.67rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:.85rem;display:inline-block;}
+.tag-cr{background:rgba(167,139,250,0.1);color:#c4b5fd;border:1px solid rgba(167,139,250,0.18);}
+.tag-st{background:rgba(56,189,248,0.09);color:#7dd3fc;border:1px solid rgba(56,189,248,0.18);}
+.tag-bz{background:rgba(52,211,153,0.09);color:#6ee7b7;border:1px solid rgba(52,211,153,0.18);}
+.tag-en{background:rgba(251,191,36,0.09);color:#fcd34d;border:1px solid rgba(251,191,36,0.14);}
+.tag-he{background:rgba(249,168,212,0.09);color:#fbcfe8;border:1px solid rgba(249,168,212,0.14);}
+.tag-ed{background:rgba(147,197,253,0.09);color:#bfdbfe;border:1px solid rgba(147,197,253,0.18);}
+.tag-re{background:rgba(253,186,116,0.09);color:#fed7aa;border:1px solid rgba(253,186,116,0.14);}
+.tag-ec{background:rgba(187,247,208,0.09);color:#bbf7d0;border:1px solid rgba(187,247,208,0.14);}
+.tag-le{background:rgba(216,180,254,0.09);color:#e9d5ff;border:1px solid rgba(216,180,254,0.14);}
+.tag-fi{background:rgba(254,240,138,0.09);color:#fef08a;border:1px solid rgba(254,240,138,0.14);}
+.scard h4{font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:.5rem;color:var(--text);}
+.scard p{color:var(--text2);font-size:.875rem;line-height:1.7;}
+
+/* PORTFOLIO */
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;margin-top:3rem;}
+.pcard{background:rgba(6,14,27,0.88);border:1px solid rgba(56,189,248,0.13);border-radius:var(--r);overflow:hidden;transition:all .3s;box-shadow:var(--sh);}
+.pcard:hover,.pcard.lit{border-color:rgba(56,189,248,0.32);box-shadow:0 8px 32px rgba(56,189,248,0.1);}
+.pcard-header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid rgba(56,189,248,0.09);background:rgba(56,189,248,0.025);}
+.pcard-title{font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--text);}
+.pcard-sub{color:var(--text3);font-size:.72rem;margin-top:2px;}
+.pcard-model{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--text3);}
+.pcard-model-name{color:var(--accent3);font-weight:600;}
+.pcard-status{display:flex;align-items:center;gap:5px;font-size:.72rem;color:var(--green);font-weight:500;}
+.sdot{width:6px;height:6px;background:var(--green);border-radius:50%;}
+.complexity-badge{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:100px;}
+.cx-simple{background:rgba(52,211,153,0.12);color:#6ee7b7;border:1px solid rgba(52,211,153,0.2);}
+.cx-medium{background:rgba(56,189,248,0.1);color:#7dd3fc;border:1px solid rgba(56,189,248,0.2);}
+.cx-advanced{background:rgba(167,139,250,0.12);color:#c4b5fd;border:1px solid rgba(167,139,250,0.2);}
+.pcard-body{padding:1.5rem;}
+/* DETAILED FLOWCHART */
+.flowchart{margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(56,189,248,0.07);}
+.flowchart svg{width:100%;height:auto;display:block;}
+.pcard-metrics{display:flex;gap:1.25rem;padding-top:1rem;}
+.metric-val{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--accent3);}
+.metric-label{font-size:.7rem;color:var(--text3);margin-top:2px;}
+.pcard-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;}
+.ptool{font-size:.68rem;color:var(--text3);background:rgba(56,189,248,0.06);border:1px solid rgba(56,189,248,0.1);padding:2px 8px;border-radius:100px;}
+
+/* HOW IT WORKS */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;position:relative;}
+.how-grid::before{content:'';position:absolute;top:44px;left:22%;right:22%;height:1px;background:linear-gradient(90deg,var(--accent2),var(--accent3));opacity:.2;}
+.how-step{text-align:center;padding:0 1.25rem;}
+.step-num{width:88px;height:88px;border-radius:50%;background:rgba(56,189,248,0.06);border:1.5px solid rgba(56,189,248,0.22);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;position:relative;z-index:1;}
+.step-num-inner{font-family:var(--serif);font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,var(--accent3),#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.how-step h4{font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:.5rem;color:var(--text);}
+.how-step p{color:var(--text2);font-size:.875rem;line-height:1.75;}
+
+/* ACADEMY */
+.academy-hero-img{width:100%;height:300px;border-radius:var(--rl);overflow:hidden;margin-bottom:3rem;position:relative;}
+.academy-hero-img img{width:100%;height:100%;object-fit:cover;filter:saturate(0.65) brightness(0.6);}
+.academy-hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,14,27,0.7),rgba(56,189,248,0.08));}
+.academy-hero-text{position:absolute;bottom:2rem;left:2rem;z-index:1;}
+.academy-hero-text h3{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--text);margin-bottom:.25rem;}
+.academy-hero-text p{color:var(--accent3);font-size:.9rem;}
+.academy-top{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-bottom:4rem;}
+.acad-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--accent3);font-size:.75rem;font-weight:500;padding:5px 14px;border-radius:100px;margin-bottom:1.25rem;}
+.acad-features{display:flex;flex-direction:column;gap:.75rem;margin-top:1.5rem;}
+.af{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text2);}
+.af-icon{width:22px;height:22px;border-radius:6px;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.af-icon svg{width:12px;height:12px;stroke:var(--accent3);fill:none;stroke-width:2;}
+.cert-card{background:rgba(6,14,27,0.75);border:1.5px solid rgba(56,189,248,0.18);border-radius:var(--rl);padding:2rem;position:relative;overflow:hidden;}
+.cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent3));}
+.cert-card h4{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:.4rem;margin-top:.5rem;}
+.cert-card>p{color:var(--text2);font-size:.85rem;line-height:1.6;margin-bottom:1.25rem;}
+.cert-perks{display:flex;flex-direction:column;gap:.5rem;}
+.perk{display:flex;align-items:flex-start;gap:8px;font-size:.83rem;color:var(--text2);}
+.perk-dot{width:4px;height:4px;background:var(--accent3);border-radius:50%;flex-shrink:0;margin-top:6px;}
+.placement-box{background:linear-gradient(135deg,rgba(56,189,248,0.06),rgba(6,182,212,0.03));border:1.5px solid rgba(56,189,248,0.2);border-radius:var(--rl);padding:2.5rem;margin:3rem 0;position:relative;overflow:hidden;}
+.placement-box::before{content:'FREE BONUS';position:absolute;top:1rem;right:1.5rem;font-size:.65rem;font-weight:800;letter-spacing:2px;color:var(--gold);background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.25);padding:3px 12px;border-radius:100px;}
+.placement-box h3{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--text);margin-bottom:.5rem;}
+.placement-box>p{color:var(--text2);font-size:.9rem;line-height:1.7;margin-bottom:1.75rem;max-width:680px;}
+.placement-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.75rem;}
+.placement-item{background:rgba(255,255,255,0.04);border:1px solid rgba(56,189,248,0.12);border-radius:12px;padding:1.25rem;}
+.placement-item svg{width:22px;height:22px;stroke:var(--accent3);fill:none;stroke-width:1.5;margin-bottom:.6rem;}
+.placement-item h5{font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.3rem;}
+.placement-item p{color:var(--text3);font-size:.78rem;line-height:1.6;}
+.placement-disclaimer{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.18);border-radius:10px;padding:1rem 1.25rem;font-size:.82rem;color:rgba(245,158,11,0.85);line-height:1.65;}
+.placement-disclaimer strong{color:var(--gold);}
+.formats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:2.5rem;}
+.format-card{background:rgba(255,255,255,0.04);border:1px solid rgba(56,189,248,0.09);border-radius:var(--r);padding:1.5rem;transition:all .25s;}
+.format-card:hover{border-color:rgba(56,189,248,0.22);}
+.format-icon-svg{width:28px;height:28px;stroke:var(--accent3);fill:none;stroke-width:1.5;margin-bottom:.75rem;}
+.format-card h5{font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:.35rem;color:var(--text);}
+.format-card p{color:var(--text2);font-size:.82rem;line-height:1.65;}
+.duration-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;}
+.dur-card{background:rgba(255,255,255,0.04);border:1px solid rgba(56,189,248,0.09);border-radius:14px;padding:1.25rem;text-align:center;transition:all .25s;cursor:pointer;}
+.dur-card:hover,.dur-card.hot{border-color:rgba(56,189,248,0.28);background:rgba(56,189,248,0.07);}
+.dur-badge{font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;}
+.dur-time{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:.25rem;}
+.dur-price{font-size:.82rem;color:var(--accent3);font-weight:500;margin-bottom:.4rem;}
+.dur-desc{color:var(--text3);font-size:.75rem;line-height:1.5;}
+
+/* FOUNDER */
+.founder-section{background:rgba(56,189,248,0.02);border:1px solid rgba(56,189,248,0.08);border-radius:var(--rl);padding:2.5rem;margin-top:3rem;display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center;}
+.founder-avatar{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,rgba(56,189,248,0.25),rgba(6,182,212,0.15));border:2px solid rgba(56,189,248,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.founder-avatar svg{width:44px;height:44px;stroke:var(--accent3);fill:none;stroke-width:1.2;}
+.founder-name{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:.2rem;}
+.founder-title{color:var(--accent3);font-size:.85rem;font-weight:500;margin-bottom:.75rem;letter-spacing:.5px;}
+.founder-bio{color:var(--text2);font-size:.9rem;line-height:1.8;}
+.founder-special{margin-top:1rem;background:rgba(56,189,248,0.06);border:1px solid rgba(56,189,248,0.15);border-radius:10px;padding:1rem 1.25rem;font-size:.85rem;color:var(--text2);line-height:1.7;}
+.founder-special strong{color:var(--accent3);}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem;}
+.about-img{border-radius:var(--rl);overflow:hidden;height:380px;position:relative;}
+.about-img img{width:100%;height:100%;object-fit:cover;filter:saturate(0.7) brightness(0.65);}
+.about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(56,189,248,0.08),rgba(6,14,27,0.3));}
+.about-content p{color:var(--text2);font-size:.95rem;line-height:1.85;margin-bottom:1.25rem;}
+.about-values{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1.5rem;}
+.about-val{background:rgba(255,255,255,0.04);border:1px solid rgba(56,189,248,0.09);border-radius:10px;padding:1rem;font-size:.83rem;color:var(--text2);}
+.about-val strong{display:block;font-family:var(--serif);font-size:.9rem;color:var(--text);margin-bottom:.2rem;}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3.5rem;}
+.tcard{background:rgba(255,255,255,0.04);border:1px solid rgba(56,189,248,0.09);border-radius:var(--rl);padding:1.75rem;transition:all .3s;}
+.tcard:hover{border-color:rgba(56,189,248,0.22);box-shadow:var(--glow);}
+.tcard-stars{color:var(--gold);font-size:.85rem;letter-spacing:2px;margin-bottom:.75rem;}
+.tcard-quote{font-family:var(--serif);font-size:2rem;line-height:1;color:var(--accent3);margin-bottom:.5rem;}
+.tcard-text{color:var(--text2);font-size:.875rem;line-height:1.8;margin-bottom:1.5rem;font-style:italic;}
+.tcard-author{display:flex;align-items:center;gap:10px;}
+.author-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,rgba(56,189,248,0.28),rgba(6,182,212,0.18));border:1px solid rgba(56,189,248,0.28);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.85rem;font-weight:700;color:var(--accent3);}
+.author-name{font-weight:500;font-size:.875rem;color:var(--text);}
+.author-role{color:var(--text3);font-size:.75rem;margin-top:1px;}
+.testi-note{text-align:center;margin-top:1.5rem;color:var(--text3);font-size:.8rem;font-style:italic;}
+
+/* BLOG */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem;}
+.blog-card{background:rgba(255,255,255,0.04);border:1px solid rgba(56,189,248,0.09);border-radius:var(--r);overflow:hidden;transition:all .3s;text-decoration:none;display:block;}
+.blog-card:hover{border-color:rgba(56,189,248,0.22);transform:translateY(-4px);box-shadow:var(--sh);}
+.blog-thumb{height:150px;overflow:hidden;position:relative;}
+.blog-thumb img{width:100%;height:100%;object-fit:cover;filter:saturate(0.65) brightness(0.65);transition:all .4s;}
+.blog-card:hover .blog-thumb img{filter:saturate(0.8) brightness(0.75);transform:scale(1.04);}
+.blog-body{padding:1.25rem;}
+.blog-tag{font-size:.68rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent3);margin-bottom:.5rem;}
+.blog-body h4{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.4rem;line-height:1.4;}
+.blog-body p{color:var(--text3);font-size:.8rem;line-height:1.6;margin-bottom:1rem;}
+.blog-read{color:var(--accent3);font-size:.8rem;font-weight:500;}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;}
+.faq-item{background:rgba(255,255,255,0.04);border:1px solid rgba(56,189,248,0.09);border-radius:14px;overflow:hidden;transition:border-color .2s;}
+.faq-item:hover{border-color:rgba(56,189,248,0.18);}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;cursor:pointer;gap:1rem;}
+.faq-q span{font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--text);}
+.faq-icon{color:var(--accent3);font-size:1.1rem;flex-shrink:0;transition:transform .3s;}
+.faq-a{padding:0 1.5rem 1.25rem;color:var(--text2);font-size:.875rem;line-height:1.75;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-item.open{border-color:rgba(56,189,248,0.28);}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-top:3rem;}
+.contact-info p{color:var(--text2);font-size:.95rem;line-height:1.8;margin-bottom:1.5rem;}
+.contact-detail{display:flex;align-items:center;gap:10px;font-size:.875rem;color:var(--text2);margin-bottom:.75rem;}
+.contact-detail svg{width:16px;height:16px;stroke:var(--accent3);fill:none;stroke-width:1.5;flex-shrink:0;}
+.contact-detail a{color:var(--text2);text-decoration:none;}
+.contact-detail a:hover{color:var(--accent3);}
+.contact-form-box{background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:var(--rl);padding:2rem;}
+.form-group{margin-bottom:1.25rem;}
+.form-group label{display:block;font-size:.78rem;font-weight:500;color:var(--text3);margin-bottom:.5rem;letter-spacing:.5px;text-transform:uppercase;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.12);border-radius:8px;padding:.7rem 1rem;color:var(--text);font-family:var(--sans);font-size:.875rem;transition:border-color .2s;outline:none;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(56,189,248,0.4);box-shadow:0 0 0 3px rgba(56,189,248,0.06);}
+.form-group select option{background:#0d2137;color:var(--text);}
+.form-group textarea{height:110px;resize:vertical;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.btn-submit{width:100%;background:rgba(56,189,248,0.18);color:var(--accent3);border:1.5px solid rgba(56,189,248,0.4);padding:.85rem;border-radius:10px;font-size:.95rem;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .2s;margin-top:.5rem;}
+.btn-submit:hover{box-shadow:var(--glowl);border-color:var(--neon);color:var(--neon);}
+.form-success{display:none;text-align:center;padding:2rem;color:var(--accent3);}
+.form-success svg{width:48px;height:48px;stroke:var(--accent3);fill:none;stroke-width:1.5;margin-bottom:1rem;}
+.form-success h4{font-family:var(--serif);font-size:1.2rem;margin-bottom:.5rem;}
+.form-success p{color:var(--text2);font-size:.875rem;}
+
+/* LEGAL PAGES */
+.legal-modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(6,14,27,0.95);overflow-y:auto;padding:4rem 2rem;}
+.legal-modal.open{display:block;}
+.legal-inner{max-width:800px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(56,189,248,0.12);border-radius:var(--rl);padding:3rem;}
+.legal-inner h1{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--text);margin-bottom:.5rem;}
+.legal-inner .legal-date{color:var(--text3);font-size:.82rem;margin-bottom:2rem;}
+.legal-inner h2{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--text);margin:1.5rem 0 .5rem;}
+.legal-inner p,.legal-inner li{color:var(--text2);font-size:.9rem;line-height:1.8;margin-bottom:.75rem;}
+.legal-inner ul{padding-left:1.5rem;}
+.legal-close{background:rgba(56,189,248,0.15);color:var(--accent3);border:1px solid rgba(56,189,248,0.3);padding:.5rem 1.2rem;border-radius:8px;cursor:pointer;font-family:var(--sans);font-size:.85rem;margin-bottom:2rem;display:inline-block;}
+
+/* CTA BAND */
+.cta-band{padding:5rem 3rem;text-align:center;position:relative;overflow:hidden;background:rgba(56,189,248,0.03);border-top:1px solid rgba(56,189,248,0.1);border-bottom:1px solid rgba(56,189,248,0.1);}
+.cta-band::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,0.07) 0%,transparent 70%);}
+.cta-band h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;color:var(--text);letter-spacing:-.3px;margin-bottom:1rem;position:relative;z-index:1;}
+.cta-band p{color:var(--text2);font-size:1rem;margin-bottom:2.5rem;position:relative;z-index:1;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.btn-cta{background:rgba(56,189,248,0.18);color:var(--accent3);border:1.5px solid rgba(56,189,248,0.42);padding:.9rem 2.2rem;border-radius:12px;font-size:.95rem;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .2s;}
+.btn-cta:hover{box-shadow:var(--glowl);border-color:var(--neon);color:var(--neon);}
+.btn-cta-ghost{background:rgba(255,255,255,0.05);color:var(--text2);border:1px solid var(--border);padding:.9rem 2.2rem;border-radius:12px;font-size:.95rem;cursor:pointer;font-family:var(--sans);transition:all .2s;}
+.btn-cta-ghost:hover{border-color:var(--border2);color:var(--text);}
+
+/* FOOTER */
+footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);padding:4rem 3rem 2rem;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1120px;margin:0 auto 3rem;}
+.footer-brand p{font-size:.875rem;line-height:1.8;margin-top:1rem;max-width:270px;color:var(--text3);}
+.footer-logo{font-family:var(--serif);font-weight:700;font-size:1.4rem;color:var(--text);display:flex;align-items:center;gap:8px;}
+.footer-logo span{color:var(--accent3);}
+.footer-social{display:flex;gap:.6rem;margin-top:1.5rem;}
+.s-btn{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.1);display:flex;align-items:center;justify-content:center;font-size:.8rem;cursor:pointer;transition:all .2s;text-decoration:none;color:var(--text3);}
+.s-btn:hover{border-color:rgba(56,189,248,0.28);color:var(--accent3);}
+.footer-col h5{font-family:var(--serif);font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:1rem;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem;}
+.footer-col a{color:var(--text3);font-size:.85rem;text-decoration:none;transition:color .2s;cursor:pointer;}
+.footer-col a:hover{color:var(--accent3);}
+.footer-bottom{max-width:1120px;margin:0 auto;border-top:1px solid rgba(56,189,248,0.05);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-bottom p{font-size:.8rem;color:var(--text3);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{color:var(--text3);font-size:.8rem;text-decoration:none;transition:color .2s;cursor:pointer;}
+.footer-links a:hover{color:var(--accent3);}
+.newsletter-form{display:flex;gap:.5rem;margin-top:1rem;}
+.newsletter-form input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.12);border-radius:8px;padding:.5rem .85rem;color:var(--text);font-family:var(--sans);font-size:.82rem;outline:none;}
+.newsletter-form input:focus{border-color:rgba(56,189,248,0.3);}
+.newsletter-form button{background:rgba(56,189,248,0.18);border:1px solid rgba(56,189,248,0.3);color:var(--accent3);padding:.5rem 1rem;border-radius:8px;cursor:pointer;font-size:.8rem;font-family:var(--sans);white-space:nowrap;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+@keyframes scrollAnim{0%{opacity:0;transform:scaleY(0);transform-origin:top;}50%{opacity:1;transform:scaleY(1);}100%{opacity:0;transform:scaleY(0);transform-origin:bottom;}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links,.nav-right .btn-ghost{display:none;}
+  .hamburger{display:flex;}
+  .container{padding:0 1.5rem;}
+  .section-pad{padding:4rem 0;}
+  .aaa-grid,.how-grid,.testi-grid,.blog-grid,.faq-grid,.formats-grid,.duration-grid,.trust-inner,.photo-strip,.portfolio-grid,.about-grid,.contact-grid,.academy-top,.placement-grid,.footer-top{grid-template-columns:1fr;}
+  .how-grid::before{display:none;}
+  .duration-grid{grid-template-columns:repeat(2,1fr);}
+  .hero-stats{gap:1.25rem;flex-wrap:wrap;}
+  .stat-divider{display:none;}
+  .hero h1{font-size:clamp(2.4rem,8vw,3.5rem);}
+  .form-row{grid-template-columns:1fr;}
+  .founder-section{grid-template-columns:1fr;}
+}
+</style>
+<!-- Cal.com Popup Embed -->
+<script type="text/javascript">
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["-queue", namespace, ar]);}else{p(cal, ar);} return; } p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init");
+Cal("init", "booking", {origin:"https://cal.eu"});
+Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","cssVarsPerTheme":{"dark":{"cal-brand":"#38bdf8"}}});
+</script>
+</head>
+<body>
+<div class="bg-fx"></div>
+<div class="bg-grid"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- LEGAL MODALS -->
+<div class="legal-modal" id="privacyModal">
+  <div class="legal-inner">
+    <button class="legal-close" onclick="closeLegal('privacyModal')">← Back</button>
+    <h1>Privacy Policy</h1>
+    <div class="legal-date">Last updated: March 2025</div>
+    <p>StarSyn AI ("we", "our", or "us") is committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or engage with our services.</p>
+    <h2>Information We Collect</h2>
+    <p>We collect information you provide directly to us, such as when you fill out a contact form, apply for the Academy, or subscribe to our newsletter. This includes your name, email address, phone number, and any messages you send us.</p>
+    <h2>How We Use Your Information</h2>
+    <ul>
+      <li>To respond to your enquiries and provide requested services</li>
+      <li>To send you updates about our services, Academy, and resources (with your consent)</li>
+      <li>To improve our website and services based on how you interact with them</li>
+      <li>To comply with legal obligations</li>
+    </ul>
+    <h2>Data Storage</h2>
+    <p>Your form submissions are stored securely in our database. We do not sell, trade, or rent your personal information to third parties. We use industry-standard security measures to protect your data.</p>
+    <h2>Cookies</h2>
+    <p>We use cookies to improve your browsing experience. You can choose to accept or decline cookies when you first visit our site. Declining cookies may affect some functionality.</p>
+    <h2>Your Rights</h2>
+    <p>You have the right to access, correct, or delete your personal data at any time. To exercise these rights, contact us at hariharan060202@gmail.com.</p>
+    <h2>Contact</h2>
+    <p>For any privacy-related questions, please email: hariharan060202@gmail.com</p>
+  </div>
+</div>
+
+<div class="legal-modal" id="termsModal">
+  <div class="legal-inner">
+    <button class="legal-close" onclick="closeLegal('termsModal')">← Back</button>
+    <h1>Terms of Service</h1>
+    <div class="legal-date">Last updated: March 2025</div>
+    <p>By accessing or using StarSyn AI's website and services, you agree to be bound by these Terms of Service. Please read them carefully.</p>
+    <h2>Services</h2>
+    <p>StarSyn AI provides AI automation consulting, custom AI agent development, and educational training programs. All services are subject to a separate agreement or engagement letter confirming scope and payment terms.</p>
+    <h2>Academy & Training</h2>
+    <p>StarSyn AI Academy provides AI automation training. Enrollment is subject to availability and payment. Certificates are issued upon successful completion of the program requirements.</p>
+    <h2>Placement Preparation Disclaimer</h2>
+    <p>StarSyn AI provides placement preparation services including resume building, mock interviews, and career coaching as a complimentary benefit to Academy students. We do not guarantee employment, arrange interviews with any company, or have placement tie-ups with any organisation. All placement outcomes depend entirely on the student's own effort and merit.</p>
+    <h2>Intellectual Property</h2>
+    <p>All content on this website — including text, graphics, logos, and code — is the property of StarSyn AI and protected by applicable intellectual property laws. You may not reproduce or distribute our content without written permission.</p>
+    <h2>Limitation of Liability</h2>
+    <p>StarSyn AI shall not be liable for any indirect, incidental, or consequential damages arising from your use of our services. Our total liability shall not exceed the amount paid for the specific service in question.</p>
+    <h2>Contact</h2>
+    <p>For any questions regarding these terms, contact: hariharan060202@gmail.com</p>
+  </div>
+</div>
+
+<div class="legal-modal" id="cookieModal">
+  <div class="legal-inner">
+    <button class="legal-close" onclick="closeLegal('cookieModal')">← Back</button>
+    <h1>Cookie Policy</h1>
+    <div class="legal-date">Last updated: March 2025</div>
+    <p>This Cookie Policy explains how StarSyn AI uses cookies and similar tracking technologies on our website.</p>
+    <h2>What Are Cookies</h2>
+    <p>Cookies are small text files placed on your device when you visit a website. They help websites remember your preferences and understand how you interact with them.</p>
+    <h2>Types of Cookies We Use</h2>
+    <ul>
+      <li><strong>Essential Cookies:</strong> Required for the website to function. These cannot be disabled.</li>
+      <li><strong>Preference Cookies:</strong> Remember your choices, such as cookie consent.</li>
+      <li><strong>Analytics Cookies:</strong> Help us understand how visitors interact with our website (only if you accept).</li>
+    </ul>
+    <h2>Managing Cookies</h2>
+    <p>You can control and manage cookies through your browser settings. You can also use the cookie banner on our website to accept or decline non-essential cookies.</p>
+    <h2>Contact</h2>
+    <p>For cookie-related questions: hariharan060202@gmail.com</p>
+  </div>
+</div>
+
+<!-- VISITOR EMAIL CAPTURE POPUP (optional, after 1 min) -->
+<div id="visitorPopup" style="display:none;position:fixed;bottom:6rem;left:50%;transform:translateX(-50%);z-index:850;background:rgba(10,22,40,0.97);border:1.5px solid rgba(56,189,248,0.25);border-radius:16px;padding:1.5rem 2rem;max-width:420px;width:90%;backdrop-filter:blur(20px);box-shadow:0 8px 40px rgba(0,0,0,0.4);">
+  <button onclick="document.getElementById('visitorPopup').style.display='none'" style="position:absolute;top:.75rem;right:.75rem;background:none;border:none;color:var(--text3);cursor:pointer;font-size:1.1rem;">×</button>
+  <h4 style="font-family:var(--serif);font-size:1.1rem;color:var(--text);margin-bottom:.35rem;">Stay in the Loop</h4>
+  <p style="color:var(--text3);font-size:.82rem;margin-bottom:1rem;">Get AI automation tips, case studies and updates — free. No spam, ever.</p>
+  <form onsubmit="captureVisitor(event)" style="display:flex;gap:.5rem;">
+    <input type="email" id="visitorEmail" placeholder="your@email.com" required style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(56,189,248,0.18);border-radius:8px;padding:.6rem .9rem;color:var(--text);font-family:var(--sans);font-size:.85rem;outline:none;"/>
+    <button type="submit" style="background:rgba(56,189,248,0.2);color:var(--accent3);border:1px solid rgba(56,189,248,0.35);padding:.6rem 1.1rem;border-radius:8px;cursor:pointer;font-family:var(--sans);font-size:.85rem;white-space:nowrap;">Join Free</button>
+  </form>
+</div>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <p>We use cookies to improve your experience. By continuing, you agree to our <a href="#" onclick="openLegal('privacyModal')">Privacy Policy</a> and <a href="#" onclick="openLegal('cookieModal')">Cookie Policy</a>.</p>
+  <div class="cookie-btns">
+    <button class="c-accept" onclick="acceptCookie()">Accept All</button>
+    <button class="c-decline" onclick="declineCookie()">Decline</button>
+  </div>
+</div>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-wrap">
+  <button class="float-cta" onclick="openConsultation()"><div class="float-dot"></div>Book Free Consultation</button>
+  <button class="wa-btn" onclick="openWhatsApp()" title="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </button>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="logo" onclick="scrollTop()">
+    <!-- StarSyn AI SVG Logo: geometric star with 'syn' text -->
+    <div class="logo-svg-wrap">
+      <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Glow -->
+        <circle cx="19" cy="17" r="10" fill="rgba(56,189,248,0.08)"/>
+        <!-- 6-point star -->
+        <polygon points="19,4 21.5,13 31,13 23.5,18.5 26,27.5 19,22 12,27.5 14.5,18.5 7,13 16.5,13" stroke="#67e8f9" stroke-width="1.2" fill="rgba(56,189,248,0.12)" stroke-linejoin="round"/>
+        <!-- syn text bottom right -->
+        <text x="20" y="34" font-family="Times New Roman,serif" font-size="7" font-weight="600" fill="#38bdf8" letter-spacing="0.5">syn</text>
+      </svg>
+    </div>
+    <span class="logo-name">StarSyn <span>AI</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#solutions">What We Do</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#academy">Academy</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-primary" onclick="openConsultation()">Book Free Call →</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#solutions" onclick="closeMenu()">What We Do</a></li>
+    <li><a href="#services" onclick="closeMenu()">Services</a></li>
+    <li><a href="#portfolio" onclick="closeMenu()">Portfolio</a></li>
+    <li><a href="#academy" onclick="closeMenu()">Academy</a></li>
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    <li><a href="#" onclick="openConsultation()">Book Free Call →</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+
+  <!-- STARSYN LOGO WATERMARK — large, low opacity, centered behind content -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);z-index:0;pointer-events:none;">
+    <!-- Outer glow bloom -->
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,0.07) 0%,transparent 70%);"></div>
+    <svg viewBox="0 0 100 110" width="380" height="418" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.025;filter:drop-shadow(0 0 20px rgba(56,189,248,0.2));">
+      <!-- 6-point star large -->
+      <polygon
+        points="50,6 57,34 86,34 63,51 71,79 50,62 29,79 37,51 14,34 43,34"
+        stroke="#67e8f9" stroke-width="2.5"
+        fill="rgba(56,189,248,0.18)"
+        stroke-linejoin="round"/>
+      <!-- syn text -->
+      <text x="50" y="100" text-anchor="middle" font-family="Times New Roman,Georgia,serif" font-size="18" font-weight="700" fill="#38bdf8" letter-spacing="4" opacity="0.9">syn</text>
+    </svg>
+  </div>
+  <div class="tool-tile tt1"><svg viewBox="0 0 40 40" width="28" height="28" fill="none"><circle cx="10" cy="20" r="4" stroke="#38bdf8" stroke-width="1.5"/><circle cx="30" cy="10" r="4" stroke="#38bdf8" stroke-width="1.5"/><circle cx="30" cy="30" r="4" stroke="#38bdf8" stroke-width="1.5"/><line x1="14" y1="18" x2="26" y2="12" stroke="#38bdf8" stroke-width="1.5"/><line x1="14" y1="22" x2="26" y2="28" stroke="#38bdf8" stroke-width="1.5"/></svg></div>
+  <div class="tool-tile tt2"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><polygon points="20,5 33,12.5 33,27.5 20,35 7,27.5 7,12.5" stroke="#67e8f9" stroke-width="1.5"/><circle cx="20" cy="20" r="5" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+  <div class="tool-tile tt3"><svg viewBox="0 0 40 40" width="28" height="28" fill="none"><path d="M22 5 L12 22 L20 22 L18 35 L28 18 L20 18 Z" stroke="#38bdf8" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+  <div class="tool-tile tt4"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><rect x="16" y="8" width="8" height="15" rx="4" stroke="#67e8f9" stroke-width="1.5"/><path d="M10 22 Q10 30 20 30 Q30 30 30 22" stroke="#67e8f9" stroke-width="1.5"/><line x1="20" y1="30" x2="20" y2="35" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+  <div class="tool-tile tt5"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><rect x="5" y="8" width="30" height="24" rx="3" stroke="#38bdf8" stroke-width="1.5"/><line x1="5" y1="16" x2="35" y2="16" stroke="#38bdf8" stroke-width="1.5"/><line x1="5" y1="24" x2="35" y2="24" stroke="#38bdf8" stroke-width="1.5"/><line x1="18" y1="8" x2="18" y2="32" stroke="#38bdf8" stroke-width="1.5"/></svg></div>
+  <div class="tool-tile tt6"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><ellipse cx="20" cy="13" rx="12" ry="5" stroke="#67e8f9" stroke-width="1.5"/><path d="M8 13 L8 27 Q8 32 20 32 Q32 32 32 27 L32 13" stroke="#67e8f9" stroke-width="1.5"/><path d="M8 20 Q8 25 20 25 Q32 25 32 20" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+  <div class="tool-tile tt7"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><rect x="8" y="14" width="24" height="18" rx="4" stroke="#38bdf8" stroke-width="1.5"/><line x1="20" y1="8" x2="20" y2="14" stroke="#38bdf8" stroke-width="1.5"/><circle cx="20" cy="7" r="2" stroke="#38bdf8" stroke-width="1.5"/><circle cx="15" cy="22" r="2.5" stroke="#38bdf8" stroke-width="1.5"/><circle cx="25" cy="22" r="2.5" stroke="#38bdf8" stroke-width="1.5"/></svg></div>
+  <div class="tool-tile tt8"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><polyline points="5,32 13,20 21,25 29,12 35,16" stroke="#67e8f9" stroke-width="1.5" stroke-linejoin="round"/><circle cx="13" cy="20" r="2" fill="#67e8f9"/><circle cx="21" cy="25" r="2" fill="#67e8f9"/><circle cx="29" cy="12" r="2" fill="#67e8f9"/></svg></div>
+
+  <div class="hero-badge"><div class="badge-pulse"></div>AI Automation & Augmentation Studio</div>
+  <h1>Automate the Routine.<br/><span class="grad-text">Amplify the Human.</span></h1>
+  <p class="hero-sub">We design and deploy intelligent AI agents that eliminate grunt work, augment your team's capabilities, and accelerate growth — for creators, startups, and enterprises.</p>
+  <div class="hero-btns">
+    <button class="btn-lg primary" onclick="openConsultation()">Book Free Consultation →</button>
+    <button class="btn-lg ghost" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">▶ See What We Build</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num counter" data-target="500" data-suffix="+">0+</div><div class="stat-label">Workflows Deployed</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num counter" data-target="10" data-suffix="×">0×</div><div class="stat-label">Avg Productivity Gain</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num counter" data-target="48" data-suffix="h">0h</div><div class="stat-label">Average Build Time</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num counter" data-target="12" data-suffix="+">0+</div><div class="stat-label">Industries Served</div></div>
+  </div>
+
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar reveal">
+  <div class="trust-inner">
+    <div><div class="trust-num">500+</div><div class="trust-label">AI Workflows Built</div></div>
+    <div><div class="trust-num">98%</div><div class="trust-label">Client Satisfaction</div></div>
+    <div><div class="trust-num">12+</div><div class="trust-label">Industries Served</div></div>
+    <div><div class="trust-num">48h</div><div class="trust-label">Average Delivery</div></div>
+  </div>
+</div>
+
+<!-- TOOLS BAR WITH INTRO LINE -->
+<div class="logo-bar reveal">
+  <div class="container">
+    <!-- Description line above tools -->
+    <div style="text-align:center;margin-bottom:2rem;padding:1.5rem 1rem;background:rgba(56,189,248,0.03);border:1px solid rgba(56,189,248,0.07);border-radius:14px;">
+      <p style="font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--text);margin-bottom:.4rem;letter-spacing:-.2px;">We help businesses eliminate manual work through intelligent automation.</p>
+      <p style="color:var(--text2);font-size:.92rem;line-height:1.75;max-width:640px;margin:0 auto;">From solo creators to enterprise teams — we build AI-powered workflows using the world's best tools, so your business runs smarter, faster, and with less effort. Any doubt about what automation can do for you? <a href="#" onclick="openConsultation()" style="color:var(--accent3);text-decoration:none;font-weight:500;">Get a free consultation →</a></p>
+    </div>
+    <p style="text-align:center;color:var(--text3);font-size:.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1.25rem;">Tools & Platforms We Work With</p>
+    <div class="logos-row">
+      <div class="tool-logo neon-click" title="n8n"><svg viewBox="0 0 40 40" fill="none"><circle cx="10" cy="20" r="4" stroke="#67e8f9" stroke-width="1.5"/><circle cx="30" cy="10" r="4" stroke="#67e8f9" stroke-width="1.5"/><circle cx="30" cy="30" r="4" stroke="#67e8f9" stroke-width="1.5"/><line x1="14" y1="18" x2="26" y2="12" stroke="#67e8f9" stroke-width="1.5"/><line x1="14" y1="22" x2="26" y2="28" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+      <div class="tool-logo neon-click" title="OpenAI GPT-4"><svg viewBox="0 0 40 40" fill="none"><polygon points="20,5 33,12.5 33,27.5 20,35 7,27.5 7,12.5" stroke="#67e8f9" stroke-width="1.5"/><circle cx="20" cy="20" r="5" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+      <div class="tool-logo neon-click" title="Claude / Anthropic"><svg viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="20" rx="10" ry="13" stroke="#67e8f9" stroke-width="1.5"/><path d="M13 17 Q20 12 27 17" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+      <div class="tool-logo neon-click" title="Make.com"><svg viewBox="0 0 40 40" fill="none"><path d="M5 20 Q10 10 20 10 Q30 10 35 20 Q30 30 20 30 Q10 30 5 20Z" stroke="#67e8f9" stroke-width="1.5"/><circle cx="20" cy="20" r="4" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+      <div class="tool-logo neon-click" title="Notion"><svg viewBox="0 0 40 40" fill="none"><rect x="8" y="6" width="24" height="28" rx="3" stroke="#67e8f9" stroke-width="1.5"/><line x1="13" y1="14" x2="27" y2="14" stroke="#67e8f9" stroke-width="1.5"/><line x1="13" y1="20" x2="27" y2="20" stroke="#67e8f9" stroke-width="1.5"/><line x1="13" y1="26" x2="20" y2="26" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+      <div class="tool-logo neon-click" title="Slack"><svg viewBox="0 0 40 40" fill="none"><rect x="6" y="15" width="8" height="10" rx="3" stroke="#67e8f9" stroke-width="1.5"/><rect x="26" y="15" width="8" height="10" rx="3" stroke="#67e8f9" stroke-width="1.5"/><rect x="15" y="6" width="10" height="8" rx="3" stroke="#67e8f9" stroke-width="1.5"/><rect x="15" y="26" width="10" height="8" rx="3" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+      <div class="tool-logo neon-click" title="WhatsApp API"><svg viewBox="0 0 40 40" fill="none"><path d="M20 6 C12.3 6 6 12.3 6 20 C6 22.7 6.8 25.3 8.2 27.5 L6 34 L12.8 31.9 C14.9 33.1 17.4 33.8 20 33.8 C27.7 33.8 34 27.5 34 20 C34 12.3 27.7 6 20 6Z" stroke="#67e8f9" stroke-width="1.5"/><path d="M15 17 Q15 14 20 14 Q24 14 24 17.5 Q24 21 20 22 L20 24" stroke="#67e8f9" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="27" r="1.2" fill="#67e8f9"/></svg></div>
+      <div class="tool-logo neon-click" title="ElevenLabs Voice AI"><svg viewBox="0 0 40 40" fill="none"><rect x="16" y="8" width="8" height="15" rx="4" stroke="#67e8f9" stroke-width="1.5"/><path d="M10 22 Q10 30 20 30 Q30 30 30 22" stroke="#67e8f9" stroke-width="1.5"/><line x1="20" y1="30" x2="20" y2="35" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+      <div class="tool-logo neon-click" title="Airtable"><svg viewBox="0 0 40 40" fill="none"><rect x="5" y="8" width="30" height="24" rx="3" stroke="#67e8f9" stroke-width="1.5"/><line x1="5" y1="16" x2="35" y2="16" stroke="#67e8f9" stroke-width="1.5"/><line x1="5" y1="24" x2="35" y2="24" stroke="#67e8f9" stroke-width="1.5"/><line x1="18" y1="8" x2="18" y2="32" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+      <div class="tool-logo neon-click" title="Supabase"><svg viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="13" rx="12" ry="5" stroke="#67e8f9" stroke-width="1.5"/><path d="M8 13 L8 27 Q8 32 20 32 Q32 32 32 27 L32 13" stroke="#67e8f9" stroke-width="1.5"/><path d="M8 20 Q8 25 20 25 Q32 25 32 20" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+      <div class="tool-logo neon-click" title="Perplexity AI"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="12" stroke="#67e8f9" stroke-width="1.5"/><circle cx="20" cy="20" r="5" stroke="#67e8f9" stroke-width="1.5"/><line x1="20" y1="8" x2="20" y2="15" stroke="#67e8f9" stroke-width="1.5"/><line x1="20" y1="25" x2="20" y2="32" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
+    </div>
+  </div>
+</div>
+
+<!-- AAA SECTION -->
+<section id="solutions" class="section-pad">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow"><div class="eyebrow-line"></div>What We Do</div>
+      <h2 class="section-title">Three Pillars of<br/>Intelligent Transformation</h2>
+      <p class="section-sub">Every engagement is built on one or more of these core capabilities — tailored precisely to your context and goals.</p>
+    </div>
+    <div class="aaa-grid reveal">
+      <div class="aaa-card neon-click"><div class="aaa-num">01</div><div class="aaa-icon-area"><svg class="aaa-icon-svg" viewBox="0 0 56 56"><rect x="10" y="10" width="14" height="14" rx="3"/><rect x="32" y="10" width="14" height="14" rx="3"/><rect x="10" y="32" width="14" height="14" rx="3"/><rect x="32" y="32" width="14" height="14" rx="3"/><line x1="24" y1="17" x2="32" y2="17"/><line x1="17" y1="24" x2="17" y2="32"/><line x1="24" y1="39" x2="32" y2="39"/><line x1="39" y1="24" x2="39" y2="32"/></svg></div><div class="aaa-badge ba1">Automate</div><h3>Remove It Entirely</h3><p>Fully autonomous AI agents running 24/7 without human input — handling emails, forms, reports, social posts, CRM updates, invoices, and more.</p><div class="aaa-examples"><div class="aaa-ex"><div class="aaa-ex-dot"></div>Lead form → qualify → email → CRM entry</div><div class="aaa-ex"><div class="aaa-ex-dot"></div>Invoice received → process → log → notify</div><div class="aaa-ex"><div class="aaa-ex-dot"></div>Meeting ends → summarise → tasks → Slack</div></div></div>
+      <div class="aaa-card neon-click"><div class="aaa-num">02</div><div class="aaa-icon-area"><svg class="aaa-icon-svg" viewBox="0 0 56 56"><ellipse cx="24" cy="28" rx="10" ry="14"/><path d="M34 18 Q44 18 44 28 Q44 38 34 38"/><line x1="24" y1="14" x2="24" y2="17"/><line x1="18" y1="20" x2="15" y2="18"/><line x1="18" y1="36" x2="15" y2="38"/></svg></div><div class="aaa-badge ba2">Augment</div><h3>Supercharge Your Team</h3><p>AI co-pilots assisting humans in real-time — making your team smarter, faster, and more confident in writing, research, decisions, and analysis.</p><div class="aaa-examples"><div class="aaa-ex"><div class="aaa-ex-dot"></div>AI writing assistant trained on your brand voice</div><div class="aaa-ex"><div class="aaa-ex-dot"></div>Real-time research and decision support</div><div class="aaa-ex"><div class="aaa-ex-dot"></div>Live sales coaching and call summaries</div></div></div>
+      <div class="aaa-card neon-click"><div class="aaa-num">03</div><div class="aaa-icon-area"><svg class="aaa-icon-svg" viewBox="0 0 56 56"><polyline points="8,42 18,28 26,34 36,18 48,22"/><circle cx="18" cy="28" r="3"/><circle cx="26" cy="34" r="3"/><circle cx="36" cy="18" r="3"/><line x1="36" y1="8" x2="36" y2="18"/></svg></div><div class="aaa-badge ba3">Accelerate</div><h3>Grow Faster</h3><p>Custom AI pipelines built for speed and scale. From idea to live deployment in 48 hours. Built to grow as your business grows.</p><div class="aaa-examples"><div class="aaa-ex"><div class="aaa-ex-dot"></div>Full multi-step agent pipeline from scratch</div><div class="aaa-ex"><div class="aaa-ex-dot"></div>Integrate AI into your existing product</div><div class="aaa-ex"><div class="aaa-ex-dot"></div>Voice agent handling hundreds of calls daily</div></div></div>
+    </div>
+    <div class="photo-strip reveal">
+      <div class="photo-card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop" alt="Team strategy session" loading="lazy"/><div class="photo-card-overlay"><p>Strategy & Discovery</p><span>We map your automation opportunities</span></div></div>
+      <div class="photo-card"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&auto=format&fit=crop" alt="Team building AI workflows" loading="lazy"/><div class="photo-card-overlay"><p>Build & Deploy</p><span>AI agents built and launched in 48h</span></div></div>
+      <div class="photo-card"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop" alt="Analytics and results" loading="lazy"/><div class="photo-card-overlay"><p>Measure & Scale</p><span>Real results, tracked and optimised</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services" class="section-pad surface-s">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow"><div class="eyebrow-line"></div>Services</div>
+      <h2 class="section-title">AI Flows We Build<br/>For Every Industry</h2>
+      <p class="section-sub">Deployable automations across 10+ industries. Filter by your category.</p>
+      <div class="filter-tabs">
+        <button class="tab active" onclick="filterCards('all',this)">All</button>
+        <button class="tab" onclick="filterCards('creator',this)">Creators</button>
+        <button class="tab" onclick="filterCards('startup',this)">Startups</button>
+        <button class="tab" onclick="filterCards('biz',this)">Small Business</button>
+        <button class="tab" onclick="filterCards('enterprise',this)">Enterprise</button>
+        <button class="tab" onclick="filterCards('health',this)">Healthcare</button>
+        <button class="tab" onclick="filterCards('edu',this)">Education</button>
+        <button class="tab" onclick="filterCards('realestate',this)">Real Estate</button>
+        <button class="tab" onclick="filterCards('ecom',this)">E-commerce</button>
+        <button class="tab" onclick="filterCards('legal',this)">Legal</button>
+        <button class="tab" onclick="filterCards('finance',this)">Finance</button>
+      </div>
+    </div>
+    <div class="services-grid reveal" id="servicesGrid">
+      <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="stag tag-cr">Creator</div><h4>Content Repurposer</h4><p>YouTube link → Twitter thread, LinkedIn post & Instagram caption in your voice — fully automatic.</p></div>
+      <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="stag tag-cr">Creator</div><h4>Auto DM Responder</h4><p>AI replies to your DMs and comments 24/7 in your tone. Never miss a fan or lead again.</p></div>
+      <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-cr">Creator</div><h4>Newsletter Writer Agent</h4><p>Pulls your content & trending topics → drafts your weekly newsletter, ready to send.</p></div>
+      <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="stag tag-st">Startup</div><h4>Lead Qualification Bot</h4><p>Form → AI qualifies lead → personalised email → books a call. Fully hands-free end to end.</p></div>
+      <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="stag tag-st">Startup</div><h4>Competitor Monitor</h4><p>Tracks competitor websites, pricing, and socials daily. Instant alerts when anything changes.</p></div>
+      <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="stag tag-st">Startup</div><h4>Meeting Summariser</h4><p>Records calls → writes summary + action items → drops into Notion, Slack, or CRM automatically.</p></div>
+      <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>AI Receptionist</h4><p>WhatsApp or website bot that books appointments, answers FAQs, and captures leads 24/7.</p></div>
+      <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Review Responder</h4><p>Monitors Google reviews and drafts personalised responses to every new review instantly.</p></div>
+      <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Social Media Autopilot</h4><p>Approve ideas once a week. AI writes, schedules, and posts across all platforms automatically.</p></div>
+      <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="stag tag-en">Enterprise</div><h4>HR Onboarding Agent</h4><p>New hire triggers full pipeline — sends docs, books meetings, sets up accounts, notifies teams.</p></div>
+      <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Contract Analyser</h4><p>Upload any PDF → AI flags risks, key dates, obligations, and unusual clauses in 30 seconds.</p></div>
+      <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Internal Knowledge Bot</h4><p>Chat with your own company docs, SOPs, and wikis. Instant answers without searching folders.</p></div>
+      <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Appointment Booking Bot</h4><p>Patients book, reschedule, and get reminders via WhatsApp. Zero receptionist time needed.</p></div>
+      <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Medical Report Summariser</h4><p>Complex reports → plain-language summaries for patients or staff in seconds.</p></div>
+      <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="stag tag-ed">Education</div><h4>Doubt-Solving Bot</h4><p>AI tutor trained on your curriculum answers student questions 24/7 with structured explanations.</p></div>
+      <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="stag tag-ed">Education</div><h4>Assignment Feedback AI</h4><p>Students submit work → AI gives structured, rubric-based feedback within seconds.</p></div>
+      <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Lead Qualifier</h4><p>Website visitors → AI qualifies buyer vs renter vs investor → routes to right agent automatically.</p></div>
+      <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Description Writer</h4><p>Input specs and photos → AI writes SEO-optimised listings for all portals instantly.</p></div>
+      <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Product Description Generator</h4><p>Upload product image + basic info → AI writes SEO-rich descriptions for all listings.</p></div>
+      <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Order Tracking Bot</h4><p>Customers ask about orders on WhatsApp → AI replies instantly with live status.</p></div>
+      <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="stag tag-le">Legal</div><h4>Contract Risk Analyser</h4><p>Upload any contract → AI highlights risks, missing clauses, and unusual terms immediately.</p></div>
+      <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="stag tag-le">Legal</div><h4>Client Intake Bot</h4><p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p></div>
+      <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Financial Report Automator</h4><p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p></div>
+      <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Client Update Bot</h4><p>Detects account changes → drafts and sends personalised client emails automatically.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PORTFOLIO — 6 REAL PROJECTS WITH DETAILED FLOWCHARTS -->
+<section id="portfolio" class="section-pad">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow"><div class="eyebrow-line"></div>Portfolio</div>
+      <h2 class="section-title">AI Pipelines We've Built</h2>
+      <p class="section-sub">Six real workflow architectures across three complexity levels — with detailed pipeline diagrams.</p>
+    </div>
+    <div class="portfolio-grid reveal">
+
+      <!-- 1. SIMPLE — Social Media Autopilot -->
+      <div class="pcard neon-click">
+        <div class="pcard-header">
+          <div><div class="pcard-title">Social Media Autopilot</div><div class="pcard-sub">Local Restaurant Chain</div></div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="complexity-badge cx-simple">Simple</span>
+            <div class="pcard-status"><div class="sdot"></div>Live</div>
+            <div class="pcard-model">Model <span class="pcard-model-name">GPT-4</span></div>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <div class="flowchart">
+            <svg viewBox="0 0 480 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs><marker id="arr1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(56,189,248,0.5)"/></marker></defs>
+              <!-- Node 1 -->
+              <rect x="10" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="50" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Content</text>
+              <text x="50" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Brief Input</text>
+              <circle cx="90" cy="60" r="4" fill="rgba(56,189,248,0.4)"/>
+              <!-- Arrow -->
+              <line x1="94" y1="60" x2="118" y2="60" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr1)"/>
+              <!-- Node 2 -->
+              <rect x="120" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="160" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">GPT-4</text>
+              <text x="160" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Write Posts</text>
+              <circle cx="200" cy="60" r="4" fill="rgba(56,189,248,0.4)"/>
+              <line x1="204" y1="60" x2="228" y2="60" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr1)"/>
+              <!-- Node 3 -->
+              <rect x="230" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="270" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Human</text>
+              <text x="270" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Approve</text>
+              <circle cx="310" cy="60" r="4" fill="rgba(56,189,248,0.4)"/>
+              <line x1="314" y1="60" x2="338" y2="60" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr1)"/>
+              <!-- Node 4 -->
+              <rect x="340" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="380" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Auto-Post</text>
+              <text x="380" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">4 Platforms</text>
+              <!-- Labels -->
+              <text x="50" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Trigger</text>
+              <text x="160" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Generate</text>
+              <text x="270" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Review</text>
+              <text x="380" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Publish</text>
+            </svg>
+          </div>
+          <div class="pcard-metrics"><div><div class="metric-val">12h</div><div class="metric-label">Saved/Week</div></div><div><div class="metric-val">4×</div><div class="metric-label">Post Volume</div></div><div><div class="metric-val">2d</div><div class="metric-label">Build Time</div></div></div>
+          <div class="pcard-tools"><span class="ptool">n8n</span><span class="ptool">GPT-4</span><span class="ptool">Buffer API</span></div>
+        </div>
+      </div>
+
+      <!-- 2. SIMPLE — Review Responder -->
+      <div class="pcard neon-click">
+        <div class="pcard-header">
+          <div><div class="pcard-title">Review Response Bot</div><div class="pcard-sub">Retail Store · 3 Branches</div></div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="complexity-badge cx-simple">Simple</span>
+            <div class="pcard-status"><div class="sdot"></div>Live</div>
+            <div class="pcard-model">Model <span class="pcard-model-name">Claude</span></div>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <div class="flowchart">
+            <svg viewBox="0 0 480 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs><marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(56,189,248,0.5)"/></marker></defs>
+              <rect x="10" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="50" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">New Google</text>
+              <text x="50" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Review</text>
+              <circle cx="90" cy="60" r="4" fill="rgba(56,189,248,0.4)"/>
+              <line x1="94" y1="60" x2="118" y2="60" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr2)"/>
+              <rect x="120" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="160" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Sentiment</text>
+              <text x="160" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Analyse</text>
+              <circle cx="200" cy="60" r="4" fill="rgba(56,189,248,0.4)"/>
+              <line x1="204" y1="60" x2="228" y2="60" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr2)"/>
+              <rect x="230" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="270" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Draft</text>
+              <text x="270" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Response</text>
+              <circle cx="310" cy="60" r="4" fill="rgba(56,189,248,0.4)"/>
+              <line x1="314" y1="60" x2="338" y2="60" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr2)"/>
+              <rect x="340" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="380" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Post Reply</text>
+              <text x="380" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">+ Log</text>
+              <text x="50" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Trigger</text>
+              <text x="160" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Classify</text>
+              <text x="270" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Claude AI</text>
+              <text x="380" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Publish</text>
+            </svg>
+          </div>
+          <div class="pcard-metrics"><div><div class="metric-val">100%</div><div class="metric-label">Reviews Answered</div></div><div><div class="metric-val">4.8★</div><div class="metric-label">Avg Rating</div></div><div><div class="metric-val">1d</div><div class="metric-label">Build Time</div></div></div>
+          <div class="pcard-tools"><span class="ptool">n8n</span><span class="ptool">Claude</span><span class="ptool">Google API</span></div>
+        </div>
+      </div>
+
+      <!-- 3. MEDIUM — Lead Nurture Pipeline -->
+      <div class="pcard neon-click">
+        <div class="pcard-header">
+          <div><div class="pcard-title">Lead Nurture Pipeline</div><div class="pcard-sub">B2B SaaS Startup</div></div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="complexity-badge cx-medium">Medium</span>
+            <div class="pcard-status"><div class="sdot"></div>Live</div>
+            <div class="pcard-model">Model <span class="pcard-model-name">n8n</span></div>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <div class="flowchart">
+            <svg viewBox="0 0 520 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs><marker id="arr3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(56,189,248,0.5)"/></marker></defs>
+              <!-- Row 1 -->
+              <rect x="10" y="10" width="75" height="45" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="47" y="30" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Form</text>
+              <text x="47" y="42" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Submit</text>
+              <circle cx="85" cy="32" r="3.5" fill="rgba(56,189,248,0.4)"/>
+              <line x1="88" y1="32" x2="108" y2="32" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr3)"/>
+              <rect x="110" y="10" width="75" height="45" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="147" y="30" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">GPT-4</text>
+              <text x="147" y="42" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Score Lead</text>
+              <circle cx="185" cy="32" r="3.5" fill="rgba(56,189,248,0.4)"/>
+              <!-- Branch decision -->
+              <line x1="188" y1="32" x2="205" y2="32" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <polygon points="205,25 220,32 205,39" fill="rgba(56,189,248,0.15)" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
+              <!-- Hot branch -->
+              <line x1="220" y1="28" x2="250" y2="18" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr3)"/>
+              <rect x="252" y="5" width="75" height="35" rx="8" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+              <text x="289" y="20" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.9)">Hot Lead</text>
+              <text x="289" y="32" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.9)">Book Call</text>
+              <!-- Cold branch -->
+              <line x1="220" y1="36" x2="250" y2="50" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr3)"/>
+              <rect x="252" y="43" width="75" height="35" rx="8" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.25)" stroke-width="1"/>
+              <text x="289" y="58" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.6)">Nurture</text>
+              <text x="289" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.6)">Sequence</text>
+              <!-- Both merge to CRM -->
+              <line x1="327" y1="22" x2="360" y2="70" stroke="rgba(56,189,248,0.25)" stroke-width="1" stroke-dasharray="3,2"/>
+              <line x1="327" y1="60" x2="360" y2="70" stroke="rgba(56,189,248,0.25)" stroke-width="1" stroke-dasharray="3,2"/>
+              <rect x="362" y="50" width="75" height="45" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="399" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">CRM</text>
+              <text x="399" y="82" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">+ Slack Alert</text>
+              <!-- Bottom row: Slack -->
+              <line x1="399" y1="95" x2="399" y2="110" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr3)"/>
+              <rect x="362" y="112" width="75" height="35" rx="8" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <text x="399" y="127" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.55)">Email</text>
+              <text x="399" y="139" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.55)">Sequence</text>
+              <text x="47" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(56,189,248,0.45)">Webhook</text>
+              <text x="147" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(56,189,248,0.45)">AI Score</text>
+              <text x="213" y="18" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(56,189,248,0.45)">Route</text>
+            </svg>
+          </div>
+          <div class="pcard-metrics"><div><div class="metric-val">80%</div><div class="metric-label">Less Manual</div></div><div><div class="metric-val">3×</div><div class="metric-label">Conversions</div></div><div><div class="metric-val">48h</div><div class="metric-label">Build Time</div></div></div>
+          <div class="pcard-tools"><span class="ptool">n8n</span><span class="ptool">GPT-4</span><span class="ptool">HubSpot</span><span class="ptool">Slack</span></div>
+        </div>
+      </div>
+
+      <!-- 4. MEDIUM — Content Engine -->
+      <div class="pcard neon-click">
+        <div class="pcard-header">
+          <div><div class="pcard-title">Content Repurposing Engine</div><div class="pcard-sub">YouTube Creator · 280K Subscribers</div></div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="complexity-badge cx-medium">Medium</span>
+            <div class="pcard-status"><div class="sdot"></div>Live</div>
+            <div class="pcard-model">Model <span class="pcard-model-name">Claude</span></div>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <div class="flowchart">
+            <svg viewBox="0 0 520 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs><marker id="arr4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(56,189,248,0.5)"/></marker></defs>
+              <!-- Step 1 -->
+              <rect x="10" y="52" width="72" height="45" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="46" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">YouTube</text>
+              <text x="46" y="84" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">URL Input</text>
+              <circle cx="82" cy="74" r="3.5" fill="rgba(56,189,248,0.4)"/>
+              <line x1="85" y1="74" x2="105" y2="74" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr4)"/>
+              <!-- Step 2 -->
+              <rect x="107" y="52" width="72" height="45" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="143" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Transcribe</text>
+              <text x="143" y="84" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Audio</text>
+              <circle cx="179" cy="74" r="3.5" fill="rgba(56,189,248,0.4)"/>
+              <line x1="182" y1="74" x2="200" y2="74" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr4)"/>
+              <!-- Step 3 -->
+              <rect x="202" y="52" width="72" height="45" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="238" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Claude</text>
+              <text x="238" y="84" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Generate</text>
+              <circle cx="274" cy="74" r="3.5" fill="rgba(56,189,248,0.4)"/>
+              <!-- Fan out to 4 platforms -->
+              <line x1="277" y1="70" x2="300" y2="20" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr4)"/>
+              <line x1="277" y1="72" x2="300" y2="50" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr4)"/>
+              <line x1="277" y1="75" x2="300" y2="90" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr4)"/>
+              <line x1="277" y1="77" x2="300" y2="120" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr4)"/>
+              <!-- Platform boxes -->
+              <rect x="302" y="8" width="70" height="28" rx="6" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.25)" stroke-width="1"/>
+              <text x="337" y="26" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(196,181,253,0.9)">Twitter Thread</text>
+              <rect x="302" y="40" width="70" height="28" rx="6" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <text x="337" y="58" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.6)">LinkedIn Post</text>
+              <rect x="302" y="78" width="70" height="28" rx="6" fill="rgba(249,115,22,0.07)" stroke="rgba(249,115,22,0.2)" stroke-width="1"/>
+              <text x="337" y="96" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(253,186,116,0.8)">Instagram</text>
+              <rect x="302" y="108" width="70" height="28" rx="6" fill="rgba(52,211,153,0.06)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
+              <text x="337" y="126" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.7)">Newsletter</text>
+              <!-- Schedule -->
+              <line x1="372" y1="75" x2="400" y2="75" stroke="rgba(56,189,248,0.25)" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr4)"/>
+              <rect x="402" y="55" width="72" height="40" rx="8" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <text x="438" y="73" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.5)">Auto</text>
+              <text x="438" y="85" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.5)">Schedule</text>
+            </svg>
+          </div>
+          <div class="pcard-metrics"><div><div class="metric-val">15h</div><div class="metric-label">Saved/Week</div></div><div><div class="metric-val">5×</div><div class="metric-label">Content Output</div></div><div><div class="metric-val">2×</div><div class="metric-label">Engagement</div></div></div>
+          <div class="pcard-tools"><span class="ptool">n8n</span><span class="ptool">Claude</span><span class="ptool">Whisper</span><span class="ptool">Buffer</span></div>
+        </div>
+      </div>
+
+      <!-- 5. ADVANCED — Hospital Appointment System -->
+      <div class="pcard neon-click">
+        <div class="pcard-header">
+          <div><div class="pcard-title">Hospital Appointment System</div><div class="pcard-sub">Multi-Specialty Clinic · 8 Doctors</div></div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="complexity-badge cx-advanced">Advanced</span>
+            <div class="pcard-status"><div class="sdot"></div>Live</div>
+            <div class="pcard-model">Model <span class="pcard-model-name">GPT-4</span></div>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <div class="flowchart">
+            <svg viewBox="0 0 520 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs><marker id="arr5" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(56,189,248,0.5)"/></marker></defs>
+              <!-- Patient WhatsApp -->
+              <rect x="8" y="70" width="68" height="40" rx="8" fill="rgba(37,211,102,0.08)" stroke="rgba(37,211,102,0.3)" stroke-width="1"/>
+              <text x="42" y="88" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(74,222,128,0.9)">Patient</text>
+              <text x="42" y="99" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(74,222,128,0.9)">WhatsApp</text>
+              <circle cx="76" cy="90" r="3" fill="rgba(56,189,248,0.4)"/>
+              <line x1="79" y1="90" x2="96" y2="90" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr5)"/>
+              <!-- NLP Engine -->
+              <rect x="98" y="60" width="68" height="60" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="132" y="83" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">NLP</text>
+              <text x="132" y="93" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">Intent</text>
+              <text x="132" y="103" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">Detect</text>
+              <circle cx="166" cy="90" r="3" fill="rgba(56,189,248,0.4)"/>
+              <!-- Intent branches -->
+              <line x1="169" y1="86" x2="188" y2="55" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr5)"/>
+              <line x1="169" y1="90" x2="188" y2="90" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr5)"/>
+              <line x1="169" y1="94" x2="188" y2="125" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr5)"/>
+              <!-- Branch boxes -->
+              <rect x="190" y="40" width="70" height="28" rx="6" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <text x="225" y="58" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.6)">Book Appt</text>
+              <rect x="190" y="76" width="70" height="28" rx="6" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <text x="225" y="94" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.6)">Reschedule</text>
+              <rect x="190" y="112" width="70" height="28" rx="6" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <text x="225" y="130" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.6)">FAQ Reply</text>
+              <!-- Check availability -->
+              <line x1="260" y1="54" x2="285" y2="80" stroke="rgba(56,189,248,0.2)" stroke-width="1" stroke-dasharray="2,2"/>
+              <line x1="260" y1="90" x2="285" y2="90" stroke="rgba(56,189,248,0.2)" stroke-width="1" stroke-dasharray="2,2"/>
+              <rect x="287" y="65" width="72" height="50" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="323" y="83" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">Check</text>
+              <text x="323" y="93" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">Doctor</text>
+              <text x="323" y="103" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">Slots</text>
+              <circle cx="359" cy="90" r="3" fill="rgba(56,189,248,0.4)"/>
+              <line x1="362" y1="90" x2="382" y2="90" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr5)"/>
+              <!-- Confirm + Remind -->
+              <rect x="384" y="55" width="68" height="35" rx="8" fill="rgba(52,211,153,0.07)" stroke="rgba(52,211,153,0.25)" stroke-width="1"/>
+              <text x="418" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.8)">Confirm</text>
+              <text x="418" y="81" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.8)">Booking</text>
+              <rect x="384" y="100" width="68" height="35" rx="8" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+              <text x="418" y="115" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.55)">24h</text>
+              <text x="418" y="126" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.55)">Reminder</text>
+              <!-- Follow-up -->
+              <line x1="452" y1="135" x2="452" y2="148" stroke="rgba(56,189,248,0.2)" stroke-width="1" stroke-dasharray="2,2"/>
+              <rect x="415" y="150" width="75" height="25" rx="6" fill="rgba(56,189,248,0.04)" stroke="rgba(56,189,248,0.15)" stroke-width="1"/>
+              <text x="452" y="166" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(240,249,255,0.4)">Post-Visit Follow-up</text>
+            </svg>
+          </div>
+          <div class="pcard-metrics"><div><div class="metric-val">90%</div><div class="metric-label">Call Volume Drop</div></div><div><div class="metric-val">24/7</div><div class="metric-label">Booking</div></div><div><div class="metric-val">40%</div><div class="metric-label">No-shows Down</div></div></div>
+          <div class="pcard-tools"><span class="ptool">n8n</span><span class="ptool">GPT-4</span><span class="ptool">WhatsApp API</span><span class="ptool">Google Calendar</span><span class="ptool">Supabase</span></div>
+        </div>
+      </div>
+
+      <!-- 6. ADVANCED — Enterprise HR Onboarding -->
+      <div class="pcard neon-click">
+        <div class="pcard-header">
+          <div><div class="pcard-title">Enterprise HR Onboarding</div><div class="pcard-sub">Tech Company · 500 Employees</div></div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="complexity-badge cx-advanced">Advanced</span>
+            <div class="pcard-status"><div class="sdot"></div>Live</div>
+            <div class="pcard-model">Model <span class="pcard-model-name">Claude</span></div>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <div class="flowchart">
+            <svg viewBox="0 0 520 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs><marker id="arr6" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(56,189,248,0.5)"/></marker></defs>
+              <!-- Trigger -->
+              <rect x="8" y="70" width="68" height="40" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+              <text x="42" y="88" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">New Hire</text>
+              <text x="42" y="99" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">HR Record</text>
+              <circle cx="76" cy="90" r="3" fill="rgba(56,189,248,0.4)"/>
+              <line x1="79" y1="90" x2="96" y2="90" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr6)"/>
+              <!-- Orchestrator -->
+              <rect x="98" y="60" width="72" height="60" rx="8" fill="rgba(56,189,248,0.1)" stroke="rgba(56,189,248,0.35)" stroke-width="1.5"/>
+              <text x="134" y="82" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(103,232,249,0.9)">Claude</text>
+              <text x="134" y="93" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(103,232,249,0.9)">Orchestrate</text>
+              <text x="134" y="104" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(103,232,249,0.6)">Role Detect</text>
+              <circle cx="170" cy="90" r="3" fill="rgba(56,189,248,0.4)"/>
+              <!-- Fan out to 5 parallel tasks -->
+              <line x1="173" y1="78" x2="198" y2="18" stroke="rgba(56,189,248,0.2)" stroke-width="1" marker-end="url(#arr6)"/>
+              <line x1="173" y1="83" x2="198" y2="50" stroke="rgba(56,189,248,0.2)" stroke-width="1" marker-end="url(#arr6)"/>
+              <line x1="173" y1="90" x2="198" y2="90" stroke="rgba(56,189,248,0.2)" stroke-width="1" marker-end="url(#arr6)"/>
+              <line x1="173" y1="96" x2="198" y2="130" stroke="rgba(56,189,248,0.2)" stroke-width="1" marker-end="url(#arr6)"/>
+              <line x1="173" y1="100" x2="198" y2="158" stroke="rgba(56,189,248,0.2)" stroke-width="1" marker-end="url(#arr6)"/>
+              <!-- Parallel task boxes -->
+              <rect x="200" y="5" width="82" height="24" rx="5" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.18)" stroke-width="1"/>
+              <text x="241" y="21" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(240,249,255,0.55)">Send Docs & Contracts</text>
+              <rect x="200" y="36" width="82" height="24" rx="5" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.18)" stroke-width="1"/>
+              <text x="241" y="52" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(240,249,255,0.55)">Schedule Intro Meetings</text>
+              <rect x="200" y="78" width="82" height="24" rx="5" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.18)" stroke-width="1"/>
+              <text x="241" y="94" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(240,249,255,0.55)">Setup Tools & Accounts</text>
+              <rect x="200" y="118" width="82" height="24" rx="5" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.18)" stroke-width="1"/>
+              <text x="241" y="134" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(240,249,255,0.55)">Notify Team on Slack</text>
+              <rect x="200" y="148" width="82" height="24" rx="5" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.18)" stroke-width="1"/>
+              <text x="241" y="164" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(240,249,255,0.55)">30-day Check-in Flow</text>
+              <!-- All converge to done -->
+              <line x1="282" y1="17" x2="408" y2="82" stroke="rgba(56,189,248,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
+              <line x1="282" y1="48" x2="408" y2="84" stroke="rgba(56,189,248,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
+              <line x1="282" y1="90" x2="408" y2="88" stroke="rgba(56,189,248,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
+              <line x1="282" y1="130" x2="408" y2="92" stroke="rgba(56,189,248,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
+              <line x1="282" y1="160" x2="408" y2="95" stroke="rgba(56,189,248,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
+              <rect x="410" y="65" width="80" height="50" rx="8" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.25)" stroke-width="1"/>
+              <text x="450" y="83" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.85)">Onboarding</text>
+              <text x="450" y="94" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.85)">Complete</text>
+              <text x="450" y="105" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(110,231,183,0.55)">20 min total</text>
+            </svg>
+          </div>
+          <div class="pcard-metrics"><div><div class="metric-val">20min</div><div class="metric-label">vs 3 Days Before</div></div><div><div class="metric-val">0</div><div class="metric-label">Manual Steps</div></div><div><div class="metric-val">100%</div><div class="metric-label">Accuracy</div></div></div>
+          <div class="pcard-tools"><span class="ptool">n8n</span><span class="ptool">Claude</span><span class="ptool">Slack</span><span class="ptool">Google Workspace</span><span class="ptool">Supabase</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section-pad surface-s">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto;">
+      <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>Process<div class="eyebrow-line"></div></div>
+      <h2 class="section-title">From Idea to Live Agent<br/>in 3 Simple Steps</h2>
+    </div>
+    <div class="how-grid reveal">
+      <div class="how-step"><div class="step-num"><div class="step-num-inner">01</div></div><h4>Free Discovery Call</h4><p>30 minutes. You explain your pain points and goals. We map exactly what to automate, which tools to use, and what results to expect.</p></div>
+      <div class="how-step"><div class="step-num"><div class="step-num-inner">02</div></div><h4>We Design & Build</h4><p>Our team builds your AI agent or workflow pipeline — usually within 48 hours. You receive progress updates throughout the build.</p></div>
+      <div class="how-step"><div class="step-num"><div class="step-num-inner">03</div></div><h4>Launch & Scale</h4><p>Go live, see real results from day one. Full documentation, training, and ongoing support as your needs grow.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ACADEMY -->
+<section id="academy" class="section-pad">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow"><div class="eyebrow-line"></div>Learn & Intern</div>
+      <h2 class="section-title">StarSyn AI Academy —<br/>Build Agents. Get Certified.</h2>
+    </div>
+    <div class="academy-hero-img reveal">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&auto=format&fit=crop" alt="Students learning AI automation" loading="lazy"/>
+      <div class="academy-hero-text"><h3>Hands-On AI Automation Training</h3><p>Real tools. Real projects. Real credentials.</p></div>
+    </div>
+    <div class="academy-top reveal">
+      <div>
+        <div class="acad-badge">StarSyn AI Academy</div>
+        <p class="section-sub" style="margin-bottom:0;">Hands-on training for students and professionals who want to master AI automation — with real client projects, industry tools, and career-ready credentials.</p>
+        <div class="acad-features">
+          <div class="af"><div class="af-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Internship Certificate upon completion</div>
+          <div class="af"><div class="af-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Personalised Letter of Recommendation from our team</div>
+          <div class="af"><div class="af-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Work on real client projects during training</div>
+          <div class="af"><div class="af-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Mock interview sessions — technical & behavioural rounds</div>
+          <div class="af"><div class="af-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Learn n8n, Claude, GPT-4, Make & more</div>
+          <div class="af"><div class="af-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>LinkedIn profile overhaul + alumni network</div>
+        </div>
+        <!-- Academy join button -->
+        <button onclick="joinAcademy()" style="margin-top:1.5rem;background:rgba(56,189,248,0.18);color:var(--accent3);border:1.5px solid rgba(56,189,248,0.4);padding:.75rem 1.8rem;border-radius:10px;font-size:.95rem;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .2s;" onmouseover="this.style.boxShadow='0 0 20px rgba(0,245,255,0.3)'" onmouseout="this.style.boxShadow='none'">Join the Academy →</button>
+      </div>
+      <div class="cert-card">
+        <h4>What You Receive Upon Completion</h4>
+        <p>Every StarSyn AI Academy graduate receives a full certification package to launch their AI career confidently.</p>
+        <div class="cert-perks">
+          <div class="perk"><div class="perk-dot"></div>Certificate of Completion — AI Automation Specialist</div>
+          <div class="perk"><div class="perk-dot"></div>Internship Experience Certificate</div>
+          <div class="perk"><div class="perk-dot"></div>Letter of Recommendation (personalised by our team)</div>
+          <div class="perk"><div class="perk-dot"></div>Portfolio of 3+ live deployed automation projects</div>
+          <div class="perk"><div class="perk-dot"></div>StarSyn AI Alumni badge for LinkedIn</div>
+          <div class="perk"><div class="perk-dot"></div>Priority referrals to our hiring network</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FREE PLACEMENT PREP -->
+    <div class="placement-box reveal">
+      <h3>Free Placement Preparation — Included With Every Course</h3>
+      <p>On top of your AI Automation certification, every StarSyn AI Academy student receives complimentary placement preparation support at absolutely zero extra cost. We want you to succeed beyond the classroom.</p>
+      <div class="placement-grid">
+        <div class="placement-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><h5>ATS-Optimised Resume</h5><p>We build and review your resume to pass the Applicant Tracking Systems used by top companies — before a human ever sees it.</p></div>
+        <div class="placement-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><h5>Mock Interview Sessions</h5><p>Live practice rounds covering technical AI questions and behavioural interviews — exactly how top companies conduct them.</p></div>
+        <div class="placement-item"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><h5>Career Roadmap & Strategy</h5><p>LinkedIn overhaul, job targeting, portfolio presentation coaching — positioning you as an AI specialist for top companies.</p></div>
+      </div>
+      <p style="color:var(--text2);font-size:.88rem;margin-bottom:1rem;">Our students have gone on to target roles at companies like <strong style="color:var(--accent3);">Google, Amazon, Zoho, Infosys, TCS</strong> and fast-growing AI startups worldwide.</p>
+      <div class="placement-disclaimer"><strong>Important Note:</strong> StarSyn AI does not arrange interviews, guarantee placements, or have tie-ups with any company. We provide world-class preparation — the opportunity is entirely yours to seize. What we give you is the best possible chance to get there on your own merit.</div>
+    </div>
+
+    <div class="reveal">
+      <h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:.4rem;">Choose Your Format</h3>
+      <p style="color:var(--text2);font-size:.9rem;margin-bottom:1.5rem;">Flexible options to fit your schedule and learning style.</p>
+      <div class="formats-grid">
+        <div class="format-card neon-click"><svg class="format-icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><h5>One-on-One Private</h5><p>Dedicated sessions with a personal mentor. Move at your pace, focused entirely on your goals.</p></div>
+        <div class="format-card neon-click"><svg class="format-icon-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg><h5>Small Group (3–5)</h5><p>Learn with a small cohort. Peer-review projects, share ideas, build together at lower cost.</p></div>
+        <div class="format-card neon-click"><svg class="format-icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><h5>Online Sessions</h5><p>Live interactive sessions via Zoom or Meet. Attend from anywhere — fully recorded for later review.</p></div>
+        <div class="format-card neon-click"><svg class="format-icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><h5>In-Person (India)</h5><p>Join us in-person for a fully immersive, hands-on experience. Available by arrangement.</p></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:.4rem;">Pick Your Duration</h3>
+      <p style="color:var(--text2);font-size:.88rem;margin-bottom:.5rem;">Shorter = more intensive = higher investment. Longer = deeper learning at a lower monthly rate.</p>
+      <div class="duration-grid">
+        <div class="dur-card hot neon-click"><div class="dur-badge">Intensive</div><div class="dur-time">2 Weeks</div><div class="dur-price">Premium Rate</div><div class="dur-desc">Daily fast-track sessions. For professionals needing rapid upskilling.</div></div>
+        <div class="dur-card neon-click"><div class="dur-badge">Popular</div><div class="dur-time">1 Month</div><div class="dur-price">Standard Rate</div><div class="dur-desc">Balanced pace with project work. Ideal for students and career switchers.</div></div>
+        <div class="dur-card neon-click"><div class="dur-badge">Deep Dive</div><div class="dur-time">2 Months</div><div class="dur-price">Value Rate</div><div class="dur-desc">Full curriculum, all tools, real projects, and mentorship included.</div></div>
+        <div class="dur-card neon-click"><div class="dur-badge">Full Mastery</div><div class="dur-time">3 Months</div><div class="dur-price">Best Value/Month</div><div class="dur-desc">End-to-end mastery with a live enterprise capstone project.</div></div>
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <p style="color:var(--text3);font-size:.85rem;margin-bottom:1.25rem;">Exact pricing discussed during your free consultation — based on format, duration, and group size.</p>
+        <button class="btn-primary" style="padding:.8rem 2rem;font-size:.95rem;border-radius:12px;" onclick="joinAcademy()">Book Free Academy Consultation →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about" class="section-pad surface-s">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow"><div class="eyebrow-line"></div>About Us</div>
+      <h2 class="section-title">Built by Builders.<br/>For Every Business.</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-img"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&auto=format&fit=crop" alt="Team collaboration" loading="lazy"/></div>
+      <div class="about-content">
+        <p>StarSyn AI was founded in India with one mission — make powerful AI automation accessible to every business, not just large enterprises with big budgets.</p>
+        <p>We've built 500+ automation workflows across 12+ industries, helping creators reclaim their time, startups grow faster, and enterprises modernise their operations using intelligent AI agents.</p>
+        <p>Our team combines deep technical expertise in AI with real business experience — so everything we build is practical, maintainable, and delivers measurable results.</p>
+        <div class="about-values">
+          <div class="about-val"><strong>Speed</strong>Most workflows built and deployed within 48 hours of your discovery call.</div>
+          <div class="about-val"><strong>Transparency</strong>No hidden fees. No lock-in. You own everything we build for you.</div>
+          <div class="about-val"><strong>Practicality</strong>We only build what works in the real world, not just in theory.</div>
+          <div class="about-val"><strong>Education</strong>We teach while we build — so your team understands what's running.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOUNDER SECTION -->
+    <div class="founder-section reveal">
+      <div class="founder-avatar">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div>
+        <div class="founder-name">Hariharan Murthy</div>
+        <div class="founder-title">FOUNDER & CEO — STARSYN AI</div>
+        <p class="founder-bio">Hariharan founded StarSyn AI to bridge the gap between cutting-edge AI technology and real-world business impact. With a deep passion for automation, intelligent systems, and making AI accessible to everyone — from solo creators to enterprise teams — he leads the studio's vision and technical direction.</p>
+        <div class="founder-special">
+          <strong>Special Projects — Founder-Led Builds:</strong> For select high-complexity or high-impact projects that require the deepest level of technical expertise, Hariharan personally leads the build alongside his core team. These are projects where innovation, precision, and exceptional execution are non-negotiable — the kind of work that truly pushes what AI can do.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TESTIMONIALS -->
+<section class="section-pad">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto;">
+      <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>Results<div class="eyebrow-line"></div></div>
+      <h2 class="section-title">What Our Clients & Students Say</h2>
+    </div>
+    <div class="testi-grid reveal">
+      <div class="tcard neon-click">
+        <div class="tcard-stars">★★★★★</div>
+        <div class="tcard-quote">"</div>
+        <p class="tcard-text">Before StarSyn AI, I was manually tracking every client session, sending reminders, and updating spreadsheets. Now my entire client workflow — bookings, reminders, follow-ups, and progress reports — runs completely on its own. I save at least 3 hours a day. As a solo fitness freelancer, this is honestly life-changing.</p>
+        <div class="tcard-author">
+          <div class="author-av">PR</div>
+          <div><div class="author-name">PadmaRaj</div><div class="author-role">Fitness Freelancer & Personal Trainer</div></div>
+        </div>
+      </div>
+      <div class="tcard neon-click">
+        <div class="tcard-stars">★★★★★</div>
+        <div class="tcard-quote">"</div>
+        <p class="tcard-text">I joined the StarSyn AI Academy with zero background in automation. The coaching was structured, the tools were real, and the mock interview sessions actually prepared me for what companies ask. The placement training and ATS resume session gave me confidence I never had. Got placed within a month of completing the course.</p>
+        <div class="tcard-author">
+          <div class="author-av">PK</div>
+          <div><div class="author-name">Pavish Kumar</div><div class="author-role">Academy Graduate — Now AI Ops Specialist</div></div>
+        </div>
+      </div>
+      <div class="tcard neon-click">
+        <div class="tcard-stars">★★★★★</div>
+        <div class="tcard-quote">"</div>
+        <p class="tcard-text">My analysis work used to take half my day. Charts, summaries, trend spotting — all manual. StarSyn built me an automated workflow that pulls data, analyses it, and sends me a clean summary report every morning before I even open my laptop. It's like having an analyst working overnight for free.</p>
+        <div class="tcard-author">
+          <div class="author-av">SH</div>
+          <div><div class="author-name">Shree</div><div class="author-role">Data Analyst — E-commerce Brand</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="testi-note">Enjoyed working with us? Reach out via the contact form below to share your experience.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BLOG -->
+<section id="blog" class="section-pad surface-s">
+  <div class="container">
+    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+      <div><div class="eyebrow"><div class="eyebrow-line"></div>Resources</div><h2 class="section-title">Learn About AI Automation</h2></div>
+    </div>
+    <div class="blog-grid reveal">
+      <div class="blog-card neon-click" onclick="openArticle('article1')" style="cursor:pointer;">
+        <div class="blog-thumb"><img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=500&auto=format&fit=crop" alt="AI agents explained" loading="lazy"/></div>
+        <div class="blog-body">
+          <div class="blog-tag">Beginner Guide</div>
+          <h4>How AI Automation Helped Our Clients Eliminate 80% of Manual Work</h4>
+          <p>A deep dive into real client transformations — from hours of repetitive work to fully automated pipelines that run while they sleep.</p>
+          <span class="blog-read">Read article →</span>
+        </div>
+      </div>
+      <div class="blog-card neon-click" onclick="openArticle('article2')" style="cursor:pointer;">
+        <div class="blog-thumb"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=500&auto=format&fit=crop" alt="Creator automations" loading="lazy"/></div>
+        <div class="blog-body">
+          <div class="blog-tag">Case Study</div>
+          <h4>Why Clients Trust AI-Built Workflows Over Manual Processes</h4>
+          <p>Accuracy, speed, and consistency — how our clients went from sceptical to fully relying on AI agents for business-critical tasks.</p>
+          <span class="blog-read">Read article →</span>
+        </div>
+      </div>
+      <div class="blog-card neon-click" onclick="openArticle('article3')" style="cursor:pointer;">
+        <div class="blog-thumb"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop" alt="Startup case study" loading="lazy"/></div>
+        <div class="blog-body">
+          <div class="blog-tag">Tutorial</div>
+          <h4>5 AI Automation Flows Every Business Should Have Running Today</h4>
+          <p>The five most impactful automations we deploy for clients — and why they deliver the highest ROI in the shortest time.</p>
+          <span class="blog-read">Read article →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE MODALS -->
+<div class="legal-modal" id="article1">
+  <div class="legal-inner">
+    <button class="legal-close" onclick="closeLegal('article1')">← Back</button>
+    <h1>How AI Automation Helped Our Clients Eliminate 80% of Manual Work</h1>
+    <div class="legal-date">Published by StarSyn AI · March 2025</div>
+    <p>When most people think about AI, they imagine robots or science fiction. But for our clients, AI automation is something far more practical — it's the difference between spending 6 hours a day on repetitive tasks and spending that time on work that actually matters.</p>
+    <h2>The Problem: Time Trapped in Repetitive Tasks</h2>
+    <p>Across every industry we work in — healthcare, e-commerce, startups, creators — the pattern is the same. Talented, capable people are spending the majority of their working hours on tasks that follow a predictable pattern: check this, copy that, send this email, update this spreadsheet, post this content.</p>
+    <p>A fitness trainer we worked with was spending 3 hours every single day manually sending client reminders, tracking session attendance, and updating progress logs. A startup founder was spending 2 hours each morning manually following up with leads who had filled a form the previous day. A data analyst was spending half her working day pulling numbers from multiple platforms, cleaning the data, and formatting it into reports.</p>
+    <h2>What We Did</h2>
+    <p>For each client, we mapped their repetitive workflows, identified the exact steps that followed a pattern, and built AI agents that execute those steps automatically — 24 hours a day, 7 days a week, without errors or delays.</p>
+    <p>The fitness trainer now has a fully automated client management system. The moment a client books a session, the system sends confirmation, adds it to the calendar, sends a reminder 24 hours before, tracks attendance, and sends a follow-up message after the session — all without her touching anything.</p>
+    <p>The startup founder's lead pipeline now qualifies inbound leads automatically using AI, sends personalised follow-up emails based on what the lead is interested in, and only pings the founder when a lead has responded and is ready to talk.</p>
+    <h2>The Result: Trust Earned Through Consistency</h2>
+    <p>What surprised our clients most wasn't the time saved — it was the consistency. Automated workflows don't have bad days. They don't forget to follow up. They don't send the wrong email. The result is that clients and customers receive a more professional, timely experience every single time.</p>
+    <p>Across all our deployments, clients report an average of 80% reduction in time spent on manual, repetitive work within the first two weeks of going live.</p>
+    <h2>Is This Right For You?</h2>
+    <p>If you can describe a task you do regularly that follows a pattern — if you find yourself doing the same steps over and over — it can almost certainly be automated. Book a free discovery call and we'll map it out for you in 30 minutes.</p>
+  </div>
+</div>
+
+<div class="legal-modal" id="article2">
+  <div class="legal-inner">
+    <button class="legal-close" onclick="closeLegal('article2')">← Back</button>
+    <h1>Why Clients Trust AI-Built Workflows Over Manual Processes</h1>
+    <div class="legal-date">Published by StarSyn AI · March 2025</div>
+    <p>The most common question we hear before a client starts working with us is: "Can I really trust an AI to handle this?" It's a fair question. These are real business processes — client communications, data handling, lead management. The stakes are real.</p>
+    <h2>The Scepticism Is Understandable</h2>
+    <p>Most people have had a bad experience with automation at some point — a chatbot that gave the wrong answer, a system that sent the wrong email, a tool that broke and nobody noticed for three days. That scepticism is healthy, and it's exactly why we approach every build with precision.</p>
+    <h2>What Makes Our Workflows Trustworthy</h2>
+    <p>Every workflow we build is designed with three non-negotiable principles: transparency, fallback handling, and human override capability.</p>
+    <p><strong>Transparency</strong> means every action the agent takes is logged. You can see exactly what it did, when, and why. There are no black boxes.</p>
+    <p><strong>Fallback handling</strong> means that when the AI encounters something it isn't certain about, it doesn't guess — it flags it for human review. We build uncertainty thresholds into every critical decision point.</p>
+    <p><strong>Human override</strong> means you can pause, modify, or stop any workflow at any time. You're always in control. The AI works for you — not the other way around.</p>
+    <h2>Real Client Confidence</h2>
+    <p>After the first week of going live, virtually every client we've worked with reports the same shift: they stop watching the automation nervously and start trusting it completely. Because it's consistent. Because it follows the exact logic they approved. Because it works the same way every single time.</p>
+    <p>One client told us: "I used to check my inbox every 20 minutes worrying about leads falling through the cracks. Now I check once a day and everything is already handled."</p>
+    <h2>Building Trust is a Process</h2>
+    <p>We never ask clients to hand over critical workflows on day one. We start with lower-stakes automations, prove reliability, and expand from there. Trust is earned through consistent performance — and that's exactly how we build it.</p>
+  </div>
+</div>
+
+<div class="legal-modal" id="article3">
+  <div class="legal-inner">
+    <button class="legal-close" onclick="closeLegal('article3')">← Back</button>
+    <h1>5 AI Automation Flows Every Business Should Have Running Today</h1>
+    <div class="legal-date">Published by StarSyn AI · March 2025</div>
+    <p>After building 500+ automation workflows across 12 industries, we've identified five flows that consistently deliver the highest return on investment — regardless of industry. If you're only going to automate five things, make it these.</p>
+    <h2>1. Lead Qualification & Follow-up</h2>
+    <p>Every business that collects enquiries online is losing leads to slow follow-up. Studies show that responding to a lead within 5 minutes increases conversion by 9×. No human team can consistently do that. An AI agent can. Build a flow that qualifies inbound leads, sends a personalised first response within seconds, and only escalates to a human when the lead is warm and ready to talk.</p>
+    <h2>2. Meeting & Call Summarisation</h2>
+    <p>Every meeting you have produces action items, decisions, and follow-ups. Most of them get forgotten or written down inconsistently. An AI that transcribes your calls, extracts action items, assigns owners, and drops the summary into your project tool (Notion, Asana, Slack) takes about 48 hours to build and saves hours every week indefinitely.</p>
+    <h2>3. Social Media Content Repurposing</h2>
+    <p>If you're producing any long-form content — YouTube videos, podcasts, blog posts, webinars — you're leaving enormous distribution value on the table. A repurposing agent takes one piece of content and generates platform-specific posts for Twitter, LinkedIn, Instagram, and a newsletter draft — automatically, in your voice, ready for approval.</p>
+    <h2>4. Customer Review & Reputation Management</h2>
+    <p>Your online reputation is shaped by how quickly and well you respond to reviews. Most businesses respond to fewer than 30% of reviews, and usually days later. An automated review monitoring and response system monitors all your platforms, drafts personalised responses using your brand voice, and either posts them automatically or presents them for quick approval.</p>
+    <h2>5. Internal Reporting & Analytics</h2>
+    <p>How much time does your team spend every week pulling numbers, building charts, and writing reports that look the same as last week's? A reporting automation agent connects to your data sources, runs the analysis, formats the output, and delivers a clean summary to whoever needs it — on a schedule, every time, without anyone touching it.</p>
+    <h2>Getting Started</h2>
+    <p>You don't need to automate all five at once. Start with whichever one causes you the most friction right now. Book a free discovery call and we'll help you identify where your biggest time savings are hiding.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section id="faq" class="section-pad">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 1rem;">
+      <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>FAQ<div class="eyebrow-line"></div></div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-grid reveal">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Do I need to know how to code?</span><span class="faq-icon">+</span></div><div class="faq-a">Not at all. We handle all the technical building. For Academy courses, we teach no-code and low-code tools so you can build powerful automations without writing a single line of code.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>How long does a typical build take?</span><span class="faq-icon">+</span></div><div class="faq-a">Most standard flows are built and delivered within 48 hours after our discovery call. Complex multi-agent enterprise systems may take 1–2 weeks. We give you a clear timeline upfront with no surprises.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>What tools do you use to build automations?</span><span class="faq-icon">+</span></div><div class="faq-a">We primarily use n8n and Make.com for workflow automation. For AI capabilities we use Claude (Anthropic) and GPT-4 (OpenAI). ElevenLabs for voice AI. Supabase for data. The best tool is chosen based on your specific needs and budget.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Is the Academy only for students?</span><span class="faq-icon">+</span></div><div class="faq-a">No — our Academy is open to everyone. Students, working professionals, freelancers, and business owners all benefit. Format and duration can be customised for any background or experience level.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Do you guarantee job placements after Academy?</span><span class="faq-icon">+</span></div><div class="faq-a">We do not arrange interviews or guarantee placements. We provide top-quality ATS resume building, mock interviews, and career coaching — completely free alongside your course. Results depend on your effort, but we give you everything you need to succeed.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>How is Academy pricing determined?</span><span class="faq-icon">+</span></div><div class="faq-a">Pricing depends on: duration (shorter = more intensive = higher rate), format (1-on-1 costs more than group), and mode (online vs in-person). Everything is discussed transparently during your free consultation — no hidden fees.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Can you integrate with my existing software?</span><span class="faq-icon">+</span></div><div class="faq-a">Yes. We connect with 500+ tools including all major CRMs, project tools, communication platforms (Slack, WhatsApp), accounting software, e-commerce platforms, and custom APIs.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>What happens after you build my automation?</span><span class="faq-icon">+</span></div><div class="faq-a">We provide full documentation, a handover walkthrough, and post-launch support. We don't disappear after delivery — ongoing maintenance, updates, and new flows are handled through our support plans.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT FORM — Supabase + Formspree -->
+<section id="contact" class="section-pad surface-s">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow"><div class="eyebrow-line"></div>Get In Touch</div>
+      <h2 class="section-title">Book Your Free<br/>Discovery Call</h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <p>Whether you need an automation built, want to join the Academy, or just have questions — we'd love to hear from you. Book a free 30-minute call and let's figure out what AI can do for you.</p>
+        <div class="contact-detail"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg><a href="https://wa.me/918838248494?text=Hi%20StarSyn%20AI!%20I'm%20interested%20in%20learning%20more." target="_blank">+91 88382 48494 (WhatsApp)</a></div>
+        <div class="contact-detail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:connect@starsynai.com">connect@starsynai.com</a></div>
+        <div class="contact-detail"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Based in India 🇮🇳 · Serving Worldwide</div>
+        <div style="margin-top:2rem;border-radius:var(--r);overflow:hidden;"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&auto=format&fit=crop" alt="AI workspace" loading="lazy" style="width:100%;filter:saturate(0.6) brightness(0.65);display:block;"/></div>
+      </div>
+      <div class="contact-form-box">
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" id="firstName" placeholder="Your name" required/></div>
+            <div class="form-group"><label>Last Name</label><input type="text" id="lastName" placeholder="Last name"/></div>
+          </div>
+          <div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="hariharan060202@gmail.com" required/></div>
+          <div class="form-group"><label>WhatsApp / Phone</label><input type="tel" id="phone" placeholder="+91 XXXXX XXXXX"/></div>
+          <div class="form-group">
+            <label>I'm Interested In</label>
+            <select id="interest" required>
+              <option value="">Select what fits you best</option>
+              <optgroup label="— Build for Me —">
+                <option value="automation_build">Build Me an AI Automation / Agent</option>
+                <option value="workflow_design">Design a Custom Workflow Pipeline</option>
+                <option value="voice_ai">Voice AI Agent (phone / WhatsApp)</option>
+                <option value="chatbot">AI Chatbot for My Website or App</option>
+                <option value="crm_automation">CRM & Lead Automation</option>
+                <option value="content_automation">Content Creation Automation</option>
+                <option value="data_reporting">Data & Reporting Automation</option>
+                <option value="enterprise">Enterprise AI Integration</option>
+              </optgroup>
+              <optgroup label="— Learn & Train —">
+                <option value="academy">Academy / Training Program</option>
+                <option value="team_training">Train My Team on AI Tools</option>
+                <option value="internship">Internship / Certificate Program</option>
+              </optgroup>
+              <optgroup label="— Tools & Consulting —">
+                <option value="n8n_help">n8n Workflow Help</option>
+                <option value="make_zapier">Make.com / Zapier Help</option>
+                <option value="openai_claude">OpenAI / Claude Integration</option>
+                <option value="supabase_help">Supabase / Database Setup</option>
+                <option value="tool_consultation">General AI Tool Consultation</option>
+                <option value="consultation">Free Discovery Call Only</option>
+              </optgroup>
+              <optgroup label="— Other —">
+                <option value="partnership">Business / Agency Partnership</option>
+                <option value="review">Write a Review</option>
+                <option value="other">Something Else — I'll Explain</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-group"><label>Tell Us More</label><textarea id="message" placeholder="Briefly describe what you need, what you're trying to automate, or anything else on your mind..."></textarea></div>
+          <!-- Trust line -->
+          <div style="display:flex;align-items:center;gap:10px;padding:.9rem 1rem;background:rgba(56,189,248,0.04);border:1px solid rgba(56,189,248,0.1);border-radius:10px;margin-bottom:1rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="1.5" flex-shrink="0" style="flex-shrink:0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <p style="font-size:.8rem;color:var(--text2);line-height:1.5;margin:0;"><strong style="color:var(--text);">You trust us, and we keep that trust.</strong> Your information is private, never sold, never spammed. We'll only reach out about what you've asked us. That's a promise.</p>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">Send Message & Book Call →</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h4>Message Sent!</h4>
+          <p>Thank you for reaching out, we'll get back to you within 24 hours to schedule your free call.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band reveal">
+  <h2>Ready to Work <span class="grad-text">10× Smarter?</span></h2>
+  <p>Book a free 30-minute discovery call. No commitment — just clarity on what AI can do for you right now.</p>
+  <div class="cta-btns">
+    <button class="btn-cta" onclick="openConsultation()">Book Free Consultation</button>
+    <button class="btn-cta-ghost" onclick="joinAcademy()">Join the Academy</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <svg viewBox="0 0 38 38" width="28" height="28" fill="none">
+          <circle cx="19" cy="17" r="10" fill="rgba(56,189,248,0.08)"/>
+          <polygon points="19,4 21.5,13 31,13 23.5,18.5 26,27.5 19,22 12,27.5 14.5,18.5 7,13 16.5,13" stroke="#67e8f9" stroke-width="1.2" fill="rgba(56,189,248,0.12)" stroke-linejoin="round"/>
+          <text x="20" y="34" font-family="Times New Roman,serif" font-size="7" font-weight="600" fill="#38bdf8" letter-spacing="0.5">syn</text>
+        </svg>
+        StarSyn <span>AI</span>
+      </div>
+      <p>We build intelligent AI agents and automation workflows for creators, startups, small businesses, and enterprises across 12+ industries. Based in India.</p>
+      <div class="footer-social">
+        <a class="s-btn" href="https://www.linkedin.com/in/hariharan-murthy/" target="_blank" title="LinkedIn — Hariharan Murthy" style="width:auto;padding:0 1rem;gap:6px;font-size:.82rem;font-weight:500;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--accent3)"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+      <p style="font-size:.78rem;margin-top:1rem;color:var(--text3);">Subscribe for AI automation tips:</p>
+      <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+        <input type="email" placeholder="your@email.com" required/>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a onclick="scrollTo('services')">AI Automation</a></li>
+        <li><a onclick="scrollTo('solutions')">AI Augmentation</a></li>
+        <li><a onclick="scrollTo('services')">Custom AI Agents</a></li>
+        <li><a onclick="scrollTo('services')">Voice AI</a></li>
+        <li><a onclick="openConsultation()">Consulting</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Industries</h5>
+      <ul>
+        <li><a onclick="filterAndScroll('creator')">Creators</a></li>
+        <li><a onclick="filterAndScroll('startup')">Startups</a></li>
+        <li><a onclick="filterAndScroll('health')">Healthcare</a></li>
+        <li><a onclick="filterAndScroll('edu')">Education</a></li>
+        <li><a onclick="filterAndScroll('legal')">Legal & Finance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Academy</h5>
+      <ul>
+        <li><a onclick="scrollTo('academy')">About the Program</a></li>
+        <li><a onclick="scrollTo('academy')">Formats & Pricing</a></li>
+        <li><a onclick="scrollTo('academy')">Placement Prep</a></li>
+        <li><a onclick="joinAcademy()">Apply Now</a></li>
+        <li><a onclick="scrollTo('faq')">FAQs</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 StarSyn AI. All rights reserved. Founded in India 🇮🇳 | Founder & CEO: Hariharan Murthy</p>
+    <div class="footer-links">
+      <a onclick="openLegal('privacyModal')">Privacy Policy</a>
+      <a onclick="openLegal('termsModal')">Terms of Service</a>
+      <a onclick="openLegal('cookieModal')">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/*
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  STARSYN AI — SUPABASE SETUP (run this SQL once)           ║
+  ║  Go to: supabase.com/dashboard/project/imwzmolzftzjpuvjxbmy ║
+  ║  → SQL Editor → New Query → Paste all below → Run           ║
+  ╠══════════════════════════════════════════════════════════════╣
+  ║                                                              ║
+  ║  create table if not exists contacts (                       ║
+  ║    id uuid default gen_random_uuid() primary key,            ║
+  ║    first_name text, last_name text, email text,              ║
+  ║    phone text, interest text, message text,                  ║
+  ║    user_email text, created_at timestamptz                   ║
+  ║  );                                                          ║
+  ║                                                              ║
+  ║  create table if not exists newsletter_subscribers (         ║
+  ║    id uuid default gen_random_uuid() primary key,            ║
+  ║    email text, source text, created_at timestamptz           ║
+  ║  );                                                          ║
+  ║                                                              ║
+  ║  create table if not exists visitors (                       ║
+  ║    id uuid default gen_random_uuid() primary key,            ║
+  ║    email text, name text, event text,                        ║
+  ║    created_at timestamptz                                    ║
+  ║  );                                                          ║
+  ║                                                              ║
+  ║  create table if not exists page_visits (                    ║
+  ║    id uuid default gen_random_uuid() primary key,            ║
+  ║    referrer text, url text, user_agent text,                 ║
+  ║    created_at timestamptz                                    ║
+  ║  );                                                          ║
+  ║                                                              ║
+  ║  -- Enable inserts from your website (public anon key):      ║
+  ║  alter table contacts enable row level security;             ║
+  ║  alter table newsletter_subscribers enable row level         ║
+  ║    security;                                                  ║
+  ║  alter table visitors enable row level security;             ║
+  ║  alter table page_visits enable row level security;          ║
+  ║                                                              ║
+  ║  create policy "allow_insert" on contacts                    ║
+  ║    for insert with check (true);                             ║
+  ║  create policy "allow_insert" on newsletter_subscribers      ║
+  ║    for insert with check (true);                             ║
+  ║  create policy "allow_insert" on visitors                    ║
+  ║    for insert with check (true);                             ║
+  ║  create policy "allow_insert" on page_visits                 ║
+  ║    for insert with check (true);                             ║
+  ║                                                              ║
+  ╚══════════════════════════════════════════════════════════════╝
+*/
+// =============================================
+// SUPABASE CONFIG
+// =============================================
+const SUPABASE_URL = 'https://imwzmolzftzjpuvjxbmy.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imltd3ptb2x6ZnR6anB1dmp4Ym15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0NTUwNjgsImV4cCI6MjA5MDAzMTA2OH0.DBa46hbzwx9qSkpETMrCMNBklpEdiuCSysEd1NT1nAY';
+
+async function sbRequest(path, method='GET', body=null) {
+  const opts = {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'Prefer': 'return=minimal'
+    }
+  };
+  if (body) opts.body = JSON.stringify(body);
+  try {
+    const res = await fetch(`${SUPABASE_URL}${path}`, opts);
+    return { ok: res.ok, status: res.status, data: res.ok && method!=='POST' ? await res.json() : null };
+  } catch(e) { return { ok: false }; }
+}
+
+
+// =============================================
+// VISITOR TRACKING — popup after 60 seconds
+// =============================================
+let visitorTracked = false;
+setTimeout(() => {
+  if (!visitorTracked && !localStorage.getItem('ss_visitor_seen') && !localStorage.getItem('ss_session')) {
+    document.getElementById('visitorPopup').style.display = 'block';
+  }
+}, 60000);
+
+async function captureVisitor(e) {
+  e.preventDefault();
+  const email = document.getElementById('visitorEmail').value;
+  localStorage.setItem('ss_visitor_seen', '1');
+  visitorTracked = true;
+  document.getElementById('visitorPopup').innerHTML = '<p style="color:#4ade80;text-align:center;padding:1rem;">✓ You\'re on the list! We\'ll be in touch.</p>';
+  setTimeout(() => { document.getElementById('visitorPopup').style.display = 'none'; }, 2500);
+  await saveToSupabase('newsletter_subscribers', { email, source: 'visitor_popup', created_at: new Date().toISOString() });
+  await saveToSupabase('visitors', { email, event: 'popup_subscribe', created_at: new Date().toISOString() });
+}
+
+// Track page visit (anonymous)
+(async function trackVisit() {
+  try {
+    await saveToSupabase('page_visits', {
+      referrer: document.referrer || 'direct',
+      url: window.location.href,
+      user_agent: navigator.userAgent.substring(0, 200),
+      created_at: new Date().toISOString()
+    });
+  } catch(e) {}
+})();
+
+// =============================================
+// SUPABASE DB HELPERS
+// =============================================
+async function saveToSupabase(table, data) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) {
+      const err = await res.text();
+      // Table doesn't exist — fail silently in production, log in dev
+      if (err.includes('does not exist') || res.status === 404 || res.status === 400) {
+        console.info(`[StarSyn] Table "${table}" not set up yet. Run the SQL setup in Supabase.`);
+        return false;
+      }
+    }
+    return res.ok;
+  } catch(e) {
+    // Network blocked (e.g. inside iframe/preview) — fail silently
+    console.info('[StarSyn] DB write skipped (network/preview):', e.message);
+    return false;
+  }
+}
+
+// Also send to Formspree as email notification backup
+async function notifyFormspree(data) {
+  try {
+    const fd = new FormData();
+    Object.entries(data).forEach(([k,v]) => fd.append(k, v || ''));
+    await fetch('https://formspree.io/f/xwvwkkpk', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
+  } catch(e) {}
+}
+
+// =============================================
+// CONTACT FORM
+// =============================================
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  const data = {
+    first_name: document.getElementById('firstName').value,
+    last_name: document.getElementById('lastName').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    interest: document.getElementById('interest').value,
+    message: document.getElementById('message').value,
+    created_at: new Date().toISOString()
+  };
+  const [sb, fp] = await Promise.all([
+    saveToSupabase('contacts', data),
+    notifyFormspree(data)
+  ]);
+  // Show success if either saved (Formspree is the reliable backup)
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+});
+
+// =============================================
+// NEWSLETTER
+// =============================================
+async function subscribeNewsletter(e) {
+  e.preventDefault();
+  const email = e.target.querySelector('input').value;
+  const btn = e.target.querySelector('button');
+  await saveToSupabase('newsletter_subscribers', { email, source: 'footer', created_at: new Date().toISOString() });
+  btn.textContent = 'Subscribed!'; btn.style.color = '#4ade80';
+  e.target.reset();
+  setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.color = ''; }, 3000);
+}
+
+// =============================================
+// CALENDLY — opens real booking page
+// =============================================
+function openConsultation() {
+  gtag("event","book_consultation",{event_category:"CTA"});
+  Cal.ns["booking"]("modal", {
+    calLink: "hariharan-murthy/30min",
+    config: { layout: "month_view", theme: "dark", "cal-origin": "https://cal.eu" }
+  });
+}
+function joinAcademy() {
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => { const s = document.getElementById('interest'); if(s) s.value = 'academy'; }, 800);
+}
+
+// =============================================
+// WHATSAPP
+// =============================================
+function openWhatsApp() {
+  window.open(`https://wa.me/918838248494?text=${encodeURIComponent("Hi StarSyn AI! I'm interested in learning more about your services.")}`, '_blank');
+}
+
+// =============================================
+// NAVIGATION
+// =============================================
+function scrollTo(id) { const el = document.getElementById(id); if(el) el.scrollIntoView({ behavior: 'smooth' }); }
+function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function filterAndScroll(cat) {
+  document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => { const btn = document.querySelector(`.tab[onclick*="${cat}"]`); if(btn) filterCards(cat, btn); }, 600);
+}
+
+// =============================================
+// LEGAL & ARTICLE MODALS
+// =============================================
+function openLegal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeLegal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+function openArticle(id) { openLegal(id); }
+
+// =============================================
+// COOKIE — stores in localStorage (real)
+// =============================================
+if (!localStorage.getItem('ss_cookie')) document.getElementById('cookieBanner').classList.remove('hidden');
+function acceptCookie() {
+  localStorage.setItem('ss_cookie', 'accepted');
+  localStorage.setItem('ss_cookie_date', new Date().toISOString());
+  document.getElementById('cookieBanner').classList.add('hidden');
+}
+function declineCookie() {
+  localStorage.setItem('ss_cookie', 'declined');
+  document.getElementById('cookieBanner').classList.add('hidden');
+}
+
+// =============================================
+// MOBILE MENU
+// =============================================
+function toggleMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// =============================================
+// CURSOR
+// =============================================
+const cur = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function anim(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(anim); })();
+document.querySelectorAll('a,button,.scard,.pcard,.aaa-card,.tcard,.format-card,.dur-card,.blog-card,.faq-item,.tool-logo,.photo-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { cur.style.width='14px'; cur.style.height='14px'; ring.style.width='46px'; ring.style.height='46px'; });
+  el.addEventListener('mouseleave', () => { cur.style.width='8px'; cur.style.height='8px'; ring.style.width='30px'; ring.style.height='30px'; });
+});
+
+// =============================================
+// NEON CLICK
+// =============================================
+document.querySelectorAll('.neon-click').forEach(el => {
+  el.addEventListener('mousedown', () => el.classList.add('lit'));
+  el.addEventListener('mouseup', () => setTimeout(() => el.classList.remove('lit'), 700));
+  el.addEventListener('mouseleave', () => el.classList.remove('lit'));
+});
+
+// =============================================
+// SCROLL REVEAL
+// =============================================
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i*80); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// =============================================
+// COUNTER ANIMATION
+// =============================================
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting && !e.target.dataset.done) {
+      e.target.dataset.done = true;
+      const target = parseInt(e.target.dataset.target);
+      const suffix = e.target.dataset.suffix || '';
+      let c = 0; const step = Math.ceil(target/50);
+      const t = setInterval(() => { c = Math.min(c+step, target); e.target.textContent = c+suffix; if(c>=target) clearInterval(t); }, 30);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(c => counterObs.observe(c));
+
+// =============================================
+// SERVICE FILTER
+// =============================================
+function filterCards(cat, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.scard').forEach(card => {
+    card.style.display = (cat==='all' || card.dataset.cat===cat) ? 'block' : 'none';
+  });
+}
+
+// =============================================
+// FIX 3: FAQ — only ONE open at a time
+// =============================================
+function toggleFaq(el) {
+  const clickedItem = el.parentElement;
+  const isOpen = clickedItem.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('open'));
+  // If it wasn't open, open it
+  if (!isOpen) clickedItem.classList.add('open');
+}
+</script>
+</body>
+</html>
