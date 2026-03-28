@@ -14,12 +14,6 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta property="og:url" content="https://www.starsynai.com"/>
 <link rel="canonical" href="https://www.starsynai.com"/>
-<!-- Favicon -->
-<link rel="icon" href="/favicon.ico" sizes="48x48">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
 <!-- Google Analytics GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5E94DWD6KF"></script>
 <script>
@@ -259,8 +253,8 @@ section{position:relative;z-index:1;}
 .ptool{font-size:.68rem;color:var(--text3);background:rgba(56,189,248,0.06);border:1px solid rgba(56,189,248,0.1);padding:2px 8px;border-radius:100px;}
 
 /* HOW IT WORKS */
-.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;position:relative;}
-.how-grid::before{content:'';position:absolute;top:44px;left:22%;right:22%;height:1px;background:linear-gradient(90deg,var(--accent2),var(--accent3));opacity:.2;}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:4rem;position:relative;}
+.how-grid::before{content:'';position:absolute;top:44px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,var(--accent2),var(--accent3));opacity:.35;}
 .how-step{text-align:center;padding:0 1.25rem;}
 .step-num{width:88px;height:88px;border-radius:50%;background:rgba(56,189,248,0.06);border:1.5px solid rgba(56,189,248,0.22);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;position:relative;z-index:1;}
 .step-num-inner{font-family:var(--serif);font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,var(--accent3),#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
@@ -402,6 +396,21 @@ section{position:relative;z-index:1;}
 .legal-inner p,.legal-inner li{color:var(--text2);font-size:.9rem;line-height:1.8;margin-bottom:.75rem;}
 .legal-inner ul{padding-left:1.5rem;}
 .legal-close{background:rgba(56,189,248,0.15);color:var(--accent3);border:1px solid rgba(56,189,248,0.3);padding:.5rem 1.2rem;border-radius:8px;cursor:pointer;font-family:var(--sans);font-size:.85rem;margin-bottom:2rem;display:inline-block;}
+/* PORTFOLIO CHOOSER POPUP */
+.port-overlay{display:none;position:fixed;inset:0;z-index:950;background:rgba(6,14,27,0.82);backdrop-filter:blur(12px);align-items:center;justify-content:center;}
+.port-overlay.open{display:flex;}
+.port-modal{background:rgba(10,22,40,0.98);border:1px solid rgba(56,189,248,0.22);border-radius:24px;padding:2.5rem 2rem;max-width:560px;width:90%;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.5);}
+.port-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text3);font-size:1.4rem;cursor:pointer;line-height:1;padding:4px 8px;}
+.port-close:hover{color:var(--text);}
+.port-title{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:.4rem;text-align:center;}
+.port-sub{color:var(--text3);font-size:.85rem;text-align:center;margin-bottom:2rem;}
+.port-choices{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.port-choice{background:rgba(56,189,248,0.05);border:1.5px solid rgba(56,189,248,0.15);border-radius:16px;padding:1.75rem 1.25rem;cursor:pointer;transition:all .25s;text-align:center;}
+.port-choice:hover{background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.4);transform:translateY(-3px);box-shadow:0 8px 32px rgba(56,189,248,0.12);}
+.port-choice-icon{width:52px;height:52px;border-radius:14px;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
+.port-choice-icon svg{width:26px;height:26px;stroke:var(--accent3);fill:none;stroke-width:1.5;}
+.port-choice h4{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.35rem;}
+.port-choice p{color:var(--text3);font-size:.78rem;line-height:1.55;}
 
 /* CTA BAND */
 .cta-band{padding:5rem 3rem;text-align:center;position:relative;overflow:hidden;background:rgba(56,189,248,0.03);border-top:1px solid rgba(56,189,248,0.1);border-bottom:1px solid rgba(56,189,248,0.1);}
@@ -445,6 +454,31 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 
+/* ML PORTFOLIO CARDS */
+.ml-pcard{background:rgba(6,14,27,0.92);border:1px solid rgba(56,189,248,0.15);border-radius:20px;overflow:hidden;transition:all .3s;box-shadow:var(--sh);position:relative;}
+.ml-pcard:hover{border-color:rgba(56,189,248,0.4);box-shadow:0 12px 48px rgba(56,189,248,0.12);transform:perspective(800px) rotateX(2deg) translateY(-6px);}
+.ml-pcard-header{padding:1.5rem 1.5rem 1rem;border-bottom:1px solid rgba(56,189,248,0.08);}
+.ml-pcard-badge{display:inline-flex;align-items:center;gap:6px;font-size:.65rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:.75rem;}
+.ml-badge-advanced{background:rgba(167,139,250,0.15);color:#c4b5fd;border:1px solid rgba(167,139,250,0.25);}
+.ml-badge-cv{background:rgba(52,211,153,0.12);color:#6ee7b7;border:1px solid rgba(52,211,153,0.2);}
+.ml-badge-nlp{background:rgba(251,191,36,0.12);color:#fcd34d;border:1px solid rgba(251,191,36,0.2);}
+.ml-badge-rl{background:rgba(249,115,22,0.12);color:#fdba74;border:1px solid rgba(249,115,22,0.2);}
+.ml-badge-gen{background:rgba(236,72,153,0.12);color:#f9a8d4;border:1px solid rgba(236,72,153,0.2);}
+.ml-pcard-title{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.3rem;line-height:1.35;}
+.ml-pcard-sub{color:var(--text3);font-size:.72rem;}
+.ml-pcard-body{padding:1.25rem 1.5rem;}
+.ml-flow{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(56,189,248,0.07);}
+.ml-flow-step{background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.15);border-radius:6px;padding:3px 8px;font-size:.65rem;color:var(--accent3);white-space:nowrap;position:relative;}
+.ml-flow-arr{color:rgba(56,189,248,0.4);font-size:.7rem;flex-shrink:0;}
+.ml-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1rem;}
+.ml-metric-val{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--accent3);}
+.ml-metric-label{font-size:.65rem;color:var(--text3);margin-top:1px;}
+.ml-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.75rem;}
+.ml-tag{font-size:.62rem;color:var(--text3);background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.1);padding:2px 7px;border-radius:100px;}
+.ml-usecase{font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:.75rem;}
+/* tilt 3D hover effect */
+.tilt-card{transform-style:preserve-3d;transition:transform .3s ease;}
+
 @media(max-width:900px){
   nav{padding:1rem 1.5rem;}
   .nav-links,.nav-right .btn-ghost{display:none;}
@@ -461,6 +495,10 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
   .founder-section{grid-template-columns:1fr;}
 }
 </style>
+<!-- Three.js + GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <!-- Cal.com Popup Embed -->
 <script type="text/javascript">
 (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["-queue", namespace, ar]);}else{p(cal, ar);} return; } p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init");
@@ -554,6 +592,31 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   </form>
 </div>
 
+<!-- PORTFOLIO CHOOSER POPUP -->
+<div class="port-overlay" id="portOverlay" onclick="closePortModal(event)">
+  <div class="port-modal">
+    <button class="port-close" onclick="closePortModalDirect()">×</button>
+    <div class="port-title">Explore Our Portfolio</div>
+    <div class="port-sub">Choose a category to see what we've built</div>
+    <div class="port-choices">
+      <div class="port-choice" onclick="goToPortfolio('portfolio')">
+        <div class="port-choice-icon">
+          <svg viewBox="0 0 26 26"><circle cx="6" cy="13" r="2.5"/><circle cx="13" cy="7" r="2.5"/><circle cx="20" cy="13" r="2.5"/><circle cx="13" cy="19" r="2.5"/><line x1="8.5" y1="11.5" x2="10.5" y2="8.5"/><line x1="15.5" y1="8.5" x2="17.5" y2="11.5"/><line x1="17.5" y1="14.5" x2="15.5" y2="17.5"/><line x1="10.5" y1="17.5" x2="8.5" y2="14.5"/></svg>
+        </div>
+        <h4>Automation Workflow Portfolio</h4>
+        <p>Real AI agent &amp; n8n workflow pipelines — social media, lead nurture, HR onboarding &amp; more.</p>
+      </div>
+      <div class="port-choice" onclick="goToPortfolio('ml-portfolio-grid')">
+        <div class="port-choice-icon">
+          <svg viewBox="0 0 26 26"><rect x="3" y="8" width="8" height="10" rx="2"/><rect x="15" y="5" width="8" height="13" rx="2"/><line x1="3" y1="21" x2="23" y2="21"/></svg>
+        </div>
+        <h4>AI Core (ML &amp; DL) Portfolio</h4>
+        <p>Advanced ML/DL systems — fraud detection, computer vision, NLP, forecasting &amp; more.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- COOKIE BANNER -->
 <div class="cookie-banner" id="cookieBanner">
   <p>We use cookies to improve your experience. By continuing, you agree to our <a href="#" onclick="openLegal('privacyModal')">Privacy Policy</a> and <a href="#" onclick="openLegal('cookieModal')">Cookie Policy</a>.</p>
@@ -590,7 +653,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   <ul class="nav-links">
     <li><a href="#solutions">What We Do</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#portfolio" onclick="openPortModal(event)">Portfolio</a></li>
     <li><a href="#academy">Academy</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -606,7 +669,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   <ul>
     <li><a href="#solutions" onclick="closeMenu()">What We Do</a></li>
     <li><a href="#services" onclick="closeMenu()">Services</a></li>
-    <li><a href="#portfolio" onclick="closeMenu()">Portfolio</a></li>
+    <li><a href="#portfolio" onclick="closeMenu();openPortModal(event)">Portfolio</a></li>
     <li><a href="#academy" onclick="closeMenu()">Academy</a></li>
     <li><a href="#about" onclick="closeMenu()">About</a></li>
     <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
@@ -616,6 +679,9 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 
 <!-- HERO -->
 <section class="hero" id="top">
+
+<!-- THREE.JS 3D CANVAS -->
+<canvas id="hero3d" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.28;"></canvas>
 
   <!-- STARSYN LOGO WATERMARK — large, low opacity, centered behind content -->
   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);z-index:0;pointer-events:none;">
@@ -641,12 +707,12 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   <div class="tool-tile tt7"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><rect x="8" y="14" width="24" height="18" rx="4" stroke="#38bdf8" stroke-width="1.5"/><line x1="20" y1="8" x2="20" y2="14" stroke="#38bdf8" stroke-width="1.5"/><circle cx="20" cy="7" r="2" stroke="#38bdf8" stroke-width="1.5"/><circle cx="15" cy="22" r="2.5" stroke="#38bdf8" stroke-width="1.5"/><circle cx="25" cy="22" r="2.5" stroke="#38bdf8" stroke-width="1.5"/></svg></div>
   <div class="tool-tile tt8"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><polyline points="5,32 13,20 21,25 29,12 35,16" stroke="#67e8f9" stroke-width="1.5" stroke-linejoin="round"/><circle cx="13" cy="20" r="2" fill="#67e8f9"/><circle cx="21" cy="25" r="2" fill="#67e8f9"/><circle cx="29" cy="12" r="2" fill="#67e8f9"/></svg></div>
 
-  <div class="hero-badge"><div class="badge-pulse"></div>AI Automation & Augmentation Studio</div>
+  <div class="hero-badge"><div class="badge-pulse"></div>AI Automation · ML · DL · NLP · MLOps Studio</div>
   <h1>Automate the Routine.<br/><span class="grad-text">Amplify the Human.</span></h1>
   <p class="hero-sub">We design and deploy intelligent AI agents that eliminate grunt work, augment your team's capabilities, and accelerate growth — for creators, startups, and enterprises.</p>
   <div class="hero-btns">
     <button class="btn-lg primary" onclick="openConsultation()">Book Free Consultation →</button>
-    <button class="btn-lg ghost" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">▶ See What We Build</button>
+    <button class="btn-lg ghost" onclick="openPortModal(event)">▶ See What We Build</button>
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num counter" data-target="500" data-suffix="+">0+</div><div class="stat-label">Workflows Deployed</div></div>
@@ -737,6 +803,9 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
         <button class="tab" onclick="filterCards('ecom',this)">E-commerce</button>
         <button class="tab" onclick="filterCards('legal',this)">Legal</button>
         <button class="tab" onclick="filterCards('finance',this)">Finance</button>
+        <button class="tab" onclick="filterCards('ml',this)" data-filter="ml">ML/DL/AI</button>
+        <button class="tab" onclick="filterCards('chatbot',this)" data-filter="chatbot">Chatbots</button>
+        <button class="tab" onclick="filterCards('marketing',this)" data-filter="marketing">Marketing</button>
       </div>
     </div>
     <div class="services-grid reveal" id="servicesGrid">
@@ -764,6 +833,170 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
       <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="stag tag-le">Legal</div><h4>Client Intake Bot</h4><p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p></div>
       <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Financial Report Automator</h4><p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p></div>
       <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Client Update Bot</h4><p>Detects account changes → drafts and sends personalised client emails automatically.</p></div>
+
+      <!-- ML/DL/AI Service Cards -->
+      <div class="scard reveal" data-cat="ml">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><circle cx="6" cy="11" r="3" stroke="var(--accent3)" stroke-width="1.5"/><circle cx="16" cy="6" r="3" stroke="var(--accent3)" stroke-width="1.5"/><circle cx="16" cy="16" r="3" stroke="var(--accent3)" stroke-width="1.5"/><line x1="9" y1="10" x2="13" y2="7" stroke="var(--accent3)" stroke-width="1.5"/><line x1="9" y1="12" x2="13" y2="15" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
+        <span class="stag tag-st">ML/DL</span>
+        <h4>Predictive Analytics Systems</h4>
+        <p>Forecasting models using regression &amp; time-series — sales forecasting, customer churn prediction, demand prediction. Built with TensorFlow, PyTorch &amp; Prophet.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="ml">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="12" rx="2" stroke="var(--accent3)" stroke-width="1.5"/><circle cx="8" cy="10" r="2" stroke="var(--accent3)" stroke-width="1.5"/><path d="M12 9 L18 9 M12 12 L16 12" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
+        <span class="stag tag-bz">Computer Vision</span>
+        <h4>Computer Vision Systems</h4>
+        <p>Face recognition, defect detection in factories, CCTV surveillance AI, number plate recognition. Built with OpenCV, CNN &amp; YOLOv8. Ideal for manufacturing, security &amp; smart cities.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="ml">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="6" width="16" height="10" rx="2" stroke="var(--accent3)" stroke-width="1.5"/><line x1="6" y1="10" x2="16" y2="10" stroke="var(--accent3)" stroke-width="1.5"/><line x1="6" y1="13" x2="12" y2="13" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
+        <span class="stag tag-le">NLP Systems</span>
+        <h4>NLP Systems (Language AI)</h4>
+        <p>Sentiment analysis, document classification, resume parsing, legal document AI. Built with Hugging Face Transformers, spaCy &amp; LangChain. For HR, legal &amp; marketing teams.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="ml">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="7" y="3" width="8" height="12" rx="4" stroke="var(--accent3)" stroke-width="1.5"/><path d="M4 13 Q4 19 11 19 Q18 19 18 13" stroke="var(--accent3)" stroke-width="1.5"/><line x1="11" y1="19" x2="11" y2="22" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
+        <span class="stag tag-bz">Speech AI</span>
+        <h4>Speech AI Systems</h4>
+        <p>Speech-to-text, voice cloning, call transcription &amp; meeting summarizers. Powered by Whisper Large V3 &amp; TTS models. For call centres, enterprise &amp; voice bots.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="ml">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="var(--accent3)" stroke-width="1.5"/><path d="M7 11 L10 14 L15 8" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
+        <span class="stag tag-ec">Recommendation AI</span>
+        <h4>Recommendation Systems</h4>
+        <p>"People like you also bought…" systems — e-commerce recommendations, content suggestions &amp; personalised feeds. Built with Two-Tower Neural Networks &amp; Collaborative Filtering.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="ml">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><path d="M4 18 L8 12 L12 15 L16 7 L20 10" stroke="var(--accent3)" stroke-width="1.5" stroke-linejoin="round"/><circle cx="8" cy="12" r="1.5" fill="var(--accent3)"/></svg></div>
+        <span class="stag tag-fi">Anomaly Detection</span>
+        <h4>Anomaly Detection Systems</h4>
+        <p>Fraud detection, system failure prediction &amp; cybersecurity alerts. Built with Isolation Forest, Autoencoders &amp; Graph Neural Networks for real-time scoring.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="ml">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><polygon points="11,3 20,8 20,14 11,19 2,14 2,8" stroke="var(--accent3)" stroke-width="1.5" fill="none"/><circle cx="11" cy="11" r="3" stroke="var(--accent3)" stroke-width="1.5" fill="none"/></svg></div>
+        <span class="stag tag-en">Reinforcement Learning</span>
+        <h4>Reinforcement Learning Systems</h4>
+        <p>Dynamic pricing, robotics optimisation &amp; game AI. Using PPO &amp; Multi-Armed Bandit algorithms. Autonomous AI that learns &amp; improves through real-world feedback loops.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="ml">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><path d="M3 19 L7 13 L11 15 L15 9 L19 11" stroke="var(--accent3)" stroke-width="1.5"/><path d="M8 8 Q11 4 14 8 Q17 12 14 16 Q11 20 8 16 Q5 12 8 8Z" stroke="var(--accent3)" stroke-width="1.5" fill="none"/></svg></div>
+        <span class="stag tag-cr">Generative AI Models</span>
+        <h4>Generative AI Models</h4>
+        <p>Image generation, synthetic data &amp; marketing creatives. Using GANs, Stable Diffusion XL, LoRA fine-tuning &amp; ControlNet. 10× faster creative production for agencies.</p>
+      </div>
+
+      <!-- Chatbot Service Cards -->
+      <div class="scard reveal" data-cat="chatbot">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="2" y="4" width="18" height="12" rx="3" stroke="var(--accent3)" stroke-width="1.5"/><path d="M6 20 L10 16 L18 16" stroke="var(--accent3)" stroke-width="1.5"/><circle cx="7" cy="10" r="1.5" fill="var(--accent3)"/><circle cx="11" cy="10" r="1.5" fill="var(--accent3)"/><circle cx="15" cy="10" r="1.5" fill="var(--accent3)"/></svg></div>
+        <span class="stag tag-bz">Chatbot</span>
+        <h4>AI Chatbots &amp; Customer Support</h4>
+        <p>Website chatbots, WhatsApp &amp; Instagram bots, FAQ bot, booking assistant, order tracking bot. Full integration with WhatsApp Business API &amp; Instagram Messenger.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="chatbot">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="12" rx="2" stroke="var(--accent3)" stroke-width="1.5"/><line x1="3" y1="10" x2="19" y2="10" stroke="var(--accent3)" stroke-width="1.5"/><circle cx="7" cy="7.5" r="1" fill="var(--accent3)"/><circle cx="10" cy="7.5" r="1" fill="var(--accent3)"/></svg></div>
+        <span class="stag tag-bz">Chatbot</span>
+        <h4>Website Chatbot</h4>
+        <p>Embeddable AI chat widget for your website — handles FAQs, lead capture, appointment booking &amp; product queries 24×7 without human intervention.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="chatbot">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><path d="M11 3 L19 7 L19 15 L11 19 L3 15 L3 7Z" stroke="var(--accent3)" stroke-width="1.5" fill="none"/><path d="M7 11 L10 14 L15 8" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
+        <span class="stag tag-bz">Support AI</span>
+        <h4>Customer Support Automation</h4>
+        <p>AI that auto-resolves 80%+ of support tickets — email triage, escalation routing, sentiment detection &amp; response drafting integrated with your helpdesk tools.</p>
+      </div>
+
+      <!-- Marketing Service Cards -->
+      <div class="scard reveal" data-cat="marketing">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><path d="M4 16 L8 10 L12 13 L16 6 L20 9" stroke="var(--accent3)" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <span class="stag tag-cr">Marketing AI</span>
+        <h4>AI Marketing Automation</h4>
+        <p>Content generation, email marketing automation &amp; campaign optimisation. HubSpot integration for fully automated nurture sequences, lead scoring &amp; conversion tracking.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="marketing">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="var(--accent3)" stroke-width="1.5"/><path d="M8 11 L14 11 M11 8 L11 14" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
+        <span class="stag tag-cr">SEO AI</span>
+        <h4>AI SEO &amp; Website Optimisation</h4>
+        <p>AI-powered SEO audit &amp; content strategy, website performance optimisation, Google Search Console &amp; Core Web Vitals improvement — rank higher, faster.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="marketing">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="2" y="5" width="8" height="12" rx="2" stroke="var(--accent3)" stroke-width="1.5"/><rect x="12" y="5" width="8" height="12" rx="2" stroke="var(--accent3)" stroke-width="1.5"/><line x1="10" y1="11" x2="12" y2="11" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
+        <span class="stag tag-bz">Integration</span>
+        <h4>AI Integrations</h4>
+        <p>CRM + Email + Database + AI = fully automated system. We connect all your tools into one intelligent pipeline — HubSpot, Salesforce, Notion, Airtable &amp; more.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="marketing">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="4" width="16" height="14" rx="3" stroke="var(--accent3)" stroke-width="1.5"/><line x1="3" y1="9" x2="19" y2="9" stroke="var(--accent3)" stroke-width="1.5"/><line x1="8" y1="4" x2="8" y2="9" stroke="var(--accent3)" stroke-width="1.5"/><line x1="14" y1="4" x2="14" y2="9" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
+        <span class="stag tag-bz">CRM</span>
+        <h4>CRM Automation</h4>
+        <p>Automate lead capture, deal pipeline updates, follow-up sequences &amp; reporting inside your CRM — HubSpot, Pipedrive or any CRM you use.</p>
+      </div>
+
+      <!-- Data Analysis -->
+      <div class="scard reveal" data-cat="business">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="2" y="14" width="4" height="6" stroke="var(--accent3)" stroke-width="1.5"/><rect x="9" y="9" width="4" height="11" stroke="var(--accent3)" stroke-width="1.5"/><rect x="16" y="4" width="4" height="16" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
+        <span class="stag tag-bz">Analytics</span>
+        <h4>AI Data Analysis &amp; Business Insights</h4>
+        <p>Raw data to actionable insights — sales prediction dashboards, customer behaviour analysis, marketing performance insights. Automated reporting delivered to your inbox.</p>
+      </div>
+
+      <div class="scard reveal" data-cat="business">
+        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="3" stroke="var(--accent3)" stroke-width="1.5"/><path d="M8 11 L10 13 L14 9" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
+        <span class="stag tag-bz">Custom AI</span>
+        <h4>Custom AI Tools / SaaS Products</h4>
+        <p>AI content generator, AI resume screener, AI CRM assistant — we build custom AI-powered SaaS tools tailored to your specific business workflow and user base.</p>
+      </div>
+    </div>
+
+    <!-- ML/DL/AI Services We Build -->
+    <div class="reveal" style="margin-top:3rem;">
+      <div class="eyebrow"><div class="eyebrow-line"></div>ML · DL · AI Services</div>
+      <h3 class="section-title" style="font-size:1.6rem;">Advanced AI Systems We Build</h3>
+      <p style="color:var(--text2);font-size:.9rem;margin-bottom:1.5rem;">From predictive models to computer vision — production-grade ML/DL systems deployed at scale.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;">
+        <div class="format-card">
+          <svg class="format-icon-svg" viewBox="0 0 28 28"><circle cx="8" cy="14" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="20" cy="8" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="20" cy="20" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="11" y1="13" x2="17" y2="9" stroke="currentColor" stroke-width="1.5"/><line x1="11" y1="15" x2="17" y2="19" stroke="currentColor" stroke-width="1.5"/></svg>
+          <h5>Machine Learning & Deep Learning</h5>
+          <p>Regression, classification, ensemble methods, CNNs, RNNs, LSTMs & Transformers. From fundamentals to advanced production models using PyTorch & TensorFlow.</p>
+        </div>
+        <div class="format-card">
+          <svg class="format-icon-svg" viewBox="0 0 28 28"><rect x="4" y="6" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="10" cy="12" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M16 10 L22 10 M16 14 L20 14" stroke="currentColor" stroke-width="1.5"/></svg>
+          <h5>Computer Vision (CV) Systems</h5>
+          <p>Image preprocessing, object detection with YOLOv8, instance segmentation, face recognition and edge deployment on Jetson/Raspberry Pi for real-world use cases.</p>
+        </div>
+        <div class="format-card">
+          <svg class="format-icon-svg" viewBox="0 0 28 28"><rect x="4" y="8" width="20" height="12" rx="3" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="8" y1="13" x2="20" y2="13" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="17" x2="16" y2="17" stroke="currentColor" stroke-width="1.5"/></svg>
+          <h5>NLP & Large Language Models</h5>
+          <p>BERT fine-tuning, RAG pipelines, prompt engineering, LangChain & FAISS vector stores. From sentiment analysis to multilingual enterprise AI assistants.</p>
+        </div>
+        <div class="format-card">
+          <svg class="format-icon-svg" viewBox="0 0 28 28"><path d="M6 22 L6 12 L14 6 L22 12 L22 22" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="10" y="16" width="8" height="6" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="14" cy="11" r="2" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          <h5>MLOps & Model Deployment (CI/CD)</h5>
+          <p>MLflow, Docker, FastAPI, GitHub Actions CI/CD for ML, model monitoring, drift detection, A/B testing and 24×7 production maintenance of deployed models.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 24x7 Support Banner -->
+    <div class="reveal" style="margin-top:2.5rem;background:linear-gradient(135deg,rgba(56,189,248,0.07),rgba(0,245,255,0.03));border:1.5px solid rgba(56,189,248,0.22);border-radius:16px;padding:1.75rem 2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+      <div style="width:52px;height:52px;border-radius:50%;background:rgba(56,189,248,0.12);border:1.5px solid rgba(56,189,248,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="10" stroke="var(--accent3)" stroke-width="1.5"/><path d="M13 7 L13 13 L17 15" stroke="var(--accent3)" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div style="flex:1;min-width:200px;">
+        <div style="font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.25rem;">24×7 AI System Support</div>
+        <div style="color:var(--text2);font-size:.875rem;line-height:1.65;">All models, workflows &amp; automation systems we build are monitored, maintained &amp; supported round the clock. SLA-backed uptime. Zero downtime deployments.</div>
+      </div>
+      <button class="btn-primary" onclick="openConsultation()" style="white-space:nowrap;">Discuss SLA →</button>
     </div>
   </div>
 </section>
@@ -1111,7 +1344,288 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
         </div>
       </div>
 
+    </div><!-- end existing portfolio grid -->
+
+    <!-- ADVANCED ML/DL/AI PORTFOLIO -->
+    <div class="reveal" style="margin-top:4rem;">
+      <div class="eyebrow"><div class="eyebrow-line"></div>Advanced ML/DL/AI Projects</div>
+      <h3 class="section-title" style="font-size:1.8rem;">Production-Grade AI Systems We've Built</h3>
+      <p style="color:var(--text2);font-size:.95rem;line-height:1.75;max-width:600px;margin-bottom:2.5rem;">Real-world advanced ML &amp; DL systems — deployed at scale, with measurable business impact.</p>
     </div>
+
+    <div class="portfolio-grid" id="ml-portfolio-grid">
+
+      <!-- Card 1: Fraud Detection -->
+      <div class="ml-pcard tilt-card reveal">
+        <div class="ml-pcard-header">
+          <span class="ml-pcard-badge ml-badge-advanced">Advanced · Fintech</span>
+          <div class="ml-pcard-title">Real-Time Multimodal Fraud Detection Engine</div>
+          <div class="ml-pcard-sub">Banking / Fintech · 1M+ transactions/day</div>
+        </div>
+        <div class="ml-pcard-body">
+          <div class="ml-flow">
+            <span class="ml-flow-step">Data Stream</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Feature Eng.</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Ensemble Model</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Risk Score</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Alert System</span>
+          </div>
+          <p class="ml-usecase">Detects fraud patterns across 1M+ transactions/day using a three-layer ensemble — Isolation Forest for statistical outliers, Autoencoder for latent anomalies, and Graph Neural Network for transaction relationship patterns.</p>
+          <div class="ml-metrics">
+            <div><div class="ml-metric-val">99.2%</div><div class="ml-metric-label">Precision</div></div>
+            <div><div class="ml-metric-val">&lt;50ms</div><div class="ml-metric-label">Inference</div></div>
+            <div><div class="ml-metric-val">AWS λ</div><div class="ml-metric-label">Deployed</div></div>
+          </div>
+          <div class="ml-tags">
+            <span class="ml-tag">Isolation Forest</span><span class="ml-tag">Autoencoder</span><span class="ml-tag">GNN</span><span class="ml-tag">Kafka</span><span class="ml-tag">Redis</span><span class="ml-tag">FastAPI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Computer Vision Quality Inspection -->
+      <div class="ml-pcard tilt-card reveal">
+        <div class="ml-pcard-header">
+          <span class="ml-pcard-badge ml-badge-cv">Computer Vision · Manufacturing</span>
+          <div class="ml-pcard-title">Autonomous Visual Quality Inspection System</div>
+          <div class="ml-pcard-sub">Manufacturing · 120fps real-time on edge</div>
+        </div>
+        <div class="ml-pcard-body">
+          <div class="ml-flow">
+            <span class="ml-flow-step">Camera Feed</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Preprocessing</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">YOLOv8</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">CNN Classify</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Defect Report</span>
+          </div>
+          <p class="ml-usecase">Detects micro-defects in production lines at 120fps using YOLOv8 + EfficientDet ensemble, optimised with TensorRT and deployed on NVIDIA Jetson edge hardware for zero-latency inspection.</p>
+          <div class="ml-metrics">
+            <div><div class="ml-metric-val">97.8%</div><div class="ml-metric-label">Defect Recall</div></div>
+            <div><div class="ml-metric-val">120fps</div><div class="ml-metric-label">Real-time</div></div>
+            <div><div class="ml-metric-val">Edge</div><div class="ml-metric-label">Deployed</div></div>
+          </div>
+          <div class="ml-tags">
+            <span class="ml-tag">YOLOv8</span><span class="ml-tag">EfficientDet</span><span class="ml-tag">TensorRT</span><span class="ml-tag">NVIDIA Jetson</span><span class="ml-tag">OpenCV</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Legal Document NLP -->
+      <div class="ml-pcard tilt-card reveal">
+        <div class="ml-pcard-header">
+          <span class="ml-pcard-badge ml-badge-nlp">NLP · Legal Tech</span>
+          <div class="ml-pcard-title">End-to-End Legal Document Intelligence Platform</div>
+          <div class="ml-pcard-sub">Law firms · Contract analysis &amp; risk flagging</div>
+        </div>
+        <div class="ml-pcard-body">
+          <div class="ml-flow">
+            <span class="ml-flow-step">Upload</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">OCR</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">LegalBERT</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">NER + Clauses</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Risk Score</span>
+          </div>
+          <p class="ml-usecase">LegalBERT fine-tuned for contract analysis — extracts named entities, classifies clauses, flags risk provisions and generates executive summaries. Processes 500-page contracts in 8 seconds.</p>
+          <div class="ml-metrics">
+            <div><div class="ml-metric-val">96%</div><div class="ml-metric-label">Clause Accuracy</div></div>
+            <div><div class="ml-metric-val">8s</div><div class="ml-metric-label">500 Pages</div></div>
+            <div><div class="ml-metric-val">NER+RE</div><div class="ml-metric-label">Extraction</div></div>
+          </div>
+          <div class="ml-tags">
+            <span class="ml-tag">LegalBERT</span><span class="ml-tag">NER</span><span class="ml-tag">LangChain</span><span class="ml-tag">pgvector</span><span class="ml-tag">RAG</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Demand Forecasting -->
+      <div class="ml-pcard tilt-card reveal">
+        <div class="ml-pcard-header">
+          <span class="ml-pcard-badge ml-badge-advanced">Time-Series · Retail</span>
+          <div class="ml-pcard-title">Demand Forecasting &amp; Inventory Optimisation</div>
+          <div class="ml-pcard-sub">E-commerce · Multi-store, multi-SKU forecasting</div>
+        </div>
+        <div class="ml-pcard-body">
+          <div class="ml-flow">
+            <span class="ml-flow-step">Historical Sales</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Feature Store</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">TFT Model</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Ensemble</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Dashboard</span>
+          </div>
+          <p class="ml-usecase">Temporal Fusion Transformer + Prophet + XGBoost ensemble for multi-store, multi-SKU demand forecasting with SHAP explainability. MLflow experiment tracking and automated retraining pipeline.</p>
+          <div class="ml-metrics">
+            <div><div class="ml-metric-val">34%</div><div class="ml-metric-label">Fewer Stockouts</div></div>
+            <div><div class="ml-metric-val">&lt;4.2%</div><div class="ml-metric-label">MAPE Error</div></div>
+            <div><div class="ml-metric-val">MLflow</div><div class="ml-metric-label">Tracking</div></div>
+          </div>
+          <div class="ml-tags">
+            <span class="ml-tag">TFT</span><span class="ml-tag">Prophet</span><span class="ml-tag">XGBoost</span><span class="ml-tag">SHAP</span><span class="ml-tag">MLflow</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Multilingual RAG -->
+      <div class="ml-pcard tilt-card reveal">
+        <div class="ml-pcard-header">
+          <span class="ml-pcard-badge ml-badge-nlp">LLM + RAG · Enterprise</span>
+          <div class="ml-pcard-title">Multilingual Conversational AI with RAG</div>
+          <div class="ml-pcard-sub">Enterprise · 12 languages · Customer support</div>
+        </div>
+        <div class="ml-pcard-body">
+          <div class="ml-flow">
+            <span class="ml-flow-step">User Query</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Vector Search</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Context Retrieval</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">LLM Generate</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Response</span>
+          </div>
+          <p class="ml-usecase">Llama 3 fine-tuned + RAG pipeline with FAISS vector store for enterprise customer support in 12 languages. Whisper STT for voice queries. 91% query resolution without human escalation.</p>
+          <div class="ml-metrics">
+            <div><div class="ml-metric-val">91%</div><div class="ml-metric-label">Auto-Resolved</div></div>
+            <div><div class="ml-metric-val">12</div><div class="ml-metric-label">Languages</div></div>
+            <div><div class="ml-metric-val">FAISS</div><div class="ml-metric-label">Vector Store</div></div>
+          </div>
+          <div class="ml-tags">
+            <span class="ml-tag">Llama 3</span><span class="ml-tag">RAG</span><span class="ml-tag">FAISS</span><span class="ml-tag">LangChain</span><span class="ml-tag">Whisper STT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Predictive Maintenance -->
+      <div class="ml-pcard tilt-card reveal">
+        <div class="ml-pcard-header">
+          <span class="ml-pcard-badge ml-badge-advanced">DL + IoT · Industrial</span>
+          <div class="ml-pcard-title">Predictive Maintenance System with Sensor Fusion</div>
+          <div class="ml-pcard-sub">Manufacturing · 72-hour failure prediction</div>
+        </div>
+        <div class="ml-pcard-body">
+          <div class="ml-flow">
+            <span class="ml-flow-step">IoT Sensors</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">MQTT Broker</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Feature Ext.</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">LSTM-Transformer</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Alert Engine</span>
+          </div>
+          <p class="ml-usecase">LSTM + Transformer hybrid for multivariate time-series sensor fusion. Predicts machinery failure 72 hours in advance via MQTT pipeline with InfluxDB storage and real-time Grafana dashboards.</p>
+          <div class="ml-metrics">
+            <div><div class="ml-metric-val">89%</div><div class="ml-metric-label">Prediction Acc.</div></div>
+            <div><div class="ml-metric-val">72h</div><div class="ml-metric-label">Early Warning</div></div>
+            <div><div class="ml-metric-val">40%</div><div class="ml-metric-label">Less Downtime</div></div>
+          </div>
+          <div class="ml-tags">
+            <span class="ml-tag">LSTM</span><span class="ml-tag">Transformer</span><span class="ml-tag">MQTT</span><span class="ml-tag">InfluxDB</span><span class="ml-tag">Grafana</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7: Recommendation Engine -->
+      <div class="ml-pcard tilt-card reveal">
+        <div class="ml-pcard-header">
+          <span class="ml-pcard-badge ml-badge-advanced">RL · E-Commerce</span>
+          <div class="ml-pcard-title">Recommendation Engine with Real-Time Personalisation</div>
+          <div class="ml-pcard-sub">E-commerce · 28% CTR increase</div>
+        </div>
+        <div class="ml-pcard-body">
+          <div class="ml-flow">
+            <span class="ml-flow-step">User Behaviour</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Embeddings</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Two-Tower</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Ranking</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Pers. Feed</span>
+          </div>
+          <p class="ml-usecase">Two-Tower Neural Network + Collaborative Filtering + Reinforcement Learning (Bandit) for personalised product recommendations with built-in A/B testing framework for continuous optimisation.</p>
+          <div class="ml-metrics">
+            <div><div class="ml-metric-val">28%</div><div class="ml-metric-label">CTR Lift</div></div>
+            <div><div class="ml-metric-val">19%</div><div class="ml-metric-label">Revenue Lift</div></div>
+            <div><div class="ml-metric-val">A/B</div><div class="ml-metric-label">Tested</div></div>
+          </div>
+          <div class="ml-tags">
+            <span class="ml-tag">Two-Tower NN</span><span class="ml-tag">Bandit RL</span><span class="ml-tag">Collab. Filtering</span><span class="ml-tag">A/B Testing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8: Speech Analytics -->
+      <div class="ml-pcard tilt-card reveal">
+        <div class="ml-pcard-header">
+          <span class="ml-pcard-badge ml-badge-nlp">Speech AI · Call Centre</span>
+          <div class="ml-pcard-title">Speech Analytics &amp; Sentiment Intelligence Platform</div>
+          <div class="ml-pcard-sub">Call centres · 10,000+ calls/day analysis</div>
+        </div>
+        <div class="ml-pcard-body">
+          <div class="ml-flow">
+            <span class="ml-flow-step">Audio Stream</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Whisper STT</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Diarisation</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">BERT Sentiment</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Dashboard</span>
+          </div>
+          <p class="ml-usecase">Whisper Large V3 + Speaker Diarisation + Fine-tuned BERT sentiment model for real-time call analysis. Processes 10,000+ calls/day for agent performance KPIs and customer sentiment tracking.</p>
+          <div class="ml-metrics">
+            <div><div class="ml-metric-val">95%</div><div class="ml-metric-label">Transcription Acc.</div></div>
+            <div><div class="ml-metric-val">&lt;2s</div><div class="ml-metric-label">Real-time</div></div>
+            <div><div class="ml-metric-val">10K+</div><div class="ml-metric-label">Calls/Day</div></div>
+          </div>
+          <div class="ml-tags">
+            <span class="ml-tag">Whisper V3</span><span class="ml-tag">Diarisation</span><span class="ml-tag">BERT Sentiment</span><span class="ml-tag">Real-time Pipeline</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 9: Generative AI -->
+      <div class="ml-pcard tilt-card reveal">
+        <div class="ml-pcard-header">
+          <span class="ml-pcard-badge ml-badge-gen">Generative AI · Marketing</span>
+          <div class="ml-pcard-title">Generative AI for Synthetic Data &amp; Marketing Creatives</div>
+          <div class="ml-pcard-sub">Marketing agencies · 10× production speed</div>
+        </div>
+        <div class="ml-pcard-body">
+          <div class="ml-flow">
+            <span class="ml-flow-step">Brand Assets</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">LoRA Training</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">SDXL+ControlNet</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Style Transfer</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Output</span>
+          </div>
+          <p class="ml-usecase">Stable Diffusion XL fine-tuned with LoRA for brand-consistent ad creative generation at scale. ControlNet for precise composition control. ComfyUI pipeline used by 3 marketing agencies.</p>
+          <div class="ml-metrics">
+            <div><div class="ml-metric-val">10×</div><div class="ml-metric-label">Faster Production</div></div>
+            <div><div class="ml-metric-val">3</div><div class="ml-metric-label">Agencies Using</div></div>
+            <div><div class="ml-metric-val">LoRA</div><div class="ml-metric-label">Brand Training</div></div>
+          </div>
+          <div class="ml-tags">
+            <span class="ml-tag">SDXL</span><span class="ml-tag">ControlNet</span><span class="ml-tag">LoRA</span><span class="ml-tag">ComfyUI</span><span class="ml-tag">Diffusion</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 10: RL Pricing -->
+      <div class="ml-pcard tilt-card reveal">
+        <div class="ml-pcard-header">
+          <span class="ml-pcard-badge ml-badge-rl">Reinforcement Learning · SaaS</span>
+          <div class="ml-pcard-title">Reinforcement Learning Dynamic Pricing Engine</div>
+          <div class="ml-pcard-sub">SaaS / E-commerce · 22% revenue increase</div>
+        </div>
+        <div class="ml-pcard-body">
+          <div class="ml-flow">
+            <span class="ml-flow-step">Market Signals</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">State Encoder</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">PPO Agent</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Pricing Action</span><span class="ml-flow-arr">→</span>
+            <span class="ml-flow-step">Revenue Loop</span>
+          </div>
+          <p class="ml-usecase">PPO (Proximal Policy Optimisation) + Multi-Armed Bandit for autonomous pricing that maximises revenue. Ingests real-time market data feeds, competitor pricing and demand signals via FastAPI.</p>
+          <div class="ml-metrics">
+            <div><div class="ml-metric-val">22%</div><div class="ml-metric-label">Revenue Lift</div></div>
+            <div><div class="ml-metric-val">PPO</div><div class="ml-metric-label">Algorithm</div></div>
+            <div><div class="ml-metric-val">A/B</div><div class="ml-metric-label">Validated</div></div>
+          </div>
+          <div class="ml-tags">
+            <span class="ml-tag">PPO</span><span class="ml-tag">Multi-Armed Bandit</span><span class="ml-tag">FastAPI</span><span class="ml-tag">Real-time Feeds</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end ml-portfolio-grid -->
   </div>
 </section>
 
@@ -1128,6 +1642,13 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
       <div class="how-step"><div class="step-num"><div class="step-num-inner">01</div></div><h4>Free Discovery Call</h4><p>30 minutes. You explain your pain points and goals. We map exactly what to automate, which tools to use, and what results to expect.</p></div>
       <div class="how-step"><div class="step-num"><div class="step-num-inner">02</div></div><h4>We Design & Build</h4><p>Our team builds your AI agent or workflow pipeline — usually within 48 hours. You receive progress updates throughout the build.</p></div>
       <div class="how-step"><div class="step-num"><div class="step-num-inner">03</div></div><h4>Launch & Scale</h4><p>Go live, see real results from day one. Full documentation, training, and ongoing support as your needs grow.</p></div>
+      <div class="how-step reveal">
+        <div class="step-num">
+          <div class="step-num-inner">04</div>
+        </div>
+        <h4>24×7 Support & Maintenance</h4>
+        <p>We monitor, maintain and support all workflows, AI models, and automation systems round the clock post-launch. SLA-backed uptime with zero-downtime deployments.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1210,6 +1731,76 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
         <p style="color:var(--text3);font-size:.85rem;margin-bottom:1.25rem;">Exact pricing discussed during your free consultation — based on format, duration, and group size.</p>
         <button class="btn-primary" style="padding:.8rem 2rem;font-size:.95rem;border-radius:12px;" onclick="joinAcademy()">Book Free Academy Consultation →</button>
       </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIVE SESSIONS SECTION -->
+<section id="live-sessions" class="section-pad">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow"><div class="eyebrow-line"></div>Live Training</div>
+      <h2 class="section-title">Learn Directly from<br/>Our AI Engineers</h2>
+      <p class="section-sub">Book a private live session or corporate training on any AI domain — ML, DL, NLP, CV, MLOps or Automation.</p>
+    </div>
+    <div class="aaa-grid reveal" style="margin-top:3rem;">
+      <div class="aaa-card">
+        <div class="aaa-icon-area">
+          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><circle cx="28" cy="18" r="9" stroke-width="1.5"/><path d="M10 46 Q10 34 28 34 Q46 34 46 46" stroke-width="1.5"/><path d="M38 12 L46 16 L38 20" stroke-width="1.5"/></svg>
+          <div class="aaa-num">01</div>
+        </div>
+        <span class="aaa-badge ba1">1:1 Sessions</span>
+        <h3>1:1 Live Sessions</h3>
+        <p>Book a focused session on ML, DL, NLP, CV, MLOps or Automation with our engineers. Get personalised code reviews, architecture guidance and career direction.</p>
+        <div class="aaa-examples">
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Project-specific mentoring</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Interview preparation</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Research guidance</div>
+        </div>
+      </div>
+      <div class="aaa-card">
+        <div class="aaa-icon-area">
+          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><rect x="8" y="14" width="40" height="28" rx="4" stroke-width="1.5"/><path d="M20 42 L20 48 M36 42 L36 48 M14 48 L42 48" stroke-width="1.5"/><line x1="8" y1="24" x2="48" y2="24" stroke-width="1.5"/></svg>
+          <div class="aaa-num">02</div>
+        </div>
+        <span class="aaa-badge ba2">Corporate</span>
+        <h3>Corporate Workshops</h3>
+        <p>Full-day or multi-day on-site/online training for your team on any AI domain. Custom curriculum designed around your industry and tech stack.</p>
+        <div class="aaa-examples">
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Teams of 5 to 100+</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>On-site or virtual</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Hands-on labs included</div>
+        </div>
+      </div>
+      <div class="aaa-card">
+        <div class="aaa-icon-area">
+          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><path d="M14 28 Q14 16 28 16 Q42 16 42 28 Q42 40 28 40 Q14 40 14 28Z" stroke-width="1.5"/><path d="M24 24 L32 28 L24 32Z" stroke-width="1.5"/></svg>
+          <div class="aaa-num">03</div>
+        </div>
+        <span class="aaa-badge ba3">Deep Dives</span>
+        <h3>Domain-Specific Deep Dives</h3>
+        <p>Pick a niche: Fraud Detection Systems, Computer Vision for Manufacturing, LLM Fine-Tuning, MLOps Pipelines, or any advanced topic you need.</p>
+        <div class="aaa-examples">
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Advanced algorithm deep dives</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Real production case studies</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Hands-on implementation</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;" class="aaa-grid reveal">
+      <div class="aaa-card" style="grid-column:1/-1;max-width:500px;margin:0 auto;">
+        <div class="aaa-icon-area">
+          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><circle cx="28" cy="20" r="10" stroke-width="1.5"/><path d="M18 38 Q18 30 28 30 Q38 30 38 38" stroke-width="1.5"/><path d="M38 14 L46 18 L38 22" stroke-width="1.5"/><path d="M42 14 L42 22" stroke-width="1.5"/></svg>
+          <div class="aaa-num">04</div>
+        </div>
+        <span class="aaa-badge ba1">Certification</span>
+        <h3>Certification Prep Sessions</h3>
+        <p>Guided prep sessions for TensorFlow Developer Certificate, AWS ML Specialty, Google ML Engineer and other professional AI certifications. Structured study plan with mock exams.</p>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:2.5rem;">
+      <button class="btn-cta" onclick="openConsultation()">Book a Live Session →</button>
     </div>
   </div>
 </section>
@@ -1446,7 +2037,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
             <div class="form-group"><label>First Name</label><input type="text" id="firstName" placeholder="Your name" required/></div>
             <div class="form-group"><label>Last Name</label><input type="text" id="lastName" placeholder="Last name"/></div>
           </div>
-          <div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="hariharan060202@gmail.com" required/></div>
+          <div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="(e.g. yourname@email.com)" required/></div>
           <div class="form-group"><label>WhatsApp / Phone</label><input type="tel" id="phone" placeholder="+91 XXXXX XXXXX"/></div>
           <div class="form-group">
             <label>I'm Interested In</label>
@@ -1510,6 +2101,64 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   </div>
 </div>
 
+<!-- PARTNERSHIPS SECTION -->
+<section id="partnerships" class="section-pad surface-s">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 3rem;">
+      <div class="eyebrow"><div class="eyebrow-line"></div>Partnerships</div>
+      <h2 class="section-title">Partner With Us</h2>
+      <p class="section-sub" style="max-width:100%;">We collaborate with companies, MNCs and agencies who want to build or integrate AI into their systems. Whether you're a startup, enterprise, or agency — let's grow together.</p>
+    </div>
+    <div class="aaa-grid reveal">
+      <div class="aaa-card">
+        <div class="aaa-icon-area">
+          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><rect x="8" y="18" width="18" height="20" rx="3" stroke-width="1.5"/><rect x="30" y="18" width="18" height="20" rx="3" stroke-width="1.5"/><line x1="26" y1="28" x2="30" y2="28" stroke-width="1.5"/></svg>
+          <div class="aaa-num">01</div>
+        </div>
+        <span class="aaa-badge ba1">Technology</span>
+        <h3>Technology Partnership</h3>
+        <p>Co-build AI products, share IP and integrate our ML/automation stack into your platform. Ideal for SaaS companies and tech startups looking to add AI capabilities quickly.</p>
+        <div class="aaa-examples">
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Joint product development</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>API &amp; SDK integration</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Revenue sharing model</div>
+        </div>
+      </div>
+      <div class="aaa-card">
+        <div class="aaa-icon-area">
+          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><path d="M12 28 Q12 18 28 18 Q44 18 44 28 Q44 38 28 38 Q12 38 12 28Z" stroke-width="1.5"/><path d="M20 28 Q20 22 28 22 Q36 22 36 28 Q36 34 28 34 Q20 34 20 28Z" stroke-width="1.5"/></svg>
+          <div class="aaa-num">02</div>
+        </div>
+        <span class="aaa-badge ba2">Reseller</span>
+        <h3>Reseller / White-Label Partnership</h3>
+        <p>Resell our AI services under your brand, or offer our tools to your clients. White-label our automation and ML solutions with your own branding and pricing.</p>
+        <div class="aaa-examples">
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Fully white-labelled</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Dedicated partner support</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Agencies &amp; consultants</div>
+        </div>
+      </div>
+      <div class="aaa-card">
+        <div class="aaa-icon-area">
+          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><path d="M10 38 L10 22 L28 12 L46 22 L46 38" stroke-width="1.5"/><rect x="20" y="28" width="16" height="10" stroke-width="1.5"/><line x1="28" y1="28" x2="28" y2="38" stroke-width="1.5"/></svg>
+          <div class="aaa-num">03</div>
+        </div>
+        <span class="aaa-badge ba3">Enterprise</span>
+        <h3>Enterprise Collaboration</h3>
+        <p>Large-scale project collaboration with MNCs — we provide the AI engineering, you bring the domain expertise. Ideal for digital transformation programmes.</p>
+        <div class="aaa-examples">
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>MNC &amp; enterprise ready</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>NDA &amp; SLA backed</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Dedicated AI team</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:2.5rem;">
+      <button class="btn-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Discuss a Partnership →</button>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -1538,31 +2187,31 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <div class="footer-col">
       <h5>Services</h5>
       <ul>
-        <li><a onclick="scrollTo('services')">AI Automation</a></li>
-        <li><a onclick="scrollTo('solutions')">AI Augmentation</a></li>
-        <li><a onclick="scrollTo('services')">Custom AI Agents</a></li>
-        <li><a onclick="scrollTo('services')">Voice AI</a></li>
-        <li><a onclick="openConsultation()">Consulting</a></li>
+        <li><a href="#services" onclick="scrollTo('services')">AI Automation</a></li>
+        <li><a href="#solutions" onclick="scrollTo('solutions')">AI Augmentation</a></li>
+        <li><a href="#services" onclick="scrollTo('services')">Custom AI Agents</a></li>
+        <li><a href="#services" onclick="scrollTo('services')">Voice AI</a></li>
+        <li><a href="#contact" onclick="openConsultation()">Consulting</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Industries</h5>
       <ul>
-        <li><a onclick="filterAndScroll('creator')">Creators</a></li>
-        <li><a onclick="filterAndScroll('startup')">Startups</a></li>
-        <li><a onclick="filterAndScroll('health')">Healthcare</a></li>
-        <li><a onclick="filterAndScroll('edu')">Education</a></li>
-        <li><a onclick="filterAndScroll('legal')">Legal & Finance</a></li>
+        <li><a href="#services" onclick="filterAndScroll('creator')">Creators</a></li>
+        <li><a href="#services" onclick="filterAndScroll('startup')">Startups</a></li>
+        <li><a href="#services" onclick="filterAndScroll('health')">Healthcare</a></li>
+        <li><a href="#services" onclick="filterAndScroll('edu')">Education</a></li>
+        <li><a href="#services" onclick="filterAndScroll('legal')">Legal & Finance</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Academy</h5>
       <ul>
-        <li><a onclick="scrollTo('academy')">About the Program</a></li>
-        <li><a onclick="scrollTo('academy')">Formats & Pricing</a></li>
-        <li><a onclick="scrollTo('academy')">Placement Prep</a></li>
-        <li><a onclick="joinAcademy()">Apply Now</a></li>
-        <li><a onclick="scrollTo('faq')">FAQs</a></li>
+        <li><a href="#academy" onclick="scrollTo('academy')">About the Program</a></li>
+        <li><a href="#academy" onclick="scrollTo('academy')">Formats & Pricing</a></li>
+        <li><a href="#academy" onclick="scrollTo('academy')">Placement Prep</a></li>
+        <li><a href="#contact" onclick="joinAcademy()">Apply Now</a></li>
+        <li><a href="#faq" onclick="scrollTo('faq')">FAQs</a></li>
       </ul>
     </div>
   </div>
@@ -1892,6 +2541,217 @@ function toggleFaq(el) {
   document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('open'));
   // If it wasn't open, open it
   if (!isOpen) clickedItem.classList.add('open');
+}
+</script>
+
+<script>
+/* ============================================
+   THREE.JS — Neural Network Hero Animation
+   ============================================ */
+(function() {
+  const canvas = document.getElementById('hero3d');
+  if (!canvas || typeof THREE === 'undefined') return;
+
+  const scene = new THREE.Scene();
+  const W = canvas.parentElement.offsetWidth || window.innerWidth;
+  const H = canvas.parentElement.offsetHeight || window.innerHeight;
+  const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 1000);
+  camera.position.z = 28;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(W, H);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  // Node positions — neural network layers
+  const layers = [
+    [[-6, 4, 0], [-6, 0, 0], [-6, -4, 0]],
+    [[-2, 5, -2], [-2, 1.5, 2], [-2, -1.5, -2], [-2, -5, 2]],
+    [[2, 4, 1], [2, 0, -1], [2, -4, 1]],
+    [[6, 2, 0], [6, -2, 0]]
+  ];
+  const allNodes = layers.flat();
+
+  // Node spheres
+  const nodeMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.85 });
+  const nodeGeo = new THREE.SphereGeometry(0.25, 12, 12);
+  const nodeMeshes = allNodes.map(pos => {
+    const m = new THREE.Mesh(nodeGeo, nodeMat.clone());
+    m.position.set(...pos);
+    scene.add(m);
+    return m;
+  });
+
+  // Glow rings around nodes
+  const ringGeo = new THREE.RingGeometry(0.32, 0.45, 24);
+  const ringMat = new THREE.MeshBasicMaterial({ color: 0x00f5ff, transparent: true, opacity: 0.04, side: THREE.DoubleSide });
+  nodeMeshes.forEach(n => {
+    const ring = new THREE.Mesh(ringGeo, ringMat.clone());
+    ring.position.copy(n.position);
+    ring.rotation.x = Math.PI / 2;
+    scene.add(ring);
+  });
+
+  // Edges between layers
+  const edgeMat = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.18 });
+  for (let l = 0; l < layers.length - 1; l++) {
+    layers[l].forEach(a => {
+      layers[l + 1].forEach(b => {
+        const geo = new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(...a), new THREE.Vector3(...b)
+        ]);
+        scene.add(new THREE.Line(geo, edgeMat.clone()));
+      });
+    });
+  }
+
+  // Floating particles
+  const particleCount = 120;
+  const positions = new Float32Array(particleCount * 3);
+  for (let i = 0; i < particleCount * 3; i++) positions[i] = (Math.random() - 0.5) * 40;
+  const pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const pMat = new THREE.PointsMaterial({ color: 0x67e8f9, size: 0.08, transparent: true, opacity: 0.55 });
+  scene.add(new THREE.Points(pGeo, pMat));
+
+  // Mouse parallax
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', e => {
+    mx = (e.clientX / window.innerWidth - 0.5) * 2;
+    my = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  // Animate
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.012;
+    // Rotate scene slightly based on mouse
+    scene.rotation.y = mx * 0.15;
+    scene.rotation.x = -my * 0.08;
+    // Pulse nodes
+    nodeMeshes.forEach((m, i) => {
+      const s = 1 + 0.18 * Math.sin(t + i * 0.7);
+      m.scale.setScalar(s);
+      m.material.opacity = 0.6 + 0.4 * Math.sin(t + i * 0.5);
+    });
+    // Float particles
+    const pos = pGeo.attributes.position.array;
+    for (let i = 1; i < particleCount * 3; i += 3) {
+      pos[i] += 0.012 * Math.sin(t + i);
+    }
+    pGeo.attributes.position.needsUpdate = true;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Resize
+  window.addEventListener('resize', () => {
+    const w = canvas.parentElement.offsetWidth || window.innerWidth;
+    const h = canvas.parentElement.offsetHeight || window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  });
+})();
+
+/* ============================================
+   GSAP SCROLL-TRIGGERED REVEAL ANIMATIONS
+   ============================================ */
+(function() {
+  if (typeof gsap === 'undefined') return;
+  if (typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
+
+  // Stagger reveal for service cards
+  gsap.utils.toArray('.scard').forEach((el, i) => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 40, scale: 0.96 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.6, delay: (i % 4) * 0.08,
+        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+      }
+    );
+  });
+
+  // ML portfolio cards
+  gsap.utils.toArray('.ml-pcard').forEach((el, i) => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 50, rotateX: 8 },
+      { opacity: 1, y: 0, rotateX: 0, duration: 0.7, delay: (i % 3) * 0.1,
+        scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none none' }
+      }
+    );
+  });
+
+  // aaa cards stagger
+  gsap.utils.toArray('.aaa-card').forEach((el, i) => {
+    gsap.fromTo(el,
+      { opacity: 0, x: -30 },
+      { opacity: 1, x: 0, duration: 0.55, delay: i * 0.12,
+        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+      }
+    );
+  });
+
+  // Animate workflow flow steps (traveling dot)
+  gsap.utils.toArray('.ml-flow-step').forEach((el, i) => {
+    gsap.fromTo(el,
+      { opacity: 0, x: -12 },
+      { opacity: 1, x: 0, duration: 0.35, delay: i * 0.07,
+        scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
+      }
+    );
+  });
+
+  // Process steps stagger
+  gsap.utils.toArray('.how-step').forEach((el, i) => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.6, delay: i * 0.15,
+        scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none none' }
+      }
+    );
+  });
+})();
+
+/* ============================================
+   3D TILT EFFECT ON CARDS
+   ============================================ */
+(function() {
+  const cards = document.querySelectorAll('.tilt-card, .aaa-card, .scard, .pcard');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `perspective(700px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+})();
+
+/* ============================================
+   PORTFOLIO CHOOSER POPUP
+   ============================================ */
+function openPortModal(e) {
+  if (e) e.preventDefault();
+  document.getElementById('portOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePortModalDirect() {
+  document.getElementById('portOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closePortModal(e) {
+  if (e.target === document.getElementById('portOverlay')) closePortModalDirect();
+}
+function goToPortfolio(id) {
+  closePortModalDirect();
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
 }
 </script>
 </body>
