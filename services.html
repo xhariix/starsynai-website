@@ -510,6 +510,19 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
   .founder-section{grid-template-columns:1fr;}
 }
 
+/* SMARTPHONE OPTIMIZATIONS (Max 480px) */
+@media(max-width:480px) {
+  .section-pad { padding: 3.5rem 0; }
+  .hero h1 { font-size: clamp(2.2rem, 11vw, 2.8rem) !important; line-height: 1.15; }
+  .hero-desc { font-size: 0.95rem; }
+  .hero-stats { flex-direction: column !important; align-items: center; gap: 1.25rem; }
+  .stat { width: 100%; justify-content: center; text-align: center; }
+  .hero-btns, .cta-btns { flex-direction: column !important; width: 100%; gap: 1rem; }
+  .btn-primary, .btn-ghost, .btn-cta, .btn-cta-ghost { width: 100%; justify-content: center; text-align: center; }
+  .aaa-grid, .testi-grid, .formats-grid, .photo-strip { gap: 1.5rem !important; }
+  .port-choices { grid-template-columns: 1fr !important; }
+}
+
 /* CASE STUDY MODAL */
 .case-study-modal { position: fixed; inset: 0; background: rgba(2,6,19,0.95); backdrop-filter: blur(10px); z-index: 99999; overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; display: block; }
 .case-study-modal.open { opacity: 1; pointer-events: auto; }
