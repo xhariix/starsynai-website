@@ -52,7 +52,8 @@ gtag('config', 'G-5E94DWD6KF');
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;background-color:#020613;}
-body{font-family:var(--sans);background:linear-gradient(145deg, #091325 0%, #020613 60%, #000000 100%);color:var(--text);overflow-x:clip;min-height:100vh;}
+body{font-family:var(--sans);animation: pageFadeIn 0.4s ease-out forwards;background:linear-gradient(145deg, #091325 0%, #020613 60%, #000000 100%);color:var(--text);overflow-x:clip;min-height:100vh;}
+@keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* INJECTED ANIMATIONS */
 @keyframes fadeUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
@@ -742,7 +743,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 
 <!-- NAVBAR -->
 <nav>
-  <a href="#" class="logo" onclick="scrollTop()">
+  <a href="index.html" class="logo">
     <!-- StarSyn AI SVG Logo: geometric star with 'syn' text -->
     <div class="logo-svg-wrap">
       <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -758,11 +759,11 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   </a>
   <ul class="nav-links">
     <li><a href="#solutions">What We Do</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#portfolio" onclick="openPortModal(event)">Portfolio</a></li>
-    <li><a href="#academy">Academy</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="portfolio.html" >Portfolio</a></li>
+    <li><a href="academy.html">Academy</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-right">
     <button class="btn-primary" onclick="openConsultation()">Book Free Call →</button>
@@ -774,11 +775,11 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <div class="mobile-menu" id="mobileMenu">
   <ul>
     <li><a href="#solutions" onclick="closeMenu()">What We Do</a></li>
-    <li><a href="#services" onclick="closeMenu()">Services</a></li>
-    <li><a href="#portfolio" onclick="closeMenu();openPortModal(event)">Portfolio</a></li>
-    <li><a href="#academy" onclick="closeMenu()">Academy</a></li>
-    <li><a href="#about" onclick="closeMenu()">About</a></li>
-    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    <li><a href="services.html" onclick="closeMenu()">Services</a></li>
+    <li><a href="portfolio.html" >Portfolio</a></li>
+    <li><a href="academy.html" onclick="closeMenu()">Academy</a></li>
+    <li><a href="about.html" onclick="closeMenu()">About</a></li>
+    <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
     <li><a href="#" onclick="openConsultation()">Book Free Call →</a></li>
   </ul>
 </div>
@@ -818,7 +819,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   <p class="hero-sub">We design and deploy intelligent AI agents that eliminate grunt work, augment your team's capabilities, and accelerate growth — for creators, startups, and enterprises.</p>
   <div class="hero-btns">
     <button class="btn-lg primary" onclick="openConsultation()">Book Free Consultation →</button>
-    <button class="btn-lg ghost" onclick="openPortModal(event)">▶ See What We Build</button>
+    <button class="btn-lg ghost" >▶ See What We Build</button>
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num counter" data-target="500" data-suffix="+">0+</div><div class="stat-label">Workflows Deployed</div></div>
@@ -913,1071 +914,102 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   <button onclick="document.getElementById('service-toast').style.right='-450px'" style="position:absolute; top:12px; right:12px; background:none; border:none; color:var(--text3); cursor:pointer; font-size:1rem; padding:4px;">✕</button>
 </div>
 
-<div class="divider"></div>
+<!-- ==========================================
+     HYBRID ARCHITECTURE: TEASER LANDING PAGE
+     ========================================== -->
 
-<!-- SERVICES -->
-<section id="services" class="section-pad surface-s">
+<!-- SERVICES TEASER -->
+<section id="services-teaser" class="section-pad surface-s" style="margin-top: 2rem;">
   <div class="bg-orbs"></div>
   <div class="container">
-    <div class="reveal">
-      <div class="eyebrow"><div class="eyebrow-line"></div>Services</div>
-      <h2 class="section-title">AI Flows We Build<br/>For Every Industry</h2>
-      <p class="section-sub">Deployable automations across 10+ industries. Filter by your category.</p>
-      <div class="filter-tabs">
-        <button class="tab active" onclick="filterCards('all',this)">All</button>
-        <button class="tab" onclick="filterCards('creator',this)">Creators</button>
-        <button class="tab" onclick="filterCards('startup',this)">Startups</button>
-        <button class="tab" onclick="filterCards('biz',this)">Small Business</button>
-        <button class="tab" onclick="filterCards('enterprise',this)">Enterprise</button>
-        <button class="tab" onclick="filterCards('health',this)">Healthcare</button>
-        <button class="tab" onclick="filterCards('edu',this)">Education</button>
-        <button class="tab" onclick="filterCards('realestate',this)">Real Estate</button>
-        <button class="tab" onclick="filterCards('ecom',this)">E-commerce</button>
-        <button class="tab" onclick="filterCards('legal',this)">Legal</button>
-        <button class="tab" onclick="filterCards('finance',this)">Finance</button>
-        <button class="tab" onclick="filterCards('ml',this)" data-filter="ml">ML/DL/AI</button>
-        <button class="tab" onclick="filterCards('chatbot',this)" data-filter="chatbot">Chatbots</button>
-        <button class="tab" onclick="filterCards('marketing',this)" data-filter="marketing">Marketing</button>
+    <div class="reveal" style="text-align:center;max-width:650px;margin:0 auto 3.5rem;">
+      <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>What We Build<div class="eyebrow-line"></div></div>
+      <h2 class="section-title">Intelligent Agents For Every Industry</h2>
+      <p class="section-sub" style="margin:0 auto;">From solo creators to enterprise scale, we deploy custom AI pipelines that eliminate manual work.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="scard neon-click" style="pointer-events:none;">
+        <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div>
+        <div class="stag tag-bz">Small Biz</div>
+        <h4>AI Receptionist</h4>
+        <p>WhatsApp or website bots that book appointments and answer FAQs 24/7 without human intervention.</p>
+      </div>
+      <div class="scard neon-click" style="pointer-events:none;">
+        <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="stag tag-cr">Creator</div>
+        <h4>Content Pipeline AI</h4>
+        <p>Pulls long-form content & trending topics to autonomously draft weekly newsletters and social posts.</p>
+      </div>
+      <div class="scard neon-click" style="pointer-events:none;">
+        <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="stag tag-st">Startup</div>
+        <h4>Lead Qualification Bot</h4>
+        <p>Takes inbound form submissions, qualifies leads dynamically, and drafts personalized emails instantly.</p>
       </div>
     </div>
-    <div class="services-grid reveal" id="servicesGrid">
-      <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="stag tag-cr">Creator</div><h4>Content Repurposer</h4><p>YouTube link → Twitter thread, LinkedIn post & Instagram caption in your voice — fully automatic.</p></div>
-      <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="stag tag-cr">Creator</div><h4>Auto DM Responder</h4><p>AI replies to your DMs and comments 24/7 in your tone. Never miss a fan or lead again.</p></div>
-      <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-cr">Creator</div><h4>Newsletter Writer Agent</h4><p>Pulls your content & trending topics → drafts your weekly newsletter, ready to send.</p></div>
-      <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="stag tag-st">Startup</div><h4>Lead Qualification Bot</h4><p>Form → AI qualifies lead → personalised email → books a call. Fully hands-free end to end.</p></div>
-      <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="stag tag-st">Startup</div><h4>Competitor Monitor</h4><p>Tracks competitor websites, pricing, and socials daily. Instant alerts when anything changes.</p></div>
-      <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="stag tag-st">Startup</div><h4>Meeting Summariser</h4><p>Records calls → writes summary + action items → drops into Notion, Slack, or CRM automatically.</p></div>
-      <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>AI Receptionist</h4><p>WhatsApp or website bot that books appointments, answers FAQs, and captures leads 24/7.</p></div>
-      <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Review Responder</h4><p>Monitors Google reviews and drafts personalised responses to every new review instantly.</p></div>
-      <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Social Media Autopilot</h4><p>Approve ideas once a week. AI writes, schedules, and posts across all platforms automatically.</p></div>
-      <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="stag tag-en">Enterprise</div><h4>HR Onboarding Agent</h4><p>New hire triggers full pipeline — sends docs, books meetings, sets up accounts, notifies teams.</p></div>
-      <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Contract Analyser</h4><p>Upload any PDF → AI flags risks, key dates, obligations, and unusual clauses in 30 seconds.</p></div>
-      <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Internal Knowledge Bot</h4><p>Chat with your own company docs, SOPs, and wikis. Instant answers without searching folders.</p></div>
-      <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Appointment Booking Bot</h4><p>Patients book, reschedule, and get reminders via WhatsApp. Zero receptionist time needed.</p></div>
-      <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Medical Report Summariser</h4><p>Complex reports → plain-language summaries for patients or staff in seconds.</p></div>
-      <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="stag tag-ed">Education</div><h4>Doubt-Solving Bot</h4><p>AI tutor trained on your curriculum answers student questions 24/7 with structured explanations.</p></div>
-      <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="stag tag-ed">Education</div><h4>Assignment Feedback AI</h4><p>Students submit work → AI gives structured, rubric-based feedback within seconds.</p></div>
-      <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Lead Qualifier</h4><p>Website visitors → AI qualifies buyer vs renter vs investor → routes to right agent automatically.</p></div>
-      <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Description Writer</h4><p>Input specs and photos → AI writes SEO-optimised listings for all portals instantly.</p></div>
-      <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Product Description Generator</h4><p>Upload product image + basic info → AI writes SEO-rich descriptions for all listings.</p></div>
-      <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Order Tracking Bot</h4><p>Customers ask about orders on WhatsApp → AI replies instantly with live status.</p></div>
-      <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="stag tag-le">Legal</div><h4>Contract Risk Analyser</h4><p>Upload any contract → AI highlights risks, missing clauses, and unusual terms immediately.</p></div>
-      <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="stag tag-le">Legal</div><h4>Client Intake Bot</h4><p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p></div>
-      <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Financial Report Automator</h4><p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p></div>
-      <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Client Update Bot</h4><p>Detects account changes → drafts and sends personalised client emails automatically.</p></div>
-
-      <!-- ML/DL/AI Service Cards -->
-      <div class="scard reveal" data-cat="ml">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><circle cx="6" cy="11" r="3" stroke="var(--accent3)" stroke-width="1.5"/><circle cx="16" cy="6" r="3" stroke="var(--accent3)" stroke-width="1.5"/><circle cx="16" cy="16" r="3" stroke="var(--accent3)" stroke-width="1.5"/><line x1="9" y1="10" x2="13" y2="7" stroke="var(--accent3)" stroke-width="1.5"/><line x1="9" y1="12" x2="13" y2="15" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
-        <span class="stag tag-st">ML/DL</span>
-        <h4>Predictive Analytics Systems</h4>
-        <p>Forecasting models using regression &amp; time-series — sales forecasting, customer churn prediction, demand prediction. Built with TensorFlow, PyTorch &amp; Prophet.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="ml">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="12" rx="2" stroke="var(--accent3)" stroke-width="1.5"/><circle cx="8" cy="10" r="2" stroke="var(--accent3)" stroke-width="1.5"/><path d="M12 9 L18 9 M12 12 L16 12" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
-        <span class="stag tag-bz">Computer Vision</span>
-        <h4>Computer Vision Systems</h4>
-        <p>Face recognition, defect detection in factories, CCTV surveillance AI, number plate recognition. Built with OpenCV, CNN &amp; YOLOv8. Ideal for manufacturing, security &amp; smart cities.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="ml">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="6" width="16" height="10" rx="2" stroke="var(--accent3)" stroke-width="1.5"/><line x1="6" y1="10" x2="16" y2="10" stroke="var(--accent3)" stroke-width="1.5"/><line x1="6" y1="13" x2="12" y2="13" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
-        <span class="stag tag-le">NLP Systems</span>
-        <h4>NLP Systems (Language AI)</h4>
-        <p>Sentiment analysis, document classification, resume parsing, legal document AI. Built with Hugging Face Transformers, spaCy &amp; LangChain. For HR, legal &amp; marketing teams.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="ml">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="7" y="3" width="8" height="12" rx="4" stroke="var(--accent3)" stroke-width="1.5"/><path d="M4 13 Q4 19 11 19 Q18 19 18 13" stroke="var(--accent3)" stroke-width="1.5"/><line x1="11" y1="19" x2="11" y2="22" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
-        <span class="stag tag-bz">Speech AI</span>
-        <h4>Speech AI Systems</h4>
-        <p>Speech-to-text, voice cloning, call transcription &amp; meeting summarizers. Powered by Whisper Large V3 &amp; TTS models. For call centres, enterprise &amp; voice bots.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="ml">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="var(--accent3)" stroke-width="1.5"/><path d="M7 11 L10 14 L15 8" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
-        <span class="stag tag-ec">Recommendation AI</span>
-        <h4>Recommendation Systems</h4>
-        <p>"People like you also bought…" systems — e-commerce recommendations, content suggestions &amp; personalised feeds. Built with Two-Tower Neural Networks &amp; Collaborative Filtering.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="ml">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><path d="M4 18 L8 12 L12 15 L16 7 L20 10" stroke="var(--accent3)" stroke-width="1.5" stroke-linejoin="round"/><circle cx="8" cy="12" r="1.5" fill="var(--accent3)"/></svg></div>
-        <span class="stag tag-fi">Anomaly Detection</span>
-        <h4>Anomaly Detection Systems</h4>
-        <p>Fraud detection, system failure prediction &amp; cybersecurity alerts. Built with Isolation Forest, Autoencoders &amp; Graph Neural Networks for real-time scoring.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="ml">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><polygon points="11,3 20,8 20,14 11,19 2,14 2,8" stroke="var(--accent3)" stroke-width="1.5" fill="none"/><circle cx="11" cy="11" r="3" stroke="var(--accent3)" stroke-width="1.5" fill="none"/></svg></div>
-        <span class="stag tag-en">Reinforcement Learning</span>
-        <h4>Reinforcement Learning Systems</h4>
-        <p>Dynamic pricing, robotics optimisation &amp; game AI. Using PPO &amp; Multi-Armed Bandit algorithms. Autonomous AI that learns &amp; improves through real-world feedback loops.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="ml">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><path d="M3 19 L7 13 L11 15 L15 9 L19 11" stroke="var(--accent3)" stroke-width="1.5"/><path d="M8 8 Q11 4 14 8 Q17 12 14 16 Q11 20 8 16 Q5 12 8 8Z" stroke="var(--accent3)" stroke-width="1.5" fill="none"/></svg></div>
-        <span class="stag tag-cr">Generative AI Models</span>
-        <h4>Generative AI Models</h4>
-        <p>Image generation, synthetic data &amp; marketing creatives. Using GANs, Stable Diffusion XL, LoRA fine-tuning &amp; ControlNet. 10× faster creative production for agencies.</p>
-      </div>
-
-      <!-- Chatbot Service Cards -->
-      <div class="scard reveal" data-cat="chatbot">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="2" y="4" width="18" height="12" rx="3" stroke="var(--accent3)" stroke-width="1.5"/><path d="M6 20 L10 16 L18 16" stroke="var(--accent3)" stroke-width="1.5"/><circle cx="7" cy="10" r="1.5" fill="var(--accent3)"/><circle cx="11" cy="10" r="1.5" fill="var(--accent3)"/><circle cx="15" cy="10" r="1.5" fill="var(--accent3)"/></svg></div>
-        <span class="stag tag-bz">Chatbot</span>
-        <h4>AI Chatbots &amp; Customer Support</h4>
-        <p>Website chatbots, WhatsApp &amp; Instagram bots, FAQ bot, booking assistant, order tracking bot. Full integration with WhatsApp Business API &amp; Instagram Messenger.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="chatbot">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="12" rx="2" stroke="var(--accent3)" stroke-width="1.5"/><line x1="3" y1="10" x2="19" y2="10" stroke="var(--accent3)" stroke-width="1.5"/><circle cx="7" cy="7.5" r="1" fill="var(--accent3)"/><circle cx="10" cy="7.5" r="1" fill="var(--accent3)"/></svg></div>
-        <span class="stag tag-bz">Chatbot</span>
-        <h4>Website Chatbot</h4>
-        <p>Embeddable AI chat widget for your website — handles FAQs, lead capture, appointment booking &amp; product queries 24×7 without human intervention.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="chatbot">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><path d="M11 3 L19 7 L19 15 L11 19 L3 15 L3 7Z" stroke="var(--accent3)" stroke-width="1.5" fill="none"/><path d="M7 11 L10 14 L15 8" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
-        <span class="stag tag-bz">Support AI</span>
-        <h4>Customer Support Automation</h4>
-        <p>AI that auto-resolves 80%+ of support tickets — email triage, escalation routing, sentiment detection &amp; response drafting integrated with your helpdesk tools.</p>
-      </div>
-
-      <!-- Marketing Service Cards -->
-      <div class="scard reveal" data-cat="marketing">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><path d="M4 16 L8 10 L12 13 L16 6 L20 9" stroke="var(--accent3)" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-        <span class="stag tag-cr">Marketing AI</span>
-        <h4>AI Marketing Automation</h4>
-        <p>Content generation, email marketing automation &amp; campaign optimisation. HubSpot integration for fully automated nurture sequences, lead scoring &amp; conversion tracking.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="marketing">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="var(--accent3)" stroke-width="1.5"/><path d="M8 11 L14 11 M11 8 L11 14" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
-        <span class="stag tag-cr">SEO AI</span>
-        <h4>AI SEO &amp; Website Optimisation</h4>
-        <p>AI-powered SEO audit &amp; content strategy, website performance optimisation, Google Search Console &amp; Core Web Vitals improvement — rank higher, faster.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="marketing">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="2" y="5" width="8" height="12" rx="2" stroke="var(--accent3)" stroke-width="1.5"/><rect x="12" y="5" width="8" height="12" rx="2" stroke="var(--accent3)" stroke-width="1.5"/><line x1="10" y1="11" x2="12" y2="11" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
-        <span class="stag tag-bz">Integration</span>
-        <h4>AI Integrations</h4>
-        <p>CRM + Email + Database + AI = fully automated system. We connect all your tools into one intelligent pipeline — HubSpot, Salesforce, Notion, Airtable &amp; more.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="marketing">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="4" width="16" height="14" rx="3" stroke="var(--accent3)" stroke-width="1.5"/><line x1="3" y1="9" x2="19" y2="9" stroke="var(--accent3)" stroke-width="1.5"/><line x1="8" y1="4" x2="8" y2="9" stroke="var(--accent3)" stroke-width="1.5"/><line x1="14" y1="4" x2="14" y2="9" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
-        <span class="stag tag-bz">CRM</span>
-        <h4>CRM Automation</h4>
-        <p>Automate lead capture, deal pipeline updates, follow-up sequences &amp; reporting inside your CRM — HubSpot, Pipedrive or any CRM you use.</p>
-      </div>
-
-      <!-- Data Analysis -->
-      <div class="scard reveal" data-cat="business">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="2" y="14" width="4" height="6" stroke="var(--accent3)" stroke-width="1.5"/><rect x="9" y="9" width="4" height="11" stroke="var(--accent3)" stroke-width="1.5"/><rect x="16" y="4" width="4" height="16" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
-        <span class="stag tag-bz">Analytics</span>
-        <h4>AI Data Analysis &amp; Business Insights</h4>
-        <p>Raw data to actionable insights — sales prediction dashboards, customer behaviour analysis, marketing performance insights. Automated reporting delivered to your inbox.</p>
-      </div>
-
-      <div class="scard reveal" data-cat="business">
-        <div class="scard-icon-tile"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="3" stroke="var(--accent3)" stroke-width="1.5"/><path d="M8 11 L10 13 L14 9" stroke="var(--accent3)" stroke-width="1.5"/></svg></div>
-        <span class="stag tag-bz">Custom AI</span>
-        <h4>Custom AI Tools / SaaS Products</h4>
-        <p>AI content generator, AI resume screener, AI CRM assistant — we build custom AI-powered SaaS tools tailored to your specific business workflow and user base.</p>
-      </div>
-    </div>
-
-    <!-- ML/DL/AI Services We Build -->
-    <div class="reveal" style="margin-top:3rem;">
-      <div class="eyebrow"><div class="eyebrow-line"></div>ML · DL · AI Services</div>
-      <h3 class="section-title" style="font-size:1.6rem;">Advanced AI Systems We Build</h3>
-      <p style="color:var(--text2);font-size:.9rem;margin-bottom:1.5rem;">From predictive models to computer vision — production-grade ML/DL systems deployed at scale.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;">
-        <div class="format-card">
-          <svg class="format-icon-svg" viewBox="0 0 28 28"><circle cx="8" cy="14" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="20" cy="8" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="20" cy="20" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="11" y1="13" x2="17" y2="9" stroke="currentColor" stroke-width="1.5"/><line x1="11" y1="15" x2="17" y2="19" stroke="currentColor" stroke-width="1.5"/></svg>
-          <h5>Machine Learning & Deep Learning</h5>
-          <p>Regression, classification, ensemble methods, CNNs, RNNs, LSTMs & Transformers. From fundamentals to advanced production models using PyTorch & TensorFlow.</p>
-        </div>
-        <div class="format-card">
-          <svg class="format-icon-svg" viewBox="0 0 28 28"><rect x="4" y="6" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="10" cy="12" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M16 10 L22 10 M16 14 L20 14" stroke="currentColor" stroke-width="1.5"/></svg>
-          <h5>Computer Vision (CV) Systems</h5>
-          <p>Image preprocessing, object detection with YOLOv8, instance segmentation, face recognition and edge deployment on Jetson/Raspberry Pi for real-world use cases.</p>
-        </div>
-        <div class="format-card">
-          <svg class="format-icon-svg" viewBox="0 0 28 28"><rect x="4" y="8" width="20" height="12" rx="3" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="8" y1="13" x2="20" y2="13" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="17" x2="16" y2="17" stroke="currentColor" stroke-width="1.5"/></svg>
-          <h5>NLP & Large Language Models</h5>
-          <p>BERT fine-tuning, RAG pipelines, prompt engineering, LangChain & FAISS vector stores. From sentiment analysis to multilingual enterprise AI assistants.</p>
-        </div>
-        <div class="format-card">
-          <svg class="format-icon-svg" viewBox="0 0 28 28"><path d="M6 22 L6 12 L14 6 L22 12 L22 22" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="10" y="16" width="8" height="6" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="14" cy="11" r="2" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-          <h5>MLOps & Model Deployment (CI/CD)</h5>
-          <p>MLflow, Docker, FastAPI, GitHub Actions CI/CD for ML, model monitoring, drift detection, A/B testing and 24×7 production maintenance of deployed models.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 24x7 Support Banner -->
-    <div class="reveal" style="margin-top:2.5rem;background:linear-gradient(135deg,rgba(56,189,248,0.07),rgba(0,245,255,0.03));border:1.5px solid rgba(56,189,248,0.22);border-radius:16px;padding:1.75rem 2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
-      <div style="width:52px;height:52px;border-radius:50%;background:rgba(56,189,248,0.12);border:1.5px solid rgba(56,189,248,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="10" stroke="var(--accent3)" stroke-width="1.5"/><path d="M13 7 L13 13 L17 15" stroke="var(--accent3)" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </div>
-      <div style="flex:1;min-width:200px;">
-        <div style="font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.25rem;">24×7 AI System Support</div>
-        <div style="color:var(--text2);font-size:.875rem;line-height:1.65;">All models, workflows &amp; automation systems we build are monitored, maintained &amp; supported round the clock. SLA-backed uptime. Zero downtime deployments.</div>
-      </div>
-      <button class="btn-primary" onclick="openConsultation()" style="white-space:nowrap;">Discuss SLA →</button>
+    <div class="reveal" style="text-align:center;margin-top:3.5rem;">
+      <button class="btn-primary" style="box-shadow:0 0 28px rgba(0,245,255,0.45); border-color:var(--neon); color:var(--neon); padding:1rem 2.8rem; font-size:1.05rem; letter-spacing:0.5px; transition:all 0.3s ease; animation: pulse 2s infinite;" onclick="window.location.href='services.html'" onmouseover="this.style.boxShadow='0 0 45px rgba(0,245,255,0.7)';" onmouseout="this.style.boxShadow='0 0 28px rgba(0,245,255,0.45)';">
+        Explore All 15+ Automations &amp; ML Services →
+      </button>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- PORTFOLIO TEASER -->
+<section id="portfolio-teaser" class="section-pad">
+  <div class="bg-radar"></div>
+  <div class="container">
+    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:3.5rem;">
+      <div>
+        <div class="eyebrow"><div class="eyebrow-line"></div>Our Work</div>
+        <h2 class="section-title">Real Pipelines. Real Results.</h2>
+      </div>
+      <button class="btn-ghost" style="box-shadow:0 0 18px rgba(56,189,248,0.25); border-color:var(--accent3); color:var(--text); padding:0.8rem 1.8rem;" onclick="window.location.href='portfolio.html'" onmouseover="this.style.borderColor='var(--neon)'; this.style.color='var(--neon)'; this.style.boxShadow='0 0 28px rgba(0,245,255,0.4)';" onmouseout="this.style.borderColor='var(--accent3)'; this.style.color='var(--text)'; this.style.boxShadow='0 0 18px rgba(56,189,248,0.25)';">
+        View Full Case Studies Directory →
+      </button>
+    </div>
+    <div class="portfolio-grid reveal" style="grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));">
+      <div class="pcard" style="pointer-events:none;">
+        <div class="pcard-header">
+          <div><div class="pcard-title">Influencer Lead Nurture CRM</div><div class="pcard-sub">Marketing & Content Creators</div></div>
+          <div class="complexity-badge cx-medium">Advanced</div>
+        </div>
+        <div class="pcard-body">
+          <p style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:1.5rem;">Fully automated multi-step DM sequences and CRM syncing for a creator with 2M+ followers. Handled traffic spikes dynamically.</p>
+          <div class="pcard-metrics">
+            <div style="flex:1;"><div class="metric-val">10k+</div><div class="metric-label">DMs Handled/Mo</div></div>
+            <div style="flex:1;"><div class="metric-val">40hrs</div><div class="metric-label">Saved Weekly</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="pcard" style="pointer-events:none;">
+        <div class="pcard-header">
+          <div><div class="pcard-title">AI Appointment Setter</div><div class="pcard-sub">Dental & Healthcare Clinics</div></div>
+          <div class="complexity-badge cx-advanced">Complex AI</div>
+        </div>
+        <div class="pcard-body">
+          <p style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:1.5rem;">Natural language WhatsApp bot that schedules, reschedules, and securely syncs patient bookings directly to EHR systems.</p>
+          <div class="pcard-metrics">
+            <div style="flex:1;"><div class="metric-val">24/7</div><div class="metric-label">Booking Uptime</div></div>
+            <div style="flex:1;"><div class="metric-val">Zero</div><div class="metric-label">No-Shows</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- PORTFOLIO — 6 REAL PROJECTS WITH DETAILED FLOWCHARTS -->
-<section id="portfolio" class="section-pad">
+<!-- ACADEMY TEASER -->
+<section id="academy-teaser" class="section-pad surface-s">
   <div class="bg-streams"></div>
   <div class="container">
     <div class="reveal">
-      <div class="eyebrow"><div class="eyebrow-line"></div>Portfolio</div>
-      <h2 class="section-title">AI Pipelines We've Built</h2>
-      <p class="section-sub">Six real workflow architectures across three complexity levels — with detailed pipeline diagrams.</p>
-    </div>
-    <div class="portfolio-grid reveal">
-
-      <!-- 1. SIMPLE — Social Media Autopilot -->
-      <div class="pcard neon-click">
-        <div class="pcard-header">
-          <div><div class="pcard-title">Social Media Autopilot</div><div class="pcard-sub">Local Restaurant Chain</div></div>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span class="complexity-badge cx-simple">Simple</span>
-            <div class="pcard-status"><div class="sdot"></div>Live</div>
-            <div class="pcard-model">Model <span class="pcard-model-name">GPT-4</span></div>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <div class="flowchart">
-            <svg viewBox="0 0 480 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs><marker id="arr1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(56,189,248,0.5)"/></marker></defs>
-              <!-- Node 1 -->
-              <rect x="10" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="50" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Content</text>
-              <text x="50" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Brief Input</text>
-              <circle cx="90" cy="60" r="4" fill="rgba(56,189,248,0.4)"/>
-              <!-- Arrow -->
-              <line x1="94" y1="60" x2="118" y2="60" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr1)"/>
-              <!-- Node 2 -->
-              <rect x="120" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="160" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">GPT-4</text>
-              <text x="160" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Write Posts</text>
-              <circle cx="200" cy="60" r="4" fill="rgba(56,189,248,0.4)"/>
-              <line x1="204" y1="60" x2="228" y2="60" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr1)"/>
-              <!-- Node 3 -->
-              <rect x="230" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="270" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Human</text>
-              <text x="270" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Approve</text>
-              <circle cx="310" cy="60" r="4" fill="rgba(56,189,248,0.4)"/>
-              <line x1="314" y1="60" x2="338" y2="60" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr1)"/>
-              <!-- Node 4 -->
-              <rect x="340" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="380" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Auto-Post</text>
-              <text x="380" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">4 Platforms</text>
-              <!-- Labels -->
-              <text x="50" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Trigger</text>
-              <text x="160" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Generate</text>
-              <text x="270" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Review</text>
-              <text x="380" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Publish</text>
-            </svg>
-          </div>
-          <div class="pcard-metrics"><div><div class="metric-val">12h</div><div class="metric-label">Saved/Week</div></div><div><div class="metric-val">4×</div><div class="metric-label">Post Volume</div></div><div><div class="metric-val">2d</div><div class="metric-label">Build Time</div></div></div>
-          <div class="pcard-tools"><span class="ptool">n8n</span><span class="ptool">GPT-4</span><span class="ptool">Buffer API</span></div>
-        </div>
-      </div>
-
-      <!-- 2. SIMPLE — Review Responder -->
-      <div class="pcard neon-click">
-        <div class="pcard-header">
-          <div><div class="pcard-title">Review Response Bot</div><div class="pcard-sub">Retail Store · 3 Branches</div></div>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span class="complexity-badge cx-simple">Simple</span>
-            <div class="pcard-status"><div class="sdot"></div>Live</div>
-            <div class="pcard-model">Model <span class="pcard-model-name">Claude</span></div>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <div class="flowchart">
-            <svg viewBox="0 0 480 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs><marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(56,189,248,0.5)"/></marker></defs>
-              <rect x="10" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="50" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">New Google</text>
-              <text x="50" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Review</text>
-              <circle cx="90" cy="60" r="4" fill="rgba(56,189,248,0.4)"/>
-              <line x1="94" y1="60" x2="118" y2="60" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr2)"/>
-              <rect x="120" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="160" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Sentiment</text>
-              <text x="160" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Analyse</text>
-              <circle cx="200" cy="60" r="4" fill="rgba(56,189,248,0.4)"/>
-              <line x1="204" y1="60" x2="228" y2="60" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr2)"/>
-              <rect x="230" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="270" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Draft</text>
-              <text x="270" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Response</text>
-              <circle cx="310" cy="60" r="4" fill="rgba(56,189,248,0.4)"/>
-              <line x1="314" y1="60" x2="338" y2="60" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr2)"/>
-              <rect x="340" y="35" width="80" height="50" rx="10" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="380" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">Post Reply</text>
-              <text x="380" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(240,249,255,0.7)">+ Log</text>
-              <text x="50" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Trigger</text>
-              <text x="160" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Classify</text>
-              <text x="270" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Claude AI</text>
-              <text x="380" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(56,189,248,0.5)">Publish</text>
-            </svg>
-          </div>
-          <div class="pcard-metrics"><div><div class="metric-val">100%</div><div class="metric-label">Reviews Answered</div></div><div><div class="metric-val">4.8★</div><div class="metric-label">Avg Rating</div></div><div><div class="metric-val">1d</div><div class="metric-label">Build Time</div></div></div>
-          <div class="pcard-tools"><span class="ptool">n8n</span><span class="ptool">Claude</span><span class="ptool">Google API</span></div>
-        </div>
-      </div>
-
-      <!-- 3. MEDIUM — Lead Nurture Pipeline -->
-      <div class="pcard neon-click">
-        <div class="pcard-header">
-          <div><div class="pcard-title">Lead Nurture Pipeline</div><div class="pcard-sub">B2B SaaS Startup</div></div>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span class="complexity-badge cx-medium">Medium</span>
-            <div class="pcard-status"><div class="sdot"></div>Live</div>
-            <div class="pcard-model">Model <span class="pcard-model-name">n8n</span></div>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <div class="flowchart">
-            <svg viewBox="0 0 520 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs><marker id="arr3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(56,189,248,0.5)"/></marker></defs>
-              <!-- Row 1 -->
-              <rect x="10" y="10" width="75" height="45" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="47" y="30" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Form</text>
-              <text x="47" y="42" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Submit</text>
-              <circle cx="85" cy="32" r="3.5" fill="rgba(56,189,248,0.4)"/>
-              <line x1="88" y1="32" x2="108" y2="32" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr3)"/>
-              <rect x="110" y="10" width="75" height="45" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="147" y="30" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">GPT-4</text>
-              <text x="147" y="42" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Score Lead</text>
-              <circle cx="185" cy="32" r="3.5" fill="rgba(56,189,248,0.4)"/>
-              <!-- Branch decision -->
-              <line x1="188" y1="32" x2="205" y2="32" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <polygon points="205,25 220,32 205,39" fill="rgba(56,189,248,0.15)" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
-              <!-- Hot branch -->
-              <line x1="220" y1="28" x2="250" y2="18" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr3)"/>
-              <rect x="252" y="5" width="75" height="35" rx="8" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
-              <text x="289" y="20" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.9)">Hot Lead</text>
-              <text x="289" y="32" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.9)">Book Call</text>
-              <!-- Cold branch -->
-              <line x1="220" y1="36" x2="250" y2="50" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr3)"/>
-              <rect x="252" y="43" width="75" height="35" rx="8" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.25)" stroke-width="1"/>
-              <text x="289" y="58" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.6)">Nurture</text>
-              <text x="289" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.6)">Sequence</text>
-              <!-- Both merge to CRM -->
-              <line x1="327" y1="22" x2="360" y2="70" stroke="rgba(56,189,248,0.25)" stroke-width="1" stroke-dasharray="3,2"/>
-              <line x1="327" y1="60" x2="360" y2="70" stroke="rgba(56,189,248,0.25)" stroke-width="1" stroke-dasharray="3,2"/>
-              <rect x="362" y="50" width="75" height="45" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="399" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">CRM</text>
-              <text x="399" y="82" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">+ Slack Alert</text>
-              <!-- Bottom row: Slack -->
-              <line x1="399" y1="95" x2="399" y2="110" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr3)"/>
-              <rect x="362" y="112" width="75" height="35" rx="8" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
-              <text x="399" y="127" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.55)">Email</text>
-              <text x="399" y="139" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.55)">Sequence</text>
-              <text x="47" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(56,189,248,0.45)">Webhook</text>
-              <text x="147" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(56,189,248,0.45)">AI Score</text>
-              <text x="213" y="18" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(56,189,248,0.45)">Route</text>
-            </svg>
-          </div>
-          <div class="pcard-metrics"><div><div class="metric-val">80%</div><div class="metric-label">Less Manual</div></div><div><div class="metric-val">3×</div><div class="metric-label">Conversions</div></div><div><div class="metric-val">48h</div><div class="metric-label">Build Time</div></div></div>
-          <div class="pcard-tools"><span class="ptool">n8n</span><span class="ptool">GPT-4</span><span class="ptool">HubSpot</span><span class="ptool">Slack</span></div>
-        </div>
-      </div>
-
-      <!-- 4. MEDIUM — Content Engine -->
-      <div class="pcard neon-click">
-        <div class="pcard-header">
-          <div><div class="pcard-title">Content Repurposing Engine</div><div class="pcard-sub">YouTube Creator · 280K Subscribers</div></div>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span class="complexity-badge cx-medium">Medium</span>
-            <div class="pcard-status"><div class="sdot"></div>Live</div>
-            <div class="pcard-model">Model <span class="pcard-model-name">Claude</span></div>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <div class="flowchart">
-            <svg viewBox="0 0 520 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs><marker id="arr4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(56,189,248,0.5)"/></marker></defs>
-              <!-- Step 1 -->
-              <rect x="10" y="52" width="72" height="45" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="46" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">YouTube</text>
-              <text x="46" y="84" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">URL Input</text>
-              <circle cx="82" cy="74" r="3.5" fill="rgba(56,189,248,0.4)"/>
-              <line x1="85" y1="74" x2="105" y2="74" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr4)"/>
-              <!-- Step 2 -->
-              <rect x="107" y="52" width="72" height="45" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="143" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Transcribe</text>
-              <text x="143" y="84" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Audio</text>
-              <circle cx="179" cy="74" r="3.5" fill="rgba(56,189,248,0.4)"/>
-              <line x1="182" y1="74" x2="200" y2="74" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr4)"/>
-              <!-- Step 3 -->
-              <rect x="202" y="52" width="72" height="45" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="238" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Claude</text>
-              <text x="238" y="84" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.7)">Generate</text>
-              <circle cx="274" cy="74" r="3.5" fill="rgba(56,189,248,0.4)"/>
-              <!-- Fan out to 4 platforms -->
-              <line x1="277" y1="70" x2="300" y2="20" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr4)"/>
-              <line x1="277" y1="72" x2="300" y2="50" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr4)"/>
-              <line x1="277" y1="75" x2="300" y2="90" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr4)"/>
-              <line x1="277" y1="77" x2="300" y2="120" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr4)"/>
-              <!-- Platform boxes -->
-              <rect x="302" y="8" width="70" height="28" rx="6" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.25)" stroke-width="1"/>
-              <text x="337" y="26" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(196,181,253,0.9)">Twitter Thread</text>
-              <rect x="302" y="40" width="70" height="28" rx="6" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
-              <text x="337" y="58" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.6)">LinkedIn Post</text>
-              <rect x="302" y="78" width="70" height="28" rx="6" fill="rgba(249,115,22,0.07)" stroke="rgba(249,115,22,0.2)" stroke-width="1"/>
-              <text x="337" y="96" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(253,186,116,0.8)">Instagram</text>
-              <rect x="302" y="108" width="70" height="28" rx="6" fill="rgba(52,211,153,0.06)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
-              <text x="337" y="126" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.7)">Newsletter</text>
-              <!-- Schedule -->
-              <line x1="372" y1="75" x2="400" y2="75" stroke="rgba(56,189,248,0.25)" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr4)"/>
-              <rect x="402" y="55" width="72" height="40" rx="8" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
-              <text x="438" y="73" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.5)">Auto</text>
-              <text x="438" y="85" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(240,249,255,0.5)">Schedule</text>
-            </svg>
-          </div>
-          <div class="pcard-metrics"><div><div class="metric-val">15h</div><div class="metric-label">Saved/Week</div></div><div><div class="metric-val">5×</div><div class="metric-label">Content Output</div></div><div><div class="metric-val">2×</div><div class="metric-label">Engagement</div></div></div>
-          <div class="pcard-tools"><span class="ptool">n8n</span><span class="ptool">Claude</span><span class="ptool">Whisper</span><span class="ptool">Buffer</span></div>
-        </div>
-      </div>
-
-      <!-- 5. ADVANCED — Hospital Appointment System -->
-      <div class="pcard neon-click">
-        <div class="pcard-header">
-          <div><div class="pcard-title">Hospital Appointment System</div><div class="pcard-sub">Multi-Specialty Clinic · 8 Doctors</div></div>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span class="complexity-badge cx-advanced">Advanced</span>
-            <div class="pcard-status"><div class="sdot"></div>Live</div>
-            <div class="pcard-model">Model <span class="pcard-model-name">GPT-4</span></div>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <div class="flowchart">
-            <svg viewBox="0 0 520 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs><marker id="arr5" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(56,189,248,0.5)"/></marker></defs>
-              <!-- Patient WhatsApp -->
-              <rect x="8" y="70" width="68" height="40" rx="8" fill="rgba(37,211,102,0.08)" stroke="rgba(37,211,102,0.3)" stroke-width="1"/>
-              <text x="42" y="88" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(74,222,128,0.9)">Patient</text>
-              <text x="42" y="99" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(74,222,128,0.9)">WhatsApp</text>
-              <circle cx="76" cy="90" r="3" fill="rgba(56,189,248,0.4)"/>
-              <line x1="79" y1="90" x2="96" y2="90" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr5)"/>
-              <!-- NLP Engine -->
-              <rect x="98" y="60" width="68" height="60" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="132" y="83" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">NLP</text>
-              <text x="132" y="93" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">Intent</text>
-              <text x="132" y="103" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">Detect</text>
-              <circle cx="166" cy="90" r="3" fill="rgba(56,189,248,0.4)"/>
-              <!-- Intent branches -->
-              <line x1="169" y1="86" x2="188" y2="55" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr5)"/>
-              <line x1="169" y1="90" x2="188" y2="90" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr5)"/>
-              <line x1="169" y1="94" x2="188" y2="125" stroke="rgba(56,189,248,0.25)" stroke-width="1" marker-end="url(#arr5)"/>
-              <!-- Branch boxes -->
-              <rect x="190" y="40" width="70" height="28" rx="6" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
-              <text x="225" y="58" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.6)">Book Appt</text>
-              <rect x="190" y="76" width="70" height="28" rx="6" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
-              <text x="225" y="94" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.6)">Reschedule</text>
-              <rect x="190" y="112" width="70" height="28" rx="6" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
-              <text x="225" y="130" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.6)">FAQ Reply</text>
-              <!-- Check availability -->
-              <line x1="260" y1="54" x2="285" y2="80" stroke="rgba(56,189,248,0.2)" stroke-width="1" stroke-dasharray="2,2"/>
-              <line x1="260" y1="90" x2="285" y2="90" stroke="rgba(56,189,248,0.2)" stroke-width="1" stroke-dasharray="2,2"/>
-              <rect x="287" y="65" width="72" height="50" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="323" y="83" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">Check</text>
-              <text x="323" y="93" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">Doctor</text>
-              <text x="323" y="103" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">Slots</text>
-              <circle cx="359" cy="90" r="3" fill="rgba(56,189,248,0.4)"/>
-              <line x1="362" y1="90" x2="382" y2="90" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr5)"/>
-              <!-- Confirm + Remind -->
-              <rect x="384" y="55" width="68" height="35" rx="8" fill="rgba(52,211,153,0.07)" stroke="rgba(52,211,153,0.25)" stroke-width="1"/>
-              <text x="418" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.8)">Confirm</text>
-              <text x="418" y="81" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.8)">Booking</text>
-              <rect x="384" y="100" width="68" height="35" rx="8" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
-              <text x="418" y="115" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.55)">24h</text>
-              <text x="418" y="126" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.55)">Reminder</text>
-              <!-- Follow-up -->
-              <line x1="452" y1="135" x2="452" y2="148" stroke="rgba(56,189,248,0.2)" stroke-width="1" stroke-dasharray="2,2"/>
-              <rect x="415" y="150" width="75" height="25" rx="6" fill="rgba(56,189,248,0.04)" stroke="rgba(56,189,248,0.15)" stroke-width="1"/>
-              <text x="452" y="166" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(240,249,255,0.4)">Post-Visit Follow-up</text>
-            </svg>
-          </div>
-          <div class="pcard-metrics"><div><div class="metric-val">90%</div><div class="metric-label">Call Volume Drop</div></div><div><div class="metric-val">24/7</div><div class="metric-label">Booking</div></div><div><div class="metric-val">40%</div><div class="metric-label">No-shows Down</div></div></div>
-          <div class="pcard-tools"><span class="ptool">n8n</span><span class="ptool">GPT-4</span><span class="ptool">WhatsApp API</span><span class="ptool">Google Calendar</span><span class="ptool">Supabase</span></div>
-        </div>
-      </div>
-
-      <!-- 6. ADVANCED — Enterprise HR Onboarding -->
-      <div class="pcard neon-click">
-        <div class="pcard-header">
-          <div><div class="pcard-title">Enterprise HR Onboarding</div><div class="pcard-sub">Tech Company · 500 Employees</div></div>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span class="complexity-badge cx-advanced">Advanced</span>
-            <div class="pcard-status"><div class="sdot"></div>Live</div>
-            <div class="pcard-model">Model <span class="pcard-model-name">Claude</span></div>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <div class="flowchart">
-            <svg viewBox="0 0 520 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs><marker id="arr6" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(56,189,248,0.5)"/></marker></defs>
-              <!-- Trigger -->
-              <rect x="8" y="70" width="68" height="40" rx="8" fill="rgba(56,189,248,0.08)" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
-              <text x="42" y="88" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">New Hire</text>
-              <text x="42" y="99" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(240,249,255,0.7)">HR Record</text>
-              <circle cx="76" cy="90" r="3" fill="rgba(56,189,248,0.4)"/>
-              <line x1="79" y1="90" x2="96" y2="90" stroke="rgba(56,189,248,0.3)" stroke-width="1" marker-end="url(#arr6)"/>
-              <!-- Orchestrator -->
-              <rect x="98" y="60" width="72" height="60" rx="8" fill="rgba(56,189,248,0.1)" stroke="rgba(56,189,248,0.35)" stroke-width="1.5"/>
-              <text x="134" y="82" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(103,232,249,0.9)">Claude</text>
-              <text x="134" y="93" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(103,232,249,0.9)">Orchestrate</text>
-              <text x="134" y="104" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(103,232,249,0.6)">Role Detect</text>
-              <circle cx="170" cy="90" r="3" fill="rgba(56,189,248,0.4)"/>
-              <!-- Fan out to 5 parallel tasks -->
-              <line x1="173" y1="78" x2="198" y2="18" stroke="rgba(56,189,248,0.2)" stroke-width="1" marker-end="url(#arr6)"/>
-              <line x1="173" y1="83" x2="198" y2="50" stroke="rgba(56,189,248,0.2)" stroke-width="1" marker-end="url(#arr6)"/>
-              <line x1="173" y1="90" x2="198" y2="90" stroke="rgba(56,189,248,0.2)" stroke-width="1" marker-end="url(#arr6)"/>
-              <line x1="173" y1="96" x2="198" y2="130" stroke="rgba(56,189,248,0.2)" stroke-width="1" marker-end="url(#arr6)"/>
-              <line x1="173" y1="100" x2="198" y2="158" stroke="rgba(56,189,248,0.2)" stroke-width="1" marker-end="url(#arr6)"/>
-              <!-- Parallel task boxes -->
-              <rect x="200" y="5" width="82" height="24" rx="5" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.18)" stroke-width="1"/>
-              <text x="241" y="21" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(240,249,255,0.55)">Send Docs & Contracts</text>
-              <rect x="200" y="36" width="82" height="24" rx="5" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.18)" stroke-width="1"/>
-              <text x="241" y="52" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(240,249,255,0.55)">Schedule Intro Meetings</text>
-              <rect x="200" y="78" width="82" height="24" rx="5" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.18)" stroke-width="1"/>
-              <text x="241" y="94" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(240,249,255,0.55)">Setup Tools & Accounts</text>
-              <rect x="200" y="118" width="82" height="24" rx="5" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.18)" stroke-width="1"/>
-              <text x="241" y="134" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(240,249,255,0.55)">Notify Team on Slack</text>
-              <rect x="200" y="148" width="82" height="24" rx="5" fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.18)" stroke-width="1"/>
-              <text x="241" y="164" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(240,249,255,0.55)">30-day Check-in Flow</text>
-              <!-- All converge to done -->
-              <line x1="282" y1="17" x2="408" y2="82" stroke="rgba(56,189,248,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
-              <line x1="282" y1="48" x2="408" y2="84" stroke="rgba(56,189,248,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
-              <line x1="282" y1="90" x2="408" y2="88" stroke="rgba(56,189,248,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
-              <line x1="282" y1="130" x2="408" y2="92" stroke="rgba(56,189,248,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
-              <line x1="282" y1="160" x2="408" y2="95" stroke="rgba(56,189,248,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
-              <rect x="410" y="65" width="80" height="50" rx="8" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.25)" stroke-width="1"/>
-              <text x="450" y="83" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.85)">Onboarding</text>
-              <text x="450" y="94" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(110,231,183,0.85)">Complete</text>
-              <text x="450" y="105" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="rgba(110,231,183,0.55)">20 min total</text>
-            </svg>
-          </div>
-          <div class="pcard-metrics"><div><div class="metric-val">20min</div><div class="metric-label">vs 3 Days Before</div></div><div><div class="metric-val">0</div><div class="metric-label">Manual Steps</div></div><div><div class="metric-val">100%</div><div class="metric-label">Accuracy</div></div></div>
-          <div class="pcard-tools"><span class="ptool">n8n</span><span class="ptool">Claude</span><span class="ptool">Slack</span><span class="ptool">Google Workspace</span><span class="ptool">Supabase</span></div>
-        </div>
-      </div>
-
-    </div><!-- end existing portfolio grid -->
-
-    <!-- ADVANCED ML/DL/AI PORTFOLIO -->
-    <div class="reveal" style="margin-top:4rem;">
-      <div class="eyebrow"><div class="eyebrow-line"></div>Advanced ML/DL/AI Projects</div>
-      <h3 class="section-title" style="font-size:1.8rem;">Production-Grade AI Systems We've Built</h3>
-      <p style="color:var(--text2);font-size:.95rem;line-height:1.75;max-width:600px;margin-bottom:2.5rem;">Real-world advanced ML &amp; DL systems — deployed at scale, with measurable business impact.</p>
-    </div>
-
-    <div class="portfolio-grid" id="ml-portfolio-grid">
-
-      <!-- Card 1: Fraud Detection -->
-      <div class="ml-pcard tilt-card reveal">
-        <div class="ml-pcard-header">
-          <span class="ml-pcard-badge ml-badge-advanced">Advanced · Fintech</span>
-          <div class="ml-pcard-title">Real-Time Multimodal Fraud Detection Engine</div>
-          <div class="ml-pcard-sub">Banking / Fintech · 1M+ transactions/day</div>
-        </div>
-        <div class="ml-pcard-body">
-          <div class="ml-flow">
-            <span class="ml-flow-step">Data Stream</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Feature Eng.</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Ensemble Model</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Risk Score</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Alert System</span>
-          </div>
-          <p class="ml-usecase">Detects fraud patterns across 1M+ transactions/day using a three-layer ensemble — Isolation Forest for statistical outliers, Autoencoder for latent anomalies, and Graph Neural Network for transaction relationship patterns.</p>
-          <div class="ml-metrics">
-            <div><div class="ml-metric-val">99.2%</div><div class="ml-metric-label">Precision</div></div>
-            <div><div class="ml-metric-val">&lt;50ms</div><div class="ml-metric-label">Inference</div></div>
-            <div><div class="ml-metric-val">AWS λ</div><div class="ml-metric-label">Deployed</div></div>
-          </div>
-          <div class="ml-tags">
-            <span class="ml-tag">Isolation Forest</span><span class="ml-tag">Autoencoder</span><span class="ml-tag">GNN</span><span class="ml-tag">Kafka</span><span class="ml-tag">Redis</span><span class="ml-tag">FastAPI</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 2: Computer Vision Quality Inspection -->
-      <div class="ml-pcard tilt-card reveal">
-        <div class="ml-pcard-header">
-          <span class="ml-pcard-badge ml-badge-cv">Computer Vision · Manufacturing</span>
-          <div class="ml-pcard-title">Autonomous Visual Quality Inspection System</div>
-          <div class="ml-pcard-sub">Manufacturing · 120fps real-time on edge</div>
-        </div>
-        <div class="ml-pcard-body">
-          <div class="ml-flow">
-            <span class="ml-flow-step">Camera Feed</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Preprocessing</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">YOLOv8</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">CNN Classify</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Defect Report</span>
-          </div>
-          <p class="ml-usecase">Detects micro-defects in production lines at 120fps using YOLOv8 + EfficientDet ensemble, optimised with TensorRT and deployed on NVIDIA Jetson edge hardware for zero-latency inspection.</p>
-          <div class="ml-metrics">
-            <div><div class="ml-metric-val">97.8%</div><div class="ml-metric-label">Defect Recall</div></div>
-            <div><div class="ml-metric-val">120fps</div><div class="ml-metric-label">Real-time</div></div>
-            <div><div class="ml-metric-val">Edge</div><div class="ml-metric-label">Deployed</div></div>
-          </div>
-          <div class="ml-tags">
-            <span class="ml-tag">YOLOv8</span><span class="ml-tag">EfficientDet</span><span class="ml-tag">TensorRT</span><span class="ml-tag">NVIDIA Jetson</span><span class="ml-tag">OpenCV</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3: Legal Document NLP -->
-      <div class="ml-pcard tilt-card reveal">
-        <div class="ml-pcard-header">
-          <span class="ml-pcard-badge ml-badge-nlp">NLP · Legal Tech</span>
-          <div class="ml-pcard-title">End-to-End Legal Document Intelligence Platform</div>
-          <div class="ml-pcard-sub">Law firms · Contract analysis &amp; risk flagging</div>
-        </div>
-        <div class="ml-pcard-body">
-          <div class="ml-flow">
-            <span class="ml-flow-step">Upload</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">OCR</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">LegalBERT</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">NER + Clauses</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Risk Score</span>
-          </div>
-          <p class="ml-usecase">LegalBERT fine-tuned for contract analysis — extracts named entities, classifies clauses, flags risk provisions and generates executive summaries. Processes 500-page contracts in 8 seconds.</p>
-          <div class="ml-metrics">
-            <div><div class="ml-metric-val">96%</div><div class="ml-metric-label">Clause Accuracy</div></div>
-            <div><div class="ml-metric-val">8s</div><div class="ml-metric-label">500 Pages</div></div>
-            <div><div class="ml-metric-val">NER+RE</div><div class="ml-metric-label">Extraction</div></div>
-          </div>
-          <div class="ml-tags">
-            <span class="ml-tag">LegalBERT</span><span class="ml-tag">NER</span><span class="ml-tag">LangChain</span><span class="ml-tag">pgvector</span><span class="ml-tag">RAG</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 4: Demand Forecasting -->
-      <div class="ml-pcard tilt-card reveal">
-        <div class="ml-pcard-header">
-          <span class="ml-pcard-badge ml-badge-advanced">Time-Series · Retail</span>
-          <div class="ml-pcard-title">Demand Forecasting &amp; Inventory Optimisation</div>
-          <div class="ml-pcard-sub">E-commerce · Multi-store, multi-SKU forecasting</div>
-        </div>
-        <div class="ml-pcard-body">
-          <div class="ml-flow">
-            <span class="ml-flow-step">Historical Sales</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Feature Store</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">TFT Model</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Ensemble</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Dashboard</span>
-          </div>
-          <p class="ml-usecase">Temporal Fusion Transformer + Prophet + XGBoost ensemble for multi-store, multi-SKU demand forecasting with SHAP explainability. MLflow experiment tracking and automated retraining pipeline.</p>
-          <div class="ml-metrics">
-            <div><div class="ml-metric-val">34%</div><div class="ml-metric-label">Fewer Stockouts</div></div>
-            <div><div class="ml-metric-val">&lt;4.2%</div><div class="ml-metric-label">MAPE Error</div></div>
-            <div><div class="ml-metric-val">MLflow</div><div class="ml-metric-label">Tracking</div></div>
-          </div>
-          <div class="ml-tags">
-            <span class="ml-tag">TFT</span><span class="ml-tag">Prophet</span><span class="ml-tag">XGBoost</span><span class="ml-tag">SHAP</span><span class="ml-tag">MLflow</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 5: Multilingual RAG -->
-      <div class="ml-pcard tilt-card reveal">
-        <div class="ml-pcard-header">
-          <span class="ml-pcard-badge ml-badge-nlp">LLM + RAG · Enterprise</span>
-          <div class="ml-pcard-title">Multilingual Conversational AI with RAG</div>
-          <div class="ml-pcard-sub">Enterprise · 12 languages · Customer support</div>
-        </div>
-        <div class="ml-pcard-body">
-          <div class="ml-flow">
-            <span class="ml-flow-step">User Query</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Vector Search</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Context Retrieval</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">LLM Generate</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Response</span>
-          </div>
-          <p class="ml-usecase">Llama 3 fine-tuned + RAG pipeline with FAISS vector store for enterprise customer support in 12 languages. Whisper STT for voice queries. 91% query resolution without human escalation.</p>
-          <div class="ml-metrics">
-            <div><div class="ml-metric-val">91%</div><div class="ml-metric-label">Auto-Resolved</div></div>
-            <div><div class="ml-metric-val">12</div><div class="ml-metric-label">Languages</div></div>
-            <div><div class="ml-metric-val">FAISS</div><div class="ml-metric-label">Vector Store</div></div>
-          </div>
-          <div class="ml-tags">
-            <span class="ml-tag">Llama 3</span><span class="ml-tag">RAG</span><span class="ml-tag">FAISS</span><span class="ml-tag">LangChain</span><span class="ml-tag">Whisper STT</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 6: Predictive Maintenance -->
-      <div class="ml-pcard tilt-card reveal">
-        <div class="ml-pcard-header">
-          <span class="ml-pcard-badge ml-badge-advanced">DL + IoT · Industrial</span>
-          <div class="ml-pcard-title">Predictive Maintenance System with Sensor Fusion</div>
-          <div class="ml-pcard-sub">Manufacturing · 72-hour failure prediction</div>
-        </div>
-        <div class="ml-pcard-body">
-          <div class="ml-flow">
-            <span class="ml-flow-step">IoT Sensors</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">MQTT Broker</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Feature Ext.</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">LSTM-Transformer</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Alert Engine</span>
-          </div>
-          <p class="ml-usecase">LSTM + Transformer hybrid for multivariate time-series sensor fusion. Predicts machinery failure 72 hours in advance via MQTT pipeline with InfluxDB storage and real-time Grafana dashboards.</p>
-          <div class="ml-metrics">
-            <div><div class="ml-metric-val">89%</div><div class="ml-metric-label">Prediction Acc.</div></div>
-            <div><div class="ml-metric-val">72h</div><div class="ml-metric-label">Early Warning</div></div>
-            <div><div class="ml-metric-val">40%</div><div class="ml-metric-label">Less Downtime</div></div>
-          </div>
-          <div class="ml-tags">
-            <span class="ml-tag">LSTM</span><span class="ml-tag">Transformer</span><span class="ml-tag">MQTT</span><span class="ml-tag">InfluxDB</span><span class="ml-tag">Grafana</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 7: Recommendation Engine -->
-      <div class="ml-pcard tilt-card reveal">
-        <div class="ml-pcard-header">
-          <span class="ml-pcard-badge ml-badge-advanced">RL · E-Commerce</span>
-          <div class="ml-pcard-title">Recommendation Engine with Real-Time Personalisation</div>
-          <div class="ml-pcard-sub">E-commerce · 28% CTR increase</div>
-        </div>
-        <div class="ml-pcard-body">
-          <div class="ml-flow">
-            <span class="ml-flow-step">User Behaviour</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Embeddings</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Two-Tower</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Ranking</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Pers. Feed</span>
-          </div>
-          <p class="ml-usecase">Two-Tower Neural Network + Collaborative Filtering + Reinforcement Learning (Bandit) for personalised product recommendations with built-in A/B testing framework for continuous optimisation.</p>
-          <div class="ml-metrics">
-            <div><div class="ml-metric-val">28%</div><div class="ml-metric-label">CTR Lift</div></div>
-            <div><div class="ml-metric-val">19%</div><div class="ml-metric-label">Revenue Lift</div></div>
-            <div><div class="ml-metric-val">A/B</div><div class="ml-metric-label">Tested</div></div>
-          </div>
-          <div class="ml-tags">
-            <span class="ml-tag">Two-Tower NN</span><span class="ml-tag">Bandit RL</span><span class="ml-tag">Collab. Filtering</span><span class="ml-tag">A/B Testing</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 8: Speech Analytics -->
-      <div class="ml-pcard tilt-card reveal">
-        <div class="ml-pcard-header">
-          <span class="ml-pcard-badge ml-badge-nlp">Speech AI · Call Centre</span>
-          <div class="ml-pcard-title">Speech Analytics &amp; Sentiment Intelligence Platform</div>
-          <div class="ml-pcard-sub">Call centres · 10,000+ calls/day analysis</div>
-        </div>
-        <div class="ml-pcard-body">
-          <div class="ml-flow">
-            <span class="ml-flow-step">Audio Stream</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Whisper STT</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Diarisation</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">BERT Sentiment</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Dashboard</span>
-          </div>
-          <p class="ml-usecase">Whisper Large V3 + Speaker Diarisation + Fine-tuned BERT sentiment model for real-time call analysis. Processes 10,000+ calls/day for agent performance KPIs and customer sentiment tracking.</p>
-          <div class="ml-metrics">
-            <div><div class="ml-metric-val">95%</div><div class="ml-metric-label">Transcription Acc.</div></div>
-            <div><div class="ml-metric-val">&lt;2s</div><div class="ml-metric-label">Real-time</div></div>
-            <div><div class="ml-metric-val">10K+</div><div class="ml-metric-label">Calls/Day</div></div>
-          </div>
-          <div class="ml-tags">
-            <span class="ml-tag">Whisper V3</span><span class="ml-tag">Diarisation</span><span class="ml-tag">BERT Sentiment</span><span class="ml-tag">Real-time Pipeline</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 9: Generative AI -->
-      <div class="ml-pcard tilt-card reveal">
-        <div class="ml-pcard-header">
-          <span class="ml-pcard-badge ml-badge-gen">Generative AI · Marketing</span>
-          <div class="ml-pcard-title">Generative AI for Synthetic Data &amp; Marketing Creatives</div>
-          <div class="ml-pcard-sub">Marketing agencies · 10× production speed</div>
-        </div>
-        <div class="ml-pcard-body">
-          <div class="ml-flow">
-            <span class="ml-flow-step">Brand Assets</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">LoRA Training</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">SDXL+ControlNet</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Style Transfer</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Output</span>
-          </div>
-          <p class="ml-usecase">Stable Diffusion XL fine-tuned with LoRA for brand-consistent ad creative generation at scale. ControlNet for precise composition control. ComfyUI pipeline used by 3 marketing agencies.</p>
-          <div class="ml-metrics">
-            <div><div class="ml-metric-val">10×</div><div class="ml-metric-label">Faster Production</div></div>
-            <div><div class="ml-metric-val">3</div><div class="ml-metric-label">Agencies Using</div></div>
-            <div><div class="ml-metric-val">LoRA</div><div class="ml-metric-label">Brand Training</div></div>
-          </div>
-          <div class="ml-tags">
-            <span class="ml-tag">SDXL</span><span class="ml-tag">ControlNet</span><span class="ml-tag">LoRA</span><span class="ml-tag">ComfyUI</span><span class="ml-tag">Diffusion</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 10: RL Pricing -->
-      <div class="ml-pcard tilt-card reveal">
-        <div class="ml-pcard-header">
-          <span class="ml-pcard-badge ml-badge-rl">Reinforcement Learning · SaaS</span>
-          <div class="ml-pcard-title">Reinforcement Learning Dynamic Pricing Engine</div>
-          <div class="ml-pcard-sub">SaaS / E-commerce · 22% revenue increase</div>
-        </div>
-        <div class="ml-pcard-body">
-          <div class="ml-flow">
-            <span class="ml-flow-step">Market Signals</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">State Encoder</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">PPO Agent</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Pricing Action</span><span class="ml-flow-arr">→</span>
-            <span class="ml-flow-step">Revenue Loop</span>
-          </div>
-          <p class="ml-usecase">PPO (Proximal Policy Optimisation) + Multi-Armed Bandit for autonomous pricing that maximises revenue. Ingests real-time market data feeds, competitor pricing and demand signals via FastAPI.</p>
-          <div class="ml-metrics">
-            <div><div class="ml-metric-val">22%</div><div class="ml-metric-label">Revenue Lift</div></div>
-            <div><div class="ml-metric-val">PPO</div><div class="ml-metric-label">Algorithm</div></div>
-            <div><div class="ml-metric-val">A/B</div><div class="ml-metric-label">Validated</div></div>
-          </div>
-          <div class="ml-tags">
-            <span class="ml-tag">PPO</span><span class="ml-tag">Multi-Armed Bandit</span><span class="ml-tag">FastAPI</span><span class="ml-tag">Real-time Feeds</span>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end ml-portfolio-grid -->
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- HOW IT WORKS -->
-<section id="how" class="section-pad surface-s">
-  <div class="bg-radar"></div>
-  <div class="container">
-    <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto;">
-      <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>Process<div class="eyebrow-line"></div></div>
-      <h2 class="section-title">From Idea to Live Agent<br/>in 3 Simple Steps</h2>
-    </div>
-    <div class="how-grid reveal">
-      <div class="how-step"><div class="step-num"><div class="step-num-inner">01</div></div><h4>Free Discovery Call</h4><p>30 minutes. You explain your pain points and goals. We map exactly what to automate, which tools to use, and what results to expect.</p></div>
-      <div class="how-step"><div class="step-num"><div class="step-num-inner">02</div></div><h4>We Design & Build</h4><p>Our team builds your AI agent or workflow pipeline — usually within 48 hours. You receive progress updates throughout the build.</p></div>
-      <div class="how-step"><div class="step-num"><div class="step-num-inner">03</div></div><h4>Launch & Scale</h4><p>Go live, see real results from day one. Full documentation, training, and ongoing support as your needs grow.</p></div>
-      <div class="how-step reveal">
-        <div class="step-num">
-          <div class="step-num-inner">04</div>
-        </div>
-        <h4>24×7 Support & Maintenance</h4>
-        <p>We monitor, maintain and support all workflows, AI models, and automation systems round the clock post-launch. SLA-backed uptime with zero-downtime deployments.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ACADEMY -->
-<section id="academy" class="section-pad">
-  <div class="bg-orbs"></div>
-  <div class="container">
-    <div class="reveal">
-      <div class="eyebrow"><div class="eyebrow-line"></div>Learn & Intern</div>
-      <h2 class="section-title">StarSyn AI Academy —<br/>Build Agents. Get Certified.</h2>
-    </div>
-    <div class="academy-hero-img reveal">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&auto=format&fit=crop" alt="Students learning AI automation" loading="lazy"/>
-      <div class="academy-hero-text"><h3>Hands-On AI Automation Training</h3><p>Real tools. Real projects. Real credentials.</p></div>
-    </div>
-    <div class="academy-top reveal">
-      <div>
-        <div class="acad-badge">StarSyn AI Academy</div>
-        <p class="section-sub" style="margin-bottom:0;">Hands-on training for students and professionals who want to master AI automation — with real client projects, industry tools, and career-ready credentials.</p>
-        <div class="acad-features">
-          <div class="af"><div class="af-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Internship Certificate upon completion</div>
-          <div class="af"><div class="af-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Personalised Letter of Recommendation from our team</div>
-          <div class="af"><div class="af-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Work on real client projects during training</div>
-          <div class="af"><div class="af-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Mock interview sessions — technical & behavioural rounds</div>
-          <div class="af"><div class="af-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Learn n8n, Claude, GPT-4, Make & more</div>
-          <div class="af"><div class="af-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>LinkedIn profile overhaul + alumni network</div>
-        </div>
-        <!-- Academy join button -->
-        <button onclick="joinAcademy()" style="margin-top:1.5rem;background:rgba(56,189,248,0.18);color:var(--accent3);border:1.5px solid rgba(56,189,248,0.4);padding:.75rem 1.8rem;border-radius:10px;font-size:.95rem;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .2s;" onmouseover="this.style.boxShadow='0 0 20px rgba(0,245,255,0.3)'" onmouseout="this.style.boxShadow='none'">Join the Academy →</button>
-      </div>
-      <div class="cert-card">
-        <h4>What You Receive Upon Completion</h4>
-        <p>Every StarSyn AI Academy graduate receives a full certification package to launch their AI career confidently.</p>
-        <div class="cert-perks">
-          <div class="perk"><div class="perk-dot"></div>Certificate of Completion — AI Automation Specialist</div>
-          <div class="perk"><div class="perk-dot"></div>Internship Experience Certificate</div>
-          <div class="perk"><div class="perk-dot"></div>Letter of Recommendation (personalised by our team)</div>
-          <div class="perk"><div class="perk-dot"></div>Portfolio of 3+ live deployed automation projects</div>
-          <div class="perk"><div class="perk-dot"></div>StarSyn AI Alumni badge for LinkedIn</div>
-          <div class="perk"><div class="perk-dot"></div>Priority referrals to our hiring network</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FREE PLACEMENT PREP -->
-    <div class="placement-box reveal">
-      <h3>Free Placement Preparation — Included With Every Course</h3>
-      <p>On top of your AI Automation certification, every StarSyn AI Academy student receives complimentary placement preparation support at absolutely zero extra cost. We want you to succeed beyond the classroom.</p>
-      <div class="placement-grid">
-        <div class="placement-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><h5>ATS-Optimised Resume</h5><p>We build and review your resume to pass the Applicant Tracking Systems used by top companies — before a human ever sees it.</p></div>
-        <div class="placement-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><h5>Mock Interview Sessions</h5><p>Live practice rounds covering technical AI questions and behavioural interviews — exactly how top companies conduct them.</p></div>
-        <div class="placement-item"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><h5>Career Roadmap & Strategy</h5><p>LinkedIn overhaul, job targeting, portfolio presentation coaching — positioning you as an AI specialist for top companies.</p></div>
-      </div>
-      <p style="color:var(--text2);font-size:.88rem;margin-bottom:1rem;">Our students have gone on to target roles at companies like <strong style="color:var(--accent3);">Google, Amazon, Zoho, Infosys, TCS</strong> and fast-growing AI startups worldwide.</p>
-      <div class="placement-disclaimer"><strong>Important Note:</strong> StarSyn AI does not arrange interviews, guarantee placements, or have tie-ups with any company. We provide world-class preparation — the opportunity is entirely yours to seize. What we give you is the best possible chance to get there on your own merit.</div>
-    </div>
-
-    <div class="reveal">
-      <h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:.4rem;">Choose Your Format</h3>
-      <p style="color:var(--text2);font-size:.9rem;margin-bottom:1.5rem;">Flexible options to fit your schedule and learning style.</p>
-      <div class="formats-grid">
-        <div class="format-card neon-click"><svg class="format-icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><h5>One-on-One Private</h5><p>Dedicated sessions with a personal mentor. Move at your pace, focused entirely on your goals.</p></div>
-        <div class="format-card neon-click"><svg class="format-icon-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg><h5>Small Group (3–5)</h5><p>Learn with a small cohort. Peer-review projects, share ideas, build together at lower cost.</p></div>
-        <div class="format-card neon-click"><svg class="format-icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><h5>Online Sessions</h5><p>Live interactive sessions via Zoom or Meet. Attend from anywhere — fully recorded for later review.</p></div>
-        <div class="format-card neon-click"><svg class="format-icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><h5>In-Person (India)</h5><p>Join us in-person for a fully immersive, hands-on experience. Available by arrangement.</p></div>
-      </div>
-    </div>
-    <div class="reveal">
-      <h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:.4rem;">Pick Your Duration</h3>
-      <p style="color:var(--text2);font-size:.88rem;margin-bottom:.5rem;">Shorter = more intensive = higher investment. Longer = deeper learning at a lower monthly rate.</p>
-      <div class="duration-grid">
-        <div class="dur-card hot neon-click"><div class="dur-badge">Intensive</div><div class="dur-time">2 Weeks</div><div class="dur-price">Premium Rate</div><div class="dur-desc">Daily fast-track sessions. For professionals needing rapid upskilling.</div></div>
-        <div class="dur-card neon-click"><div class="dur-badge">Popular</div><div class="dur-time">1 Month</div><div class="dur-price">Standard Rate</div><div class="dur-desc">Balanced pace with project work. Ideal for students and career switchers.</div></div>
-        <div class="dur-card neon-click"><div class="dur-badge">Deep Dive</div><div class="dur-time">2 Months</div><div class="dur-price">Value Rate</div><div class="dur-desc">Full curriculum, all tools, real projects, and mentorship included.</div></div>
-        <div class="dur-card neon-click"><div class="dur-badge">Full Mastery</div><div class="dur-time">3 Months</div><div class="dur-price">Best Value/Month</div><div class="dur-desc">End-to-end mastery with a live enterprise capstone project.</div></div>
-      </div>
-      <div style="text-align:center;margin-top:2rem;">
-        <p style="color:var(--text3);font-size:.85rem;margin-bottom:1.25rem;">Exact pricing discussed during your free consultation — based on format, duration, and group size.</p>
-        <button class="btn-primary" style="padding:.8rem 2rem;font-size:.95rem;border-radius:12px;" onclick="joinAcademy()">Book Free Academy Consultation →</button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- LIVE SESSIONS SECTION -->
-<section id="live-sessions" class="section-pad">
-  <div class="bg-streams"></div>
-  <div class="container">
-    <div class="reveal">
-      <div class="eyebrow"><div class="eyebrow-line"></div>Live Training</div>
-      <h2 class="section-title">Learn Directly from<br/>Our AI Engineers</h2>
-      <p class="section-sub">Book a private live session or corporate training on any AI domain — ML, DL, NLP, CV, MLOps or Automation.</p>
-    </div>
-    <div class="aaa-grid reveal" style="margin-top:3rem;">
-      <div class="aaa-card">
-        <div class="aaa-icon-area">
-          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><circle cx="28" cy="18" r="9" stroke-width="1.5"/><path d="M10 46 Q10 34 28 34 Q46 34 46 46" stroke-width="1.5"/><path d="M38 12 L46 16 L38 20" stroke-width="1.5"/></svg>
-          <div class="aaa-num">01</div>
-        </div>
-        <span class="aaa-badge ba1">1:1 Sessions</span>
-        <h3>1:1 Live Sessions</h3>
-        <p>Book a focused session on ML, DL, NLP, CV, MLOps or Automation with our engineers. Get personalised code reviews, architecture guidance and career direction.</p>
-        <div class="aaa-examples">
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Project-specific mentoring</div>
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Interview preparation</div>
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Research guidance</div>
-        </div>
-      </div>
-      <div class="aaa-card">
-        <div class="aaa-icon-area">
-          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><rect x="8" y="14" width="40" height="28" rx="4" stroke-width="1.5"/><path d="M20 42 L20 48 M36 42 L36 48 M14 48 L42 48" stroke-width="1.5"/><line x1="8" y1="24" x2="48" y2="24" stroke-width="1.5"/></svg>
-          <div class="aaa-num">02</div>
-        </div>
-        <span class="aaa-badge ba2">Corporate</span>
-        <h3>Corporate Workshops</h3>
-        <p>Full-day or multi-day on-site/online training for your team on any AI domain. Custom curriculum designed around your industry and tech stack.</p>
-        <div class="aaa-examples">
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Teams of 5 to 100+</div>
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>On-site or virtual</div>
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Hands-on labs included</div>
-        </div>
-      </div>
-      <div class="aaa-card">
-        <div class="aaa-icon-area">
-          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><path d="M14 28 Q14 16 28 16 Q42 16 42 28 Q42 40 28 40 Q14 40 14 28Z" stroke-width="1.5"/><path d="M24 24 L32 28 L24 32Z" stroke-width="1.5"/></svg>
-          <div class="aaa-num">03</div>
-        </div>
-        <span class="aaa-badge ba3">Deep Dives</span>
-        <h3>Domain-Specific Deep Dives</h3>
-        <p>Pick a niche: Fraud Detection Systems, Computer Vision for Manufacturing, LLM Fine-Tuning, MLOps Pipelines, or any advanced topic you need.</p>
-        <div class="aaa-examples">
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Advanced algorithm deep dives</div>
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Real production case studies</div>
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Hands-on implementation</div>
-        </div>
-      </div>
-    </div>
-    <div style="margin-top:1.5rem;" class="aaa-grid reveal">
-      <div class="aaa-card" style="grid-column:1/-1;max-width:500px;margin:0 auto;">
-        <div class="aaa-icon-area">
-          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><circle cx="28" cy="20" r="10" stroke-width="1.5"/><path d="M18 38 Q18 30 28 30 Q38 30 38 38" stroke-width="1.5"/><path d="M38 14 L46 18 L38 22" stroke-width="1.5"/><path d="M42 14 L42 22" stroke-width="1.5"/></svg>
-          <div class="aaa-num">04</div>
-        </div>
-        <span class="aaa-badge ba1">Certification</span>
-        <h3>Certification Prep Sessions</h3>
-        <p>Guided prep sessions for TensorFlow Developer Certificate, AWS ML Specialty, Google ML Engineer and other professional AI certifications. Structured study plan with mock exams.</p>
-      </div>
-    </div>
-    <div class="reveal" style="text-align:center;margin-top:2.5rem;">
-      <button class="btn-cta" onclick="openConsultation()">Book a Live Session →</button>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ABOUT -->
-<section id="about" class="section-pad surface-s">
-  <div class="bg-radar"></div>
-  <div class="container">
-    <div class="reveal">
-      <div class="eyebrow"><div class="eyebrow-line"></div>About Us</div>
-      <h2 class="section-title">Built by Builders.<br/>For Every Business.</h2>
-    </div>
-    <div class="about-grid reveal">
-      <div class="about-img"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&auto=format&fit=crop" alt="Team collaboration" loading="lazy"/></div>
-      <div class="about-content">
-        <p>StarSyn AI was founded in India with one mission — make powerful AI automation accessible to every business, not just large enterprises with big budgets.</p>
-        <p>We've built 500+ automation workflows across 12+ industries, helping creators reclaim their time, startups grow faster, and enterprises modernise their operations using intelligent AI agents.</p>
-        <p>Our team combines deep technical expertise in AI with real business experience — so everything we build is practical, maintainable, and delivers measurable results.</p>
-        <div class="about-values">
-          <div class="about-val"><strong>Speed</strong>Most workflows built and deployed within 48 hours of your discovery call.</div>
-          <div class="about-val"><strong>Transparency</strong>No hidden fees. No lock-in. You own everything we build for you.</div>
-          <div class="about-val"><strong>Practicality</strong>We only build what works in the real world, not just in theory.</div>
-          <div class="about-val"><strong>Education</strong>We teach while we build — so your team understands what's running.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FOUNDER SECTION -->
-    <div class="founder-section reveal">
-      <div class="founder-avatar">
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      </div>
-      <div>
-        <div class="founder-name">Hariharan Murthy</div>
-        <div class="founder-title">FOUNDER & CEO — STARSYN AI</div>
-        <p class="founder-bio">Hariharan founded StarSyn AI to bridge the gap between cutting-edge AI technology and real-world business impact. With a deep passion for automation, intelligent systems, and making AI accessible to everyone — from solo creators to enterprise teams — he leads the studio's vision and technical direction.</p>
-        <div class="founder-special">
-          <strong>Special Projects — Founder-Led Builds:</strong> For select high-complexity or high-impact projects that require the deepest level of technical expertise, Hariharan personally leads the build alongside his core team. These are projects where innovation, precision, and exceptional execution are non-negotiable — the kind of work that truly pushes what AI can do.
-        </div>
+      <div class="placement-box" style="margin:0;">
+        <h3>Master AI Automation Built for the Real World</h3>
+        <p style="font-size:1.05rem;">Stop watching basic tutorials. Our intensive Academy programs teach you exactly how to build enterprise-grade automations, deploy custom agents, and land a high-paying AI job with our complimentary placement prep support.</p>
+        <button class="btn-primary" style="box-shadow:0 0 25px rgba(0,245,255,0.4); border-color:var(--neon); padding:0.9rem 2.2rem; font-size:1rem; margin-top:1.5rem; transition:all 0.3s;" onclick="window.location.href='academy.html'" onmouseover="this.style.boxShadow='0 0 40px rgba(0,245,255,0.6)';" onmouseout="this.style.boxShadow='0 0 25px rgba(0,245,255,0.4)';">
+          See Course Pricing &amp; Placement Data →
+        </button>
       </div>
     </div>
   </div>
@@ -2152,83 +1184,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   </div>
 </section>
 
-<div class="divider"></div>
 
-<!-- CONTACT FORM — Supabase + Formspree -->
-<section id="contact" class="section-pad surface-s">
-  <div class="bg-orbs"></div>
-  <div class="container">
-    <div class="reveal">
-      <div class="eyebrow"><div class="eyebrow-line"></div>Get In Touch</div>
-      <h2 class="section-title">Book Your Free<br/>Discovery Call</h2>
-    </div>
-    <div class="contact-grid reveal">
-      <div class="contact-info">
-        <p>Whether you need an automation built, want to join the Academy, or just have questions — we'd love to hear from you. Book a free 30-minute call and let's figure out what AI can do for you.</p>
-        <div class="contact-detail"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg><a href="https://wa.me/918838248494?text=Hi%20StarSyn%20AI!%20I'm%20interested%20in%20learning%20more." target="_blank">+91 88382 48494 (WhatsApp)</a></div>
-        <div class="contact-detail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:connect@starsynai.com">connect@starsynai.com</a></div>
-        <div class="contact-detail"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Based in India 🇮🇳 · Serving Worldwide</div>
-        <div style="margin-top:2rem;border-radius:var(--r);overflow:hidden;"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&auto=format&fit=crop" alt="AI workspace" loading="lazy" style="width:100%;filter:saturate(0.6) brightness(0.65);display:block;"/></div>
-      </div>
-      <div class="contact-form-box">
-        <form id="contactForm">
-          <div class="form-row">
-            <div class="form-group"><label>First Name</label><input type="text" id="firstName" placeholder="Your name" required/></div>
-            <div class="form-group"><label>Last Name</label><input type="text" id="lastName" placeholder="Last name"/></div>
-          </div>
-          <div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="(e.g. yourname@email.com)" required/></div>
-          <div class="form-group"><label>WhatsApp / Phone</label><input type="tel" id="phone" placeholder="+91 XXXXX XXXXX"/></div>
-          <div class="form-group">
-            <label>I'm Interested In</label>
-            <select id="interest" required>
-              <option value="">Select what fits you best</option>
-              <optgroup label="— Build for Me —">
-                <option value="automation_build">Build Me an AI Automation / Agent</option>
-                <option value="workflow_design">Design a Custom Workflow Pipeline</option>
-                <option value="voice_ai">Voice AI Agent (phone / WhatsApp)</option>
-                <option value="chatbot">AI Chatbot for My Website or App</option>
-                <option value="crm_automation">CRM & Lead Automation</option>
-                <option value="content_automation">Content Creation Automation</option>
-                <option value="data_reporting">Data & Reporting Automation</option>
-                <option value="enterprise">Enterprise AI Integration</option>
-              </optgroup>
-              <optgroup label="— Learn & Train —">
-                <option value="academy">Academy / Training Program</option>
-                <option value="team_training">Train My Team on AI Tools</option>
-                <option value="internship">Internship / Certificate Program</option>
-              </optgroup>
-              <optgroup label="— Tools & Consulting —">
-                <option value="n8n_help">n8n Workflow Help</option>
-                <option value="make_zapier">Make.com / Zapier Help</option>
-                <option value="openai_claude">OpenAI / Claude Integration</option>
-                <option value="supabase_help">Supabase / Database Setup</option>
-                <option value="tool_consultation">General AI Tool Consultation</option>
-                <option value="consultation">Free Discovery Call Only</option>
-              </optgroup>
-              <optgroup label="— Other —">
-                <option value="partnership">Business / Agency Partnership</option>
-                <option value="review">Write a Review</option>
-                <option value="other">Something Else — I'll Explain</option>
-              </optgroup>
-            </select>
-          </div>
-          <div class="form-group"><label>Tell Us More</label><textarea id="message" placeholder="Briefly describe what you need, what you're trying to automate, or anything else on your mind..."></textarea></div>
-          <!-- Trust line -->
-          <div style="display:flex;align-items:center;gap:10px;padding:.9rem 1rem;background:rgba(56,189,248,0.04);border:1px solid rgba(56,189,248,0.1);border-radius:10px;margin-bottom:1rem;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="1.5" flex-shrink="0" style="flex-shrink:0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <p style="font-size:.8rem;color:var(--text2);line-height:1.5;margin:0;"><strong style="color:var(--text);">You trust us, and we keep that trust.</strong> Your information is private, never sold, never spammed. We'll only reach out about what you've asked us. That's a promise.</p>
-          </div>
-          <button type="submit" class="btn-submit" id="submitBtn">Send Message & Book Call →</button>
-        </form>
-        <div class="form-success" id="formSuccess">
-          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <h4>Message Sent!</h4>
-          <p>Thank you for reaching out, we'll get back to you within 24 hours to schedule your free call.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- CTA BAND -->
 <div class="cta-band reveal">
@@ -2327,30 +1283,30 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <div class="footer-col">
       <h5>Services</h5>
       <ul>
-        <li><a href="#services" onclick="scrollTo('services')">AI Automation</a></li>
+        <li><a href="services.html" >AI Automation</a></li>
         <li><a href="#solutions" onclick="scrollTo('solutions')">AI Augmentation</a></li>
-        <li><a href="#services" onclick="scrollTo('services')">Custom AI Agents</a></li>
-        <li><a href="#services" onclick="scrollTo('services')">Voice AI</a></li>
-        <li><a href="#contact" onclick="openConsultation()">Consulting</a></li>
+        <li><a href="services.html" >Custom AI Agents</a></li>
+        <li><a href="services.html" >Voice AI</a></li>
+        <li><a href="contact.html" onclick="openConsultation()">Consulting</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Industries</h5>
       <ul>
-        <li><a href="#services" onclick="filterAndScroll('creator')">Creators</a></li>
-        <li><a href="#services" onclick="filterAndScroll('startup')">Startups</a></li>
-        <li><a href="#services" onclick="filterAndScroll('health')">Healthcare</a></li>
-        <li><a href="#services" onclick="filterAndScroll('edu')">Education</a></li>
-        <li><a href="#services" onclick="filterAndScroll('legal')">Legal & Finance</a></li>
+        <li><a href="services.html" onclick="filterAndScroll('creator')">Creators</a></li>
+        <li><a href="services.html" onclick="filterAndScroll('startup')">Startups</a></li>
+        <li><a href="services.html" onclick="filterAndScroll('health')">Healthcare</a></li>
+        <li><a href="services.html" onclick="filterAndScroll('edu')">Education</a></li>
+        <li><a href="services.html" onclick="filterAndScroll('legal')">Legal & Finance</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Academy</h5>
       <ul>
-        <li><a href="#academy" onclick="scrollTo('academy')">About the Program</a></li>
-        <li><a href="#academy" onclick="scrollTo('academy')">Formats & Pricing</a></li>
-        <li><a href="#academy" onclick="scrollTo('academy')">Placement Prep</a></li>
-        <li><a href="#contact" onclick="joinAcademy()">Apply Now</a></li>
+        <li><a href="academy.html" >About the Program</a></li>
+        <li><a href="academy.html" >Formats & Pricing</a></li>
+        <li><a href="academy.html" >Placement Prep</a></li>
+        <li><a href="contact.html" onclick="joinAcademy()">Apply Now</a></li>
         <li><a href="#faq" onclick="scrollTo('faq')">FAQs</a></li>
       </ul>
     </div>
@@ -2515,7 +1471,8 @@ async function notifyFormspree(data) {
 // =============================================
 // CONTACT FORM
 // =============================================
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
+const cf = document.getElementById('contactForm');
+if (cf) cf.addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
   btn.textContent = 'Sending...'; btn.disabled = true;
@@ -2828,10 +1785,12 @@ function toggleFaq(el) {
     tlTexts.to("#text-phase3", { opacity: 1, y: 0, duration: 0.1 }, 0.65);
 
     // Sidebar Popup Trigger
+    const tStart = document.querySelector("#services") || document.querySelector("#portfolio") || document.querySelector("#about") || document.body;
+    const tEnd = document.querySelector("#portfolio") || document.querySelector("#contact") || document.body;
     ScrollTrigger.create({
-      trigger: "#services",
+      trigger: tStart,
       start: "top center",
-      endTrigger: "#portfolio",
+      endTrigger: tEnd,
       end: "bottom center",
       onEnter: () => document.getElementById('service-toast').style.right = '30px',
       onLeave: () => document.getElementById('service-toast').style.right = '-450px',
