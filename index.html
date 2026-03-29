@@ -269,7 +269,8 @@ section{position:relative;z-index:1;}
 /* HOW IT WORKS */
 .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:4rem;position:relative;}
 .how-grid::before{content:'';position:absolute;top:44px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,var(--accent2),var(--accent3));opacity:.35;}
-.how-step{text-align:center;padding:0 1.25rem;}
+.how-step{text-align:center;padding:0 1.25rem;border:1px solid transparent;border-radius:16px;transition:border-color .3s,box-shadow .3s;cursor:default;}
+.how-step:hover,.how-step.lit{border-color:rgba(56,189,248,0.3);box-shadow:0 0 24px rgba(56,189,248,0.12),0 4px 20px rgba(0,0,0,0.3);}
 .step-num{width:88px;height:88px;border-radius:50%;background:rgba(56,189,248,0.06);border:1.5px solid rgba(56,189,248,0.22);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;position:relative;z-index:1;}
 .step-num-inner{font-family:var(--serif);font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,var(--accent3),#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .how-step h4{font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:.5rem;color:var(--text);}
@@ -914,9 +915,44 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   <button onclick="document.getElementById('service-toast').style.right='-450px'" style="position:absolute; top:12px; right:12px; background:none; border:none; color:var(--text3); cursor:pointer; font-size:1rem; padding:4px;">✕</button>
 </div>
 
+<!-- PROCESS SECTION -->
+<section id="how" class="section-pad surface-s">
+  <div class="bg-radar"></div>
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto;">
+      <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>Process<div class="eyebrow-line"></div></div>
+      <h2 class="section-title">From Idea to Live Agent<br/>in 3 Simple Steps</h2>
+    </div>
+    <div class="how-grid reveal">
+      <div class="how-step neon-click">
+        <div class="step-num"><div class="step-num-inner">01</div></div>
+        <h4>Free Discovery Call</h4>
+        <p>30 minutes. You explain your pain points and goals. We map exactly what to automate, which tools to use, and what results to expect.</p>
+      </div>
+      <div class="how-step neon-click">
+        <div class="step-num"><div class="step-num-inner">02</div></div>
+        <h4>We Design &amp; Build</h4>
+        <p>Our team builds your AI agent or workflow pipeline — usually within 48 hours. You receive progress updates throughout the build.</p>
+      </div>
+      <div class="how-step neon-click">
+        <div class="step-num"><div class="step-num-inner">03</div></div>
+        <h4>Launch &amp; Scale</h4>
+        <p>Go live, see real results from day one. Full documentation, training, and ongoing support as your needs grow.</p>
+      </div>
+      <div class="how-step neon-click">
+        <div class="step-num"><div class="step-num-inner">04</div></div>
+        <h4>24×7 Support &amp; Maintenance</h4>
+        <p>We monitor, maintain and support all workflows, AI models, and automation systems round the clock post-launch. SLA-backed uptime with zero-downtime deployments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ==========================================
      HYBRID ARCHITECTURE: TEASER LANDING PAGE
-     ========================================== -->
+     ==========================================  -->
 
 <!-- SERVICES TEASER -->
 <section id="services-teaser" class="section-pad surface-s" style="margin-top: 2rem;">
@@ -925,29 +961,43 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <div class="reveal" style="text-align:center;max-width:650px;margin:0 auto 3.5rem;">
       <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>What We Build<div class="eyebrow-line"></div></div>
       <h2 class="section-title">Intelligent Agents For Every Industry</h2>
-      <p class="section-sub" style="margin:0 auto;">From solo creators to enterprise scale, we deploy custom AI pipelines that eliminate manual work.</p>
+      <p class="section-sub" style="margin:0 auto;">From solo creators to enterprise scale, we deploy custom AI pipelines that eliminate manual work. We serve 12+ industries — here's a taste:</p>
     </div>
     <div class="services-grid reveal">
-      <div class="scard neon-click" style="pointer-events:none;">
+      <div class="scard neon-click">
         <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div>
         <div class="stag tag-bz">Small Biz</div>
         <h4>AI Receptionist</h4>
-        <p>WhatsApp or website bots that book appointments and answer FAQs 24/7 without human intervention.</p>
+        <p>WhatsApp or website bots that book appointments, answer FAQs, and send reminders 24/7 — zero human effort needed.</p>
+        <div style="margin-top:1rem;font-size:.75rem;color:var(--text3);">Tools: n8n · WhatsApp API · GPT-4</div>
       </div>
-      <div class="scard neon-click" style="pointer-events:none;">
+      <div class="scard neon-click">
         <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
         <div class="stag tag-cr">Creator</div>
         <h4>Content Pipeline AI</h4>
-        <p>Pulls long-form content & trending topics to autonomously draft weekly newsletters and social posts.</p>
+        <p>Pulls long-form content & trending topics to autonomously draft newsletters, LinkedIn posts, and video scripts weekly.</p>
+        <div style="margin-top:1rem;font-size:.75rem;color:var(--text3);">Tools: Make.com · Claude · Notion</div>
       </div>
-      <div class="scard neon-click" style="pointer-events:none;">
+      <div class="scard neon-click">
         <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
         <div class="stag tag-st">Startup</div>
         <h4>Lead Qualification Bot</h4>
-        <p>Takes inbound form submissions, qualifies leads dynamically, and drafts personalized emails instantly.</p>
+        <p>Scores inbound leads using AI logic, drafts personalised follow-ups, and notifies your team only when a deal is warm.</p>
+        <div style="margin-top:1rem;font-size:.75rem;color:var(--text3);">Tools: n8n · CRM APIs · OpenAI</div>
       </div>
     </div>
-    <div class="reveal" style="text-align:center;margin-top:3.5rem;">
+    <!-- Industry tag strip -->
+    <div class="reveal" style="display:flex;flex-wrap:wrap;justify-content:center;gap:.65rem;margin-top:2.5rem;">
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🏥 Healthcare</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">⚖️ Legal & Finance</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🛒 E-commerce</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🎓 Education</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🏢 Enterprise</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🎥 Creators</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🚀 Startups</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.3);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--accent3);">+ 5 More →</span>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:3rem;">
       <button class="btn-primary" style="box-shadow:0 0 28px rgba(0,245,255,0.45); border-color:var(--neon); color:var(--neon); padding:1rem 2.8rem; font-size:1.05rem; letter-spacing:0.5px; transition:all 0.3s ease; animation: pulse 2s infinite;" onclick="window.location.href='services.html'" onmouseover="this.style.boxShadow='0 0 45px rgba(0,245,255,0.7)';" onmouseout="this.style.boxShadow='0 0 28px rgba(0,245,255,0.45)';">
         Explore All 15+ Automations &amp; ML Services →
       </button>
@@ -963,38 +1013,54 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
       <div>
         <div class="eyebrow"><div class="eyebrow-line"></div>Our Work</div>
         <h2 class="section-title">Real Pipelines. Real Results.</h2>
+        <p style="color:var(--text2);font-size:.95rem;max-width:520px;margin-top:.75rem;">A glimpse at what we've shipped — every project below is a live production system, not a demo.</p>
       </div>
       <button class="btn-ghost" style="box-shadow:0 0 18px rgba(56,189,248,0.25); border-color:var(--accent3); color:var(--text); padding:0.8rem 1.8rem;" onclick="window.location.href='portfolio.html'" onmouseover="this.style.borderColor='var(--neon)'; this.style.color='var(--neon)'; this.style.boxShadow='0 0 28px rgba(0,245,255,0.4)';" onmouseout="this.style.borderColor='var(--accent3)'; this.style.color='var(--text)'; this.style.boxShadow='0 0 18px rgba(56,189,248,0.25)';">
         View Full Case Studies Directory →
       </button>
     </div>
-    <div class="portfolio-grid reveal" style="grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));">
-      <div class="pcard" style="pointer-events:none;">
+    <div class="portfolio-grid reveal" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+      <div class="pcard neon-click">
         <div class="pcard-header">
           <div><div class="pcard-title">Influencer Lead Nurture CRM</div><div class="pcard-sub">Marketing & Content Creators</div></div>
           <div class="complexity-badge cx-medium">Advanced</div>
         </div>
         <div class="pcard-body">
-          <p style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:1.5rem;">Fully automated multi-step DM sequences and CRM syncing for a creator with 2M+ followers. Handled traffic spikes dynamically.</p>
+          <p style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:1.25rem;">Fully automated multi-step DM sequences and CRM syncing for a creator with 2M+ followers. Handles traffic spikes dynamically — zero manual effort.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem;">
+            <span style="font-size:.7rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.15);padding:3px 9px;border-radius:100px;color:var(--text3);">n8n</span>
+            <span style="font-size:.7rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.15);padding:3px 9px;border-radius:100px;color:var(--text3);">GPT-4</span>
+            <span style="font-size:.7rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.15);padding:3px 9px;border-radius:100px;color:var(--text3);">Airtable</span>
+          </div>
           <div class="pcard-metrics">
             <div style="flex:1;"><div class="metric-val">10k+</div><div class="metric-label">DMs Handled/Mo</div></div>
             <div style="flex:1;"><div class="metric-val">40hrs</div><div class="metric-label">Saved Weekly</div></div>
+            <div style="flex:1;"><div class="metric-val">3×</div><div class="metric-label">Conversion Rate</div></div>
           </div>
         </div>
       </div>
-      <div class="pcard" style="pointer-events:none;">
+      <div class="pcard neon-click">
         <div class="pcard-header">
           <div><div class="pcard-title">AI Appointment Setter</div><div class="pcard-sub">Dental & Healthcare Clinics</div></div>
           <div class="complexity-badge cx-advanced">Complex AI</div>
         </div>
         <div class="pcard-body">
-          <p style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:1.5rem;">Natural language WhatsApp bot that schedules, reschedules, and securely syncs patient bookings directly to EHR systems.</p>
+          <p style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:1.25rem;">Natural language WhatsApp bot that schedules, reschedules, and securely syncs patient bookings directly to EHR systems — fully HIPAA aware.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem;">
+            <span style="font-size:.7rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.15);padding:3px 9px;border-radius:100px;color:var(--text3);">WhatsApp API</span>
+            <span style="font-size:.7rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.15);padding:3px 9px;border-radius:100px;color:var(--text3);">Claude</span>
+            <span style="font-size:.7rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.15);padding:3px 9px;border-radius:100px;color:var(--text3);">Supabase</span>
+          </div>
           <div class="pcard-metrics">
             <div style="flex:1;"><div class="metric-val">24/7</div><div class="metric-label">Booking Uptime</div></div>
             <div style="flex:1;"><div class="metric-val">Zero</div><div class="metric-label">No-Shows</div></div>
+            <div style="flex:1;"><div class="metric-val">48h</div><div class="metric-label">Build Time</div></div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:2.5rem;color:var(--text3);font-size:.88rem;">
+      + 12 more live case studies across E-commerce, Legal, HR, SaaS & ML/DL systems
     </div>
   </div>
 </section>
@@ -1003,14 +1069,49 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <section id="academy-teaser" class="section-pad surface-s">
   <div class="bg-streams"></div>
   <div class="container">
-    <div class="reveal">
-      <div class="placement-box" style="margin:0;">
-        <h3>Master AI Automation Built for the Real World</h3>
-        <p style="font-size:1.05rem;">Stop watching basic tutorials. Our intensive Academy programs teach you exactly how to build enterprise-grade automations, deploy custom agents, and land a high-paying AI job with our complimentary placement prep support.</p>
-        <button class="btn-primary" style="box-shadow:0 0 25px rgba(0,245,255,0.4); border-color:var(--neon); padding:0.9rem 2.2rem; font-size:1rem; margin-top:1.5rem; transition:all 0.3s;" onclick="window.location.href='academy.html'" onmouseover="this.style.boxShadow='0 0 40px rgba(0,245,255,0.6)';" onmouseout="this.style.boxShadow='0 0 25px rgba(0,245,255,0.4)';">
-          See Course Pricing &amp; Placement Data →
-        </button>
+    <div class="reveal" style="text-align:center;max-width:680px;margin:0 auto 3.5rem;">
+      <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>StarSyn AI Academy<div class="eyebrow-line"></div></div>
+      <h2 class="section-title">Learn AI Automation. Get Hired. Build Businesses.</h2>
+      <p class="section-sub" style="margin:0 auto;">India's most practical AI automation training — built by engineers who deploy real agents for real clients, every single day.</p>
+    </div>
+
+    <!-- 3 highlight pillars -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-bottom:3rem;">
+      <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:1.75rem;">
+        <div style="font-size:1.8rem;margin-bottom:.75rem;">🤖</div>
+        <h4 style="font-family:var(--serif);font-size:1.05rem;margin-bottom:.5rem;color:var(--text);">Build Real AI Agents</h4>
+        <p style="color:var(--text2);font-size:.88rem;line-height:1.65;">You don't just learn theory — you ship working n8n pipelines, GPT-powered bots, and voice AI agents by week 2 of your program.</p>
       </div>
+      <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:1.75rem;">
+        <div style="font-size:1.8rem;margin-bottom:.75rem;">💼</div>
+        <h4 style="font-family:var(--serif);font-size:1.05rem;margin-bottom:.5rem;color:var(--text);">Free Placement Prep</h4>
+        <p style="color:var(--text2);font-size:.88rem;line-height:1.65;">ATS-optimised resume building, 1-on-1 mock interviews, and LinkedIn profile coaching — all included at zero extra cost.</p>
+      </div>
+      <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:1.75rem;">
+        <div style="font-size:1.8rem;margin-bottom:.75rem;">⚡</div>
+        <h4 style="font-family:var(--serif);font-size:1.05rem;margin-bottom:.5rem;color:var(--text);">Flexible Formats</h4>
+        <p style="color:var(--text2);font-size:.88rem;line-height:1.65;">1-on-1 Intensive, small group batches, or corporate workshops — online or in-person. Durations from 1-week sprints to 3-month programs.</p>
+      </div>
+    </div>
+
+    <!-- What you'll learn -->
+    <div class="reveal" style="background:rgba(56,189,248,0.04);border:1px solid rgba(56,189,248,0.1);border-radius:16px;padding:2rem;margin-bottom:3rem;">
+      <p style="font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1.25rem;">What You'll Learn</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;">
+        <div style="display:flex;align-items:center;gap:.75rem;color:var(--text2);font-size:.88rem;"><span style="color:var(--accent3);flex-shrink:0;">✓</span> n8n & Make.com Workflow Automation</div>
+        <div style="display:flex;align-items:center;gap:.75rem;color:var(--text2);font-size:.88rem;"><span style="color:var(--accent3);flex-shrink:0;">✓</span> GPT-4, Claude & Prompt Engineering</div>
+        <div style="display:flex;align-items:center;gap:.75rem;color:var(--text2);font-size:.88rem;"><span style="color:var(--accent3);flex-shrink:0;">✓</span> AI Agent Architecture & Deployment</div>
+        <div style="display:flex;align-items:center;gap:.75rem;color:var(--text2);font-size:.88rem;"><span style="color:var(--accent3);flex-shrink:0;">✓</span> WhatsApp API & Voice AI (ElevenLabs)</div>
+        <div style="display:flex;align-items:center;gap:.75rem;color:var(--text2);font-size:.88rem;"><span style="color:var(--accent3);flex-shrink:0;">✓</span> CRM & Database Integration</div>
+        <div style="display:flex;align-items:center;gap:.75rem;color:var(--text2);font-size:.88rem;"><span style="color:var(--accent3);flex-shrink:0;">✓</span> Real Capstone Project + Certificate</div>
+      </div>
+    </div>
+
+    <div class="reveal" style="text-align:center;">
+      <p style="color:var(--text3);font-size:.85rem;margin-bottom:1.5rem;">Batch seats are limited — usually fills within 48 hours of opening.</p>
+      <button class="btn-primary" style="box-shadow:0 0 25px rgba(0,245,255,0.4); border-color:var(--neon); padding:0.95rem 2.4rem; font-size:1rem; transition:all 0.3s;" onclick="window.location.href='academy.html'" onmouseover="this.style.boxShadow='0 0 40px rgba(0,245,255,0.65)';" onmouseout="this.style.boxShadow='0 0 25px rgba(0,245,255,0.4)';">
+        See Formats, Pricing &amp; Placement Data →
+      </button>
     </div>
   </div>
 </section>
@@ -1535,8 +1636,9 @@ function openWhatsApp() {
 function scrollTo(id) { const el = document.getElementById(id); if(el) el.scrollIntoView({ behavior: 'smooth' }); }
 function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function filterAndScroll(cat) {
-  document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => { const btn = document.querySelector(`.tab[onclick*="${cat}"]`); if(btn) filterCards(cat, btn); }, 600);
+  const btn = document.querySelector(`.tab[onclick*="${cat}"]`); if(btn) filterCards(cat, btn);
+  const svc = document.getElementById('services') || document.getElementById('services-teaser');
+  if(svc) svc.scrollIntoView({ behavior: 'smooth' });
 }
 
 // =============================================

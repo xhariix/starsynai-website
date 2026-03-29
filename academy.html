@@ -269,7 +269,8 @@ section{position:relative;z-index:1;}
 /* HOW IT WORKS */
 .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:4rem;position:relative;}
 .how-grid::before{content:'';position:absolute;top:44px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,var(--accent2),var(--accent3));opacity:.35;}
-.how-step{text-align:center;padding:0 1.25rem;}
+.how-step{text-align:center;padding:0 1.25rem;border:1px solid transparent;border-radius:16px;transition:border-color .3s,box-shadow .3s;cursor:default;}
+.how-step:hover,.how-step.lit{border-color:rgba(56,189,248,0.3);box-shadow:0 0 24px rgba(56,189,248,0.12),0 4px 20px rgba(0,0,0,0.3);}
 .step-num{width:88px;height:88px;border-radius:50%;background:rgba(56,189,248,0.06);border:1.5px solid rgba(56,189,248,0.22);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;position:relative;z-index:1;}
 .step-num-inner{font-family:var(--serif);font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,var(--accent3),#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .how-step h4{font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:.5rem;color:var(--text);}
@@ -792,19 +793,34 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   <div class="bg-radar"></div>
   <div class="container">
     <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto;">
-      <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>Process<div class="eyebrow-line"></div></div>
-      <h2 class="section-title">From Idea to Live Agent<br/>in 3 Simple Steps</h2>
+      <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>Our Methodology<div class="eyebrow-line"></div></div>
+      <h2 class="section-title">From Learning to Earning<br/>in 5 Key Steps</h2>
     </div>
-    <div class="how-grid reveal">
-      <div class="how-step"><div class="step-num"><div class="step-num-inner">01</div></div><h4>Free Discovery Call</h4><p>30 minutes. You explain your pain points and goals. We map exactly what to automate, which tools to use, and what results to expect.</p></div>
-      <div class="how-step"><div class="step-num"><div class="step-num-inner">02</div></div><h4>We Design & Build</h4><p>Our team builds your AI agent or workflow pipeline — usually within 48 hours. You receive progress updates throughout the build.</p></div>
-      <div class="how-step"><div class="step-num"><div class="step-num-inner">03</div></div><h4>Launch & Scale</h4><p>Go live, see real results from day one. Full documentation, training, and ongoing support as your needs grow.</p></div>
-      <div class="how-step reveal">
-        <div class="step-num">
-          <div class="step-num-inner">04</div>
-        </div>
-        <h4>24×7 Support & Maintenance</h4>
-        <p>We monitor, maintain and support all workflows, AI models, and automation systems round the clock post-launch. SLA-backed uptime with zero-downtime deployments.</p>
+    <div class="how-grid reveal" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem;">
+      <div class="how-step neon-click" style="padding: 0 0.5rem;">
+        <div class="step-num" style="width:72px;height:72px;"><div class="step-num-inner" style="font-size:1.3rem;">01</div></div>
+        <h4 style="font-size:1rem;">Booking</h4>
+        <p style="font-size:0.8rem;line-height:1.6;">Secure your spot in our limited-seat batches. Get set up with all resources before Day 1.</p>
+      </div>
+      <div class="how-step neon-click" style="padding: 0 0.5rem;">
+        <div class="step-num" style="width:72px;height:72px;"><div class="step-num-inner" style="font-size:1.3rem;">02</div></div>
+        <h4 style="font-size:1rem;">Theoretical Classes</h4>
+        <p style="font-size:0.8rem;line-height:1.6;">Learn the core concepts of AI workflows, prompt engineering, and intelligent agents.</p>
+      </div>
+      <div class="how-step neon-click" style="padding: 0 0.5rem;">
+        <div class="step-num" style="width:72px;height:72px;"><div class="step-num-inner" style="font-size:1.3rem;">03</div></div>
+        <h4 style="font-size:1rem;">Practical &amp; Hands-on</h4>
+        <p style="font-size:0.8rem;line-height:1.6;">Build and deploy real working AI agents and pipelines using industry-standard tools.</p>
+      </div>
+      <div class="how-step neon-click" style="padding: 0 0.5rem;">
+        <div class="step-num" style="width:72px;height:72px;"><div class="step-num-inner" style="font-size:1.3rem;">04</div></div>
+        <h4 style="font-size:1rem;">Portfolio &amp; Resume</h4>
+        <p style="font-size:0.8rem;line-height:1.6;">We work 1-on-1 to craft a strong, ATS-friendly resume showcasing your live AI projects.</p>
+      </div>
+      <div class="how-step neon-click" style="padding: 0 0.5rem;">
+        <div class="step-num" style="width:72px;height:72px;"><div class="step-num-inner" style="font-size:1.3rem;">05</div></div>
+        <h4 style="font-size:1rem;">Placement Prep</h4>
+        <p style="font-size:0.8rem;line-height:1.6;">Top-class preparation: Mock interviews and profile optimization to land the best jobs.</p>
       </div>
     </div>
   </div>
@@ -1309,8 +1325,9 @@ function openWhatsApp() {
 function scrollTo(id) { const el = document.getElementById(id); if(el) el.scrollIntoView({ behavior: 'smooth' }); }
 function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function filterAndScroll(cat) {
-  document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => { const btn = document.querySelector(`.tab[onclick*="${cat}"]`); if(btn) filterCards(cat, btn); }, 600);
+  const btn = document.querySelector(`.tab[onclick*="${cat}"]`); if(btn) filterCards(cat, btn);
+  const svc = document.getElementById('services') || document.getElementById('services-teaser');
+  if(svc) svc.scrollIntoView({ behavior: 'smooth' });
 }
 
 // =============================================

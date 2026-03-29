@@ -1763,8 +1763,9 @@ function openWhatsApp() {
 function scrollTo(id) { const el = document.getElementById(id); if(el) el.scrollIntoView({ behavior: 'smooth' }); }
 function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function filterAndScroll(cat) {
-  document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => { const btn = document.querySelector(`.tab[onclick*="${cat}"]`); if(btn) filterCards(cat, btn); }, 600);
+  const btn = document.querySelector(`.tab[onclick*="${cat}"]`); if(btn) filterCards(cat, btn);
+  const svc = document.getElementById('services') || document.getElementById('services-teaser');
+  if(svc) svc.scrollIntoView({ behavior: 'smooth' });
 }
 
 // =============================================

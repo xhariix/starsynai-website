@@ -220,7 +220,7 @@ section{position:relative;z-index:1;}
 .filter-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:1.5rem 0 2.5rem;}
 .tab{padding:.45rem 1.1rem;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:.82rem;cursor:pointer;transition:all .2s;font-family:var(--sans);}
 .tab.active,.tab:hover{background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.32);color:var(--accent3);}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem;}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(450px,1fr));gap:1.1rem;}
 .scard{background:rgba(255,255,255,0.04);border:1px solid rgba(56,189,248,0.09);border-radius:var(--r);padding:2rem 1.75rem;transition:all .25s;position:relative;overflow:hidden;}
 .scard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent3));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
 .scard:hover,.scard.lit{border-color:rgba(56,189,248,0.22);transform:translateY(-3px);box-shadow:var(--sh);}
@@ -269,7 +269,8 @@ section{position:relative;z-index:1;}
 /* HOW IT WORKS */
 .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:4rem;position:relative;}
 .how-grid::before{content:'';position:absolute;top:44px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,var(--accent2),var(--accent3));opacity:.35;}
-.how-step{text-align:center;padding:0 1.25rem;}
+.how-step{text-align:center;padding:0 1.25rem;border:1px solid transparent;border-radius:16px;transition:border-color .3s,box-shadow .3s;cursor:default;}
+.how-step:hover,.how-step.lit{border-color:rgba(56,189,248,0.3);box-shadow:0 0 24px rgba(56,189,248,0.12),0 4px 20px rgba(0,0,0,0.3);}
 .step-num{width:88px;height:88px;border-radius:50%;background:rgba(56,189,248,0.06);border:1.5px solid rgba(56,189,248,0.22);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;position:relative;z-index:1;}
 .step-num-inner{font-family:var(--serif);font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,var(--accent3),#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .how-step h4{font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:.5rem;color:var(--text);}
@@ -1005,6 +1006,8 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   </div>
 </section>
 
+<!-- 3D PROCESS PIPELINE STORY REMOVED -->
+
 <!-- CTA BAND -->
 <div class="cta-band reveal">
   <h2>Ready to Work <span class="grad-text">10× Smarter?</span></h2>
@@ -1354,8 +1357,9 @@ function openWhatsApp() {
 function scrollTo(id) { const el = document.getElementById(id); if(el) el.scrollIntoView({ behavior: 'smooth' }); }
 function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function filterAndScroll(cat) {
-  document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => { const btn = document.querySelector(`.tab[onclick*="${cat}"]`); if(btn) filterCards(cat, btn); }, 600);
+  const btn = document.querySelector(`.tab[onclick*="${cat}"]`); if(btn) filterCards(cat, btn);
+  const svc = document.getElementById('services') || document.getElementById('services-teaser');
+  if(svc) svc.scrollIntoView({ behavior: 'smooth' });
 }
 
 // =============================================
@@ -1721,35 +1725,9 @@ function toggleFaq(el) {
   if (typeof gsap === 'undefined') return;
   if (typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
 
-  // Stagger reveal for service cards
-  gsap.utils.toArray('.scard').forEach((el, i) => {
-    gsap.fromTo(el,
-      { opacity: 0, y: 40, scale: 0.96 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.6, delay: (i % 4) * 0.08,
-        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
-      }
-    );
-  });
-
-  // ML portfolio cards
-  gsap.utils.toArray('.ml-pcard').forEach((el, i) => {
-    gsap.fromTo(el,
-      { opacity: 0, y: 50, rotateX: 8 },
-      { opacity: 1, y: 0, rotateX: 0, duration: 0.7, delay: (i % 3) * 0.1,
-        scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none none' }
-      }
-    );
-  });
-
-  // aaa cards stagger
-  gsap.utils.toArray('.aaa-card').forEach((el, i) => {
-    gsap.fromTo(el,
-      { opacity: 0, x: -30 },
-      { opacity: 1, x: 0, duration: 0.55, delay: i * 0.12,
-        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
-      }
-    );
-  });
+  // Disabled individual stagger reveals for these cards in services.html 
+  // because the filter tabs and large grid layout cause them to falsely remain at opacity: 0.
+  // The grid container's .reveal class manages the fade-in cleanly.
 
   // Animate workflow flow steps (traveling dot)
   gsap.utils.toArray('.ml-flow-step').forEach((el, i) => {
