@@ -82,13 +82,13 @@ section { position: relative; }
 .cursor-ring{position:fixed;width:18px;height:18px;border:1px solid rgba(0,245,255,0.15);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
 
 /* COOKIE */
-.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:900;background:rgba(7,16,30,0.97);border-top:1px solid rgba(56,189,248,0.15);padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;backdrop-filter:blur(20px);transform:translateY(0);transition:transform .4s;}
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:900;background:#ffffff;border-top:1px solid #e5e7eb;padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;box-shadow:0 -4px 28px rgba(0,0,0,0.12);transform:translateY(0);transition:transform .4s;}
 .cookie-banner.hidden{transform:translateY(110%);}
-.cookie-banner p{font-size:.82rem;color:var(--text2);max-width:600px;line-height:1.6;}
-.cookie-banner p a{color:var(--accent3);text-decoration:none;}
+.cookie-banner p{font-size:.82rem;color:#444444;max-width:600px;line-height:1.6;}
+.cookie-banner p a{color:#0ea5e9;text-decoration:none;}
 .cookie-btns{display:flex;gap:.75rem;flex-shrink:0;}
-.c-accept{background:rgba(56,189,248,0.2);color:var(--accent3);border:1px solid rgba(56,189,248,0.4);padding:.45rem 1.2rem;border-radius:8px;font-size:.82rem;cursor:pointer;font-family:var(--sans);}
-.c-decline{background:none;border:1px solid var(--border);color:var(--text3);padding:.45rem 1.2rem;border-radius:8px;font-size:.82rem;cursor:pointer;font-family:var(--sans);}
+.c-accept{background:#0ea5e9;color:#ffffff;border:none;padding:.45rem 1.2rem;border-radius:8px;font-size:.82rem;cursor:pointer;font-family:var(--sans);}
+.c-decline{background:#f3f4f6;border:1px solid #e5e7eb;color:#555555;padding:.45rem 1.2rem;border-radius:8px;font-size:.82rem;cursor:pointer;font-family:var(--sans);}
 
 /* FLOATING */
 .float-wrap{position:fixed;bottom:2rem;right:2rem;z-index:800;display:flex;flex-direction:column;gap:.75rem;align-items:flex-end;}
@@ -703,7 +703,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 
 <!-- VISITOR EMAIL CAPTURE POPUP (optional, after 1 min) -->
 <div id="visitorPopup" style="display:none;position:fixed;bottom:6rem;left:50%;transform:translateX(-50%);z-index:850;background:rgba(10,22,40,0.97);border:1.5px solid rgba(56,189,248,0.25);border-radius:16px;padding:1.5rem 2rem;max-width:420px;width:90%;backdrop-filter:blur(20px);box-shadow:0 8px 40px rgba(0,0,0,0.4);">
-  <button onclick="document.getElementById('visitorPopup').style.display='none'" style="position:absolute;top:.75rem;right:.75rem;background:none;border:none;color:var(--text3);cursor:pointer;font-size:1.1rem;">×</button>
+  <button onclick="sessionStorage.setItem('ss_popup_dismissed','1');document.getElementById('visitorPopup').style.display='none'" style="position:absolute;top:.75rem;right:.75rem;background:none;border:none;color:var(--text3);cursor:pointer;font-size:1.1rem;">×</button>
   <h4 style="font-family:var(--serif);font-size:1.1rem;color:var(--text);margin-bottom:.35rem;">Stay in the Loop</h4>
   <p style="color:var(--text3);font-size:.82rem;margin-bottom:1rem;">Get AI automation tips, case studies and updates — free. No spam, ever.</p>
   <form onsubmit="captureVisitor(event)" style="display:flex;gap:.5rem;">
@@ -738,7 +738,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 </div>
 
 <!-- COOKIE BANNER -->
-<div class="cookie-banner" id="cookieBanner">
+<div class="cookie-banner hidden" id="cookieBanner">
   <p>We use cookies to improve your experience. By continuing, you agree to our <a href="#" onclick="openLegal('privacyModal')">Privacy Policy</a> and <a href="#" onclick="openLegal('cookieModal')">Cookie Policy</a>.</p>
   <div class="cookie-btns">
     <button class="c-accept" onclick="acceptCookie()">Accept All</button>
@@ -771,7 +771,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <span class="logo-name">StarSyn <span>AI</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html#solutions">What We Do</a></li>
+    <li><a href="solutions.html">What We Do</a></li>
     <li><a href="services.html">Services</a></li>
     <li><a href="portfolio.html" >Portfolio</a></li>
     <li><a href="academy.html">Academy</a></li>
@@ -787,7 +787,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <ul>
-    <li><a href="index.html#solutions" onclick="closeMenu()">What We Do</a></li>
+    <li><a href="solutions.html" onclick="closeMenu()">What We Do</a></li>
     <li><a href="services.html" onclick="closeMenu()">Services</a></li>
     <li><a href="portfolio.html" >Portfolio</a></li>
     <li><a href="academy.html" onclick="closeMenu()">Academy</a></li>
@@ -1525,7 +1525,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
       <h5>Services</h5>
       <ul>
         <li><a href="services.html" >AI Automation</a></li>
-        <li><a href="index.html#solutions" onclick="scrollTo('solutions')">AI Augmentation</a></li>
+        <li><a href="solutions.html">AI Augmentation</a></li>
         <li><a href="services.html" >Custom AI Agents</a></li>
         <li><a href="services.html" >Voice AI</a></li>
         <li><a href="contact.html" onclick="openConsultation()">Consulting</a></li>
@@ -1637,14 +1637,18 @@ async function sbRequest(path, method='GET', body=null) {
 
 
 // =============================================
-// VISITOR TRACKING — popup after 60 seconds
+// VISITOR TRACKING — popup after 60 seconds (solutions/services pages only)
 // =============================================
 let visitorTracked = false;
-setTimeout(() => {
-  if (!visitorTracked && !localStorage.getItem('ss_visitor_seen') && !localStorage.getItem('ss_session')) {
-    document.getElementById('visitorPopup').style.display = 'block';
-  }
-}, 60000);
+(function() {
+  const path = window.location.pathname;
+  if (!path.includes('solutions.html') && !path.includes('services.html')) return;
+  setTimeout(() => {
+    if (!visitorTracked && !localStorage.getItem('ss_visitor_seen') && !localStorage.getItem('ss_session') && !sessionStorage.getItem('ss_popup_dismissed')) {
+      document.getElementById('visitorPopup').style.display = 'block';
+    }
+  }, 60000);
+})();
 
 async function captureVisitor(e) {
   e.preventDefault();
@@ -2034,10 +2038,10 @@ function toggleFaq(el) {
       start: "top center",
       endTrigger: tEnd,
       end: "bottom center",
-      onEnter: () => document.getElementById('service-toast').style.right = '30px',
-      onLeave: () => document.getElementById('service-toast').style.right = '-450px',
-      onEnterBack: () => document.getElementById('service-toast').style.right = '30px',
-      onLeaveBack: () => document.getElementById('service-toast').style.right = '-450px'
+      onEnter: () => {},
+      onLeave: () => {},
+      onEnterBack: () => {},
+      onLeaveBack: () => {}
     });
   });
 
