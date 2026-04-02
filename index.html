@@ -23,16 +23,29 @@ gtag('js', new Date());
 gtag('config', 'G-5E94DWD6KF');
 </script>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "StarSyn AI",
-  "description": "AI automation agency building intelligent agents and workflows for creators, startups, and enterprises.",
-  "url": "https://www.starsynai.com",
-  "founder": {"@type": "Person", "name": "Hariharan Murthy", "jobTitle": "Founder & CEO", "sameAs": "https://www.linkedin.com/in/hariharan-murthy/"},
-  "contactPoint": {"@type": "ContactPoint", "telephone": "+91-88382-48494", "email": "connect@starsynai.com"},
-  "areaServed": "Worldwide"
-}
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "StarSyn AI",
+    "url": "https://www.starsynai.com",
+    "logo": "https://www.starsynai.com/favicon.svg",
+    "description": "AI automation agency building intelligent agents and workflows for creators, startups, and enterprises.",
+    "founder": {"@type": "Person", "name": "Hariharan Murthy", "jobTitle": "Founder & CEO", "sameAs": "https://www.linkedin.com/in/hariharan-murthy/"},
+    "contactPoint": {"@type": "ContactPoint", "telephone": "+91-88382-48494", "email": "connect@starsynai.com", "contactType": "customer service"},
+    "areaServed": "Worldwide",
+    "sameAs": [
+      "https://www.linkedin.com/company/starsynai",
+      "https://www.instagram.com/starsynai"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "StarSyn AI",
+    "url": "https://www.starsynai.com"
+  }
+]
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet"/>
@@ -973,9 +986,9 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
         <h2 class="section-title">Intelligent Agents For Every Industry</h2>
         <p style="color:var(--text2);font-size:.95rem;max-width:520px;margin-top:.75rem;">From solo creators to enterprise scale — custom AI pipelines that eliminate manual work and accelerate growth across 12+ industries.</p>
       </div>
-      <button class="btn-primary" style="box-shadow:0 0 28px rgba(0,245,255,0.4);border-color:var(--neon);color:var(--neon);padding:.9rem 2.2rem;font-size:.95rem;white-space:nowrap;" onclick="window.location.href='solutions.html'" onmouseover="this.style.boxShadow='0 0 44px rgba(0,245,255,0.65)';" onmouseout="this.style.boxShadow='0 0 28px rgba(0,245,255,0.4)';">
+      <a href="solutions.html" class="btn-primary" style="box-shadow:0 0 28px rgba(0,245,255,0.4);border-color:var(--neon);color:var(--neon);padding:.9rem 2.2rem;font-size:.95rem;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;" onmouseover="this.style.boxShadow='0 0 44px rgba(0,245,255,0.65)';" onmouseout="this.style.boxShadow='0 0 28px rgba(0,245,255,0.4)';">
         Explore Solutions →
-      </button>
+      </a>
     </div>
     <!-- 2-card highlight preview -->
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:2.5rem;">
@@ -1002,7 +1015,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
       <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🎓 Education</span>
       <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🏢 Enterprise</span>
       <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🎥 Creators</span>
-      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.3);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--accent3);" onclick="window.location.href='solutions.html'" style="cursor:pointer;">+ See All Solutions →</span>
+      <a href="solutions.html" style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.3);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--accent3);text-decoration:none;display:inline-block;cursor:pointer;">+ See All Solutions →</a>
     </div>
   </div>
 </section>
@@ -1017,9 +1030,9 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
         <h2 class="section-title">Real Pipelines. Real Results.</h2>
         <p style="color:var(--text2);font-size:.95rem;max-width:520px;margin-top:.75rem;">A glimpse at what we've shipped — every project below is a live production system, not a demo.</p>
       </div>
-      <button class="btn-ghost" style="box-shadow:0 0 18px rgba(56,189,248,0.25); border-color:var(--accent3); color:var(--text); padding:0.8rem 1.8rem;" onclick="window.location.href='portfolio.html'" onmouseover="this.style.borderColor='var(--neon)'; this.style.color='var(--neon)'; this.style.boxShadow='0 0 28px rgba(0,245,255,0.4)';" onmouseout="this.style.borderColor='var(--accent3)'; this.style.color='var(--text)'; this.style.boxShadow='0 0 18px rgba(56,189,248,0.25)';">
+      <a href="portfolio.html" class="btn-ghost" style="box-shadow:0 0 18px rgba(56,189,248,0.25); border-color:var(--accent3); color:var(--text); padding:0.8rem 1.8rem; text-decoration:none; display:inline-flex; align-items:center;" onmouseover="this.style.borderColor='var(--neon)'; this.style.color='var(--neon)'; this.style.boxShadow='0 0 28px rgba(0,245,255,0.4)';" onmouseout="this.style.borderColor='var(--accent3)'; this.style.color='var(--text)'; this.style.boxShadow='0 0 18px rgba(56,189,248,0.25)';">
         View Full Case Studies Directory →
-      </button>
+      </a>
     </div>
     <div class="portfolio-grid reveal" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
       <div class="pcard neon-click">
@@ -1111,9 +1124,9 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 
     <div class="reveal" style="text-align:center;">
       <p style="color:var(--text3);font-size:.85rem;margin-bottom:1.5rem;">Batch seats are limited — usually fills within 48 hours of opening.</p>
-      <button class="btn-primary" style="box-shadow:0 0 25px rgba(0,245,255,0.4); border-color:var(--neon); padding:0.95rem 2.4rem; font-size:1rem; transition:all 0.3s;" onclick="window.location.href='academy.html'" onmouseover="this.style.boxShadow='0 0 40px rgba(0,245,255,0.65)';" onmouseout="this.style.boxShadow='0 0 25px rgba(0,245,255,0.4)';">
+      <a href="academy.html" class="btn-primary" style="box-shadow:0 0 25px rgba(0,245,255,0.4); border-color:var(--neon); padding:0.95rem 2.4rem; font-size:1rem; transition:all 0.3s; text-decoration:none; display:inline-flex; align-items:center;" onmouseover="this.style.boxShadow='0 0 40px rgba(0,245,255,0.65)';" onmouseout="this.style.boxShadow='0 0 25px rgba(0,245,255,0.4)';">
         See Formats, Pricing &amp; Placement Data →
-      </button>
+      </a>
     </div>
   </div>
 </section>
