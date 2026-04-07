@@ -219,6 +219,46 @@ footer{border-top:1px solid rgba(56,189,248,0.08);margin-top:4rem;}
   .section-pad{padding:3.5rem 0;}
   .services-grid{grid-template-columns:1fr;}
 }
+
+/* MOBILE BREATHING ROOM — reduce clutter on small screens */
+@media(max-width:768px) {
+  /* Hide custom cursor on touch devices */
+  .cursor, .cursor-ring { display: none !important; }
+
+  /* Hide floating text CTA — hero already has CTAs */
+  .float-cta { display: none !important; }
+
+  /* WhatsApp button — small & tucked in corner */
+  .float-wrap { bottom: .75rem; right: .75rem; }
+  .wa-btn { width: 38px; height: 38px; }
+  .wa-btn svg { width: 20px; height: 20px; }
+
+  /* Hide service toast on mobile — too intrusive */
+  #service-toast { display: none !important; }
+
+  /* Hide visitor popup on mobile — footer newsletter serves same purpose */
+  #visitorPopup { display: none !important; }
+
+  /* Cookie banner — compact */
+  .cookie-banner { padding: .6rem 1rem; flex-direction: column; gap: .5rem; text-align: center; font-size: .78rem; }
+  .cookie-banner p { font-size: .75rem; margin: 0; }
+  .cookie-btns { gap: .4rem; }
+  .c-accept, .c-decline { padding: .4rem .8rem; font-size: .75rem; }
+
+  /* Navbar — tighter padding */
+  nav { padding: .75rem 1rem; }
+
+  /* Section titles — scale down */
+  .section-title { font-size: clamp(1.6rem, 6vw, 2.2rem) !important; }
+  .section-sub { font-size: .85rem !important; }
+
+  /* Cards — less padding */
+  .aaa-card { padding: 1.25rem; }
+  .tcard { padding: 1.25rem; }
+
+  /* CTA band — less padding */
+  .cta-band { padding: 3rem 1.5rem; }
+}
 </style>
 <!-- Cal.com Popup Embed -->
 <script type="text/javascript">
@@ -250,7 +290,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <h2>Data Storage</h2>
     <p>Your form submissions are stored securely in our database. We do not sell, trade, or rent your personal information to third parties.</p>
     <h2>Contact</h2>
-    <p>For any privacy-related questions, please email: hariharan060202@gmail.com</p>
+    <p>For any privacy-related questions, please email: connect@starsynai.com</p>
   </div>
 </div>
 <div class="legal-modal" id="termsModal">
@@ -262,7 +302,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <h2>Placement Preparation Disclaimer</h2>
     <p>StarSyn AI provides placement preparation services as a complimentary benefit to Academy students. We do not guarantee employment or arrange interviews with any company. All placement outcomes depend entirely on the student's own effort and merit.</p>
     <h2>Contact</h2>
-    <p>For any questions regarding these terms, contact: hariharan060202@gmail.com</p>
+    <p>For any questions regarding these terms, contact: connect@starsynai.com</p>
   </div>
 </div>
 <div class="legal-modal" id="cookieModal">
@@ -272,7 +312,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <div class="legal-date">Last updated: March 2025</div>
     <p>This Cookie Policy explains how StarSyn AI uses cookies and similar tracking technologies on our website.</p>
     <h2>Contact</h2>
-    <p>For cookie-related questions: hariharan060202@gmail.com</p>
+    <p>For cookie-related questions: connect@starsynai.com</p>
   </div>
 </div>
 
@@ -565,7 +605,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 StarSyn AI. All rights reserved. Founded in India 🇮🇳 | Founder &amp; CEO: Hariharan Murthy</p>
+    <p>© 2025–2026 StarSyn AI. All rights reserved. Founded in India 🇮🇳 | Founder &amp; CEO: Hariharan Murthy</p>
     <div class="footer-links">
       <a onclick="openLegal('privacyModal')">Privacy Policy</a>
       <a onclick="openLegal('termsModal')">Terms of Service</a>

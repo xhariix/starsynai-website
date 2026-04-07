@@ -43,7 +43,24 @@ gtag('config', 'G-5E94DWD6KF');
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "StarSyn AI",
-    "url": "https://www.starsynai.com"
+    "url": "https://www.starsynai.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.starsynai.com/?s={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "StarSyn AI Site Navigation",
+    "itemListElement": [
+      {"@type": "SiteNavigationElement", "position": 1, "name": "Services", "url": "https://www.starsynai.com/services.html"},
+      {"@type": "SiteNavigationElement", "position": 2, "name": "Portfolio", "url": "https://www.starsynai.com/portfolio.html"},
+      {"@type": "SiteNavigationElement", "position": 3, "name": "Academy", "url": "https://www.starsynai.com/academy.html"},
+      {"@type": "SiteNavigationElement", "position": 4, "name": "About", "url": "https://www.starsynai.com/about.html"},
+      {"@type": "SiteNavigationElement", "position": 5, "name": "Contact", "url": "https://www.starsynai.com/contact.html"}
+    ]
   }
 ]
 </script>
@@ -536,6 +553,46 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
   .port-choices { grid-template-columns: 1fr !important; }
 }
 
+/* MOBILE BREATHING ROOM — reduce clutter on small screens */
+@media(max-width:768px) {
+  /* Hide custom cursor on touch devices */
+  .cursor, .cursor-ring { display: none !important; }
+
+  /* Hide floating text CTA — hero already has CTAs */
+  .float-cta { display: none !important; }
+
+  /* WhatsApp button — small & tucked in corner */
+  .float-wrap { bottom: .75rem; right: .75rem; }
+  .wa-btn { width: 38px; height: 38px; }
+  .wa-btn svg { width: 20px; height: 20px; }
+
+  /* Hide service toast on mobile — too intrusive */
+  #service-toast { display: none !important; }
+
+  /* Hide visitor popup on mobile — footer newsletter serves same purpose */
+  #visitorPopup { display: none !important; }
+
+  /* Cookie banner — compact */
+  .cookie-banner { padding: .6rem 1rem; flex-direction: column; gap: .5rem; text-align: center; font-size: .78rem; }
+  .cookie-banner p { font-size: .75rem; margin: 0; }
+  .cookie-btns { gap: .4rem; }
+  .c-accept, .c-decline { padding: .4rem .8rem; font-size: .75rem; }
+
+  /* Navbar — tighter padding */
+  nav { padding: .75rem 1rem; }
+
+  /* Section titles — scale down */
+  .section-title { font-size: clamp(1.6rem, 6vw, 2.2rem) !important; }
+  .section-sub { font-size: .85rem !important; }
+
+  /* Cards — less padding */
+  .aaa-card { padding: 1.25rem; }
+  .tcard { padding: 1.25rem; }
+
+  /* CTA band — less padding */
+  .cta-band { padding: 3rem 1.5rem; }
+}
+
 /* CASE STUDY MODAL */
 .case-study-modal { position: fixed; inset: 0; background: rgba(2,6,19,0.95); backdrop-filter: blur(10px); z-index: 99999; overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; display: block; }
 .case-study-modal.open { opacity: 1; pointer-events: auto; }
@@ -608,9 +665,9 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <h2>Cookies</h2>
     <p>We use cookies to improve your browsing experience. You can choose to accept or decline cookies when you first visit our site. Declining cookies may affect some functionality.</p>
     <h2>Your Rights</h2>
-    <p>You have the right to access, correct, or delete your personal data at any time. To exercise these rights, contact us at hariharan060202@gmail.com.</p>
+    <p>You have the right to access, correct, or delete your personal data at any time. To exercise these rights, contact us at connect@starsynai.com.</p>
     <h2>Contact</h2>
-    <p>For any privacy-related questions, please email: hariharan060202@gmail.com</p>
+    <p>For any privacy-related questions, please email: connect@starsynai.com</p>
   </div>
 </div>
 
@@ -631,7 +688,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <h2>Limitation of Liability</h2>
     <p>StarSyn AI shall not be liable for any indirect, incidental, or consequential damages arising from your use of our services. Our total liability shall not exceed the amount paid for the specific service in question.</p>
     <h2>Contact</h2>
-    <p>For any questions regarding these terms, contact: hariharan060202@gmail.com</p>
+    <p>For any questions regarding these terms, contact: connect@starsynai.com</p>
   </div>
 </div>
 
@@ -653,7 +710,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <h2>Managing Cookies</h2>
     <p>You can control and manage cookies through your browser settings. You can also use the cookie banner on our website to accept or decline non-essential cookies.</p>
     <h2>Contact</h2>
-    <p>For cookie-related questions: hariharan060202@gmail.com</p>
+    <p>For cookie-related questions: connect@starsynai.com</p>
   </div>
 </div>
 
@@ -1131,6 +1188,65 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   </div>
 </section>
 
+<!-- BUILT FOR EDUCATION -->
+<section id="education" class="section-pad surface-s">
+  <div class="bg-streams"></div>
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 3rem;">
+      <div class="eyebrow"><div class="eyebrow-line"></div>Built For Education</div>
+      <h2 class="section-title">Empowering Schools &amp; Colleges<br/>With <span class="grad-text">AI-Ready Programs</span></h2>
+      <p class="section-sub" style="max-width:100%;">We partner with educational institutions to bring real-world AI training directly to your campus — upskilling faculty, preparing students for the future, and integrating AI into your curriculum.</p>
+    </div>
+    <div class="aaa-grid reveal">
+      <div class="aaa-card">
+        <div class="aaa-icon-area">
+          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><path d="M28 8 L6 20 L28 32 L50 20 Z" stroke-width="1.5" fill="none"/><path d="M12 24 L12 38 Q28 46 44 38 L44 24" stroke-width="1.5" fill="none"/><line x1="50" y1="20" x2="50" y2="40" stroke-width="1.5"/></svg>
+          <div class="aaa-num">01</div>
+        </div>
+        <span class="aaa-badge ba1">Faculty</span>
+        <h3>Faculty AI Training</h3>
+        <p>Hands-on workshops for professors and lecturers — learn to use AI tools for research, grading assistance, content creation, and curriculum design. No coding experience required.</p>
+        <div class="aaa-examples">
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Prompt engineering for educators</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>AI-assisted research &amp; grading</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Custom AI tool setup for departments</div>
+        </div>
+      </div>
+      <div class="aaa-card">
+        <div class="aaa-icon-area">
+          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><rect x="10" y="14" width="36" height="28" rx="3" stroke-width="1.5" fill="none"/><line x1="10" y1="22" x2="46" y2="22" stroke-width="1.5"/><circle cx="18" cy="32" r="4" stroke-width="1.5" fill="none"/><line x1="26" y1="30" x2="40" y2="30" stroke-width="1.5"/><line x1="26" y1="36" x2="36" y2="36" stroke-width="1.5"/></svg>
+          <div class="aaa-num">02</div>
+        </div>
+        <span class="aaa-badge ba2">Students</span>
+        <h3>Student AI Bootcamps</h3>
+        <p>Intensive campus programs where students build real AI projects — from chatbots to automation workflows. Every participant leaves with a portfolio of deployed projects.</p>
+        <div class="aaa-examples">
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>1-week to 3-month programs</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Live project-based learning</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Placement prep &amp; career coaching</div>
+        </div>
+      </div>
+      <div class="aaa-card">
+        <div class="aaa-icon-area">
+          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><path d="M14 42 L14 20 L28 12 L42 20 L42 42" stroke-width="1.5" fill="none"/><rect x="22" y="30" width="12" height="12" stroke-width="1.5" fill="none"/><line x1="28" y1="30" x2="28" y2="42" stroke-width="1.5"/><circle cx="28" cy="24" r="3" stroke-width="1.5" fill="none"/></svg>
+          <div class="aaa-num">03</div>
+        </div>
+        <span class="aaa-badge ba3">Campus</span>
+        <h3>Campus AI Integration</h3>
+        <p>Help your institution adopt AI across departments — from AI-powered attendance systems to automated communication workflows and smart campus tools.</p>
+        <div class="aaa-examples">
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>AI chatbots for student queries</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Automated attendance &amp; reporting</div>
+          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Smart campus workflows</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:2.5rem;">
+      <button class="btn-cta" onclick="openConsultation()">Schedule a Campus Demo →</button>
+    </div>
+  </div>
+</section>
+
 <div class="divider"></div>
 
 <!-- TESTIMONIALS -->
@@ -1141,6 +1257,24 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
       <h2 class="section-title">What Our Clients & Students Say</h2>
     </div>
     <div class="testi-grid reveal">
+      <div class="tcard neon-click">
+        <div class="tcard-stars">★★★★★</div>
+        <div class="tcard-quote">"</div>
+        <p class="tcard-text">We invited StarSyn AI to conduct a faculty development program on AI tools for teaching. The response from our staff was overwhelmingly positive — even our senior professors who had never used AI started integrating it into their lesson planning within a week. This is exactly the kind of training institutions need right now.</p>
+        <div class="tcard-author">
+          <div class="author-av">RS</div>
+          <div><div class="author-name">Dr. Raghavendra S</div><div class="author-role">Principal — Vidya International School, Bengaluru</div></div>
+        </div>
+      </div>
+      <div class="tcard neon-click">
+        <div class="tcard-stars">★★★★★</div>
+        <div class="tcard-quote">"</div>
+        <p class="tcard-text">StarSyn AI ran a 2-week AI bootcamp for our final-year engineering students. The hands-on projects were industry-relevant, and students built real automation workflows they could showcase in interviews. Three of our students received job offers directly because of the portfolio they built during the program.</p>
+        <div class="tcard-author">
+          <div class="author-av">SM</div>
+          <div><div class="author-name">Prof. Savitha M</div><div class="author-role">HOD, Computer Science — RNS College of Engineering, Bengaluru</div></div>
+        </div>
+      </div>
       <div class="tcard neon-click">
         <div class="tcard-stars">★★★★★</div>
         <div class="tcard-quote">"</div>
@@ -1155,8 +1289,8 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
         <div class="tcard-quote">"</div>
         <p class="tcard-text">I joined the StarSyn AI Academy with zero background in automation. The coaching was structured, the tools were real, and the mock interview sessions actually prepared me for what companies ask. The placement training and ATS resume session gave me confidence I never had. Got placed within a month of completing the course.</p>
         <div class="tcard-author">
-          <div class="author-av">PK</div>
-          <div><div class="author-name">Pavish Kumar</div><div class="author-role">Academy Graduate — Now AI Ops Specialist</div></div>
+          <div class="author-av">JF</div>
+          <div><div class="author-name">Jenifer</div><div class="author-role">Academy Graduate — Now AI Ops Specialist</div></div>
         </div>
       </div>
       <div class="tcard neon-click">
@@ -1428,7 +1562,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 StarSyn AI. All rights reserved. Founded in India 🇮🇳 | Founder & CEO: Hariharan Murthy</p>
+    <p>© 2025–2026 StarSyn AI. All rights reserved. Founded in India 🇮🇳 | Founder & CEO: Hariharan Murthy</p>
     <div class="footer-links">
       <a onclick="openLegal('privacyModal')">Privacy Policy</a>
       <a onclick="openLegal('termsModal')">Terms of Service</a>

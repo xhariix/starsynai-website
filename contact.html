@@ -532,6 +532,46 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
   .port-choices { grid-template-columns: 1fr !important; }
 }
 
+/* MOBILE BREATHING ROOM — reduce clutter on small screens */
+@media(max-width:768px) {
+  /* Hide custom cursor on touch devices */
+  .cursor, .cursor-ring { display: none !important; }
+
+  /* Hide floating text CTA — hero already has CTAs */
+  .float-cta { display: none !important; }
+
+  /* WhatsApp button — small & tucked in corner */
+  .float-wrap { bottom: .75rem; right: .75rem; }
+  .wa-btn { width: 38px; height: 38px; }
+  .wa-btn svg { width: 20px; height: 20px; }
+
+  /* Hide service toast on mobile — too intrusive */
+  #service-toast { display: none !important; }
+
+  /* Hide visitor popup on mobile — footer newsletter serves same purpose */
+  #visitorPopup { display: none !important; }
+
+  /* Cookie banner — compact */
+  .cookie-banner { padding: .6rem 1rem; flex-direction: column; gap: .5rem; text-align: center; font-size: .78rem; }
+  .cookie-banner p { font-size: .75rem; margin: 0; }
+  .cookie-btns { gap: .4rem; }
+  .c-accept, .c-decline { padding: .4rem .8rem; font-size: .75rem; }
+
+  /* Navbar — tighter padding */
+  nav { padding: .75rem 1rem; }
+
+  /* Section titles — scale down */
+  .section-title { font-size: clamp(1.6rem, 6vw, 2.2rem) !important; }
+  .section-sub { font-size: .85rem !important; }
+
+  /* Cards — less padding */
+  .aaa-card { padding: 1.25rem; }
+  .tcard { padding: 1.25rem; }
+
+  /* CTA band — less padding */
+  .cta-band { padding: 3rem 1.5rem; }
+}
+
 /* CASE STUDY MODAL */
 .case-study-modal { position: fixed; inset: 0; background: rgba(2,6,19,0.95); backdrop-filter: blur(10px); z-index: 99999; overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; display: block; }
 .case-study-modal.open { opacity: 1; pointer-events: auto; }
@@ -604,9 +644,9 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <h2>Cookies</h2>
     <p>We use cookies to improve your browsing experience. You can choose to accept or decline cookies when you first visit our site. Declining cookies may affect some functionality.</p>
     <h2>Your Rights</h2>
-    <p>You have the right to access, correct, or delete your personal data at any time. To exercise these rights, contact us at hariharan060202@gmail.com.</p>
+    <p>You have the right to access, correct, or delete your personal data at any time. To exercise these rights, contact us at connect@starsynai.com.</p>
     <h2>Contact</h2>
-    <p>For any privacy-related questions, please email: hariharan060202@gmail.com</p>
+    <p>For any privacy-related questions, please email: connect@starsynai.com</p>
   </div>
 </div>
 
@@ -627,7 +667,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <h2>Limitation of Liability</h2>
     <p>StarSyn AI shall not be liable for any indirect, incidental, or consequential damages arising from your use of our services. Our total liability shall not exceed the amount paid for the specific service in question.</p>
     <h2>Contact</h2>
-    <p>For any questions regarding these terms, contact: hariharan060202@gmail.com</p>
+    <p>For any questions regarding these terms, contact: connect@starsynai.com</p>
   </div>
 </div>
 
@@ -649,7 +689,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <h2>Managing Cookies</h2>
     <p>You can control and manage cookies through your browser settings. You can also use the cookie banner on our website to accept or decline non-essential cookies.</p>
     <h2>Contact</h2>
-    <p>For cookie-related questions: hariharan060202@gmail.com</p>
+    <p>For cookie-related questions: connect@starsynai.com</p>
   </div>
 </div>
 
@@ -896,65 +936,6 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   </div>
 </div>
 
-<!-- PARTNERSHIPS SECTION -->
-<section id="partnerships" class="section-pad surface-s">
-  <div class="bg-radar"></div>
-  <div class="container">
-    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 3rem;">
-      <div class="eyebrow"><div class="eyebrow-line"></div>Partnerships</div>
-      <h2 class="section-title">Partner With Us</h2>
-      <p class="section-sub" style="max-width:100%;">We collaborate with companies, MNCs and agencies who want to build or integrate AI into their systems. Whether you're a startup, enterprise, or agency — let's grow together.</p>
-    </div>
-    <div class="aaa-grid reveal">
-      <div class="aaa-card">
-        <div class="aaa-icon-area">
-          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><rect x="8" y="18" width="18" height="20" rx="3" stroke-width="1.5"/><rect x="30" y="18" width="18" height="20" rx="3" stroke-width="1.5"/><line x1="26" y1="28" x2="30" y2="28" stroke-width="1.5"/></svg>
-          <div class="aaa-num">01</div>
-        </div>
-        <span class="aaa-badge ba1">Technology</span>
-        <h3>Technology Partnership</h3>
-        <p>Co-build AI products, share IP and integrate our ML/automation stack into your platform. Ideal for SaaS companies and tech startups looking to add AI capabilities quickly.</p>
-        <div class="aaa-examples">
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Joint product development</div>
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>API &amp; SDK integration</div>
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Revenue sharing model</div>
-        </div>
-      </div>
-      <div class="aaa-card">
-        <div class="aaa-icon-area">
-          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><path d="M12 28 Q12 18 28 18 Q44 18 44 28 Q44 38 28 38 Q12 38 12 28Z" stroke-width="1.5"/><path d="M20 28 Q20 22 28 22 Q36 22 36 28 Q36 34 28 34 Q20 34 20 28Z" stroke-width="1.5"/></svg>
-          <div class="aaa-num">02</div>
-        </div>
-        <span class="aaa-badge ba2">Reseller</span>
-        <h3>Reseller / White-Label Partnership</h3>
-        <p>Resell our AI services under your brand, or offer our tools to your clients. White-label our automation and ML solutions with your own branding and pricing.</p>
-        <div class="aaa-examples">
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Fully white-labelled</div>
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Dedicated partner support</div>
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Agencies &amp; consultants</div>
-        </div>
-      </div>
-      <div class="aaa-card">
-        <div class="aaa-icon-area">
-          <svg class="aaa-icon-svg" viewBox="0 0 56 56"><path d="M10 38 L10 22 L28 12 L46 22 L46 38" stroke-width="1.5"/><rect x="20" y="28" width="16" height="10" stroke-width="1.5"/><line x1="28" y1="28" x2="28" y2="38" stroke-width="1.5"/></svg>
-          <div class="aaa-num">03</div>
-        </div>
-        <span class="aaa-badge ba3">Enterprise</span>
-        <h3>Enterprise Collaboration</h3>
-        <p>Large-scale project collaboration with MNCs — we provide the AI engineering, you bring the domain expertise. Ideal for digital transformation programmes.</p>
-        <div class="aaa-examples">
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>MNC &amp; enterprise ready</div>
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>NDA &amp; SLA backed</div>
-          <div class="aaa-ex"><div class="aaa-ex-dot"></div>Dedicated AI team</div>
-        </div>
-      </div>
-    </div>
-    <div class="reveal" style="text-align:center;margin-top:2.5rem;">
-      <button class="btn-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Discuss a Partnership →</button>
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -1012,7 +993,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 StarSyn AI. All rights reserved. Founded in India 🇮🇳 | Founder & CEO: Hariharan Murthy</p>
+    <p>© 2025–2026 StarSyn AI. All rights reserved. Founded in India 🇮🇳 | Founder & CEO: Hariharan Murthy</p>
     <div class="footer-links">
       <a onclick="openLegal('privacyModal')">Privacy Policy</a>
       <a onclick="openLegal('termsModal')">Terms of Service</a>
