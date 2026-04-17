@@ -398,13 +398,15 @@ section{position:relative;z-index:1;}
 .contact-form-box{background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:var(--rl);padding:2rem;}
 .form-group{margin-bottom:1.25rem;}
 .form-group label{display:block;font-size:.78rem;font-weight:500;color:var(--text3);margin-bottom:.5rem;letter-spacing:.5px;text-transform:uppercase;}
-.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.12);border-radius:8px;padding:.7rem 1rem;color:var(--text);font-family:var(--sans);font-size:.875rem;transition:border-color .2s;outline:none;}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(56,189,248,0.4);box-shadow:0 0 0 3px rgba(56,189,248,0.06);}
+.form-group input,.form-group select,.form-group textarea{width:100%;background-color:rgba(255,255,255,0.05);background-image:linear-gradient(to right,var(--accent3),var(--neon));background-size:0 2px;background-position:0 100%;background-repeat:no-repeat;border:1px solid rgba(56,189,248,0.12);border-radius:8px;padding:.7rem 1rem;color:var(--text);font-family:var(--sans);font-size:.875rem;transition:background-size .45s cubic-bezier(0.16,1,0.3,1),border-color .2s,box-shadow .2s;outline:none;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(56,189,248,0.4);background-size:100% 2px;box-shadow:0 0 0 3px rgba(56,189,248,0.06),0 4px 20px rgba(0,245,255,0.08);}
 .form-group select option{background:#0d2137;color:var(--text);}
 .form-group textarea{height:110px;resize:vertical;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.btn-submit{width:100%;background:rgba(56,189,248,0.18);color:var(--accent3);border:1.5px solid rgba(56,189,248,0.4);padding:.85rem;border-radius:10px;font-size:.95rem;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .2s;margin-top:.5rem;}
-.btn-submit:hover{box-shadow:var(--glowl);border-color:var(--neon);color:var(--neon);}
+.btn-submit{width:100%;background:rgba(56,189,248,0.18);color:var(--accent3);border:1.5px solid rgba(56,189,248,0.4);padding:.85rem;border-radius:10px;font-size:.95rem;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .3s cubic-bezier(0.16,1,0.3,1);margin-top:.5rem;position:relative;overflow:hidden;z-index:1;}
+.btn-submit::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(0,245,255,0.28) 50%,transparent 70%);transform:translateX(-100%);transition:transform .7s cubic-bezier(0.16,1,0.3,1);pointer-events:none;z-index:-1;}
+.btn-submit:hover::before{transform:translateX(100%);}
+.btn-submit:hover{box-shadow:0 0 30px rgba(0,245,255,0.4),0 0 0 1px rgba(0,245,255,0.3);border-color:var(--neon);color:var(--neon);transform:translateY(-1px);}
 .form-success{display:none;text-align:center;padding:2rem;color:var(--accent3);}
 .form-success svg{width:48px;height:48px;stroke:var(--accent3);fill:none;stroke-width:1.5;margin-bottom:1rem;}
 .form-success h4{font-family:var(--serif);font-size:1.2rem;margin-bottom:.5rem;}
@@ -861,7 +863,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <div class="contact-grid reveal">
       <div class="contact-info">
         <p>Whether you need an automation built, want to join the Academy, or just have questions — we'd love to hear from you. Book a free 30-minute call and let's figure out what AI can do for you.</p>
-        <div class="contact-detail"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg><a href="https://wa.me/918838248494?text=Hi%20StarSyn%20AI!%20I'm%20interested%20in%20learning%20more." target="_blank">+91 88382 48494 (WhatsApp)</a></div>
+        <div class="contact-detail"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg><a href="https://wa.me/917867838938?text=Hi%20StarSyn%20AI!%20I'm%20interested%20in%20learning%20more." target="_blank">+91 78678 38938 (WhatsApp)</a></div>
         <div class="contact-detail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:connect@starsynai.com">connect@starsynai.com</a></div>
         <div class="contact-detail"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Based in India 🇮🇳 · Serving Worldwide</div>
         <div style="margin-top:2rem;border-radius:var(--r);overflow:hidden;"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&auto=format&fit=crop" alt="AI workspace" loading="lazy" style="width:100%;filter:saturate(0.6) brightness(0.65);display:block;"/></div>
@@ -1211,7 +1213,7 @@ function joinAcademy() {
 // WHATSAPP
 // =============================================
 function openWhatsApp() {
-  window.open(`https://wa.me/918838248494?text=${encodeURIComponent("Hi StarSyn AI! I'm interested in learning more about your services.")}`, '_blank');
+  window.open(`https://wa.me/917867838938?text=${encodeURIComponent("Hi StarSyn AI! I'm interested in learning more about your services.")}`, '_blank');
 }
 
 // =============================================
@@ -1826,7 +1828,7 @@ function submitBuildPrompt() {
   }
   
   // Open Whatsapp window over new tab with uri encoding
-  window.open("https://wa.me/918838248494?text=" + encodeURIComponent(fullMessage), "_blank");
+  window.open("https://wa.me/917867838938?text=" + encodeURIComponent(fullMessage), "_blank");
   
   // Clean up
   closeCaseStudyModal();

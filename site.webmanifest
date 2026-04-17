@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "StarSyn AI",
+  "short_name": "StarSyn",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

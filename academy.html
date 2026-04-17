@@ -852,6 +852,16 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <!-- TOP PADDING FOR NAV -->
 <div style="height:100px;"></div>
 
+<!-- MISSION — AI within reach for students & individuals -->
+<section class="section-pad reveal" style="position:relative;text-align:center;overflow:hidden;">
+  <div aria-hidden style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,0.08) 0%,rgba(56,189,248,0.02) 45%,transparent 72%);filter:blur(60px);pointer-events:none;z-index:0;"></div>
+  <div class="container" style="position:relative;z-index:1;max-width:800px;">
+    <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>Our Primary Goal<div class="eyebrow-line"></div></div>
+    <h2 class="section-title" style="margin-bottom:1.25rem;">AI, <span class="grad-text">Made Reachable</span><br/>for Students &amp; Individuals</h2>
+    <p class="section-sub" style="max-width:640px;margin:0 auto;color:var(--text2);font-size:1.05rem;line-height:1.8;">A primary goal at StarSyn AI is to put intelligent automation within reach of everyone — not just enterprises with six-figure budgets. The Academy exists so students, solo creators, and small teams can master real AI workflows on real projects, with real credentials.</p>
+  </div>
+</section>
+
 <section id="how" class="section-pad surface-s">
   <div class="bg-radar"></div>
   <div class="container">
@@ -1949,7 +1959,7 @@ function joinAcademy() {
 // WHATSAPP
 // =============================================
 function openWhatsApp() {
-  window.open(`https://wa.me/918838248494?text=${encodeURIComponent("Hi StarSyn AI! I'm interested in learning more about your services.")}`, '_blank');
+  window.open(`https://wa.me/917867838938?text=${encodeURIComponent("Hi StarSyn AI! I'm interested in learning more about your services.")}`, '_blank');
 }
 
 // =============================================
@@ -2564,7 +2574,7 @@ function submitBuildPrompt() {
   }
   
   // Open Whatsapp window over new tab with uri encoding
-  window.open("https://wa.me/918838248494?text=" + encodeURIComponent(fullMessage), "_blank");
+  window.open("https://wa.me/917867838938?text=" + encodeURIComponent(fullMessage), "_blank");
   
   // Clean up
   closeCaseStudyModal();
@@ -2642,5 +2652,25 @@ function submitBuildPrompt() {
   animateNet();
 })();
 </script>
+<!-- CARD STAGGER REVEAL — enhances grids site-wide -->
+<script>
+(function initCardStaggerReveal(){
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+  var selectors = ['.tcard', '.pcard', '.scard', '.cert-card', '.placement-card', '.format-card', '.duration-card', '.blog-card', '.ml-card', '.aaa-card', '.how-step'];
+  selectors.forEach(function(sel){
+    var els = document.querySelectorAll(sel);
+    if (!els.length) return;
+    var byParent = new Map();
+    els.forEach(function(el){ var p = el.parentElement; if (!byParent.has(p)) byParent.set(p, []); byParent.get(p).push(el); });
+    byParent.forEach(function(cards, parent){
+      gsap.set(cards, { opacity: 0, y: 30 });
+      gsap.to(cards, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08, scrollTrigger: { trigger: parent, start: 'top 88%', once: true } });
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

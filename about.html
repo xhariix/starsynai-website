@@ -1193,7 +1193,7 @@ function joinAcademy() {
 // WHATSAPP
 // =============================================
 function openWhatsApp() {
-  window.open(`https://wa.me/918838248494?text=${encodeURIComponent("Hi StarSyn AI! I'm interested in learning more about your services.")}`, '_blank');
+  window.open(`https://wa.me/917867838938?text=${encodeURIComponent("Hi StarSyn AI! I'm interested in learning more about your services.")}`, '_blank');
 }
 
 // =============================================
@@ -1808,7 +1808,7 @@ function submitBuildPrompt() {
   }
   
   // Open Whatsapp window over new tab with uri encoding
-  window.open("https://wa.me/918838248494?text=" + encodeURIComponent(fullMessage), "_blank");
+  window.open("https://wa.me/917867838938?text=" + encodeURIComponent(fullMessage), "_blank");
   
   // Clean up
   closeCaseStudyModal();
@@ -1886,5 +1886,25 @@ function submitBuildPrompt() {
   animateNet();
 })();
 </script>
+<!-- CARD STAGGER REVEAL — enhances grids site-wide -->
+<script>
+(function initCardStaggerReveal(){
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+  var selectors = ['.tcard', '.pcard', '.scard', '.cert-card', '.placement-card', '.format-card', '.duration-card', '.blog-card', '.ml-card', '.aaa-card', '.how-step'];
+  selectors.forEach(function(sel){
+    var els = document.querySelectorAll(sel);
+    if (!els.length) return;
+    var byParent = new Map();
+    els.forEach(function(el){ var p = el.parentElement; if (!byParent.has(p)) byParent.set(p, []); byParent.get(p).push(el); });
+    byParent.forEach(function(cards, parent){
+      gsap.set(cards, { opacity: 0, y: 30 });
+      gsap.to(cards, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08, scrollTrigger: { trigger: parent, start: 'top 88%', once: true } });
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

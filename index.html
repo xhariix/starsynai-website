@@ -32,7 +32,7 @@ gtag('config', 'G-5E94DWD6KF');
     "logo": "https://www.starsynai.com/favicon.svg",
     "description": "AI automation agency building intelligent agents and workflows for creators, startups, and enterprises.",
     "founder": {"@type": "Person", "name": "Hariharan Murthy", "jobTitle": "Founder & CEO", "sameAs": "https://www.linkedin.com/in/hariharan-murthy/"},
-    "contactPoint": {"@type": "ContactPoint", "telephone": "+91-88382-48494", "email": "connect@starsynai.com", "contactType": "customer service"},
+    "contactPoint": {"@type": "ContactPoint", "telephone": "+91-78678-38938", "email": "connect@starsynai.com", "contactType": "customer service"},
     "areaServed": "Worldwide",
     "sameAs": [
       "https://www.linkedin.com/company/starsynai",
@@ -868,35 +868,127 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   </ul>
 </div>
 
-<!-- HERO -->
-<section class="hero" id="top">
+<!-- CINEMATIC INTRO — GlassOpener + 3 animal beats with GSAP ScrollTrigger -->
+<style>
+  .cinematic-intro { position: relative; height: 620vh; background: #000; z-index: 1; }
+  .ci-sticky { position: sticky; top: 0; width: 100%; height: 100vh; height: 100svh; overflow: hidden; background: #000; display: flex; align-items: center; justify-content: center; }
+  .ci-bg-gradient { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse at center, #0a1628 0%, #020613 55%, #000 100%); }
+  .ci-opener { position: absolute; inset: 0; z-index: 1; display: flex; align-items: center; justify-content: center; pointer-events: none; transform-origin: center; }
+  .ci-opener-glow { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(70vh, 700px); height: min(70vh, 700px); border-radius: 50%; filter: blur(60px); background: radial-gradient(circle, rgba(56,189,248,0.10) 0%, rgba(56,189,248,0.03) 45%, transparent 72%); animation: ci-breathe 8s ease-in-out infinite; }
+  @keyframes ci-breathe { 0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.04); } }
+  .ci-wordmark { position: relative; z-index: 2; font-family: var(--serif); font-weight: 700; font-size: clamp(3rem, 9vw, 7rem); line-height: 1; letter-spacing: -1px; text-align: center; color: #f0f9ff; animation: ci-fade-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes ci-fade-in { from { opacity: 0; transform: translateY(20px); filter: blur(12px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+  .ci-wordmark .ci-grad { background: linear-gradient(135deg, #67e8f9 0%, #a5f3fc 50%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .ci-video { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; opacity: 0; filter: saturate(0.6) contrast(1.18) brightness(0.62); will-change: opacity, transform; transform: scale(1); }
+  .ci-vignette { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 78%, rgba(0,0,0,0.95) 100%); }
+  .ci-grade { position: absolute; inset: 0; z-index: 3; pointer-events: none; mix-blend-mode: overlay; background: linear-gradient(180deg, rgba(56,189,248,0.14) 0%, transparent 40%, transparent 60%, rgba(6,182,212,0.12) 100%); }
+  .ci-text { position: absolute; z-index: 30; max-width: 92vw; padding: 0 1rem; font-family: var(--serif); font-size: clamp(3rem, 9vw, 7rem); font-weight: 700; line-height: 0.95; letter-spacing: -1px; text-align: center; margin: 0; opacity: 0; transform: translateY(40px) scale(0.96); filter: blur(14px); background: linear-gradient(135deg, #67e8f9 0%, #a5f3fc 50%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; will-change: opacity, transform, filter; }
+  .ci-hint { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; font-size: 0.7rem; letter-spacing: 3px; color: rgba(240,249,255,0.6); pointer-events: none; }
+  .ci-hint-arrow { width: 1.5rem; height: 2.5rem; border: 1px solid rgba(103,232,249,0.5); border-radius: 999px; display: flex; justify-content: center; padding-top: 0.5rem; animation: ci-bounce 2s ease-in-out infinite; }
+  .ci-hint-arrow::before { content: ''; display: block; width: 0.25rem; height: 0.375rem; background: #67e8f9; border-radius: 2px; }
+  @keyframes ci-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
 
-  <!-- STARSYN LOGO WATERMARK — large, low opacity, centered behind content -->
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);z-index:0;pointer-events:none;">
-    <!-- Outer glow bloom -->
-    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,0.07) 0%,transparent 70%);"></div>
-    <svg viewBox="0 0 100 110" width="380" height="418" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.025;filter:drop-shadow(0 0 20px rgba(56,189,248,0.2));">
-      <!-- 6-point star large -->
-      <polygon
-        points="50,6 57,34 86,34 63,51 71,79 50,62 29,79 37,51 14,34 43,34"
-        stroke="#67e8f9" stroke-width="2.5"
-        fill="rgba(56,189,248,0.18)"
-        stroke-linejoin="round"/>
-      <!-- syn text -->
-      <text x="50" y="100" text-anchor="middle" font-family="Times New Roman,Georgia,serif" font-size="18" font-weight="700" fill="#38bdf8" letter-spacing="4" opacity="0.9">syn</text>
-    </svg>
+  /* ===== Mobile responsiveness for cinematic ===== */
+  @media (max-width: 900px) {
+    .cinematic-intro { height: 520vh; }
+  }
+  @media (max-width: 768px) {
+    .cinematic-intro { height: 480vh; }
+    .ci-wordmark { font-size: clamp(2.4rem, 13vw, 4.5rem); }
+    .ci-text { font-size: clamp(2.2rem, 12vw, 5rem); line-height: 1.02; padding: 0 0.75rem; letter-spacing: -0.5px; }
+    .ci-opener-glow { width: min(55vh, 420px); height: min(55vh, 420px); filter: blur(48px); }
+    .ci-hint { bottom: 1.5rem; font-size: 0.62rem; letter-spacing: 2px; gap: 0.5rem; }
+    .ci-hint-arrow { width: 1.25rem; height: 2rem; padding-top: 0.375rem; }
+  }
+  @media (max-width: 480px) {
+    .cinematic-intro { height: 420vh; }
+    .ci-wordmark { font-size: clamp(2rem, 15vw, 3.6rem); }
+    .ci-text { font-size: clamp(1.8rem, 12vw, 3.6rem); padding: 0 0.5rem; }
+    #ci-text-amplify { font-size: clamp(1.6rem, 10vw, 3.2rem); line-height: 1.08; }
+  }
+  /* Respect OS-level reduced-motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .ci-opener-glow, .ci-hint-arrow, .ci-wordmark { animation: none !important; }
+  }
+</style>
+<section class="cinematic-intro" id="top">
+  <div class="ci-sticky">
+    <div class="ci-bg-gradient"></div>
+    <div class="ci-opener" id="ci-opener">
+      <div class="ci-opener-glow"></div>
+      <h1 class="ci-wordmark"><span>Star</span><span class="ci-grad">Syn</span><span>&nbsp;AI</span></h1>
+    </div>
+    <video class="ci-video" id="ci-vid-walk" src="assets/videos/02-cheetah-walk.mp4" autoplay muted loop playsinline preload="auto"></video>
+    <video class="ci-video" id="ci-vid-sprint" src="assets/videos/04-cheetah-sprint.mp4" autoplay muted loop playsinline preload="auto"></video>
+    <video class="ci-video" id="ci-vid-horse" src="assets/videos/04-horse-amplify.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <div class="ci-vignette"></div>
+    <div class="ci-grade"></div>
+    <h2 class="ci-text" id="ci-text-augment">AUGMENT AI</h2>
+    <h2 class="ci-text" id="ci-text-automate">AUTOMATE</h2>
+    <h2 class="ci-text" id="ci-text-amplify">AMPLIFY HUMAN INTELLIGENCE</h2>
+    <div class="ci-hint" id="ci-hint">
+      <span>SCROLL</span>
+      <div class="ci-hint-arrow"></div>
+    </div>
   </div>
-  
-  <canvas id="hero-net-canvas" style="position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; opacity:0.65;"></canvas>
-  
-  <div class="tool-tile tt1"><svg viewBox="0 0 40 40" width="28" height="28" fill="none"><circle cx="10" cy="20" r="4" stroke="#38bdf8" stroke-width="1.5"/><circle cx="30" cy="10" r="4" stroke="#38bdf8" stroke-width="1.5"/><circle cx="30" cy="30" r="4" stroke="#38bdf8" stroke-width="1.5"/><line x1="14" y1="18" x2="26" y2="12" stroke="#38bdf8" stroke-width="1.5"/><line x1="14" y1="22" x2="26" y2="28" stroke="#38bdf8" stroke-width="1.5"/></svg></div>
-  <div class="tool-tile tt2"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><polygon points="20,5 33,12.5 33,27.5 20,35 7,27.5 7,12.5" stroke="#67e8f9" stroke-width="1.5"/><circle cx="20" cy="20" r="5" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
-  <div class="tool-tile tt3"><svg viewBox="0 0 40 40" width="28" height="28" fill="none"><path d="M22 5 L12 22 L20 22 L18 35 L28 18 L20 18 Z" stroke="#38bdf8" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-  <div class="tool-tile tt4"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><rect x="16" y="8" width="8" height="15" rx="4" stroke="#67e8f9" stroke-width="1.5"/><path d="M10 22 Q10 30 20 30 Q30 30 30 22" stroke="#67e8f9" stroke-width="1.5"/><line x1="20" y1="30" x2="20" y2="35" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
-  <div class="tool-tile tt5"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><rect x="5" y="8" width="30" height="24" rx="3" stroke="#38bdf8" stroke-width="1.5"/><line x1="5" y1="16" x2="35" y2="16" stroke="#38bdf8" stroke-width="1.5"/><line x1="5" y1="24" x2="35" y2="24" stroke="#38bdf8" stroke-width="1.5"/><line x1="18" y1="8" x2="18" y2="32" stroke="#38bdf8" stroke-width="1.5"/></svg></div>
-  <div class="tool-tile tt6"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><ellipse cx="20" cy="13" rx="12" ry="5" stroke="#67e8f9" stroke-width="1.5"/><path d="M8 13 L8 27 Q8 32 20 32 Q32 32 32 27 L32 13" stroke="#67e8f9" stroke-width="1.5"/><path d="M8 20 Q8 25 20 25 Q32 25 32 20" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
-  <div class="tool-tile tt7"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><rect x="8" y="14" width="24" height="18" rx="4" stroke="#38bdf8" stroke-width="1.5"/><line x1="20" y1="8" x2="20" y2="14" stroke="#38bdf8" stroke-width="1.5"/><circle cx="20" cy="7" r="2" stroke="#38bdf8" stroke-width="1.5"/><circle cx="15" cy="22" r="2.5" stroke="#38bdf8" stroke-width="1.5"/><circle cx="25" cy="22" r="2.5" stroke="#38bdf8" stroke-width="1.5"/></svg></div>
-  <div class="tool-tile tt8"><svg viewBox="0 0 40 40" width="26" height="26" fill="none"><polyline points="5,32 13,20 21,25 29,12 35,16" stroke="#67e8f9" stroke-width="1.5" stroke-linejoin="round"/><circle cx="13" cy="20" r="2" fill="#67e8f9"/><circle cx="21" cy="25" r="2" fill="#67e8f9"/><circle cx="29" cy="12" r="2" fill="#67e8f9"/></svg></div>
+</section>
+<script>
+(function initCinematic() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.cinematic-intro',
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 0.4,
+    }
+  });
+
+  // Opener fades out (0 -> 0.22), unmount isn't needed — GSAP opacity 0 + pointer-events none does the job
+  tl.to('#ci-opener', { opacity: 1, scale: 1.06, duration: 0.18, ease: 'none' }, 0)
+    .to('#ci-opener', { opacity: 0, duration: 0.04, ease: 'none' }, 0.18);
+
+  // Cheetah walk — AUGMENT AI (0.16 - 0.44)
+  tl.to('#ci-vid-walk', { opacity: 1, scale: 1.04, duration: 0.06, ease: 'none' }, 0.16)
+    .to('#ci-vid-walk', { scale: 1.1, duration: 0.22, ease: 'none' }, 0.22)
+    .to('#ci-vid-walk', { opacity: 0, duration: 0.06, ease: 'none' }, 0.38);
+  tl.to('#ci-text-augment', { opacity: 1, y: 0, scale: 1.02, filter: 'blur(0px)', duration: 0.06, ease: 'none' }, 0.22)
+    .to('#ci-text-augment', { scale: 1.04, duration: 0.16, ease: 'none' }, 0.28)
+    .to('#ci-text-augment', { opacity: 0, filter: 'blur(10px)', duration: 0.06, ease: 'none' }, 0.38);
+
+  // Cheetah sprint — AUTOMATE (0.40 - 0.66)
+  tl.to('#ci-vid-sprint', { opacity: 1, scale: 1.04, duration: 0.06, ease: 'none' }, 0.40)
+    .to('#ci-vid-sprint', { scale: 1.2, duration: 0.2, ease: 'none' }, 0.46)
+    .to('#ci-vid-sprint', { opacity: 0, duration: 0.06, ease: 'none' }, 0.60);
+  tl.to('#ci-text-automate', { opacity: 1, y: 0, scale: 1.02, filter: 'blur(0px)', duration: 0.06, ease: 'none' }, 0.46)
+    .to('#ci-text-automate', { scale: 1.04, duration: 0.14, ease: 'none' }, 0.52)
+    .to('#ci-text-automate', { opacity: 0, filter: 'blur(10px)', duration: 0.06, ease: 'none' }, 0.60);
+
+  // Horse gallop — AMPLIFY HUMAN INTELLIGENCE (0.62 - 1.0, longest hold)
+  tl.to('#ci-vid-horse', { opacity: 1, scale: 1.02, duration: 0.08, ease: 'none' }, 0.62)
+    .to('#ci-vid-horse', { scale: 1.18, duration: 0.3, ease: 'none' }, 0.70)
+    .to('#ci-vid-horse', { opacity: 0.35, duration: 0.04, ease: 'none' }, 0.96);
+  tl.to('#ci-text-amplify', { opacity: 1, y: 0, scale: 1.02, filter: 'blur(0px)', duration: 0.08, ease: 'none' }, 0.68)
+    .to('#ci-text-amplify', { scale: 1.08, duration: 0.2, ease: 'none' }, 0.76)
+    .to('#ci-text-amplify', { opacity: 0, filter: 'blur(6px)', duration: 0.04, ease: 'none' }, 0.96);
+
+  // Scroll hint fades out early
+  gsap.to('#ci-hint', {
+    opacity: 0,
+    scrollTrigger: {
+      trigger: '.cinematic-intro',
+      start: 'top top',
+      end: '12% top',
+      scrub: true,
+    }
+  });
+})();
+</script>
+
+<!-- HERO -->
+<section class="hero">
 
   <div class="hero-badge"><div class="badge-pulse"></div>StarSyn AI · Autonomy Engine</div>
   <h1>Automate Workflow, <span class="grad-text">Augment AI</span><br/>and Amplify Human Intelligence.</h1>
@@ -905,16 +997,17 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <button class="btn-lg primary" onclick="openConsultation()">Book Free Consultation →</button>
     <button class="btn-lg ghost" onclick="document.getElementById('portfolio-teaser').scrollIntoView({behavior:'smooth'})">▶ See What We Build</button>
   </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num counter" data-target="500" data-suffix="+">0+</div><div class="stat-label">Workflows Deployed</div></div>
-    <div class="stat-divider"></div>
-    <div class="stat"><div class="stat-num counter" data-target="10" data-suffix="×">0×</div><div class="stat-label">Avg Productivity Gain</div></div>
-    <div class="stat-divider"></div>
-    <div class="stat"><div class="stat-num counter" data-target="48" data-suffix="h">0h</div><div class="stat-label">Average Build Time</div></div>
-    <div class="stat-divider"></div>
-    <div class="stat"><div class="stat-num counter" data-target="12" data-suffix="+">0+</div><div class="stat-label">Industries Served</div></div>
-  </div>
 
+</section>
+
+<!-- MISSION — AI within reach for students & individuals -->
+<section class="section-pad reveal" style="position:relative;text-align:center;overflow:hidden;">
+  <div aria-hidden style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,0.08) 0%,rgba(56,189,248,0.02) 45%,transparent 72%);filter:blur(60px);pointer-events:none;z-index:0;"></div>
+  <div class="container" style="position:relative;z-index:1;max-width:800px;">
+    <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>Our Primary Goal<div class="eyebrow-line"></div></div>
+    <h2 class="section-title" style="margin-bottom:1.25rem;">AI, <span class="grad-text">Made Reachable</span><br/>for Students &amp; Individuals</h2>
+    <p class="section-sub" style="max-width:640px;margin:0 auto;color:var(--text2);font-size:1.05rem;line-height:1.8;">A primary goal at StarSyn AI is to put intelligent automation within reach of everyone — not just enterprises with six-figure budgets. Students learning the craft, solo creators building alone, and small teams shipping fast: this is who we build for.</p>
+  </div>
 </section>
 
 <!-- TRUST BAR -->
@@ -993,7 +1086,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   <p style="color:var(--text2); font-size:0.85rem; line-height:1.5; margin-bottom:15px;">Just a single email or WhatsApp message could completely change your business.</p>
   <div style="display:flex; gap:10px;">
     <a href="mailto:connect@starsynai.com" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding:8px 16px; font-size:0.85rem; border-radius:8px; text-decoration:none; display:inline-flex; align-items:center;">Email Us</a>
-    <a href="https://wa.me/918838248494?text=Hi%20StarSyn%20AI!%20I'm%20interested%20in%20learning%20more." target="_blank" rel="noopener noreferrer" class="btn-ghost" style="padding:8px 16px; font-size:0.85rem; text-decoration:none; display:inline-flex; align-items:center; border:1px solid rgba(255,255,255,0.1); border-radius:8px;">WhatsApp</a>
+    <a href="https://wa.me/917867838938?text=Hi%20StarSyn%20AI!%20I'm%20interested%20in%20learning%20more." target="_blank" rel="noopener noreferrer" class="btn-ghost" style="padding:8px 16px; font-size:0.85rem; text-decoration:none; display:inline-flex; align-items:center; border:1px solid rgba(255,255,255,0.1); border-radius:8px;">WhatsApp</a>
   </div>
   <button onclick="document.getElementById('service-toast').style.right='-450px'" style="position:absolute; top:12px; right:12px; background:none; border:none; color:var(--text3); cursor:pointer; font-size:1rem; padding:4px;">✕</button>
 </div>
@@ -1780,7 +1873,7 @@ function joinAcademy() {
 // WHATSAPP
 // =============================================
 function openWhatsApp() {
-  window.open(`https://wa.me/918838248494?text=${encodeURIComponent("Hi StarSyn AI! I'm interested in learning more about your services.")}`, '_blank');
+  window.open(`https://wa.me/917867838938?text=${encodeURIComponent("Hi StarSyn AI! I'm interested in learning more about your services.")}`, '_blank');
 }
 
 // =============================================
@@ -2395,7 +2488,7 @@ function submitBuildPrompt() {
   }
   
   // Open Whatsapp window over new tab with uri encoding
-  window.open("https://wa.me/918838248494?text=" + encodeURIComponent(fullMessage), "_blank");
+  window.open("https://wa.me/917867838938?text=" + encodeURIComponent(fullMessage), "_blank");
   
   // Clean up
   closeCaseStudyModal();

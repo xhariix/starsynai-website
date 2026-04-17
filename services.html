@@ -806,7 +806,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   <p style="color:var(--text2); font-size:0.85rem; line-height:1.5; margin-bottom:15px;">Just a single email or WhatsApp message could completely change your business.</p>
   <div style="display:flex; gap:10px;">
     <a href="mailto:connect@starsynai.com" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding:8px 16px; font-size:0.85rem; border-radius:8px; text-decoration:none; display:inline-flex; align-items:center;">Email Us</a>
-    <a href="https://wa.me/918838248494?text=Hi%20StarSyn%20AI!%20I'm%20interested%20in%20learning%20more." target="_blank" rel="noopener noreferrer" class="btn-ghost" style="padding:8px 16px; font-size:0.85rem; text-decoration:none; display:inline-flex; align-items:center; border:1px solid rgba(255,255,255,0.1); border-radius:8px;">WhatsApp</a>
+    <a href="https://wa.me/917867838938?text=Hi%20StarSyn%20AI!%20I'm%20interested%20in%20learning%20more." target="_blank" rel="noopener noreferrer" class="btn-ghost" style="padding:8px 16px; font-size:0.85rem; text-decoration:none; display:inline-flex; align-items:center; border:1px solid rgba(255,255,255,0.1); border-radius:8px;">WhatsApp</a>
   </div>
   <button onclick="sessionStorage.setItem('ss_toast_dismissed','1');document.getElementById('service-toast').style.right='-450px'" style="position:absolute; top:12px; right:12px; background:none; border:none; color:var(--text3); cursor:pointer; font-size:1rem; padding:4px;">✕</button>
 </div>
@@ -1429,7 +1429,7 @@ function joinAcademy() {
 // WHATSAPP
 // =============================================
 function openWhatsApp() {
-  window.open(`https://wa.me/918838248494?text=${encodeURIComponent("Hi StarSyn AI! I'm interested in learning more about your services.")}`, '_blank');
+  window.open(`https://wa.me/917867838938?text=${encodeURIComponent("Hi StarSyn AI! I'm interested in learning more about your services.")}`, '_blank');
 }
 
 // =============================================
@@ -2028,7 +2028,7 @@ function submitBuildPrompt() {
   }
   
   // Open Whatsapp window over new tab with uri encoding
-  window.open("https://wa.me/918838248494?text=" + encodeURIComponent(fullMessage), "_blank");
+  window.open("https://wa.me/917867838938?text=" + encodeURIComponent(fullMessage), "_blank");
   
   // Clean up
   closeCaseStudyModal();
@@ -2106,5 +2106,25 @@ function submitBuildPrompt() {
   animateNet();
 })();
 </script>
+<!-- CARD STAGGER REVEAL — enhances grids site-wide -->
+<script>
+(function initCardStaggerReveal(){
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+  var selectors = ['.tcard', '.pcard', '.scard', '.cert-card', '.placement-card', '.format-card', '.duration-card', '.blog-card', '.ml-card', '.aaa-card', '.how-step'];
+  selectors.forEach(function(sel){
+    var els = document.querySelectorAll(sel);
+    if (!els.length) return;
+    var byParent = new Map();
+    els.forEach(function(el){ var p = el.parentElement; if (!byParent.has(p)) byParent.set(p, []); byParent.get(p).push(el); });
+    byParent.forEach(function(cards, parent){
+      gsap.set(cards, { opacity: 0, y: 30 });
+      gsap.to(cards, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08, scrollTrigger: { trigger: parent, start: 'top 88%', once: true } });
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
