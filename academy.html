@@ -129,6 +129,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .logo-svg-wrap{position:relative;width:38px;height:38px;flex-shrink:0;}
 .logo-svg-wrap svg{width:38px;height:38px;}
 .logo-name{color:var(--text);white-space:nowrap;}
+/* Intake status - a real running count and a real next date, not vague scarcity. */
+.intake{display:inline-flex;align-items:center;flex-wrap:wrap;gap:.55rem .9rem;margin-top:1.15rem;
+  padding:.55rem 1.05rem;border-radius:999px;border:1px solid rgba(56,189,248,.26);
+  background:rgba(56,189,248,.07);font-size:.83rem;color:var(--text2);}
+.intake-live{display:inline-flex;align-items:center;gap:.45rem;color:var(--green);font-weight:600;}
+.intake-live i{width:7px;height:7px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px rgba(74,222,128,.8);font-style:normal;animation:pulse 2s infinite;}
+.intake-sep{width:1px;height:14px;background:rgba(255,255,255,.16);}
+.intake b{color:var(--text);font-weight:600;}
+@media(max-width:520px){.intake{border-radius:14px;}.intake-sep{display:none;}}
+
 @media(max-width:600px){/* Logo + CTA + hamburger will not fit; the mobile menu already carries the same Book Free Call action. */.nav-right .btn-primary{display:none;}.logo-name{font-size:1.15rem;}}
 .logo-name span{color:var(--accent3);}
 .nav-links{display:flex;gap:2rem;list-style:none;}
@@ -922,6 +933,11 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     <div class="reveal">
       <div class="eyebrow"><div class="eyebrow-line"></div>Learn & Intern</div>
       <h1 class="section-title">StarSyn AI Academy —<br/>Build Agents. Get Certified.</h1>
+      <div class="intake">
+        <span class="intake-live"><i></i>2 batches running now</span>
+        <span class="intake-sep"></span>
+        <span>Next intake starts <b>5 October 2026</b></span>
+      </div>
     </div>
     <div class="academy-hero-img reveal">
       <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&auto=format&fit=crop" alt="Students learning AI automation" loading="lazy"/>
