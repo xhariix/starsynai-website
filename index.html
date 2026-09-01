@@ -698,7 +698,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   .intro-skip{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-family:var(--sans);
     font-size:.66rem;letter-spacing:3px;text-transform:uppercase;color:rgba(240,249,255,.34);opacity:0;}
   /* The hero's rotating mark, where the intro star lands. */
-  .hero-mark{width:clamp(158px,19vw,248px);height:clamp(158px,19vw,248px);margin:0 auto .5rem;position:relative;}
+  .hero-mark{width:clamp(178px,21.5vw,286px);height:clamp(178px,21.5vw,286px);margin:0 auto 1.6rem;position:relative;}
   /* 'syn' sits behind the star and turns with it — the scaleX is driven from
      the same rotation the WebGL mark uses, so the two stay in step. */
   .hero-syn{position:absolute;left:50%;top:87%;transform:translate(-50%,-50%);z-index:0;pointer-events:none;
@@ -706,11 +706,11 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     font-size:clamp(2.4rem,5.4vw,4.2rem);color:var(--accent3);opacity:.32;will-change:transform,opacity;}
   #heroStar{position:relative;z-index:1;}
   .hero-wordmark{font-family:var(--serif);font-weight:700;letter-spacing:-.5px;line-height:1;
-    font-size:clamp(1.55rem,3.4vw,2.6rem);color:var(--text);margin:0 auto 1.5rem;white-space:nowrap;}
+    font-size:clamp(1.2rem,2.5vw,1.95rem);color:var(--text);margin:0 auto 1.25rem;white-space:nowrap;}
   .hero-wordmark span{color:var(--accent3);}
   .hero-mark::before{content:'';position:absolute;left:50%;top:50%;width:175%;height:175%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;filter:blur(34px);z-index:-1;background:radial-gradient(circle,rgba(56,189,248,.22) 0%,rgba(56,189,248,.06) 45%,transparent 70%);}
   #heroStar{width:100%;height:100%;display:block;}
-  @media(max-width:900px){ .hero-mark{width:clamp(128px,32vw,168px);height:clamp(128px,32vw,168px);margin-bottom:.35rem;} }
+  @media(max-width:900px){ .hero-mark{width:clamp(146px,36vw,190px);height:clamp(146px,36vw,190px);margin-bottom:1.15rem;} }
   @media(max-width:900px){ .hero-syn{font-size:clamp(1.7rem,8.5vw,2.5rem);letter-spacing:1px;} }
 </style>
 
@@ -1132,7 +1132,7 @@ else initHeroStar();
     -webkit-mask-image:radial-gradient(ellipse 72% 62% at 50% 42%,#000 15%,transparent 76%);
     mask-image:radial-gradient(ellipse 72% 62% at 50% 42%,#000 15%,transparent 76%);}
   .hero-fade{position:absolute;left:0;right:0;bottom:0;height:180px;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent,#020613);}
-  .hero-inner{position:relative;z-index:2;width:100%;padding:5.25rem 0 2.5rem;text-align:center;}
+  .hero-inner{position:relative;z-index:2;width:100%;padding:4.5rem 0 2rem;text-align:center;}
   .hero-badge{display:inline-flex;align-items:center;gap:.6rem;padding:.4rem .9rem .4rem .55rem;border:1px solid rgba(56,189,248,.28);
     background:rgba(56,189,248,.07);border-radius:999px;font-size:.75rem;letter-spacing:.4px;color:var(--accent3);margin-bottom:1.4rem;backdrop-filter:blur(8px);}
   .hero-badge b{font-weight:600;color:#e0f7ff;}
