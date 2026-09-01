@@ -1038,42 +1038,36 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     transition:color .35s ease,border-color .35s ease,background .35s ease,transform .35s ease;}
   .mm-step i{font-style:normal;font-size:.68rem;opacity:.7;}
   .mm-step.active{color:#e0f7ff;border-color:rgba(56,189,248,.55);background:rgba(56,189,248,.10);transform:translateY(-2px);box-shadow:0 0 20px rgba(56,189,248,.14);}
-  .mm-stage{position:relative;z-index:2;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:1.5rem 1.5rem 0;}
-  .mm-svg{width:100%;max-width:1060px;height:100%;max-height:520px;overflow:visible;}
-  .mm-link{fill:none;stroke:rgba(56,189,248,.42);stroke-width:1.6;stroke-linecap:round;}
+  .mm-stage{position:relative;z-index:2;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:1.25rem 1rem 0;}
+  .mm-svg{width:100%;max-width:1060px;height:100%;overflow:visible;}
+  .mm-link{fill:none;stroke:rgba(56,189,248,.42);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
   .mm-node{transform-box:fill-box;transform-origin:center;}
   .mm-node rect{stroke-width:1.2;}
   .mm-branch rect{fill:rgba(56,189,248,.10);stroke:rgba(56,189,248,.48);}
   .mm-leaf rect{fill:rgba(255,255,255,.035);stroke:rgba(255,255,255,.15);}
   .mm-root rect{fill:rgba(56,189,248,.17);stroke:rgba(103,232,249,.6);}
-  .mm-node text{font-family:var(--sans);text-anchor:middle;dominant-baseline:middle;}
-  .mm-branch text{font-size:16px;font-weight:600;letter-spacing:2.4px;fill:#e0f7ff;}
-  .mm-root text{font-family:var(--serif);font-size:19px;font-weight:700;fill:#f0f9ff;letter-spacing:.2px;}
-  .mm-leaf text{font-size:13.5px;fill:rgba(240,249,255,.72);letter-spacing:.2px;}
+  .mm-node text{font-family:var(--sans);dominant-baseline:middle;}
+  .mm-branch text{font-weight:600;letter-spacing:2.4px;fill:#e0f7ff;}
+  .mm-root text{font-family:var(--serif);font-weight:700;fill:#f0f9ff;letter-spacing:.2px;}
+  .mm-leaf text{fill:rgba(240,249,255,.72);letter-spacing:.2px;}
   .mm-caption{position:relative;z-index:2;text-align:center;padding:0 1.5rem;min-height:5.25rem;flex:none;}
   .mm-cap{position:absolute;left:50%;transform:translateX(-50%);max-width:62ch;font-size:.98rem;line-height:1.65;color:var(--text2);opacity:0;transition:opacity .4s ease;}
   .mm-cap.active{opacity:1;}
-  /* Mobile: no scroll-jacking — plain vertical stepper */
-  .mm-mobile{display:none;}
+
   @media(max-width:860px){
-    .mm-sticky{display:none;}
-    .mm-wrap{height:auto !important;padding:4rem 0;}
-    .mm-mobile{display:block;}
-    .mm-m-head{text-align:center;margin-bottom:2.75rem;}
-    .mm-m-head h2{font-family:var(--serif);font-size:clamp(1.6rem,6.5vw,2.1rem);font-weight:700;color:var(--text);}
-    .mm-m-step{position:relative;padding:0 0 2.25rem 2.5rem;border-left:1px solid rgba(56,189,248,.22);}
-    .mm-m-step:last-child{border-left-color:transparent;padding-bottom:0;}
-    .mm-m-step::before{content:'';position:absolute;left:-6.5px;top:.35rem;width:12px;height:12px;border-radius:50%;
-      background:#020613;border:2px solid var(--accent);box-shadow:0 0 12px rgba(56,189,248,.5);}
-    .mm-m-num{font-size:.7rem;letter-spacing:2.4px;color:var(--accent3);text-transform:uppercase;margin-bottom:.35rem;}
-    .mm-m-step h3{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:.5rem;}
-    .mm-m-step p{font-size:.92rem;line-height:1.65;color:var(--text2);margin-bottom:.9rem;}
-    .mm-m-tags{display:flex;flex-wrap:wrap;gap:.45rem;}
-    .mm-m-tags span{font-size:.75rem;padding:.3rem .7rem;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text3);}
+    .mm-sticky{padding:4.75rem 0 1rem;}
+    .mm-head{padding:0 1.1rem;}
+    .mm-head h2{font-size:clamp(1.35rem,5.6vw,1.75rem);margin-bottom:.9rem;}
+    .mm-steps{gap:.35rem;}
+    .mm-step{padding:.34rem .7rem;font-size:.66rem;letter-spacing:1px;gap:.35rem;}
+    .mm-stage{padding:.75rem .35rem 0;}
+    .mm-caption{min-height:6.5rem;padding:0 1.1rem;}
+    .mm-cap{font-size:.88rem;line-height:1.6;}
+    .mm-link{stroke-width:1.4;}
   }
 </style>
 
-<section class="mm-wrap" id="approach" style="height:340vh;">
+<section class="mm-wrap" id="approach">
   <div class="mm-sticky">
     <div class="mm-head">
       <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>How we work<div class="eyebrow-line"></div></div>
@@ -1086,66 +1080,21 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     </div>
 
     <div class="mm-stage">
-      <svg class="mm-svg" id="mindmap" viewBox="0 0 1060 540" preserveAspectRatio="xMidYMid meet" role="img"
+      <!-- One map, two layouts. Geometry is applied by script so the phone gets a
+           real vertical mind map rather than a flattened list of the same nodes. -->
+      <svg class="mm-svg" id="mindmap" preserveAspectRatio="xMidYMid meet" role="img"
            aria-label="Mind map: StarSyn AI branches into Augment, Automate and Amplify, each with two areas of work.">
-        <!-- links -->
-        <path class="mm-link" data-stage="0" d="M 220 270 C 305 270, 305 120, 390 120"/>
-        <path class="mm-link" data-stage="0" d="M 560 120 C 645 120, 645 62, 730 62"/>
-        <path class="mm-link" data-stage="0" d="M 560 120 C 645 120, 645 152, 730 152"/>
-        <path class="mm-link" data-stage="1" d="M 220 270 C 305 270, 305 270, 390 270"/>
-        <path class="mm-link" data-stage="1" d="M 560 270 C 645 270, 645 224, 730 224"/>
-        <path class="mm-link" data-stage="1" d="M 560 270 C 645 270, 645 314, 730 314"/>
-        <path class="mm-link" data-stage="2" d="M 220 270 C 305 270, 305 420, 390 420"/>
-        <path class="mm-link" data-stage="2" d="M 560 420 C 645 420, 645 386, 730 386"/>
-        <path class="mm-link" data-stage="2" d="M 560 420 C 645 420, 645 476, 730 476"/>
-
-        <!-- root -->
-        <g class="mm-node mm-root" data-stage="0">
-          <rect x="45" y="243" width="175" height="54" rx="27"/>
-          <text x="132.5" y="271">StarSyn AI</text>
-        </g>
-
-        <!-- branch 01 -->
-        <g class="mm-node mm-branch" data-stage="0">
-          <rect x="390" y="93" width="170" height="54" rx="27"/>
-          <text x="475" y="121">AUGMENT</text>
-        </g>
-        <g class="mm-node mm-leaf" data-stage="0">
-          <rect x="730" y="39" width="225" height="46" rx="23"/>
-          <text x="842.5" y="63">AI copilots for your team</text>
-        </g>
-        <g class="mm-node mm-leaf" data-stage="0">
-          <rect x="730" y="129" width="225" height="46" rx="23"/>
-          <text x="842.5" y="153">Research, drafting &amp; review</text>
-        </g>
-
-        <!-- branch 02 -->
-        <g class="mm-node mm-branch" data-stage="1">
-          <rect x="390" y="243" width="170" height="54" rx="27"/>
-          <text x="475" y="271">AUTOMATE</text>
-        </g>
-        <g class="mm-node mm-leaf" data-stage="1">
-          <rect x="730" y="201" width="225" height="46" rx="23"/>
-          <text x="842.5" y="225">End-to-end workflows</text>
-        </g>
-        <g class="mm-node mm-leaf" data-stage="1">
-          <rect x="730" y="291" width="225" height="46" rx="23"/>
-          <text x="842.5" y="315">Agents wired to your tools</text>
-        </g>
-
-        <!-- branch 03 -->
-        <g class="mm-node mm-branch" data-stage="2">
-          <rect x="390" y="393" width="170" height="54" rx="27"/>
-          <text x="475" y="421">AMPLIFY</text>
-        </g>
-        <g class="mm-node mm-leaf" data-stage="2">
-          <rect x="730" y="363" width="225" height="46" rx="23"/>
-          <text x="842.5" y="387">Dashboards you can trust</text>
-        </g>
-        <g class="mm-node mm-leaf" data-stage="2">
-          <rect x="730" y="453" width="225" height="46" rx="23"/>
-          <text x="842.5" y="477">Training so your team owns it</text>
-        </g>
+        <g id="mmLinks"></g>
+        <g class="mm-node mm-root" data-stage="0"><rect/><text>StarSyn AI</text></g>
+        <g class="mm-node mm-branch" data-stage="0"><rect/><text>AUGMENT</text></g>
+        <g class="mm-node mm-leaf"   data-stage="0"><rect/><text>AI copilots for your team</text></g>
+        <g class="mm-node mm-leaf"   data-stage="0"><rect/><text>Research, drafting &amp; review</text></g>
+        <g class="mm-node mm-branch" data-stage="1"><rect/><text>AUTOMATE</text></g>
+        <g class="mm-node mm-leaf"   data-stage="1"><rect/><text>End-to-end workflows</text></g>
+        <g class="mm-node mm-leaf"   data-stage="1"><rect/><text>Agents wired to your tools</text></g>
+        <g class="mm-node mm-branch" data-stage="2"><rect/><text>AMPLIFY</text></g>
+        <g class="mm-node mm-leaf"   data-stage="2"><rect/><text>Dashboards you can trust</text></g>
+        <g class="mm-node mm-leaf"   data-stage="2"><rect/><text>Training so your team owns it</text></g>
       </svg>
     </div>
 
@@ -1155,97 +1104,164 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
       <p class="mm-cap" data-step="2">What&rsquo;s left is capacity. Clear dashboards, measurable output, and a team trained to extend the system without us.</p>
     </div>
   </div>
-
-  <!-- Mobile stepper -->
-  <div class="mm-mobile">
-    <div class="container">
-      <div class="mm-m-head reveal">
-        <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>How we work<div class="eyebrow-line"></div></div>
-        <h2>Three moves, one connected system</h2>
-      </div>
-      <div class="mm-m-step reveal">
-        <div class="mm-m-num">01 &middot; Augment</div>
-        <h3>Give every role an assistant</h3>
-        <p>We start beside your people, not instead of them &mdash; handling the reading, drafting and checking.</p>
-        <div class="mm-m-tags"><span>AI copilots</span><span>Research &amp; drafting</span></div>
-      </div>
-      <div class="mm-m-step reveal">
-        <div class="mm-m-num">02 &middot; Automate</div>
-        <h3>Take the repeatable work off the desk</h3>
-        <p>Workflows and agents connected straight into the tools you already pay for.</p>
-        <div class="mm-m-tags"><span>End-to-end workflows</span><span>Agents on your stack</span></div>
-      </div>
-      <div class="mm-m-step reveal">
-        <div class="mm-m-num">03 &middot; Amplify</div>
-        <h3>Turn saved hours into output</h3>
-        <p>Clear dashboards, measurable output, and a team trained to extend the system without us.</p>
-        <div class="mm-m-tags"><span>Dashboards</span><span>Team enablement</span></div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <script>
-/* MIND MAP — scroll-scrubbed branch reveal (replaces the old video sequence) */
+/* MIND MAP — one map, a wide layout on desktop and a vertical one on phones,
+   both drawn in as you scroll. */
 (function initMindMap(){
-  const svg = document.getElementById('mindmap');
+  const svg  = document.getElementById('mindmap');
   const wrap = document.querySelector('.mm-wrap');
   if (!svg || !wrap) return;
 
   const steps = Array.from(document.querySelectorAll('.mm-step'));
   const caps  = Array.from(document.querySelectorAll('.mm-cap'));
-  const links = Array.from(svg.querySelectorAll('.mm-link'));
   const nodes = Array.from(svg.querySelectorAll('.mm-node'));
+  const linkG = document.getElementById('mmLinks');
+  const NS    = 'http://www.w3.org/2000/svg';
+
+  // node order: root, b1, l1a, l1b, b2, l2a, l2b, b3, l3a, l3b
+  const WIDE = {
+    viewBox:'0 0 1060 540',
+    font:{root:19,branch:16,leaf:13.5},
+    anchor:'middle',
+    boxes:[
+      [45,243,175,54],   [390,93,170,54],  [730,39,225,46],  [730,129,225,46],
+      [390,243,170,54],  [730,201,225,46], [730,291,225,46],
+      [390,393,170,54],  [730,363,225,46], [730,453,225,46],
+    ],
+    links:[
+      [0,'M 220 270 C 305 270, 305 120, 390 120'],
+      [0,'M 560 120 C 645 120, 645 62, 730 62'],
+      [0,'M 560 120 C 645 120, 645 152, 730 152'],
+      [1,'M 220 270 C 305 270, 305 270, 390 270'],
+      [1,'M 560 270 C 645 270, 645 224, 730 224'],
+      [1,'M 560 270 C 645 270, 645 314, 730 314'],
+      [2,'M 220 270 C 305 270, 305 420, 390 420'],
+      [2,'M 560 420 C 645 420, 645 386, 730 386'],
+      [2,'M 560 420 C 645 420, 645 476, 730 476'],
+    ],
+  };
+
+  // Portrait: a trunk down the left with each branch and its two leaves hanging off it.
+  const TALL = {
+    viewBox:'0 0 360 646',
+    font:{root:16,branch:14,leaf:12},
+    anchor:'start',
+    boxes:[
+      [95,8,170,44],
+      [26,94,310,46],  [58,152,278,38], [58,198,278,38],
+      [26,284,310,46], [58,342,278,38], [58,388,278,38],
+      [26,474,310,46], [58,532,278,38], [58,578,278,38],
+    ],
+    links:[
+      [0,'M 180 52 C 180 76, 10 72, 10 117'],
+      [0,'M 10 117 H 26'],
+      [0,'M 42 140 V 171 H 58'],
+      [0,'M 42 140 V 217 H 58'],
+      [1,'M 10 117 V 307 H 26'],
+      [1,'M 42 330 V 361 H 58'],
+      [1,'M 42 330 V 407 H 58'],
+      [2,'M 10 307 V 497 H 26'],
+      [2,'M 42 520 V 551 H 58'],
+      [2,'M 42 520 V 597 H 58'],
+    ],
+  };
+
+  let links = [], tl = null, layoutName = '';
+
+  function applyLayout(L, name){
+    if (layoutName === name) return false;
+    layoutName = name;
+    svg.setAttribute('viewBox', L.viewBox);
+
+    nodes.forEach((g, i) => {
+      const [x, y, w, h] = L.boxes[i];
+      const r = g.querySelector('rect'), t = g.querySelector('text');
+      r.setAttribute('x', x); r.setAttribute('y', y);
+      r.setAttribute('width', w); r.setAttribute('height', h);
+      r.setAttribute('rx', h / 2);
+      const leaf = g.classList.contains('mm-leaf');
+      // Leaf copy is the longest, so on the narrow layout it reads left-aligned.
+      const start = leaf && L.anchor === 'start';
+      t.setAttribute('text-anchor', start ? 'start' : 'middle');
+      t.setAttribute('x', start ? x + h * 0.55 : x + w / 2);
+      t.setAttribute('y', y + h / 2);
+      t.setAttribute('font-size',
+        g.classList.contains('mm-root')   ? L.font.root :
+        g.classList.contains('mm-branch') ? L.font.branch : L.font.leaf);
+    });
+
+    linkG.textContent = '';
+    links = L.links.map(([stage, d]) => {
+      const p = document.createElementNS(NS, 'path');
+      p.setAttribute('class', 'mm-link');
+      p.setAttribute('d', d);
+      p.dataset.stage = stage;
+      linkG.appendChild(p);
+      return p;
+    });
+    return true;
+  }
 
   function setStep(i){
     steps.forEach((s, n) => s.classList.toggle('active', n === i));
     caps.forEach((c, n) => c.classList.toggle('active', n === i));
   }
 
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const mobile  = window.matchMedia('(max-width: 860px)').matches;
-
-  if (reduced || mobile || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined'){
-    links.forEach(p => { p.style.strokeDashoffset = 0; });
-    nodes.forEach(g => { g.style.opacity = 1; });
-    setStep(0);
-    return;
+  function showAll(){
+    links.forEach(p => { p.style.strokeDasharray = 'none'; p.style.strokeDashoffset = 0; });
+    nodes.forEach(g => { g.style.opacity = 1; g.style.transform = 'none'; });
   }
 
-  gsap.registerPlugin(ScrollTrigger);
+  function build(){
+    const mobile = window.matchMedia('(max-width: 860px)').matches;
+    const changed = applyLayout(mobile ? TALL : WIDE, mobile ? 'tall' : 'wide');
+    if (!changed) return;
 
-  links.forEach(p => {
-    const L = p.getTotalLength();
-    p.style.strokeDasharray = L;
-    p.style.strokeDashoffset = L;
-  });
-  gsap.set(nodes, { opacity: 0, scale: 0.92 });
+    // The vertical map is taller than it is wide, so the section needs more
+    // scroll on a phone for the same three beats to breathe.
+    wrap.style.height = mobile ? '300vh' : '340vh';
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: wrap,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 0.5,
-      onUpdate: self => setStep(Math.min(2, Math.floor(self.progress * 3.001)))
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (tl){ tl.scrollTrigger && tl.scrollTrigger.kill(); tl.kill(); tl = null; }
+
+    if (reduced || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined'){
+      showAll(); setStep(0); return;
     }
-  });
 
-  // Root appears first, then each branch draws in its own third of the scroll
-  tl.to(nodes.filter(n => n.classList.contains('mm-root')), { opacity: 1, scale: 1, duration: 0.06 }, 0.01);
+    gsap.registerPlugin(ScrollTrigger);
+    links.forEach(p => {
+      const len = p.getTotalLength();
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+    });
+    gsap.set(nodes, { opacity: 0, scale: 0.92 });
 
-  [0, 1, 2].forEach(stage => {
-    const at = 0.08 + stage * 0.30;
-    const sLinks = links.filter(p => p.dataset.stage === String(stage));
-    const sNodes = nodes.filter(n => n.dataset.stage === String(stage) && !n.classList.contains('mm-root'));
-    tl.to(sLinks, { strokeDashoffset: 0, duration: 0.16, stagger: 0.03, ease: 'none' }, at);
-    tl.to(sNodes, { opacity: 1, scale: 1, duration: 0.10, stagger: 0.045, ease: 'power2.out' }, at + 0.05);
-  });
+    tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: wrap, start: 'top top', end: 'bottom bottom', scrub: 0.5,
+        onUpdate: self => setStep(Math.min(2, Math.floor(self.progress * 3.001)))
+      }
+    });
 
-  // Everything settles lit at the end
-  tl.to('.mm-link', { stroke: 'rgba(103,232,249,0.6)', duration: 0.08, ease: 'none' }, 0.9);
+    tl.to(nodes.filter(n => n.classList.contains('mm-root')), { opacity: 1, scale: 1, duration: 0.06 }, 0.01);
+    [0, 1, 2].forEach(stage => {
+      const at = 0.08 + stage * 0.30;
+      const sL = links.filter(p => p.dataset.stage === String(stage));
+      const sN = nodes.filter(n => n.dataset.stage === String(stage) && !n.classList.contains('mm-root'));
+      tl.to(sL, { strokeDashoffset: 0, duration: 0.16, stagger: 0.03, ease: 'none' }, at);
+      tl.to(sN, { opacity: 1, scale: 1, duration: 0.10, stagger: 0.045, ease: 'power2.out' }, at + 0.05);
+    });
+    tl.to('.mm-link', { stroke: 'rgba(103,232,249,0.6)', duration: 0.08, ease: 'none' }, 0.9);
 
-  setStep(0);
+    setStep(0);
+    ScrollTrigger.refresh();
+  }
+
+  build();
+  let t;
+  window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(build, 200); }, { passive: true });
 })();
 </script>
 
@@ -1385,12 +1401,22 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   .pl-toggle:hover{border-color:var(--pl-accent);color:var(--pl-onTitle);}
   .pl-toggle .pl-ico{width:9px;height:10px;flex:none;}
   @media(max-width:900px){
-    .pl-labels{display:none;}
-    .pl-cards{grid-template-columns:1fr !important;}
-    .pl-card{padding:1.15rem 1.1rem;}
+    /* Phones get a swipeable rail that advances itself, not five stacked boxes. */
+    .pl-labels{display:flex;gap:.4rem;overflow-x:auto;scrollbar-width:none;margin:0 -1.5rem 1rem;padding:0 1.5rem .2rem;}
+    .pl-labels::-webkit-scrollbar{display:none;}
+    .pl-label{flex:0 0 auto;text-align:left;padding:.3rem .7rem;border:1px solid var(--pl-cardBorder);border-radius:999px;
+      display:flex;align-items:center;gap:.4rem;}
+    .pl-label.on{border-color:var(--pl-accent);background:var(--pl-onCard);transform:none;}
+    .pl-label .pl-n{display:inline;font-size:.62rem;letter-spacing:1.6px;margin:0;}
+    .pl-label .pl-t{display:inline;font-size:.76rem;}
+    .pl-cards{display:flex !important;gap:.75rem;overflow-x:auto;scroll-snap-type:x mandatory;
+      scrollbar-width:none;margin:0 -1.5rem;padding:.5rem 1.5rem 1rem;}
+    .pl-cards::-webkit-scrollbar{display:none;}
+    .pl-card{flex:0 0 82%;scroll-snap-align:center;padding:1.3rem 1.2rem;}
+    .pl-card.on{transform:none;}
     .pl-card .pl-mn{font-size:.68rem;letter-spacing:2.6px;color:var(--pl-accent);}
     .pl-foot{flex-direction:column;gap:1.1rem;align-items:stretch;}
-    .pl-cap{min-height:4.6rem;}
+    .pl-cap{min-height:5.4rem;}
     .pl-toggle{align-self:flex-start;}
   }
   @media(min-width:901px){ .pl-card .pl-mn{display:none;} }
@@ -1498,7 +1524,36 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     C.forEach((el, i) => { el.classList.toggle('on', i === idx); el.classList.toggle('done', i < idx); });
     P.forEach((el, i) => el.classList.toggle('on', i === idx));
     paintFill();
+    centre();
   }
+
+  // On phones the cards are a horizontal snap rail; bring the active one into view.
+  const railed = () => getComputedStyle(cards).overflowX !== 'visible';
+  function centre(){
+    if (!railed()) return;
+    const card = C[idx];
+    if (!card) return;
+    const to = card.offsetLeft - (cards.clientWidth - card.offsetWidth) / 2;
+    cards.scrollTo({ left: Math.max(0, to), behavior: 'smooth' });
+    const lbl = L[idx];
+    if (lbl) labels.scrollTo({ left: Math.max(0, lbl.offsetLeft - 24), behavior: 'smooth' });
+  }
+
+  // A swipe is the visitor taking over: follow their card and stop auto-advancing.
+  let swipeT;
+  cards.addEventListener('scroll', () => {
+    if (!railed()) return;
+    clearTimeout(swipeT);
+    swipeT = setTimeout(() => {
+      const mid = cards.scrollLeft + cards.clientWidth / 2;
+      let near = 0, best = Infinity;
+      C.forEach((c, i) => {
+        const d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
+        if (d < best){ best = d; near = i; }
+      });
+      if (near !== idx){ idx = near; elapsed = 0; setPaused(true); }
+    }, 140);
+  }, { passive: true });
 
   function paintFill(){
     const pct = ((idx + (paused ? 1 : elapsed / HOLD)) / N) * 100;
