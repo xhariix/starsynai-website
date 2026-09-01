@@ -1221,9 +1221,7 @@ if (cf) cf.addEventListener('submit', async function(e) {
         v('referral') && 'Found us via: ' + v('referral'),
       ].filter(Boolean).join(' | ');
       const body = v('message');
-      return extra ? (body ? body + '
-
-— ' + extra : extra) : body;
+      return extra ? (body ? body + '\n\n— ' + extra : extra) : body;
     })(),
     created_at: new Date().toISOString()
   };
