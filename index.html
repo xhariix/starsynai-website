@@ -206,7 +206,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 
 /* SECTIONS */
 section{position:relative;z-index:1;}
-.container{max-width:1120px;margin:0 auto;padding:0 3rem;}
+.container{max-width:1280px;margin:0 auto;padding:0 3rem;}
+/* Alternating section alignment: a page centred the whole way down reads as
+   one narrow column, so every other section anchors left instead. */
+.sec-left{text-align:left;}
+.sec-left .eyebrow{justify-content:flex-start;}
+.sec-left .section-sub{margin-left:0;margin-right:0;}
+@media(max-width:820px){
+  .sec-left{text-align:center;}
+  .sec-left .eyebrow{justify-content:center;}
+  .sec-left .section-sub{margin-left:auto;margin-right:auto;}
+}
+
 .section-pad{padding:6rem 0;}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:600;letter-spacing:3px;color:var(--accent3);text-transform:uppercase;margin-bottom:1rem;}
 .eyebrow-line{width:18px;height:1px;background:var(--accent3);}
@@ -2124,8 +2135,8 @@ else initHeroStar();
 <section id="academy-teaser" class="section-pad surface-s">
   <div class="bg-streams"></div>
   <div class="container">
-    <div class="reveal" style="text-align:center;max-width:680px;margin:0 auto 3.5rem;">
-      <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>StarSyn AI Academy<div class="eyebrow-line"></div></div>
+    <div class="reveal sec-left" style="max-width:680px;margin:0 0 3.5rem;">
+      <div class="eyebrow"><div class="eyebrow-line"></div>StarSyn AI Academy<div class="eyebrow-line"></div></div>
       <h2 class="section-title">Learn AI Automation. Get Hired. Build Businesses.</h2>
       <p class="section-sub" style="margin:0 auto;">Master AI alongside industry-leading practitioners. Gain hands-on experience and learn directly from elite domain experts actively shaping the future of technology.</p>
     </div>
@@ -2246,7 +2257,7 @@ else initHeroStar();
 <section id="education" class="section-pad surface-s">
   <div class="bg-streams"></div>
   <div class="container">
-    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 3rem;">
+    <div class="reveal sec-left" style="max-width:700px;margin:0 0 3rem;">
       <div class="eyebrow"><div class="eyebrow-line"></div>Built For Education</div>
       <h2 class="section-title">Empowering Schools &amp; Colleges<br/>With <span class="grad-text">AI-Ready Programs</span></h2>
       <p class="section-sub" style="max-width:100%;">We partner with educational institutions to bring real-world AI training directly to your campus — upskilling faculty, preparing students for the future, and integrating AI into your curriculum.</p>
@@ -2502,7 +2513,7 @@ else initHeroStar();
 <section id="partnerships" class="section-pad surface-s">
   <div class="bg-radar"></div>
   <div class="container">
-    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 3rem;">
+    <div class="reveal sec-left" style="max-width:700px;margin:0 0 3rem;">
       <div class="eyebrow"><div class="eyebrow-line"></div>Partnerships</div>
       <h2 class="section-title">Partner With Us</h2>
       <p class="section-sub" style="max-width:100%;">We collaborate with companies, MNCs and agencies who want to build or integrate AI into their systems. Whether you're a startup, enterprise, or agency — let's grow together.</p>
