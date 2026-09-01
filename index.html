@@ -103,6 +103,16 @@ gtag('config', 'G-5E94DWD6KF');
   --r:16px;--rl:20px;
   --sh:0 4px 24px rgba(0,0,0,0.25);--shl:0 8px 40px rgba(0,0,0,0.35);
   --glow:0 0 20px rgba(56,189,248,0.18);--glowl:0 0 40px rgba(0,245,255,0.32);
+  /* process pipeline tokens (overridden by the light theme) */
+  --pl-accent:#38bdf8;--pl-accent2:#67e8f9;
+  --pl-title:#f0f9ff;--pl-body:rgba(240,249,255,0.68);
+  --pl-track:rgba(255,255,255,0.08);
+  --pl-card:rgba(255,255,255,0.03);--pl-cardBorder:rgba(255,255,255,0.10);
+  --pl-icon:rgba(240,249,255,0.45);
+  --pl-doneCard:rgba(56,189,248,0.05);--pl-doneBorder:rgba(56,189,248,0.18);
+  --pl-onCard:rgba(56,189,248,0.12);--pl-onIcon:#67e8f9;
+  --pl-onTitle:#f0f9ff;--pl-onBody:rgba(240,249,255,0.85);
+  --pl-onShadow:0 12px 40px rgba(56,189,248,0.18);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;background-color:#020613;}
@@ -653,6 +663,8 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
   .case-inner { padding: 2rem; margin: 3rem auto; width: 95%; }
 }
 </style>
+<!-- LIGHT THEME EXPERIMENT — delete this one line to go back to the dark site -->
+<link rel="stylesheet" href="/assets/css/light.css"/>
 <!-- Three.js + GSAP CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -930,7 +942,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   @media(prefers-reduced-motion:reduce){#heroNet{display:none;}}
 </style>
 
-<section class="hero" id="top">
+<section class="hero hero--photo" id="top">
   <canvas id="heroNet" aria-hidden="true"></canvas>
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="hero-fade" aria-hidden="true"></div>
@@ -1327,38 +1339,213 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   <button onclick="document.getElementById('service-toast').style.right='-450px'" style="position:absolute; top:12px; right:12px; background:none; border:none; color:var(--text3); cursor:pointer; font-size:1rem; padding:4px;">✕</button>
 </div>
 
-<!-- PROCESS SECTION -->
+<!-- PROCESS SECTION — auto-advancing pipeline -->
+<style>
+  .pl-wrap{position:relative;}
+  .pl-rail{position:relative;margin-top:3rem;}
+  /* step labels */
+  .pl-labels{display:grid;gap:.5rem;margin-bottom:1.4rem;}
+  .pl-label{text-align:center;cursor:pointer;background:none;border:none;font-family:var(--sans);padding:.35rem .2rem;
+    transition:opacity .45s ease,transform .45s ease;opacity:.42;}
+  .pl-label:hover{opacity:.8;}
+  .pl-label .pl-n{display:block;font-size:.72rem;letter-spacing:3px;color:var(--pl-accent);margin-bottom:.3rem;}
+  .pl-label .pl-t{display:block;font-size:.9rem;font-weight:600;color:var(--pl-title);letter-spacing:.2px;}
+  .pl-label.done{opacity:.62;}
+  .pl-label.on{opacity:1;transform:translateY(-2px);}
+  /* progress line */
+  .pl-track{position:relative;height:2px;background:var(--pl-track);border-radius:2px;margin-bottom:1.6rem;overflow:hidden;}
+  .pl-fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--pl-accent),var(--pl-accent2));
+    border-radius:2px;will-change:width;}
+  /* cards */
+  .pl-cards{display:grid;gap:.6rem;align-items:stretch;}
+  .pl-card{position:relative;border-radius:14px;padding:1.35rem 1.1rem 1.25rem;text-align:left;cursor:pointer;
+    background:var(--pl-card);border:1px solid var(--pl-cardBorder);
+    transition:background .5s ease,border-color .5s ease,transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s ease;
+    display:flex;flex-direction:column;gap:.7rem;font-family:var(--sans);}
+  .pl-card svg{width:26px;height:26px;stroke:var(--pl-icon);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;
+    transition:stroke .5s ease;}
+  .pl-card h4{font-size:.95rem;font-weight:600;color:var(--pl-title);letter-spacing:.1px;transition:color .5s ease;}
+  .pl-card p{font-size:.82rem;line-height:1.6;color:var(--pl-body);transition:color .5s ease;}
+  .pl-card.done{border-color:var(--pl-doneBorder);background:var(--pl-doneCard);}
+  .pl-card.on{background:var(--pl-onCard);border-color:var(--pl-accent);transform:translateY(-6px);box-shadow:var(--pl-onShadow);}
+  .pl-card.on svg{stroke:var(--pl-onIcon);}
+  .pl-card.on h4{color:var(--pl-onTitle);}
+  .pl-card.on p{color:var(--pl-onBody);}
+  /* footer row */
+  .pl-foot{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;margin-top:2rem;}
+  .pl-cap{position:relative;flex:1;min-height:3.4rem;}
+  .pl-cap p{position:absolute;inset:0;font-size:.95rem;line-height:1.65;color:var(--pl-body);opacity:0;
+    transform:translateY(6px);transition:opacity .4s ease,transform .4s ease;}
+  .pl-cap p.on{opacity:1;transform:translateY(0);}
+  .pl-toggle{flex:none;display:inline-flex;align-items:center;gap:.55rem;padding:.6rem 1.25rem;border-radius:999px;cursor:pointer;
+    background:none;border:1px solid var(--pl-cardBorder);color:var(--pl-body);font-family:var(--sans);font-size:.72rem;
+    letter-spacing:2.4px;text-transform:uppercase;transition:all .25s;}
+  .pl-toggle:hover{border-color:var(--pl-accent);color:var(--pl-onTitle);}
+  .pl-toggle .pl-ico{width:9px;height:10px;flex:none;}
+  @media(max-width:900px){
+    .pl-labels{display:none;}
+    .pl-cards{grid-template-columns:1fr !important;}
+    .pl-card{padding:1.15rem 1.1rem;}
+    .pl-card .pl-mn{font-size:.68rem;letter-spacing:2.6px;color:var(--pl-accent);}
+    .pl-foot{flex-direction:column;gap:1.1rem;align-items:stretch;}
+    .pl-cap{min-height:4.6rem;}
+    .pl-toggle{align-self:flex-start;}
+  }
+  @media(min-width:901px){ .pl-card .pl-mn{display:none;} }
+</style>
+
 <section id="how" class="section-pad surface-s">
   <div class="bg-radar"></div>
-  <div class="container">
-    <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto;">
+  <div class="container pl-wrap">
+    <div class="reveal" style="text-align:center;max-width:620px;margin:0 auto;">
       <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>Process<div class="eyebrow-line"></div></div>
-      <h2 class="section-title">From Idea to Live Agent<br/>in 3 Simple Steps</h2>
+      <h2 class="section-title">From First Call to Live System</h2>
     </div>
-    <div class="how-grid reveal">
-      <div class="how-step neon-click">
-        <div class="step-num"><div class="step-num-inner">01</div></div>
-        <h4>Free Discovery Call</h4>
-        <p>30 minutes. You explain your pain points and goals. We map exactly what to automate, which tools to use, and what results to expect.</p>
-      </div>
-      <div class="how-step neon-click">
-        <div class="step-num"><div class="step-num-inner">02</div></div>
-        <h4>We Design &amp; Build</h4>
-        <p>Our team builds your AI agent or workflow pipeline — usually within 48 hours. You receive progress updates throughout the build.</p>
-      </div>
-      <div class="how-step neon-click">
-        <div class="step-num"><div class="step-num-inner">03</div></div>
-        <h4>Launch &amp; Scale</h4>
-        <p>Go live, see real results from day one. Full documentation, training, and ongoing support as your needs grow.</p>
-      </div>
-      <div class="how-step neon-click">
-        <div class="step-num"><div class="step-num-inner">04</div></div>
-        <h4>24×7 Support &amp; Maintenance</h4>
-        <p>We monitor, maintain and support all workflows, AI models, and automation systems round the clock post-launch. SLA-backed uptime with zero-downtime deployments.</p>
+
+    <div class="pl-rail reveal" id="plRail">
+      <div class="pl-labels" id="plLabels"></div>
+      <div class="pl-track"><div class="pl-fill" id="plFill"></div></div>
+      <div class="pl-cards" id="plCards"></div>
+      <div class="pl-foot">
+        <div class="pl-cap" id="plCaps"></div>
+        <button class="pl-toggle" id="plToggle" type="button" aria-label="Pause the process animation">
+          <svg class="pl-ico" viewBox="0 0 9 10" aria-hidden="true"><rect x="0" y="0" width="3" height="10" fill="currentColor"/><rect x="6" y="0" width="3" height="10" fill="currentColor"/></svg>
+          <span>Pause</span>
+        </button>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+/* PROCESS PIPELINE — auto-advancing, pausable, click-to-jump */
+(function initPipeline(){
+  const rail = document.getElementById('plRail');
+  if (!rail) return;
+
+  const STEPS = [
+    { t:'Discovery',  h:'Free discovery call',
+      p:'Thirty minutes. You explain the pain points; we map exactly what is worth automating.',
+      c:'A 30-minute call where you explain the bottlenecks. We leave knowing which parts of your week are worth automating first — and which are not.',
+      i:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/>' },
+    { t:'Blueprint',  h:'Scope in writing',
+      p:'Tools, timeline and the results you should expect — agreed before anything is built.',
+      c:'You get the scope in writing: which tools, what it will cost, how long it takes, and the result you should expect. Nothing gets built before you agree to it.',
+      i:'<path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/>' },
+    { t:'Build',      h:'We design & build',
+      p:'Your agent or workflow pipeline, usually inside 48 hours, with progress updates throughout.',
+      c:'We build the agent or workflow pipeline — most go live within 48 hours. You get progress updates as it happens rather than a silence and a surprise.',
+      i:'<path d="M14.7 6.3a4 4 0 01-5 5L5 16v3h3l4.7-4.7a4 4 0 005-5z"/><path d="M17.5 3.5L21 7"/>' },
+    { t:'Launch',     h:'Launch & scale',
+      p:'Live from day one, with full documentation and training for the people who will run it.',
+      c:'It goes live and starts producing from day one. You get the documentation and the training, so the people who use it every day are not dependent on us.',
+      i:'<path d="M12 3l7 4v6c0 4-3 7-7 8-4-1-7-4-7-8V7z"/><path d="M9 12l2 2 4-4"/>' },
+    { t:'Support',    h:'24×7 support',
+      p:'Monitoring, maintenance and SLA-backed uptime with zero-downtime deployments.',
+      c:'We monitor and maintain every workflow and model round the clock after launch — SLA-backed uptime, and deployments that never take the system down.',
+      i:'<path d="M12 3a9 9 0 019 9v5a3 3 0 01-3 3h-1v-7h4"/><path d="M3 17v-5a9 9 0 019-9"/><path d="M3 12h4v7H6a3 3 0 01-3-3z"/>' },
+  ];
+
+  const N = STEPS.length;
+  const HOLD = 3400;            // ms per step
+
+  const labels = document.getElementById('plLabels');
+  const cards  = document.getElementById('plCards');
+  const caps   = document.getElementById('plCaps');
+  const fill   = document.getElementById('plFill');
+  const toggle = document.getElementById('plToggle');
+
+  labels.style.gridTemplateColumns = 'repeat(' + N + ',1fr)';
+  cards.style.gridTemplateColumns  = 'repeat(' + N + ',1fr)';
+
+  STEPS.forEach((s, i) => {
+    const n = String(i + 1).padStart(2, '0');
+
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'pl-label';
+    b.innerHTML = '<span class="pl-n">' + n + '</span><span class="pl-t">' + s.t + '</span>';
+    b.addEventListener('click', () => go(i, true));
+    labels.appendChild(b);
+
+    const c = document.createElement('div');
+    c.className = 'pl-card'; c.setAttribute('role', 'button'); c.tabIndex = 0;
+    c.innerHTML =
+      '<div class="pl-mn">' + n + ' · ' + s.t + '</div>' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true">' + s.i + '</svg>' +
+      '<h4>' + s.h + '</h4><p>' + s.p + '</p>';
+    c.addEventListener('click', () => go(i, true));
+    c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(i, true); } });
+    cards.appendChild(c);
+
+    const p = document.createElement('p');
+    p.textContent = s.c;
+    caps.appendChild(p);
+  });
+
+  const L = [...labels.children], C = [...cards.children], P = [...caps.children];
+
+  let idx = 0, elapsed = 0, raf = null, last = 0, paused = false, visible = false, hover = false;
+
+  // Class churn is the expensive part, so it only runs when the step changes.
+  function paintStep(){
+    L.forEach((el, i) => { el.classList.toggle('on', i === idx); el.classList.toggle('done', i < idx); });
+    C.forEach((el, i) => { el.classList.toggle('on', i === idx); el.classList.toggle('done', i < idx); });
+    P.forEach((el, i) => el.classList.toggle('on', i === idx));
+    paintFill();
+  }
+
+  function paintFill(){
+    const pct = ((idx + (paused ? 1 : elapsed / HOLD)) / N) * 100;
+    fill.style.width = Math.min(100, pct).toFixed(2) + '%';
+  }
+
+  function go(i, byUser){
+    idx = (i + N) % N; elapsed = 0;
+    if (byUser) setPaused(true);
+    paintStep();
+  }
+
+  function frame(now){
+    raf = requestAnimationFrame(frame);
+    if (!last) last = now;
+    // Clamp so a backgrounded tab does not fast-forward the whole rail on return.
+    elapsed += Math.min(now - last, 100);
+    last = now;
+    if (elapsed >= HOLD){ elapsed = 0; idx = (idx + 1) % N; paintStep(); }
+    else paintFill();
+  }
+
+  function run(){
+    if (raf || paused || hover || !visible) return;
+    last = 0; raf = requestAnimationFrame(frame);
+  }
+  function halt(){ if (raf){ cancelAnimationFrame(raf); raf = null; } }
+
+  function setPaused(v){
+    paused = v;
+    toggle.querySelector('span').textContent = v ? 'Play' : 'Pause';
+    toggle.setAttribute('aria-label', v ? 'Play the process animation' : 'Pause the process animation');
+    toggle.querySelector('.pl-ico').innerHTML = v
+      ? '<path d="M0 0l9 5-9 5z" fill="currentColor"/>'
+      : '<rect x="0" y="0" width="3" height="10" fill="currentColor"/><rect x="6" y="0" width="3" height="10" fill="currentColor"/>';
+    if (v) halt(); else run();
+    paintStep();
+  }
+
+  toggle.addEventListener('click', () => setPaused(!paused));
+  rail.addEventListener('mouseenter', () => { hover = true; halt(); });
+  rail.addEventListener('mouseleave', () => { hover = false; run(); });
+
+  // Only animate while on screen
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; visible ? run() : halt(); }),
+      { threshold: 0.25 }).observe(rail);
+  } else { visible = true; run(); }
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setPaused(true);
+  paintStep();
+})();
+</script>
 
 <div class="divider"></div>
 
