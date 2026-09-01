@@ -172,6 +172,9 @@ gtag('config', 'G-5E94DWD6KF');
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;background-color:#020613;}
+/* Anchor targets must clear the fixed nav, or the heading lands underneath it. */
+section[id],div[id]{scroll-margin-top:92px;}
+
 body{font-family:var(--sans);animation:pageFadeIn 0.4s ease-out forwards;background:linear-gradient(145deg,#0d1219 0%,#05070a 60%,#000000 100%);color:var(--text);overflow-x:clip;min-height:100vh;}
 @keyframes pageFadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes fadeUp{0%{opacity:0;transform:translateY(30px);}100%{opacity:1;transform:translateY(0);}}
@@ -931,6 +934,9 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     });
   });
 })();
+
+// Smooth-scroll to a section by id (used by the hero's "See the Formats" button).
+function scrollToId(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
 
 // FAQ — only ONE open at a time
 function toggleFaq(el) {

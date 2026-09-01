@@ -62,6 +62,9 @@ gtag('config', 'G-5E94DWD6KF');
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;background-color:#020613;}
+/* Anchor targets must clear the fixed nav, or the heading lands underneath it. */
+section[id],div[id]{scroll-margin-top:92px;}
+
 body{font-family:var(--sans);animation: pageFadeIn 0.4s ease-out forwards;background:linear-gradient(145deg, #0d1219 0%, #05070a 60%, #000000 100%);color:var(--text);overflow-x:clip;min-height:100vh;}
 @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -873,10 +876,10 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <div id="about-hero-wrap" style="position:relative;height:480px;overflow:hidden;display:flex;align-items:center;justify-content:center;padding-top:80px;background:linear-gradient(180deg,#020613 0%,#071020 100%);">
   <canvas id="aboutHeroCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block;"></canvas>
   <!-- radial fade so edges dissolve into page bg -->
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 50%,transparent 20%,rgba(2,6,19,0.88) 72%);z-index:1;pointer-events:none;"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(2,6,19,0.55) 0%,rgba(2,6,19,0.74) 38%,rgba(2,6,19,0.93) 74%);z-index:1;pointer-events:none;"></div>
   <!-- bottom fade to merge with section below -->
   <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,#020613);z-index:2;pointer-events:none;"></div>
-  <div style="position:relative;z-index:3;text-align:center;padding:2rem 2rem 0;" class="reveal">
+  <div style="position:relative;z-index:3;text-align:center;padding:2rem 2rem 0;" class="reveal"><div aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(760px,92vw);height:300px;pointer-events:none;z-index:-1;background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(2,6,19,0.80) 0%,rgba(2,6,19,0.55) 55%,transparent 78%);filter:blur(6px);"></div>
     <div class="eyebrow"><div class="eyebrow-line"></div>About Us</div>
     <h1 class="section-title" style="margin-top:1rem;font-size:clamp(2.4rem,5vw,3.8rem);">About <span class="grad-text">StarSyn AI</span></h1>
     <p style="color:var(--text2);font-size:1rem;max-width:520px;margin:1rem auto 0;line-height:1.8;">India's leading AI automation studio — building intelligent agents for creators, startups and enterprises worldwide.</p>
@@ -1313,7 +1316,7 @@ document.querySelectorAll('.neon-click').forEach(el => {
   // Inner torus knot — the "spiral" element
   const knotGeo = new THREE.TorusKnotGeometry(0.72, 0.065, 140, 14);
   const knotWire = new THREE.WireframeGeometry(knotGeo);
-  const knotMat = new THREE.LineBasicMaterial({ color: 0x00f5ff, opacity: 0.7, transparent: true });
+  const knotMat = new THREE.LineBasicMaterial({ color: 0x00f5ff, opacity: 0.42, transparent: true });
   const knotMesh = new THREE.LineSegments(knotWire, knotMat);
   scene.add(knotMesh);
 
