@@ -415,6 +415,10 @@ section{position:relative;z-index:1;}
 .form-group input,.form-group select,.form-group textarea{width:100%;background-color:rgba(255,255,255,0.05);background-image:linear-gradient(to right,var(--accent3),var(--neon));background-size:0 2px;background-position:0 100%;background-repeat:no-repeat;border:1px solid rgba(56,189,248,0.12);border-radius:8px;padding:.7rem 1rem;color:var(--text);font-family:var(--sans);font-size:.875rem;transition:background-size .45s cubic-bezier(0.16,1,0.3,1),border-color .2s,box-shadow .2s;outline:none;}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(56,189,248,0.4);background-size:100% 2px;box-shadow:0 0 0 3px rgba(56,189,248,0.06),0 4px 20px rgba(0,245,255,0.08);}
 .form-group select option{background:#0d2137;color:var(--text);}
+/* Without this the optgroup label row falls back to the OS default (white),
+   which hides the light-cyan label text inside the dropdown. */
+.form-group select optgroup{background:#0a1826;color:var(--accent3);font-weight:700;font-style:normal;}
+.form-group select optgroup option{background:#0d2137;color:var(--text);font-weight:400;}
 .form-group textarea{height:110px;resize:vertical;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .btn-submit{width:100%;background:rgba(56,189,248,0.18);color:var(--accent3);border:1.5px solid rgba(56,189,248,0.4);padding:.85rem;border-radius:10px;font-size:.95rem;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .3s cubic-bezier(0.16,1,0.3,1);margin-top:.5rem;position:relative;overflow:hidden;z-index:1;}
