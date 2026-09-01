@@ -1403,11 +1403,54 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     </div>
 
     <div class="pl-rail reveal" id="plRail">
-      <div class="pl-labels" id="plLabels"></div>
+      <div class="pl-labels" id="plLabels" style="grid-template-columns:repeat(5,1fr)">
+        <button type="button" class="pl-label on"><span class="pl-n">01</span><span class="pl-t">Discovery</span></button>
+        <button type="button" class="pl-label"><span class="pl-n">02</span><span class="pl-t">Blueprint</span></button>
+        <button type="button" class="pl-label"><span class="pl-n">03</span><span class="pl-t">Build</span></button>
+        <button type="button" class="pl-label"><span class="pl-n">04</span><span class="pl-t">Launch</span></button>
+        <button type="button" class="pl-label"><span class="pl-n">05</span><span class="pl-t">Support</span></button>
+      </div>
       <div class="pl-track"><div class="pl-fill" id="plFill"></div></div>
-      <div class="pl-cards" id="plCards"></div>
+      <div class="pl-cards" id="plCards" style="grid-template-columns:repeat(5,1fr)">
+        <div class="pl-card on" role="button" tabindex="0">
+          <div class="pl-mn">01 &middot; Discovery</div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
+          <h4>Free discovery call</h4>
+          <p>Thirty minutes. You explain the pain points; we map exactly what is worth automating.</p>
+        </div>
+        <div class="pl-card" role="button" tabindex="0">
+          <div class="pl-mn">02 &middot; Blueprint</div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg>
+          <h4>Scope in writing</h4>
+          <p>Tools, timeline and the results you should expect &mdash; agreed before anything is built.</p>
+        </div>
+        <div class="pl-card" role="button" tabindex="0">
+          <div class="pl-mn">03 &middot; Build</div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 01-5 5L5 16v3h3l4.7-4.7a4 4 0 005-5z"/><path d="M17.5 3.5L21 7"/></svg>
+          <h4>We design &amp; build</h4>
+          <p>Your agent or workflow pipeline, usually inside 48 hours, with progress updates throughout.</p>
+        </div>
+        <div class="pl-card" role="button" tabindex="0">
+          <div class="pl-mn">04 &middot; Launch</div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 4v6c0 4-3 7-7 8-4-1-7-4-7-8V7z"/><path d="M9 12l2 2 4-4"/></svg>
+          <h4>Launch &amp; scale</h4>
+          <p>Live from day one, with full documentation and training for the people who will run it.</p>
+        </div>
+        <div class="pl-card" role="button" tabindex="0">
+          <div class="pl-mn">05 &middot; Support</div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 019 9v5a3 3 0 01-3 3h-1v-7h4"/><path d="M3 17v-5a9 9 0 019-9"/><path d="M3 12h4v7H6a3 3 0 01-3-3z"/></svg>
+          <h4>24&times;7 support</h4>
+          <p>Monitoring, maintenance and SLA-backed uptime with zero-downtime deployments.</p>
+        </div>
+      </div>
       <div class="pl-foot">
-        <div class="pl-cap" id="plCaps"></div>
+        <div class="pl-cap" id="plCaps">
+          <p class="on">A 30-minute call where you explain the bottlenecks. We leave knowing which parts of your week are worth automating first &mdash; and which are not.</p>
+          <p>You get the scope in writing: which tools, what it will cost, how long it takes, and the result you should expect. Nothing gets built before you agree to it.</p>
+          <p>We build the agent or workflow pipeline &mdash; most go live within 48 hours. You get progress updates as it happens rather than a silence and a surprise.</p>
+          <p>It goes live and starts producing from day one. You get the documentation and the training, so the people who use it every day are not dependent on us.</p>
+          <p>We monitor and maintain every workflow and model round the clock after launch &mdash; SLA-backed uptime, and deployments that never take the system down.</p>
+        </div>
         <button class="pl-toggle" id="plToggle" type="button" aria-label="Pause the process animation">
           <svg class="pl-ico" viewBox="0 0 9 10" aria-hidden="true"><rect x="0" y="0" width="3" height="10" fill="currentColor"/><rect x="6" y="0" width="3" height="10" fill="currentColor"/></svg>
           <span>Pause</span>
@@ -1423,30 +1466,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   const rail = document.getElementById('plRail');
   if (!rail) return;
 
-  const STEPS = [
-    { t:'Discovery',  h:'Free discovery call',
-      p:'Thirty minutes. You explain the pain points; we map exactly what is worth automating.',
-      c:'A 30-minute call where you explain the bottlenecks. We leave knowing which parts of your week are worth automating first — and which are not.',
-      i:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/>' },
-    { t:'Blueprint',  h:'Scope in writing',
-      p:'Tools, timeline and the results you should expect — agreed before anything is built.',
-      c:'You get the scope in writing: which tools, what it will cost, how long it takes, and the result you should expect. Nothing gets built before you agree to it.',
-      i:'<path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/>' },
-    { t:'Build',      h:'We design & build',
-      p:'Your agent or workflow pipeline, usually inside 48 hours, with progress updates throughout.',
-      c:'We build the agent or workflow pipeline — most go live within 48 hours. You get progress updates as it happens rather than a silence and a surprise.',
-      i:'<path d="M14.7 6.3a4 4 0 01-5 5L5 16v3h3l4.7-4.7a4 4 0 005-5z"/><path d="M17.5 3.5L21 7"/>' },
-    { t:'Launch',     h:'Launch & scale',
-      p:'Live from day one, with full documentation and training for the people who will run it.',
-      c:'It goes live and starts producing from day one. You get the documentation and the training, so the people who use it every day are not dependent on us.',
-      i:'<path d="M12 3l7 4v6c0 4-3 7-7 8-4-1-7-4-7-8V7z"/><path d="M9 12l2 2 4-4"/>' },
-    { t:'Support',    h:'24×7 support',
-      p:'Monitoring, maintenance and SLA-backed uptime with zero-downtime deployments.',
-      c:'We monitor and maintain every workflow and model round the clock after launch — SLA-backed uptime, and deployments that never take the system down.',
-      i:'<path d="M12 3a9 9 0 019 9v5a3 3 0 01-3 3h-1v-7h4"/><path d="M3 17v-5a9 9 0 019-9"/><path d="M3 12h4v7H6a3 3 0 01-3-3z"/>' },
-  ];
 
-  const N = STEPS.length;
   const HOLD = 3400;            // ms per step
 
   const labels = document.getElementById('plLabels');
@@ -1454,35 +1474,19 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   const caps   = document.getElementById('plCaps');
   const fill   = document.getElementById('plFill');
   const toggle = document.getElementById('plToggle');
+  const N = cards.children.length;
 
-  labels.style.gridTemplateColumns = 'repeat(' + N + ',1fr)';
-  cards.style.gridTemplateColumns  = 'repeat(' + N + ',1fr)';
-
-  STEPS.forEach((s, i) => {
-    const n = String(i + 1).padStart(2, '0');
-
-    const b = document.createElement('button');
-    b.type = 'button'; b.className = 'pl-label';
-    b.innerHTML = '<span class="pl-n">' + n + '</span><span class="pl-t">' + s.t + '</span>';
-    b.addEventListener('click', () => go(i, true));
-    labels.appendChild(b);
-
-    const c = document.createElement('div');
-    c.className = 'pl-card'; c.setAttribute('role', 'button'); c.tabIndex = 0;
-    c.innerHTML =
-      '<div class="pl-mn">' + n + ' · ' + s.t + '</div>' +
-      '<svg viewBox="0 0 24 24" aria-hidden="true">' + s.i + '</svg>' +
-      '<h4>' + s.h + '</h4><p>' + s.p + '</p>';
-    c.addEventListener('click', () => go(i, true));
-    c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(i, true); } });
-    cards.appendChild(c);
-
-    const p = document.createElement('p');
-    p.textContent = s.c;
-    caps.appendChild(p);
-  });
-
+  // The steps are real HTML, so search engines and no-JS visitors get the copy.
+  // This only wires interaction onto what is already in the document.
   const L = [...labels.children], C = [...cards.children], P = [...caps.children];
+
+  [L, C].forEach(els => els.forEach((el, i) => {
+    el.addEventListener('click', () => go(i, true));
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(i, true); }
+    });
+  }));
+
 
   let idx = 0, elapsed = 0, raf = null, last = 0, paused = false, visible = false, hover = false;
 
