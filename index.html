@@ -469,7 +469,7 @@ section{position:relative;z-index:1;}
 .legal-modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(6,14,27,0.95);overflow-y:auto;padding:4rem 2rem;}
 .legal-modal.open{display:block;}
 .legal-inner{max-width:800px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(56,189,248,0.12);border-radius:var(--rl);padding:3rem;}
-.legal-inner h1{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--text);margin-bottom:.5rem;}
+.legal-inner .legal-title,.legal-inner h1{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--text);margin-bottom:.5rem;}
 .legal-inner .legal-date{color:var(--text3);font-size:.82rem;margin-bottom:2rem;}
 .legal-inner h2{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--text);margin:1.5rem 0 .5rem;}
 .legal-inner p,.legal-inner li{color:var(--text2);font-size:.9rem;line-height:1.8;margin-bottom:.75rem;}
@@ -638,7 +638,7 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
 .case-close svg { width: 16px; height: 16px; }
 
 .case-header { margin-bottom: 2.5rem; margin-top: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1.5rem; }
-.case-header h1 { font-size: 2.2rem; margin: 0.8rem 0 0.4rem; font-family: var(--serif); line-height: 1.2; }
+.case-header .case-title,.case-header h1 { font-size: 2.2rem; margin: 0.8rem 0 0.4rem; font-family: var(--serif); line-height: 1.2; }
 .case-sub { color: var(--text2); font-size: 1.05rem; }
 .case-badge { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; background: rgba(56,189,248,0.1); color: var(--accent3); border: 1px solid rgba(56,189,248,0.2); margin-bottom: 0.5rem; }
 
@@ -684,7 +684,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <div class="legal-modal" id="privacyModal">
   <div class="legal-inner">
     <button class="legal-close" onclick="closeLegal('privacyModal')">← Back</button>
-    <h1>Privacy Policy</h1>
+    <p class="legal-title">Privacy Policy</p>
     <div class="legal-date">Last updated: March 2025</div>
     <p>StarSyn AI ("we", "our", or "us") is committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or engage with our services.</p>
     <h2>Information We Collect</h2>
@@ -710,7 +710,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <div class="legal-modal" id="termsModal">
   <div class="legal-inner">
     <button class="legal-close" onclick="closeLegal('termsModal')">← Back</button>
-    <h1>Terms of Service</h1>
+    <p class="legal-title">Terms of Service</p>
     <div class="legal-date">Last updated: March 2025</div>
     <p>By accessing or using StarSyn AI's website and services, you agree to be bound by these Terms of Service. Please read them carefully.</p>
     <h2>Services</h2>
@@ -732,7 +732,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <div class="legal-modal" id="cookieModal">
   <div class="legal-inner">
     <button class="legal-close" onclick="closeLegal('cookieModal')">← Back</button>
-    <h1>Cookie Policy</h1>
+    <p class="legal-title">Cookie Policy</p>
     <div class="legal-date">Last updated: March 2025</div>
     <p>This Cookie Policy explains how StarSyn AI uses cookies and similar tracking technologies on our website.</p>
     <h2>What Are Cookies</h2>
@@ -760,7 +760,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     
     <div class="case-header">
       <span class="case-badge" id="csBadge">Badge</span>
-      <h1 id="csTitle">Case Study Title</h1>
+      <p class="case-title" id="csTitle">Case Study Title</p>
       <div class="case-sub" id="csSub">Client Industry & Details</div>
     </div>
     
@@ -1938,7 +1938,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <div class="legal-modal" id="article1">
   <div class="legal-inner">
     <button class="legal-close" onclick="closeLegal('article1')">← Back</button>
-    <h1>How AI Automation Helped Our Clients Eliminate 80% of Manual Work</h1>
+    <p class="legal-title">How AI Automation Helped Our Clients Eliminate 80% of Manual Work</p>
     <div class="legal-date">Published by StarSyn AI · March 2025</div>
     <p>When most people think about AI, they imagine robots or science fiction. But for our clients, AI automation is something far more practical — it's the difference between spending 6 hours a day on repetitive tasks and spending that time on work that actually matters.</p>
     <h2>The Problem: Time Trapped in Repetitive Tasks</h2>
@@ -1959,7 +1959,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <div class="legal-modal" id="article2">
   <div class="legal-inner">
     <button class="legal-close" onclick="closeLegal('article2')">← Back</button>
-    <h1>Why Clients Trust AI-Built Workflows Over Manual Processes</h1>
+    <p class="legal-title">Why Clients Trust AI-Built Workflows Over Manual Processes</p>
     <div class="legal-date">Published by StarSyn AI · March 2025</div>
     <p>The most common question we hear before a client starts working with us is: "Can I really trust an AI to handle this?" It's a fair question. These are real business processes — client communications, data handling, lead management. The stakes are real.</p>
     <h2>The Scepticism Is Understandable</h2>
@@ -1980,7 +1980,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <div class="legal-modal" id="article3">
   <div class="legal-inner">
     <button class="legal-close" onclick="closeLegal('article3')">← Back</button>
-    <h1>5 AI Automation Flows Every Business Should Have Running Today</h1>
+    <p class="legal-title">5 AI Automation Flows Every Business Should Have Running Today</p>
     <div class="legal-date">Published by StarSyn AI · March 2025</div>
     <p>After building 500+ automation workflows across 12 industries, we've identified five flows that consistently deliver the highest return on investment — regardless of industry. If you're only going to automate five things, make it these.</p>
     <h2>1. Lead Qualification & Follow-up</h2>

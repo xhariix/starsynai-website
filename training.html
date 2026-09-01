@@ -315,7 +315,7 @@ footer{border-top:1px solid rgba(56,189,248,0.08);margin-top:4rem;}
 .legal-inner{max-width:800px;margin:6rem auto;padding:3rem;background:rgba(255,255,255,0.03);border:1px solid rgba(56,189,248,0.12);border-radius:20px;}
 .legal-close{background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--accent3);padding:.5rem 1.2rem;border-radius:100px;cursor:pointer;font-family:var(--sans);font-size:.85rem;margin-bottom:2rem;display:inline-block;transition:all .2s;}
 .legal-close:hover{background:rgba(56,189,248,0.16);}
-.legal-inner h1{font-family:var(--serif);font-size:2rem;margin-bottom:.5rem;color:var(--text);}
+.legal-inner .legal-title,.legal-inner h1{font-family:var(--serif);font-size:2rem;margin-bottom:.5rem;color:var(--text);}
 .legal-date{color:var(--text3);font-size:.82rem;margin-bottom:2rem;}
 .legal-inner h2{font-family:var(--serif);font-size:1.2rem;margin:1.5rem 0 .5rem;color:var(--text);}
 .legal-inner p,.legal-inner li{color:var(--text2);font-size:.9rem;line-height:1.8;margin-bottom:.75rem;}
@@ -408,7 +408,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <div class="legal-modal" id="privacyModal">
   <div class="legal-inner">
     <button class="legal-close" onclick="closeLegal('privacyModal')">← Back</button>
-    <h1>Privacy Policy</h1>
+    <p class="legal-title">Privacy Policy</p>
     <div class="legal-date">Last updated: March 2025</div>
     <p>StarSyn AI ("we", "our", or "us") is committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or engage with our services.</p>
     <h2>Information We Collect</h2>
@@ -429,7 +429,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <div class="legal-modal" id="termsModal">
   <div class="legal-inner">
     <button class="legal-close" onclick="closeLegal('termsModal')">← Back</button>
-    <h1>Terms of Service</h1>
+    <p class="legal-title">Terms of Service</p>
     <div class="legal-date">Last updated: March 2025</div>
     <p>By accessing or using StarSyn AI's website and services, you agree to be bound by these Terms of Service.</p>
     <h2>Placement Preparation Disclaimer</h2>
@@ -441,7 +441,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <div class="legal-modal" id="cookieModal">
   <div class="legal-inner">
     <button class="legal-close" onclick="closeLegal('cookieModal')">← Back</button>
-    <h1>Cookie Policy</h1>
+    <p class="legal-title">Cookie Policy</p>
     <div class="legal-date">Last updated: March 2025</div>
     <p>This Cookie Policy explains how StarSyn AI uses cookies and similar tracking technologies on our website.</p>
     <h2>Contact</h2>
