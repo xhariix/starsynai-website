@@ -223,7 +223,6 @@ section{position:relative;z-index:1;}
 @keyframes floatBob{0%,100%{transform:translateY(0) rotate(0);}30%{transform:translateY(-10px) rotate(2deg);}70%{transform:translateY(7px) rotate(-2deg);}}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:var(--accent3);font-size:.78rem;font-weight:500;padding:5px 18px;border-radius:100px;margin-bottom:2rem;letter-spacing:1px;position:relative;z-index:1;animation:fadeUp .6s .1s ease both;}
 .badge-pulse{width:7px;height:7px;background:var(--accent3);border-radius:50%;animation:pulse 2s infinite;}
-.hero h1{font-family:var(--serif);font-size:clamp(3rem,6vw,5.2rem);font-weight:700;line-height:1.08;letter-spacing:-.5px;max-width:1050px;margin-bottom:1.5rem;position:relative;z-index:1;animation:fadeUp .7s .2s ease both;}
 .grad-text{background:linear-gradient(135deg,var(--accent3) 0%,#a5f3fc 50%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .hero-sub{color:var(--text2);font-size:1.1rem;line-height:1.8;max-width:600px;margin:0 auto 2.8rem;position:relative;z-index:1;animation:fadeUp .7s .3s ease both;}
 .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;animation:fadeUp .7s .4s ease both;margin-bottom:4rem;}
@@ -572,7 +571,6 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
   .duration-grid{grid-template-columns:repeat(2,1fr);}
   .hero-stats{gap:1.25rem;flex-wrap:wrap;}
   .stat-divider{display:none;}
-  .hero h1{font-size:clamp(2.4rem,8vw,3.5rem);}
   .form-row{grid-template-columns:1fr;}
   .founder-section{grid-template-columns:1fr;}
 }
@@ -580,7 +578,6 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
 /* SMARTPHONE OPTIMIZATIONS (Max 480px) */
 @media(max-width:480px) {
   .section-pad { padding: 3.5rem 0; }
-  .hero h1 { font-size: clamp(2.2rem, 11vw, 2.8rem) !important; line-height: 1.15; }
   .hero-desc { font-size: 0.95rem; }
   .hero-stats { flex-direction: column !important; align-items: center; gap: 1.25rem; }
   .stat { width: 100%; justify-content: center; text-align: center; }
@@ -925,7 +922,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     background:rgba(56,189,248,.07);border-radius:999px;font-size:.75rem;letter-spacing:.4px;color:var(--accent3);margin-bottom:1.9rem;backdrop-filter:blur(8px);}
   .hero-badge b{font-weight:600;color:#e0f7ff;}
   .hero-badge .hb-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(74,222,128,.8);flex:none;}
-  .hero-h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.5rem,5.9vw,4.7rem);line-height:1.05;letter-spacing:-1.4px;color:var(--text);max-width:17ch;margin:0 auto 1.4rem;}
+  .hero-h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.8rem,4.2vw,3.3rem);line-height:1.14;letter-spacing:-1px;color:var(--text);max-width:27ch;margin:0 auto 1.4rem;}
   .hero-sub{font-size:clamp(1rem,1.35vw,1.15rem);line-height:1.7;color:var(--text2);max-width:60ch;margin:0 auto 2.4rem;}
   .hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center;justify-content:center;margin-bottom:3.4rem;}
   .hero-cta .btn-primary{padding:.85rem 1.7rem;font-size:.95rem;border-radius:10px;}
@@ -950,7 +947,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   <div class="hero-fade" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-badge"><span class="hb-dot"></span><b>StarSyn AI</b> &middot; AI automation &amp; enablement studio</div>
-    <h1 class="hero-h1">Automate the work.<br/><span class="grad-text">Amplify the people.</span></h1>
+    <h1 class="hero-h1">Automate the work.<br/>Augment AI.<br/><span class="grad-text">Amplify Human Intelligence.</span></h1>
     <p class="hero-sub">We design, build and deploy AI automation and custom agents for businesses and creative studios &mdash; then train your team to run them. From a first workflow to a system your whole company depends on.</p>
     <div class="hero-cta">
       <button class="btn-primary" onclick="openConsultation()">Book a free call &rarr;</button>
