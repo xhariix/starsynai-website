@@ -10,7 +10,11 @@
 <meta property="og:title" content="Contact StarSyn AI | Book a Discovery Call"/>
 <meta property="og:description" content="Book a free discovery call or send us a message. StarSyn AI is ready to automate your business with intelligent AI agents and workflows."/>
 <meta property="og:type" content="website"/>
-<meta property="og:image" content="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200"/>
+<meta property="og:image" content="https://www.starsynai.com/assets/img/og-card.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="StarSyn AI — Automate. Augment. Accelerate."/>
+<meta name="twitter:image" content="https://www.starsynai.com/assets/img/og-card.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Contact StarSyn AI | Book a Discovery Call"/>
 <meta name="twitter:description" content="Book a free discovery call or send us a message. StarSyn AI is ready to automate your business with intelligent AI agents."/>
@@ -54,7 +58,7 @@ gtag('config', 'G-5E94DWD6KF');
   --accent:#38bdf8;--accent2:#06b6d4;--accent3:#67e8f9;
   --neon:#00f5ff;--gold:#f59e0b;--green:#4ade80;
   --text:#f0f9ff;--text2:rgba(240,249,255,0.68);--text3:rgba(240,249,255,0.42);
-  --serif:'Times New Roman','Cormorant Garamond',Georgia,serif;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'DM Sans',sans-serif;
   --r:16px;--rl:20px;
   --sh:0 4px 24px rgba(0,0,0,0.25);--shl:0 8px 40px rgba(0,0,0,0.35);
@@ -62,6 +66,12 @@ gtag('config', 'G-5E94DWD6KF');
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;background-color:#020613;}
+/* Cormorant Garamond defaults to old-style figures; force lining, tabular
+   numerals so stats and headline numbers sit on the baseline and align. */
+.trust-num,.stat-num,.step-num-inner,.section-title,h1,h2,h3,h4,.aaa-word,.hero-h1,
+.case-stat-num,.pl-label .pl-n,.mm-step i{font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:'lnum' 1,'tnum' 1;}
+
 /* Anchor targets must clear the fixed nav, or the heading lands underneath it. */
 section[id],div[id]{scroll-margin-top:92px;}
 
@@ -883,6 +893,21 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
           </div>
           <div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="(e.g. yourname@email.com)" required/></div>
           <div class="form-group"><label>WhatsApp / Phone</label><input type="tel" id="phone" placeholder="+91 XXXXX XXXXX"/></div>
+          <div class="form-row">
+            <div class="form-group"><label>Company / College <span style="color:var(--text3);font-weight:400;">(optional)</span></label><input type="text" id="orgName" placeholder="Where you work or study"/></div>
+            <div class="form-group">
+              <label>How many people?</label>
+              <select id="teamSize">
+                <option value="">Select</option>
+                <option value="just_me">Just me</option>
+                <option value="2-10">2&ndash;10</option>
+                <option value="11-50">11&ndash;50</option>
+                <option value="51-200">51&ndash;200</option>
+                <option value="200+">200+</option>
+                <option value="full_batch">A full student batch</option>
+              </select>
+            </div>
+          </div>
           <div class="form-group">
             <label>I'm Interested In</label>
             <select id="interest" required>
@@ -918,6 +943,18 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
             </select>
           </div>
           <div class="form-group"><label>Tell Us More</label><textarea id="message" placeholder="Briefly describe what you need, what you're trying to automate, or anything else on your mind..."></textarea></div>
+          <div class="form-group">
+            <label>How did you find us?</label>
+            <select id="referral">
+              <option value="">Select</option>
+              <option value="google">Google search</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="instagram">Instagram</option>
+              <option value="referral">Someone referred us</option>
+              <option value="event">An event or workshop</option>
+              <option value="other">Somewhere else</option>
+            </select>
+          </div>
           <!-- Trust line -->
           <div style="display:flex;align-items:center;gap:10px;padding:.9rem 1rem;background:rgba(56,189,248,0.04);border:1px solid rgba(56,189,248,0.1);border-radius:10px;margin-bottom:1rem;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="1.5" flex-shrink="0" style="flex-shrink:0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -1176,7 +1213,18 @@ if (cf) cf.addEventListener('submit', async function(e) {
     email: document.getElementById('email').value,
     phone: document.getElementById('phone').value,
     interest: document.getElementById('interest').value,
-    message: document.getElementById('message').value,
+    message: (function(){
+      const v = id => (document.getElementById(id) || {}).value || '';
+      const extra = [
+        v('orgName')  && 'Organisation: ' + v('orgName'),
+        v('teamSize') && 'Size: ' + v('teamSize'),
+        v('referral') && 'Found us via: ' + v('referral'),
+      ].filter(Boolean).join(' | ');
+      const body = v('message');
+      return extra ? (body ? body + '
+
+— ' + extra : extra) : body;
+    })(),
     created_at: new Date().toISOString()
   };
   const [sb, fp] = await Promise.all([

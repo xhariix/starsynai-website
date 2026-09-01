@@ -10,7 +10,11 @@
 <meta property="og:title" content="StarSyn AI — Automate. Augment. Accelerate."/>
 <meta property="og:description" content="We build intelligent AI agents that eliminate grunt work and accelerate your business growth."/>
 <meta property="og:type" content="website"/>
-<meta property="og:image" content="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200"/>
+<meta property="og:image" content="https://www.starsynai.com/assets/img/og-card.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="StarSyn AI — Automate. Augment. Accelerate."/>
+<meta name="twitter:image" content="https://www.starsynai.com/assets/img/og-card.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta property="og:url" content="https://www.starsynai.com/"/>
 <link rel="canonical" href="https://www.starsynai.com/"/>
@@ -98,7 +102,7 @@ gtag('config', 'G-5E94DWD6KF');
   --accent:#38bdf8;--accent2:#06b6d4;--accent3:#67e8f9;
   --neon:#00f5ff;--gold:#f59e0b;--green:#4ade80;
   --text:#f0f9ff;--text2:rgba(240,249,255,0.68);--text3:rgba(240,249,255,0.42);
-  --serif:'Times New Roman','Cormorant Garamond',Georgia,serif;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'DM Sans',sans-serif;
   --r:16px;--rl:20px;
   --sh:0 4px 24px rgba(0,0,0,0.25);--shl:0 8px 40px rgba(0,0,0,0.35);
@@ -116,6 +120,12 @@ gtag('config', 'G-5E94DWD6KF');
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;background-color:#020613;}
+/* Cormorant Garamond defaults to old-style figures; force lining, tabular
+   numerals so stats and headline numbers sit on the baseline and align. */
+.trust-num,.stat-num,.step-num-inner,.section-title,h1,h2,h3,h4,.aaa-word,.hero-h1,
+.case-stat-num,.pl-label .pl-n,.mm-step i{font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:'lnum' 1,'tnum' 1;}
+
 /* Anchor targets must clear the fixed nav, or the heading lands underneath it. */
 section[id],div[id]{scroll-margin-top:92px;}
 
@@ -159,8 +169,6 @@ section { position: relative; }
 
 /* FLOATING */
 .float-wrap{position:fixed;bottom:2rem;right:2rem;z-index:800;display:flex;flex-direction:column;gap:.75rem;align-items:flex-end;}
-.float-cta{background:rgba(56,189,248,0.15);color:var(--accent3);border:1.5px solid rgba(56,189,248,0.4);padding:.7rem 1.4rem;border-radius:50px;font-size:.85rem;font-weight:500;cursor:pointer;font-family:var(--sans);box-shadow:var(--glow);display:flex;align-items:center;gap:8px;transition:all .2s;backdrop-filter:blur(12px);animation:fadeUp .6s 1.5s ease both;}
-.float-cta:hover{box-shadow:var(--glowl);border-color:var(--neon);color:var(--neon);}
 .float-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
 .wa-btn{width:48px;height:48px;background:#25d366;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,0.4);transition:all .2s;animation:fadeUp .6s 1.8s ease both;}
 .wa-btn:hover{transform:scale(1.1);}
@@ -240,10 +248,19 @@ section{position:relative;z-index:1;}
 .scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--accent3),transparent);animation:scrollAnim 2s ease infinite;}
 
 /* TRUST BAR */
-.trust-bar{background:rgba(56,189,248,0.03);border-top:1px solid rgba(56,189,248,0.07);border-bottom:1px solid rgba(56,189,248,0.07);padding:2.5rem 3rem;}
-.trust-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;}
-.trust-num{font-family:var(--serif);font-size:2.4rem;font-weight:700;background:linear-gradient(135deg,var(--accent3),#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.trust-label{color:var(--text3);font-size:.82rem;margin-top:4px;}
+.trust-bar{background:linear-gradient(180deg,rgba(56,189,248,0.045),rgba(56,189,248,0.015));border-top:1px solid rgba(56,189,248,0.09);border-bottom:1px solid rgba(56,189,248,0.09);padding:3rem 3rem 2.4rem;}
+.trust-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+.trust-cell{text-align:center;padding:0 1.5rem;position:relative;}
+.trust-cell + .trust-cell{box-shadow:inset 1px 0 0 rgba(56,189,248,0.13);}
+.trust-num{font-family:var(--serif);font-size:clamp(2.1rem,3.6vw,2.9rem);font-weight:700;line-height:1;letter-spacing:-1px;background:linear-gradient(135deg,var(--accent3),#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.trust-label{color:var(--text2);font-size:.8rem;line-height:1.45;margin-top:.55rem;letter-spacing:.2px;}
+.trust-basis{max-width:1060px;margin:1.9rem auto 0;padding-top:1.1rem;border-top:1px solid rgba(56,189,248,0.09);text-align:center;font-size:.74rem;color:var(--text3);letter-spacing:.3px;}
+@media(max-width:780px){
+  .trust-bar{padding:2.2rem 1.25rem 1.9rem;}
+  .trust-inner{grid-template-columns:repeat(2,1fr);gap:1.9rem 0;}
+  .trust-cell{padding:0 .75rem;}
+  .trust-cell:nth-child(3){box-shadow:none;}
+}
 
 /* LOGO BAR */
 .logo-bar{padding:2.5rem 3rem;border-bottom:1px solid rgba(56,189,248,0.06);}
@@ -566,7 +583,7 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
   .hamburger{display:flex;}
   .container{padding:0 1.5rem;}
   .section-pad{padding:4rem 0;}
-  .aaa-grid,.how-grid,.testi-grid,.blog-grid,.faq-grid,.formats-grid,.duration-grid,.trust-inner,.photo-strip,.portfolio-grid,.about-grid,.contact-grid,.academy-top,.placement-grid,.footer-top{grid-template-columns:1fr;}
+  .aaa-grid,.how-grid,.testi-grid,.blog-grid,.faq-grid,.formats-grid,.duration-grid,.photo-strip,.portfolio-grid,.about-grid,.contact-grid,.academy-top,.placement-grid,.footer-top{grid-template-columns:1fr;}
   .how-grid::before{display:none;}
   .duration-grid{grid-template-columns:repeat(2,1fr);}
   .hero-stats{gap:1.25rem;flex-wrap:wrap;}
@@ -593,7 +610,6 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
   .cursor, .cursor-ring { display: none !important; }
 
   /* Hide floating text CTA — hero already has CTAs */
-  .float-cta { display: none !important; }
 
   /* WhatsApp button — small & tucked in corner */
   .float-wrap { bottom: .75rem; right: .75rem; }
@@ -601,10 +617,8 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
   .wa-btn svg { width: 20px; height: 20px; }
 
   /* Hide service toast on mobile — too intrusive */
-  #service-toast { display: none !important; }
 
   /* Hide visitor popup on mobile — footer newsletter serves same purpose */
-  #visitorPopup { display: none !important; }
 
   /* Cookie banner — compact */
   .cookie-banner { padding: .6rem 1rem; flex-direction: column; gap: .5rem; text-align: center; font-size: .78rem; }
@@ -1023,16 +1037,6 @@ else initHeroStar();
 </div>
 
 <!-- VISITOR EMAIL CAPTURE POPUP (optional, after 1 min) -->
-<div id="visitorPopup" style="display:none;position:fixed;bottom:6rem;left:50%;transform:translateX(-50%);z-index:850;background:rgba(10,22,40,0.97);border:1.5px solid rgba(56,189,248,0.25);border-radius:16px;padding:1.5rem 2rem;max-width:420px;width:90%;backdrop-filter:blur(20px);box-shadow:0 8px 40px rgba(0,0,0,0.4);">
-  <button onclick="sessionStorage.setItem('ss_popup_dismissed','1');document.getElementById('visitorPopup').style.display='none'" style="position:absolute;top:.75rem;right:.75rem;background:none;border:none;color:var(--text3);cursor:pointer;font-size:1.1rem;">×</button>
-  <h4 style="font-family:var(--serif);font-size:1.1rem;color:var(--text);margin-bottom:.35rem;">Stay in the Loop</h4>
-  <p style="color:var(--text3);font-size:.82rem;margin-bottom:1rem;">Get AI automation tips, case studies and updates — free. No spam, ever.</p>
-  <form onsubmit="captureVisitor(event)" style="display:flex;gap:.5rem;">
-    <input type="email" id="visitorEmail" placeholder="your@email.com" required style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(56,189,248,0.18);border-radius:8px;padding:.6rem .9rem;color:var(--text);font-family:var(--sans);font-size:.85rem;outline:none;"/>
-    <button type="submit" style="background:rgba(56,189,248,0.2);color:var(--accent3);border:1px solid rgba(56,189,248,0.35);padding:.6rem 1.1rem;border-radius:8px;cursor:pointer;font-family:var(--sans);font-size:.85rem;white-space:nowrap;">Join Free</button>
-  </form>
-</div>
-
 <!-- PORTFOLIO CHOOSER POPUP -->
 <div class="port-overlay" id="portOverlay" onclick="closePortModal(event)">
   <div class="port-modal">
@@ -1069,7 +1073,6 @@ else initHeroStar();
 
 <!-- FLOATING BUTTONS -->
 <div class="float-wrap">
-  <button class="float-cta" onclick="openConsultation()"><div class="float-dot"></div>Get My Custom AI Blueprint</button>
   <button class="wa-btn" onclick="openWhatsApp()" title="Chat on WhatsApp">
     <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
   </button>
@@ -1569,11 +1572,12 @@ else initHeroStar();
 <!-- TRUST BAR -->
 <div class="trust-bar reveal">
   <div class="trust-inner">
-    <div><div class="trust-num">500+</div><div class="trust-label">AI Workflows Built</div></div>
-    <div><div class="trust-num">98%</div><div class="trust-label">Client Satisfaction</div></div>
-    <div><div class="trust-num">12+</div><div class="trust-label">Industries Served</div></div>
-    <div><div class="trust-num">48h</div><div class="trust-label">Average Delivery</div></div>
+    <div class="trust-cell"><div class="trust-num">500+</div><div class="trust-label">AI workflows built</div></div>
+    <div class="trust-cell"><div class="trust-num">98%</div><div class="trust-label">Client satisfaction</div></div>
+    <div class="trust-cell"><div class="trust-num">12+</div><div class="trust-label">Industries served</div></div>
+    <div class="trust-cell"><div class="trust-num">48h</div><div class="trust-label">Typical first delivery</div></div>
   </div>
+  <p class="trust-basis">Across all StarSyn AI client engagements to date &middot; updated September 2026</p>
 </div>
 
 <!-- TOOLS BAR WITH INTRO LINE -->
@@ -1634,19 +1638,6 @@ else initHeroStar();
 </section>
 
 <!-- SERVICE TOAST POPUP -->
-<div id="service-toast" style="position:fixed; bottom:30px; right:-450px; width:340px; background:rgba(15,23,42,0.85); backdrop-filter:blur(16px); border:1px solid rgba(56,189,248,0.25); border-radius:12px; padding:1.5rem; z-index:9999; transition: right 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
-  <h4 style="font-size:1.05rem; color:var(--text); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-    Wanna know how we can help?
-  </h4>
-  <p style="color:var(--text2); font-size:0.85rem; line-height:1.5; margin-bottom:15px;">Just a single email or WhatsApp message could completely change your business.</p>
-  <div style="display:flex; gap:10px;">
-    <a href="mailto:starsynaiindia@gmail.com" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding:8px 16px; font-size:0.85rem; border-radius:8px; text-decoration:none; display:inline-flex; align-items:center;">Email Us</a>
-    <a href="https://wa.me/917867838938?text=Hi%20StarSyn%20AI!%20I'm%20interested%20in%20learning%20more." target="_blank" rel="noopener noreferrer" class="btn-ghost" style="padding:8px 16px; font-size:0.85rem; text-decoration:none; display:inline-flex; align-items:center; border:1px solid rgba(255,255,255,0.1); border-radius:8px;">WhatsApp</a>
-  </div>
-  <button onclick="document.getElementById('service-toast').style.right='-450px'" style="position:absolute; top:12px; right:12px; background:none; border:none; color:var(--text3); cursor:pointer; font-size:1rem; padding:4px;">✕</button>
-</div>
-
 <!-- PROCESS SECTION — auto-advancing pipeline -->
 <style>
   .pl-wrap{position:relative;}
@@ -2047,7 +2038,7 @@ else initHeroStar();
     </div>
 
     <div class="reveal" style="text-align:center;">
-      <p style="color:var(--text3);font-size:.85rem;margin-bottom:1.5rem;">Batch seats are limited — usually fills within 48 hours of opening.</p>
+      <p style="color:var(--text3);font-size:.85rem;margin-bottom:1.5rem;">Batches are kept small so everyone gets time with a mentor. Tell us which format suits you and we will confirm the next available start.</p>
       <a href="/academy" class="btn-primary" style="box-shadow:0 0 25px rgba(0,245,255,0.4); border-color:var(--neon); padding:0.95rem 2.4rem; font-size:1rem; transition:all 0.3s; text-decoration:none; display:inline-flex; align-items:center;" onmouseover="this.style.boxShadow='0 0 40px rgba(0,245,255,0.65)';" onmouseout="this.style.boxShadow='0 0 25px rgba(0,245,255,0.4)';">
         See Formats, Pricing &amp; Placement Data →
       </a>
@@ -2063,7 +2054,7 @@ else initHeroStar();
     <div class="reveal" style="text-align:center;max-width:720px;margin:0 auto 3.25rem;">
       <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>AI Training for Teams<div class="eyebrow-line"></div></div>
       <h2 class="section-title">AI Training Your Team Actually<br/><span class="grad-text">Uses on Monday</span></h2>
-      <p class="section-sub" style="margin:0 auto;">We run hands-on AI and automation sessions inside companies, studios and production houses. No slide decks about the future of AI &mdash; your people bring their real work, and leave with workflows already running in the tools they use every day.</p>
+      <p class="section-sub" style="margin:0 auto;">We run hands-on AI and automation sessions inside companies, studios and production houses. Every programme is built around what you ask for &mdash; you tell us the topics, the tools and the depth, and we shape the sessions to your team. No slide decks about the future of AI; your people bring their real work and leave with workflows already running.</p>
     </div>
 
     <!-- Formats -->
@@ -2584,30 +2575,6 @@ async function sbRequest(path, method='GET', body=null) {
 
 
 // =============================================
-// VISITOR TRACKING — popup after 60 seconds (solutions/services pages only)
-// =============================================
-let visitorTracked = false;
-(function() {
-  const path = window.location.pathname;
-  if (!path.includes('/solutions') && !path.includes('/services')) return;
-  setTimeout(() => {
-    if (!visitorTracked && !localStorage.getItem('ss_visitor_seen') && !localStorage.getItem('ss_session') && !sessionStorage.getItem('ss_popup_dismissed')) {
-      document.getElementById('visitorPopup').style.display = 'block';
-    }
-  }, 60000);
-})();
-
-async function captureVisitor(e) {
-  e.preventDefault();
-  const email = document.getElementById('visitorEmail').value;
-  localStorage.setItem('ss_visitor_seen', '1');
-  visitorTracked = true;
-  document.getElementById('visitorPopup').innerHTML = '<p style="color:#4ade80;text-align:center;padding:1rem;">✓ You\'re on the list! We\'ll be in touch.</p>';
-  setTimeout(() => { document.getElementById('visitorPopup').style.display = 'none'; }, 2500);
-  await saveToSupabase('newsletter_subscribers', { email, source: 'visitor_popup', created_at: new Date().toISOString() });
-  await saveToSupabase('visitors', { email, event: 'popup_subscribe', created_at: new Date().toISOString() });
-}
-
 // Track page visit (anonymous)
 (async function trackVisit() {
   try {

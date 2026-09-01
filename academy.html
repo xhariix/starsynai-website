@@ -10,7 +10,11 @@
 <meta property="og:title" content="AI Automation Academy | StarSyn AI"/>
 <meta property="og:description" content="Master AI automation with StarSyn AI Academy — live projects, expert mentorship, placement prep, and flexible formats from 1-week sprints to 3-month programs."/>
 <meta property="og:type" content="website"/>
-<meta property="og:image" content="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200"/>
+<meta property="og:image" content="https://www.starsynai.com/assets/img/og-card.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="StarSyn AI — Automate. Augment. Accelerate."/>
+<meta name="twitter:image" content="https://www.starsynai.com/assets/img/og-card.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="AI Automation Academy | StarSyn AI"/>
 <meta name="twitter:description" content="Master AI automation with StarSyn AI Academy — live projects, expert mentorship, placement prep, and flexible formats."/>
@@ -54,7 +58,7 @@ gtag('config', 'G-5E94DWD6KF');
   --accent:#38bdf8;--accent2:#06b6d4;--accent3:#67e8f9;
   --neon:#00f5ff;--gold:#f59e0b;--green:#4ade80;
   --text:#f0f9ff;--text2:rgba(240,249,255,0.68);--text3:rgba(240,249,255,0.42);
-  --serif:'Times New Roman','Cormorant Garamond',Georgia,serif;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'DM Sans',sans-serif;
   --r:16px;--rl:20px;
   --sh:0 4px 24px rgba(0,0,0,0.25);--shl:0 8px 40px rgba(0,0,0,0.35);
@@ -62,6 +66,12 @@ gtag('config', 'G-5E94DWD6KF');
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;background-color:#020613;}
+/* Cormorant Garamond defaults to old-style figures; force lining, tabular
+   numerals so stats and headline numbers sit on the baseline and align. */
+.trust-num,.stat-num,.step-num-inner,.section-title,h1,h2,h3,h4,.aaa-word,.hero-h1,
+.case-stat-num,.pl-label .pl-n,.mm-step i{font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:'lnum' 1,'tnum' 1;}
+
 /* Anchor targets must clear the fixed nav, or the heading lands underneath it. */
 section[id],div[id]{scroll-margin-top:92px;}
 
@@ -1675,6 +1685,64 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- FOR COLLEGES — campus programmes (offered, not yet run: no claims of past batches) -->
+<section id="colleges" class="section-pad">
+  <div class="bg-orbs"></div>
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 3rem;">
+      <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>For Colleges &amp; Institutions<div class="eyebrow-line"></div></div>
+      <h2 class="section-title">Bring StarSyn AI<br/><span class="grad-text">Onto Your Campus</span></h2>
+      <p class="section-sub" style="margin:0 auto;">We run AI workshops for final-year batches, built around your placement calendar. Every session is shaped to what your students and department actually need &mdash; we ask first, then design the programme.</p>
+    </div>
+
+    <!-- What a campus programme covers -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-bottom:3rem;">
+      <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:1.9rem;">
+        <div style="font-size:1.6rem;margin-bottom:.8rem;">🎓</div>
+        <h3 style="font-family:var(--serif);font-size:1.08rem;margin-bottom:.5rem;color:var(--text);">Built to your syllabus</h3>
+        <p style="color:var(--text2);font-size:.89rem;line-height:1.68;">We sit with your TPO and faculty before anything is scheduled, and shape the sessions around the departments and the outcomes you care about.</p>
+      </div>
+      <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:1.9rem;">
+        <div style="font-size:1.6rem;margin-bottom:.8rem;">💼</div>
+        <h3 style="font-family:var(--serif);font-size:1.08rem;margin-bottom:.5rem;color:var(--text);">Interview-ready work</h3>
+        <p style="color:var(--text2);font-size:.89rem;line-height:1.68;">Students leave with AI-assisted projects they can actually open in an interview and talk through &mdash; not a certificate with nothing behind it.</p>
+      </div>
+      <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:1.9rem;">
+        <div style="font-size:1.6rem;margin-bottom:.8rem;">🗓️</div>
+        <h3 style="font-family:var(--serif);font-size:1.08rem;margin-bottom:.5rem;color:var(--text);">Around your calendar</h3>
+        <p style="color:var(--text2);font-size:.89rem;line-height:1.68;">Sessions scheduled around exams and semester dates, on campus or online, with batch certification and institution invoicing.</p>
+      </div>
+    </div>
+
+    <!-- How we set one up -->
+    <div class="reveal" style="background:rgba(56,189,248,0.04);border:1px solid rgba(56,189,248,0.1);border-radius:16px;padding:2.25rem;margin-bottom:2.5rem;">
+      <p style="font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1.6rem;">How We Set One Up</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.75rem;">
+        <div>
+          <div style="font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--accent3);line-height:1;margin-bottom:.55rem;">01</div>
+          <h4 style="font-size:.98rem;color:var(--text);margin-bottom:.4rem;">We ask what you need</h4>
+          <p style="color:var(--text2);font-size:.87rem;line-height:1.65;">A short call with your placement cell: which departments, which batch, what recruiters are asking for this year.</p>
+        </div>
+        <div>
+          <div style="font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--accent3);line-height:1;margin-bottom:.55rem;">02</div>
+          <h4 style="font-size:.98rem;color:var(--text);margin-bottom:.4rem;">We design the sessions</h4>
+          <p style="color:var(--text2);font-size:.87rem;line-height:1.65;">You get the plan in writing &mdash; topics, session count, dates and batch size &mdash; before anyone commits to it.</p>
+        </div>
+        <div>
+          <div style="font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--accent3);line-height:1;margin-bottom:.55rem;">03</div>
+          <h4 style="font-size:.98rem;color:var(--text);margin-bottom:.4rem;">We run and certify</h4>
+          <p style="color:var(--text2);font-size:.87rem;line-height:1.65;">Live hands-on sessions on campus or online, then batch certificates and a summary for your records.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="text-align:center;">
+      <p style="color:var(--text3);font-size:.86rem;margin-bottom:1.4rem;max-width:640px;margin-left:auto;margin-right:auto;">Campus programmes are arranged per institution &mdash; tell us your batch size and the semester you have in mind, and we will come back with a plan and a quote.</p>
+      <button class="btn-primary" onclick="openConsultation()" style="padding:.95rem 2.4rem;font-size:1rem;">Talk to Us About Your Campus &rarr;</button>
     </div>
   </div>
 </section>

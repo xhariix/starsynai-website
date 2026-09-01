@@ -10,7 +10,11 @@
 <meta property="og:title" content="Corporate AI Training for Teams &amp; Studios | StarSyn AI"/>
 <meta property="og:description" content="Hands-on AI and automation training delivered inside companies, studios and production houses. Your team leaves with workflows already running."/>
 <meta property="og:type" content="website"/>
-<meta property="og:image" content="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200"/>
+<meta property="og:image" content="https://www.starsynai.com/assets/img/og-card.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="StarSyn AI — Automate. Augment. Accelerate."/>
+<meta name="twitter:image" content="https://www.starsynai.com/assets/img/og-card.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta property="og:url" content="https://www.starsynai.com/training"/>
 <link rel="canonical" href="https://www.starsynai.com/training"/>
@@ -164,7 +168,7 @@ gtag('config', 'G-5E94DWD6KF');
   --accent:#38bdf8;--accent2:#06b6d4;--accent3:#67e8f9;
   --neon:#00f5ff;--gold:#f59e0b;--green:#4ade80;
   --text:#f0f9ff;--text2:rgba(240,249,255,0.68);--text3:rgba(240,249,255,0.42);
-  --serif:'Times New Roman','Cormorant Garamond',Georgia,serif;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
   --sans:'DM Sans',sans-serif;
   --r:16px;--rl:20px;
   --sh:0 4px 24px rgba(0,0,0,0.25);--shl:0 8px 40px rgba(0,0,0,0.35);
@@ -172,6 +176,12 @@ gtag('config', 'G-5E94DWD6KF');
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;background-color:#020613;}
+/* Cormorant Garamond defaults to old-style figures; force lining, tabular
+   numerals so stats and headline numbers sit on the baseline and align. */
+.trust-num,.stat-num,.step-num-inner,.section-title,h1,h2,h3,h4,.aaa-word,.hero-h1,
+.case-stat-num,.pl-label .pl-n,.mm-step i{font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:'lnum' 1,'tnum' 1;}
+
 /* Anchor targets must clear the fixed nav, or the heading lands underneath it. */
 section[id],div[id]{scroll-margin-top:92px;}
 
@@ -535,7 +545,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
       Corporate AI Training Your Team<br/><span class="grad-text">Actually Uses on Monday</span>
     </h1>
     <p class="section-sub" style="margin:1rem auto 2.5rem;font-size:1.05rem;animation:fadeUp .7s .3s ease both;">
-      We run hands-on AI and automation sessions inside companies, studios and production houses. No slide decks about the future of AI &mdash; your people bring their real work, and leave with workflows already running in the tools they use every day.
+      We run hands-on AI and automation sessions inside companies, studios and production houses. Every programme is built around what you ask for &mdash; you tell us the topics, the tools and the depth, and we shape the sessions to your team. No slide decks about the future of AI; your people bring their real work and leave with workflows already running.
     </p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .7s .4s ease both;">
       <button class="btn-primary" style="padding:.85rem 2rem;font-size:.95rem;" onclick="openConsultation()">Plan a Session for Your Team &rarr;</button>
@@ -601,6 +611,16 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
           <span style="font-size:.74rem;padding:.28rem .68rem;border-radius:999px;border:1px solid var(--border);color:var(--text3);">Scripting &amp; ideation</span>
           <span style="font-size:.74rem;padding:.28rem .68rem;border-radius:999px;border:1px solid var(--border);color:var(--text3);">Asset search</span>
           <span style="font-size:.74rem;padding:.28rem .68rem;border-radius:999px;border:1px solid var(--border);color:var(--text3);">Delivery tracking</span>
+        </div>
+      </div>
+      <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:2rem;">
+        <div style="font-size:1.7rem;margin-bottom:.85rem;">🎯</div>
+        <h3 style="font-family:var(--serif);font-size:1.18rem;margin-bottom:.6rem;color:var(--text);">Train the Trainer</h3>
+        <p style="color:var(--text2);font-size:.9rem;line-height:1.68;margin-bottom:1.1rem;">We train one or two people inside your team to run the sessions themselves. They keep the material, the exercises and the answers, so the knowledge stays with you after we leave.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span style="font-size:.74rem;padding:.28rem .68rem;border-radius:999px;border:1px solid var(--border);color:var(--text3);">Internal champion</span>
+          <span style="font-size:.74rem;padding:.28rem .68rem;border-radius:999px;border:1px solid var(--border);color:var(--text3);">Session material</span>
+          <span style="font-size:.74rem;padding:.28rem .68rem;border-radius:999px;border:1px solid var(--border);color:var(--text3);">Ongoing rollout</span>
         </div>
       </div>
       <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:2rem;">
