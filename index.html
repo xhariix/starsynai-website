@@ -676,6 +676,201 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 </script>
 </head>
 <body>
+<!-- ===================== CINEMATIC LOGO INTRO ===================== -->
+<style>
+  #introOverlay{position:fixed;inset:0;z-index:100000;background:#03060b;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;cursor:pointer;}
+  #introOverlay.gone{opacity:0;pointer-events:none;transition:opacity .55s ease;}
+  .intro-glow{position:absolute;left:50%;top:50%;width:min(80vh,760px);height:min(80vh,760px);transform:translate(-50%,-50%) scale(.4);
+    border-radius:50%;filter:blur(70px);opacity:0;pointer-events:none;
+    background:radial-gradient(circle,rgba(56,189,248,.42) 0%,rgba(56,189,248,.10) 45%,transparent 72%);}
+  .intro-flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%,rgba(186,240,255,.95) 0%,rgba(56,189,248,.55) 22%,transparent 58%);
+    opacity:0;pointer-events:none;}
+  .intro-stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:.2rem;}
+  .intro-star{width:clamp(74px,13vw,124px);height:clamp(74px,13vw,124px);opacity:0;overflow:visible;}
+  .intro-star polygon{fill:rgba(56,189,248,.16);stroke:#67e8f9;stroke-width:1.15;stroke-linejoin:round;}
+  .intro-syn{font-family:var(--serif);font-weight:700;font-size:clamp(.95rem,2vw,1.25rem);letter-spacing:5px;
+    color:#67e8f9;opacity:0;margin-top:-.35rem;}
+  .intro-word{margin-top:1.15rem;font-family:var(--serif);font-weight:700;letter-spacing:-1px;
+    font-size:clamp(2rem,6vw,3.6rem);color:#f0f9ff;opacity:0;white-space:nowrap;}
+  .intro-word .ci-grad{background:linear-gradient(135deg,#67e8f9 0%,#a5f3fc 50%,#38bdf8 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .intro-skip{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-family:var(--sans);
+    font-size:.66rem;letter-spacing:3px;text-transform:uppercase;color:rgba(240,249,255,.34);opacity:0;}
+  /* The hero's rotating mark, where the intro star lands. */
+  .hero-mark{width:clamp(88px,11vw,124px);height:clamp(88px,11vw,124px);margin:0 auto 1.35rem;position:relative;}
+  #heroStar{width:100%;height:100%;display:block;}
+  @media(max-width:900px){ .hero-mark{margin-bottom:1.1rem;} }
+</style>
+
+<div id="introOverlay" aria-hidden="true" role="presentation">
+  <div class="intro-glow" id="introGlow"></div>
+  <div class="intro-stage">
+    <svg class="intro-star" id="introStar" viewBox="0 0 38 38" aria-hidden="true">
+      <polygon points="19,4 21.5,13 31,13 23.5,18.5 26,27.5 19,22 12,27.5 14.5,18.5 7,13 16.5,13"/>
+    </svg>
+    <div class="intro-syn" id="introSyn">syn</div>
+    <div class="intro-word" id="introWord"><span>Star</span><span class="ci-grad">Syn</span><span>&nbsp;AI</span></div>
+  </div>
+  <div class="intro-flash" id="introFlash"></div>
+  <div class="intro-skip" id="introSkip">Click to skip</div>
+</div>
+
+<script>
+/* CINEMATIC INTRO — star flies in, jumps, "syn" lands, flash, wordmark.
+   Plays once per browsing session, skippable, and off entirely for
+   reduced-motion. The page underneath is fully parsed the whole time. */
+(function initIntro(){
+  const ov = document.getElementById('introOverlay');
+  if (!ov) return;
+
+  let handedOver = false;
+  const handOver = () => {
+    if (handedOver) return;
+    handedOver = true;
+    window.ssaiIntroDone = true;
+    window.dispatchEvent(new CustomEvent('ssai:intro-done'));
+  };
+  const kill = () => { ov.remove(); document.documentElement.style.overflow = ''; handOver(); };
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seen = false;
+  try { seen = sessionStorage.getItem('ssai_intro') === '1'; } catch (e) {}
+
+  if (seen || reduced || typeof gsap === 'undefined'){ kill(); return; }
+  try { sessionStorage.setItem('ssai_intro', '1'); } catch (e) {}
+
+  // Hold the page still only while the overlay is up.
+  document.documentElement.style.overflow = 'hidden';
+
+  const tl = gsap.timeline({
+    onComplete(){
+      ov.classList.add('gone');
+      document.documentElement.style.overflow = '';
+      handOver();
+      setTimeout(() => ov.remove(), 620);
+    }
+  });
+
+  // 1 — the star arrives out of the dark, small and far away
+  tl.fromTo('#introStar',
+    { opacity: 0, scale: 0.12, x: -170, y: 130, rotate: -140 },
+    { opacity: 1, scale: 0.62, x: 0, y: 46, rotate: 0, duration: 0.95, ease: 'power3.out' }, 0.15);
+  tl.fromTo('#introGlow', { opacity: 0, scale: 0.4 }, { opacity: 0.5, scale: 1, duration: 1.1, ease: 'power2.out' }, 0.2);
+
+  // 2 — it jumps, then drops and settles
+  tl.to('#introStar', { y: -34, scale: 1.06, duration: 0.34, ease: 'power2.out' }, 1.05)
+    .to('#introStar', { y: 0, scale: 1, duration: 0.42, ease: 'bounce.out' }, 1.39);
+
+  // 3 — "syn" settles in underneath
+  tl.fromTo('#introSyn', { opacity: 0, y: 14, letterSpacing: '18px' },
+    { opacity: 1, y: 0, letterSpacing: '5px', duration: 0.5, ease: 'power2.out' }, 1.72);
+
+  // 4 — flash, and the wordmark resolves out of it
+  tl.to('#introFlash', { opacity: 1, duration: 0.11, ease: 'power2.in' }, 2.18)
+    .to('#introFlash', { opacity: 0, duration: 0.5, ease: 'power2.out' }, 2.29);
+  tl.fromTo('#introWord', { opacity: 0, y: 20, filter: 'blur(12px)' },
+    { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6, ease: 'power3.out' }, 2.24);
+  tl.to('#introGlow', { opacity: 0.72, scale: 1.12, duration: 0.5, ease: 'power2.out' }, 2.2);
+
+  // 5 — hold, then hand over to the hero (whose mark is already rotating)
+  tl.to('#introSkip', { opacity: 1, duration: 0.3 }, 1.2);
+  tl.to({}, { duration: 0.55 });
+  tl.to('.intro-stage', { scale: 0.94, opacity: 0, duration: 0.45, ease: 'power2.in' });
+
+  const skip = () => { tl.progress(1); };
+  ov.addEventListener('click', skip);
+  window.addEventListener('keydown', function onKey(e){
+    if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter'){ skip(); window.removeEventListener('keydown', onKey); }
+  });
+  // Arm scroll-to-skip late: a stray wheel or momentum event at load would
+  // otherwise kill the intro before its first frame.
+  setTimeout(() => {
+    window.addEventListener('wheel', skip, { once: true, passive: true });
+    window.addEventListener('touchmove', skip, { once: true, passive: true });
+  }, 900);
+  // Never strand a visitor behind the overlay if something throws mid-timeline.
+  setTimeout(() => { if (document.getElementById('introOverlay')) { tl.progress(1); } }, 7000);
+})();
+</script>
+
+<script>
+/* HERO MARK — the logo star, extruded from the same polygon the nav uses,
+   turning slowly. */
+function initHeroStar(){
+  const canvas = document.getElementById('heroStar');
+  if (!canvas || typeof THREE === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+  camera.position.set(0, 0, 5.2);
+
+  // Exactly the nav logo's points, recentred and flipped into SVG-to-3D space.
+  const pts = [[19,4],[21.5,13],[31,13],[23.5,18.5],[26,27.5],[19,22],[12,27.5],[14.5,18.5],[7,13],[16.5,13]];
+  const shape = new THREE.Shape();
+  pts.forEach(([x, y], i) => {
+    const px = (x - 19) / 13, py = (19 - y) / 13;
+    i ? shape.lineTo(px, py) : shape.moveTo(px, py);
+  });
+  shape.closePath();
+
+  const geo = new THREE.ExtrudeGeometry(shape, {
+    depth: 0.24, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.045, bevelSegments: 3, curveSegments: 6
+  });
+  geo.center();
+
+  const mat = new THREE.MeshStandardMaterial({
+    color: 0x0e2a3d, metalness: 0.85, roughness: 0.28,
+    emissive: 0x0b3f56, emissiveIntensity: 0.55
+  });
+  const star = new THREE.Mesh(geo, mat);
+  scene.add(star);
+
+  const edges = new THREE.LineSegments(
+    new THREE.EdgesGeometry(geo, 28),
+    new THREE.LineBasicMaterial({ color: 0x67e8f9, transparent: true, opacity: 0.75 })
+  );
+  star.add(edges);
+
+  scene.add(new THREE.AmbientLight(0x88ccff, 0.55));
+  const key = new THREE.DirectionalLight(0x9fe8ff, 1.5); key.position.set(2, 3, 4); scene.add(key);
+  const rim = new THREE.DirectionalLight(0x38bdf8, 1.1); rim.position.set(-3, -1, 2); scene.add(rim);
+
+  function size(){
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  size();
+  window.addEventListener('resize', size, { passive: true });
+
+  let raf = null, visible = true;
+  function frame(){
+    raf = requestAnimationFrame(frame);
+    star.rotation.y += 0.011;
+    star.rotation.x = Math.sin(star.rotation.y * 0.5) * 0.12;
+    renderer.render(scene, camera);
+  }
+  function run(){ if (!raf && visible) frame(); }
+  function halt(){ if (raf){ cancelAnimationFrame(raf); raf = null; } }
+
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; visible ? run() : halt(); }),
+      { threshold: 0 }).observe(canvas);
+  }
+  run();
+}
+// This block sits at the top of <body>, so wait for the hero markup.
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initHeroStar);
+else initHeroStar();
+</script>
+
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -923,6 +1118,9 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   .hero-badge b{font-weight:600;color:#e0f7ff;}
   .hero-badge .hb-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(74,222,128,.8);flex:none;}
   .hero-h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.8rem,4.2vw,3.3rem);line-height:1.14;letter-spacing:-1px;color:var(--text);max-width:27ch;margin:0 auto 1.4rem;}
+  .hero-line{display:block;}
+  .has-js .hero-line{opacity:0;transform:translateY(20px);filter:blur(9px);}
+  .has-js .hero-line.in{opacity:1;transform:none;filter:blur(0px);transition:opacity .75s ease,transform .75s cubic-bezier(.16,1,.3,1),filter .75s ease;}
   .hero-sub{font-size:clamp(1rem,1.35vw,1.15rem);line-height:1.7;color:var(--text2);max-width:60ch;margin:0 auto 2.4rem;}
   .hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center;justify-content:center;margin-bottom:3.4rem;}
   .hero-cta .btn-primary{padding:.85rem 1.7rem;font-size:.95rem;border-radius:10px;}
@@ -946,8 +1144,9 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="hero-fade" aria-hidden="true"></div>
   <div class="container hero-inner">
+    <div class="hero-mark"><canvas id="heroStar" aria-hidden="true"></canvas></div>
     <div class="hero-badge"><span class="hb-dot"></span><b>StarSyn AI</b> &middot; AI automation &amp; enablement studio</div>
-    <h1 class="hero-h1">Automate the work.<br/>Augment AI.<br/><span class="grad-text">Amplify Human Intelligence.</span></h1>
+    <h1 class="hero-h1"><span class="hero-line">Automate the work.</span><span class="hero-line">Augment AI.</span><span class="hero-line grad-text">Amplify Human Intelligence.</span></h1>
     <p class="hero-sub">We design, build and deploy AI automation and custom agents for businesses and creative studios &mdash; then train your team to run them. From a first workflow to a system your whole company depends on.</p>
     <div class="hero-cta">
       <button class="btn-primary" onclick="openConsultation()">Book a free call &rarr;</button>
@@ -1023,6 +1222,30 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 </script>
 
 
+
+<script>
+/* HERO HEADLINE — the three beats land one at a time, after the intro hands over. */
+(function initHeroLines(){
+  document.documentElement.classList.add('has-js');
+  const lines = [...document.querySelectorAll('.hero-line')];
+  if (!lines.length) return;
+
+  let played = false;
+  function play(){
+    if (played) return;
+    played = true;
+    lines.forEach((el, i) => setTimeout(() => el.classList.add('in'), i * 420));
+  }
+
+  // The intro may already have handed over before this script was parsed
+  // (repeat visit, reduced motion, no GSAP), so check the flag as well.
+  if (window.ssaiIntroDone) play();
+  window.addEventListener('ssai:intro-done', play);
+  // If the intro never runs (repeat visit, reduced motion, no GSAP) it still fires,
+  // and this is the backstop if anything about that goes wrong.
+  setTimeout(play, 6000);
+})();
+</script>
 <!-- ===================== HOW IT COMPOUNDS — SCROLL MIND MAP ===================== -->
 <style>
   .mm-wrap{position:relative;background:linear-gradient(180deg,#04060a 0%,#080c12 50%,#04060a 100%);z-index:2;}
