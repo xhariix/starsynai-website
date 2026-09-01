@@ -251,6 +251,11 @@ section{position:relative;z-index:1;}
 .trust-bar{background:linear-gradient(180deg,rgba(56,189,248,0.045),rgba(56,189,248,0.015));border-top:1px solid rgba(56,189,248,0.09);border-bottom:1px solid rgba(56,189,248,0.09);padding:3rem 3rem 2.4rem;}
 .trust-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
 .trust-cell{text-align:center;padding:0 1.5rem;position:relative;}
+.trust-ico{width:22px;height:22px;margin:0 auto .85rem;display:block;stroke:var(--accent3);fill:none;
+  stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.75;}
+.trust-rule{width:0;height:2px;margin:.75rem auto 0;border-radius:2px;
+  background:linear-gradient(90deg,var(--accent3),var(--accent));transition:width 1.1s cubic-bezier(.16,1,.3,1);}
+.trust-cell.lit .trust-rule{width:34px;}
 .trust-cell + .trust-cell{box-shadow:inset 1px 0 0 rgba(56,189,248,0.13);}
 .trust-num{font-family:var(--serif);font-size:clamp(2.1rem,3.6vw,2.9rem);font-weight:700;line-height:1;letter-spacing:-1px;background:linear-gradient(135deg,var(--accent3),#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .trust-label{color:var(--text2);font-size:.8rem;line-height:1.45;margin-top:.55rem;letter-spacing:.2px;}
@@ -1583,6 +1588,7 @@ else initHeroStar();
   .dot-them{position:absolute;top:2.15rem;width:8px;height:8px;border-radius:50%;transform:translate(-50%,-3px);
     background:var(--bg1);border:1.5px solid rgba(255,255,255,.3);box-shadow:none;}
   .dot-them.t3{left:62.5%;} .dot-them.t4{left:87.5%;}
+  .tier-them{display:none;}
   .rail-key{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:2.6rem;padding-top:1.2rem;border-top:1px solid var(--border);}
   .key{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--text2);}
   .key i{width:18px;height:2px;border-radius:2px;flex:none;font-style:normal;}
@@ -1606,6 +1612,9 @@ else initHeroStar();
     .tier::after{content:'';position:absolute;left:9px;top:1.1rem;bottom:0;width:1px;background:rgba(56,189,248,.3);}
     .tier:last-child::after{display:none;}
     .rail-key{justify-content:flex-start;margin-top:1.9rem;}
+  .key.them{display:none;}          /* its rail is not drawn in the vertical layout */
+  .tier-them{display:block;font-size:.68rem;color:var(--text3);margin-top:.4rem;
+    padding-left:.6rem;border-left:2px solid rgba(255,255,255,.16);line-height:1.4;}
   }
 </style>
 
@@ -1630,7 +1639,7 @@ else initHeroStar();
           <div class="scale-tiers">
             <div class="tier"><div class="tier-name">Students</div><div class="tier-note">Learning to build</div></div>
             <div class="tier"><div class="tier-name">Solo creators</div><div class="tier-note">Working alone</div></div>
-            <div class="tier"><div class="tier-name">Small teams</div><div class="tier-note">Shipping fast</div></div>
+            <div class="tier"><div class="tier-name">Small teams</div><div class="tier-note">Shipping fast</div><div class="tier-them">Most AI studios start about here</div></div>
             <div class="tier"><div class="tier-name">Enterprise</div><div class="tier-note">Rolling out wide</div></div>
           </div>
         </div>
@@ -1648,13 +1657,53 @@ else initHeroStar();
 <!-- TRUST BAR -->
 <div class="trust-bar reveal">
   <div class="trust-inner">
-    <div class="trust-cell"><div class="trust-num">500+</div><div class="trust-label">AI workflows built</div></div>
-    <div class="trust-cell"><div class="trust-num">98%</div><div class="trust-label">Client satisfaction</div></div>
-    <div class="trust-cell"><div class="trust-num">12+</div><div class="trust-label">Industries served</div></div>
-    <div class="trust-cell"><div class="trust-num">48h</div><div class="trust-label">Typical first delivery</div></div>
+    <div class="trust-cell"><svg class="trust-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h5a5 5 0 0 1 5 5v.3M7 18h5a5 5 0 0 0 5-5v-.3"/></svg><div class="trust-num counter" data-target="500" data-suffix="+">500+</div><div class="trust-label">AI workflows built</div><div class="trust-rule"></div></div>
+    <div class="trust-cell"><svg class="trust-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.6 2.6L16 9.5"/></svg><div class="trust-num counter" data-target="98" data-suffix="%">98%</div><div class="trust-label">Client satisfaction</div><div class="trust-rule"></div></div>
+    <div class="trust-cell"><svg class="trust-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg><div class="trust-num counter" data-target="12" data-suffix="+">12+</div><div class="trust-label">Industries served</div><div class="trust-rule"></div></div>
+    <div class="trust-cell"><svg class="trust-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></svg><div class="trust-num counter" data-target="48" data-suffix="h">48h</div><div class="trust-label">Typical first delivery</div><div class="trust-rule"></div></div>
   </div>
   <p class="trust-basis">Across all StarSyn AI client engagements to date &middot; updated September 2026</p>
 </div>
+
+<script>
+/* TRUST ROW — numbers count up once, in view, and the rule under each draws in. */
+(function initTrustCounters(){
+  const cells = [...document.querySelectorAll('.trust-cell')];
+  if (!cells.length || !('IntersectionObserver' in window)) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function run(cell){
+    cell.classList.add('lit');
+    const el = cell.querySelector('.counter');
+    if (!el || reduced) return;
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || '';
+    if (!isFinite(target)) return;
+    const DUR = 1100;
+    let t0 = null;
+    function step(now){
+      if (t0 === null) t0 = now;
+      const k = Math.min(1, (now - t0) / DUR);
+      const eased = 1 - Math.pow(1 - k, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (k < 1) requestAnimationFrame(step);
+      else el.textContent = target + suffix;
+    }
+    el.textContent = '0' + suffix;
+    requestAnimationFrame(step);
+  }
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting || e.target.dataset.done) return;
+      e.target.dataset.done = '1';
+      io.unobserve(e.target);
+      run(e.target);
+    });
+  }, { threshold: 0.45 });
+  cells.forEach(c => io.observe(c));
+})();
+</script>
 
 <!-- TOOLS BAR WITH INTRO LINE -->
 <div class="logo-bar reveal">
