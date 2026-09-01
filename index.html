@@ -1220,7 +1220,7 @@ else initHeroStar();
         <span class="aaa-word">Amplify</span><span class="aaa-tail">Human Intelligence.</span>
       </span>
     </h1>
-    <p class="hero-sub">We build the automation. Your team runs it.</p>
+    <p class="hero-sub">We build the AI. Your people do the thinking.</p>
     <div class="hero-cta">
       <button class="btn-primary" onclick="openConsultation()">Book a free call &rarr;</button>
       <a class="hero-ghost" href="/portfolio">See our work</a>
@@ -1293,8 +1293,6 @@ else initHeroStar();
   }
 })();
 </script>
-
-
 
 <script>
 /* HERO HEADLINE — the three beats land one at a time, after the intro hands over. */
@@ -1559,15 +1557,93 @@ else initHeroStar();
 </script>
 
 
-<!-- MISSION — AI within reach for students & individuals -->
-<section class="section-pad reveal" style="position:relative;text-align:center;overflow:hidden;">
-  <div aria-hidden style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,0.08) 0%,rgba(56,189,248,0.02) 45%,transparent 72%);filter:blur(60px);pointer-events:none;z-index:0;"></div>
-  <div class="container" style="position:relative;z-index:1;max-width:800px;">
-    <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>Our Primary Goal<div class="eyebrow-line"></div></div>
-    <h2 class="section-title" style="margin-bottom:1.25rem;">AI, <span class="grad-text">Made Reachable</span><br/>for Students &amp; Individuals</h2>
-    <p class="section-sub" style="max-width:640px;margin:0 auto;color:var(--text2);font-size:1.05rem;line-height:1.8;">A primary goal at StarSyn AI is to put intelligent automation within reach of everyone — not just enterprises with six-figure budgets. Students learning the craft, solo creators building alone, and small teams shipping fast: this is who we build for.</p>
+<!-- PRIMARY GOAL — the reach scale makes the "made reachable" claim visible -->
+<style>
+  .reach-sec{position:relative;padding:6rem 0 5rem;overflow:hidden;}
+  .reach-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:4rem;align-items:center;}
+  .reach-copy .section-title{margin-bottom:1.1rem;}
+  .reach-copy p{color:var(--text2);font-size:1rem;line-height:1.78;max-width:46ch;}
+
+  /* the scale */
+  .scale{position:relative;}
+  .scale-cap{font-size:.68rem;letter-spacing:2.4px;text-transform:uppercase;color:var(--text3);margin-bottom:1.6rem;}
+  .scale-track{position:relative;padding-top:.5rem;}
+  .scale-tiers{display:grid;grid-template-columns:repeat(4,1fr);}
+  .tier{text-align:center;position:relative;padding-top:2.9rem;}
+  .tier-name{font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--text);line-height:1.2;}
+  .tier-note{font-size:.72rem;color:var(--text3);margin-top:.25rem;line-height:1.4;}
+  /* rails sit above the tier labels */
+  .rail{position:absolute;height:2px;border-radius:2px;}
+  .rail-ours{left:12.5%;right:12.5%;top:1.15rem;
+    background:linear-gradient(90deg,var(--accent3),var(--accent));box-shadow:0 0 14px rgba(56,189,248,.35);}
+  .rail-them{left:62.5%;right:12.5%;top:2.15rem;background:rgba(255,255,255,.14);}
+  .dot{position:absolute;top:1.15rem;width:11px;height:11px;border-radius:50%;transform:translate(-50%,-4.5px);
+    background:var(--bg1);border:2px solid var(--accent3);box-shadow:0 0 10px rgba(56,189,248,.5);}
+  .dot.d1{left:12.5%;} .dot.d2{left:37.5%;} .dot.d3{left:62.5%;} .dot.d4{left:87.5%;}
+  .dot-them{position:absolute;top:2.15rem;width:8px;height:8px;border-radius:50%;transform:translate(-50%,-3px);
+    background:var(--bg1);border:1.5px solid rgba(255,255,255,.3);box-shadow:none;}
+  .dot-them.t3{left:62.5%;} .dot-them.t4{left:87.5%;}
+  .rail-key{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:2.6rem;padding-top:1.2rem;border-top:1px solid var(--border);}
+  .key{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--text2);}
+  .key i{width:18px;height:2px;border-radius:2px;flex:none;font-style:normal;}
+  .key.ours i{background:linear-gradient(90deg,var(--accent3),var(--accent));}
+  .key.them i{background:rgba(255,255,255,.16);}
+  .key.them{color:var(--text3);}
+
+  @media(max-width:900px){
+    .reach-sec{padding:4rem 0 3.25rem;}
+    .reach-grid{grid-template-columns:1fr;gap:2.5rem;}
+    .reach-copy{text-align:center;}
+    .reach-copy p{margin-left:auto;margin-right:auto;}
+    .scale-cap{text-align:center;}
+    /* vertical on phones: the rail runs down the left through every tier */
+    .scale-tiers{grid-template-columns:1fr;gap:0;}
+    .tier{text-align:left;padding:0 0 1.5rem 2.4rem;}
+    .tier:last-child{padding-bottom:0;}
+    .rail,.dot,.dot-them{display:none;}
+    .tier::before{content:'';position:absolute;left:5px;top:.45rem;width:9px;height:9px;border-radius:50%;
+      background:var(--bg1);border:2px solid var(--accent3);box-shadow:0 0 8px rgba(56,189,248,.5);}
+    .tier::after{content:'';position:absolute;left:9px;top:1.1rem;bottom:0;width:1px;background:rgba(56,189,248,.3);}
+    .tier:last-child::after{display:none;}
+    .rail-key{justify-content:flex-start;margin-top:1.9rem;}
+  }
+</style>
+
+<section class="reach-sec">
+  <div class="bg-orbs"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="reach-grid">
+
+      <div class="reach-copy reveal">
+        <div class="eyebrow"><div class="eyebrow-line"></div>Our Primary Goal</div>
+        <h2 class="section-title">AI, <span class="grad-text">Made Reachable</span></h2>
+        <p>Most AI studios start their pricing where enterprise budgets begin. We built StarSyn AI to cover the whole range &mdash; a student learning the craft, a creator working alone, a team of five shipping fast, and the enterprise rolling it out across departments.</p>
+      </div>
+
+      <div class="scale reveal">
+        <div class="scale-cap">Who we build for</div>
+        <div class="scale-track">
+          <div class="rail rail-ours"></div>
+          <div class="rail rail-them"></div>
+          <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="dot d4"></span>
+          <span class="dot-them t3"></span><span class="dot-them t4"></span>
+          <div class="scale-tiers">
+            <div class="tier"><div class="tier-name">Students</div><div class="tier-note">Learning to build</div></div>
+            <div class="tier"><div class="tier-name">Solo creators</div><div class="tier-note">Working alone</div></div>
+            <div class="tier"><div class="tier-name">Small teams</div><div class="tier-note">Shipping fast</div></div>
+            <div class="tier"><div class="tier-name">Enterprise</div><div class="tier-note">Rolling out wide</div></div>
+          </div>
+        </div>
+        <div class="rail-key">
+          <div class="key ours"><i></i>StarSyn AI</div>
+          <div class="key them"><i></i>Where most AI studios start</div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
+
 
 <!-- TRUST BAR -->
 <div class="trust-bar reveal">
@@ -1924,12 +2000,12 @@ else initHeroStar();
     </div>
     <!-- Industry tag strip -->
     <div class="reveal" style="display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;">
-      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🏥 Healthcare</span>
-      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">⚖️ Legal &amp; Finance</span>
-      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🛒 E-commerce</span>
-      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🎓 Education</span>
-      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🏢 Enterprise</span>
-      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">🎥 Creators</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">Healthcare</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">Legal &amp; Finance</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">E-commerce</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">Education</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">Enterprise</span>
+      <span style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--text2);">Creators</span>
       <a href="/solutions" style="background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.3);padding:5px 16px;border-radius:100px;font-size:.8rem;color:var(--accent3);text-decoration:none;display:inline-block;cursor:pointer;">+ See All Solutions →</a>
     </div>
   </div>
@@ -2008,17 +2084,17 @@ else initHeroStar();
     <!-- 3 highlight pillars -->
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-bottom:3rem;">
       <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:1.75rem;">
-        <div style="font-size:1.8rem;margin-bottom:.75rem;">🤖</div>
+        <div style="margin-bottom:.85rem;"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" style="stroke:var(--accent3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;display:block;"><rect x="4" y="8" width="16" height="12" rx="3"/><circle cx="9" cy="14" r="1.3"/><circle cx="15" cy="14" r="1.3"/><path d="M12 8V4"/><circle cx="12" cy="3" r="1.4"/><path d="M2 13v3M22 13v3"/></svg></div>
         <h4 style="font-family:var(--serif);font-size:1.05rem;margin-bottom:.5rem;color:var(--text);">Build Real AI Agents</h4>
         <p style="color:var(--text2);font-size:.88rem;line-height:1.65;">You don't just learn theory — you ship working n8n pipelines, GPT-powered bots, and voice AI agents by week 2 of your program.</p>
       </div>
       <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:1.75rem;">
-        <div style="font-size:1.8rem;margin-bottom:.75rem;">💼</div>
+        <div style="margin-bottom:.85rem;"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" style="stroke:var(--accent3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;display:block;"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></div>
         <h4 style="font-family:var(--serif);font-size:1.05rem;margin-bottom:.5rem;color:var(--text);">Free Placement Prep</h4>
         <p style="color:var(--text2);font-size:.88rem;line-height:1.65;">ATS-optimised resume building, 1-on-1 mock interviews, and LinkedIn profile coaching — all included at zero extra cost.</p>
       </div>
       <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:1.75rem;">
-        <div style="font-size:1.8rem;margin-bottom:.75rem;">⚡</div>
+        <div style="margin-bottom:.85rem;"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" style="stroke:var(--accent3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;display:block;"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
         <h4 style="font-family:var(--serif);font-size:1.05rem;margin-bottom:.5rem;color:var(--text);">Flexible Formats</h4>
         <p style="color:var(--text2);font-size:.88rem;line-height:1.65;">1-on-1 Intensive, small group batches, or corporate workshops — online or in-person. Durations from 1-week sprints to 3-month programs.</p>
       </div>
@@ -2060,17 +2136,17 @@ else initHeroStar();
     <!-- Formats -->
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem;">
       <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:1.9rem;">
-        <div style="font-size:1.7rem;margin-bottom:.85rem;">🏢</div>
+        <div style="margin-bottom:.85rem;"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" style="stroke:var(--accent3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;display:block;"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2M9 16h6"/></svg></div>
         <h3 style="font-family:var(--serif);font-size:1.12rem;margin-bottom:.55rem;color:var(--text);">Corporate Team Training</h3>
         <p style="color:var(--text2);font-size:.9rem;line-height:1.68;">Role-specific sessions for sales, ops, HR, finance and support. Each team works on its own bottleneck, so the training maps to the job description &mdash; not a generic curriculum.</p>
       </div>
       <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:1.9rem;">
-        <div style="font-size:1.7rem;margin-bottom:.85rem;">🎬</div>
+        <div style="margin-bottom:.85rem;"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" style="stroke:var(--accent3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;display:block;"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M8 5v14M16 5v14M2.5 9.5h5.5M16 9.5h5.5M2.5 14.5h5.5M16 14.5h5.5"/></svg></div>
         <h3 style="font-family:var(--serif);font-size:1.12rem;margin-bottom:.55rem;color:var(--text);">Studios &amp; Production Houses</h3>
         <p style="color:var(--text2);font-size:.9rem;line-height:1.68;">Built for creative pipelines: scripting and ideation, pre-production planning, asset tagging and search, edit-room turnarounds, client reporting and delivery tracking.</p>
       </div>
       <div style="background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:16px;padding:1.9rem;">
-        <div style="font-size:1.7rem;margin-bottom:.85rem;">🧭</div>
+        <div style="margin-bottom:.85rem;"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" style="stroke:var(--accent3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;display:block;"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5.5-5.5 2 2-5.5z"/></svg></div>
         <h3 style="font-family:var(--serif);font-size:1.12rem;margin-bottom:.55rem;color:var(--text);">Leadership Briefings</h3>
         <p style="color:var(--text2);font-size:.9rem;line-height:1.68;">A straight session for founders and department heads: where AI genuinely pays off in your business, what to buy versus build, what it costs, and what to ignore this year.</p>
       </div>
@@ -2362,8 +2438,6 @@ else initHeroStar();
     </div>
   </div>
 </section>
-
-
 
 <!-- CTA BAND -->
 <div class="cta-band reveal">
