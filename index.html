@@ -701,9 +701,9 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   .hero-mark{width:clamp(158px,19vw,248px);height:clamp(158px,19vw,248px);margin:0 auto .5rem;position:relative;}
   /* 'syn' sits behind the star and turns with it — the scaleX is driven from
      the same rotation the WebGL mark uses, so the two stay in step. */
-  .hero-syn{position:absolute;left:50%;top:63%;transform:translate(-50%,-50%);z-index:0;pointer-events:none;
+  .hero-syn{position:absolute;left:50%;top:87%;transform:translate(-50%,-50%);z-index:0;pointer-events:none;
     font-family:var(--serif);font-weight:700;letter-spacing:2px;line-height:1;
-    font-size:clamp(2.4rem,5.4vw,4.2rem);color:var(--accent3);opacity:.13;will-change:transform,opacity;}
+    font-size:clamp(2.4rem,5.4vw,4.2rem);color:var(--accent3);opacity:.32;will-change:transform,opacity;}
   #heroStar{position:relative;z-index:1;}
   .hero-wordmark{font-family:var(--serif);font-weight:700;letter-spacing:-.5px;line-height:1;
     font-size:clamp(1.55rem,3.4vw,2.6rem);color:var(--text);margin:0 auto 1.5rem;white-space:nowrap;}
@@ -870,9 +870,11 @@ function initHeroStar(){
     renderer.render(scene, camera);
     if (syn){
       // Same angle as the mark, so the word turns with it rather than beside it.
+      // Mapped to 0.64..1 rather than raw cos: tied straight to cos it collapsed
+      // to nothing every time the star went edge-on, which read as 'disappearing'.
       const c = Math.cos(star.rotation.y);
-      syn.style.transform = 'translate(-50%,-50%) scaleX(' + c.toFixed(3) + ')';
-      syn.style.opacity = (0.07 + Math.abs(c) * 0.11).toFixed(3);
+      syn.style.transform = 'translate(-50%,-50%) scaleX(' + (0.82 + c * 0.18).toFixed(3) + ')';
+      syn.style.opacity = (0.24 + Math.abs(c) * 0.09).toFixed(3);
     }
   }
   function run(){ if (!raf && visible) frame(); }
