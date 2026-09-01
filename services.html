@@ -884,63 +884,69 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <div style="height:100px;"></div>
 
 <style>
-  /* SERVICE ROWS — one lane per audience, each drifting on its own */
-  .srows{display:flex;flex-direction:column;gap:3.25rem;margin-top:2.5rem;}
-  .srow{scroll-margin-top:110px;}
-  .srow-head{display:flex;align-items:center;gap:1.1rem;margin-bottom:1.1rem;padding:0 .1rem;}
-  .srow-art{flex:none;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(140deg,rgba(56,189,248,.16),rgba(56,189,248,.04));border:1px solid rgba(56,189,248,.22);
-    font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--accent3);
+  /* SERVICE DECKS - one deck per audience; the card turns in place on a timer. */
+  .deckgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));
+    gap:2.25rem 1.75rem;margin-top:2.75rem;align-items:start;}
+  /* ECG stagger: every second deck drops, every fourth lifts, so the grid reads
+     as a waveform instead of a row of identical boxes. */
+  .deck:nth-child(2n){margin-top:2.75rem;}
+  .deck:nth-child(4n){margin-top:1.25rem;}
+  .deck{scroll-margin-top:120px;}
+  .deck-head{display:flex;gap:.8rem;align-items:flex-start;margin-bottom:.9rem;}
+  .deck-n{flex:none;font-family:var(--serif);font-size:.82rem;font-weight:700;color:var(--accent3);
+    border:1px solid rgba(56,189,248,.24);border-radius:8px;padding:.2rem .45rem;line-height:1.25;
     font-variant-numeric:lining-nums tabular-nums;}
-  .srow-text{flex:1;min-width:0;}
-  .srow-text h2{font-family:var(--serif);font-size:clamp(1.15rem,2.1vw,1.5rem);font-weight:700;
-    color:var(--text);line-height:1.2;letter-spacing:-.2px;margin:0 0 .2rem;}
-  .srow-text p{color:var(--text2);font-size:.88rem;line-height:1.55;margin:0;max-width:62ch;}
+  .deck-head h3{font-family:var(--serif);font-size:1.06rem;font-weight:700;color:var(--text);
+    margin:0 0 .12rem;line-height:1.2;}
+  .deck-head p{color:var(--text3);font-size:.78rem;line-height:1.45;margin:0;}
 
-  /* the lane itself */
-  .srail{position:relative;overflow:hidden;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
-    mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);}
-  .strack{display:flex;gap:1rem;width:max-content;animation:srail-run var(--dur,60s) linear infinite;}
-  .strack.rev{animation-direction:reverse;}
-  .srail:hover .strack,.srail:focus-within .strack{animation-play-state:paused;}
-  @keyframes srail-run{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  /* Portrait cards, phone proportions, turning slightly as the lane carries them. */
-  .srail{perspective:1400px;}
-  .srows .strack{align-items:stretch;}
-  .srows .scard{flex:0 0 clamp(216px,20vw,258px);margin:0;display:flex;flex-direction:column;
-    aspect-ratio:9/15.5;padding:1.6rem 1.35rem;border-radius:20px;
-    background:linear-gradient(165deg,rgba(56,189,248,.07),rgba(255,255,255,.028) 42%,rgba(255,255,255,.02));
-    border:1px solid rgba(56,189,248,.14);
-    transform:rotateY(9deg);transform-origin:center;
-    transition:transform .55s cubic-bezier(.16,1,.3,1),border-color .35s,box-shadow .55s;}
-  .srows .strack .scard:nth-child(even){transform:rotateY(-9deg);}
-  .srail:hover .scard,.srail:focus-within .scard{transform:rotateY(0deg);}
-  .srows .scard:hover{border-color:rgba(56,189,248,.42);
-    box-shadow:0 22px 50px rgba(0,0,0,.45),0 0 26px rgba(56,189,248,.14);}
-  .srows .scard .scard-icon-tile{margin-bottom:1.1rem;}
-  .srows .scard h4{font-size:1.02rem;line-height:1.25;margin-bottom:.45rem;}
-  .srows .scard p{font-size:.82rem;line-height:1.62;}
-  /* pushes the arrow to the base of the card whatever the copy length */
-  .srows .scard::after{content:'92';margin-top:auto;padding-top:1rem;font-size:1rem;
-    color:var(--accent3);opacity:.42;transition:opacity .3s,transform .3s;}
-  .srows .scard:hover::after{opacity:1;transform:translateX(4px);}
+  .deck-stage{position:relative;perspective:1200px;height:300px;cursor:pointer;
+    border-radius:18px;outline:none;}
+  .deck-stage:focus-visible{box-shadow:0 0 0 2px var(--accent3);}
+  .dcard{position:absolute;inset:0;transform-style:preserve-3d;
+    transform:rotateY(-104deg);opacity:0;pointer-events:none;
+    transition:transform .85s cubic-bezier(.4,.05,.2,1),opacity .5s ease;}
+  .dcard.on{transform:rotateY(0deg);opacity:1;pointer-events:auto;}
+  .dcard.out{transform:rotateY(104deg);opacity:0;}
+  .dcard.on.flip{transform:rotateY(180deg);}
 
-  @media(max-width:700px){
-    .srows{gap:2.5rem;}
-    .srow-head{flex-wrap:wrap;gap:.75rem;margin-bottom:.9rem;}
-    .srow-art{width:38px;height:38px;font-size:.92rem;border-radius:10px;}
-    .srow-text h2{font-size:1.08rem;}
-    .srow-text p{font-size:.83rem;}
-      .srows .scard{flex:0 0 min(74vw,232px);padding:1.35rem 1.15rem;border-radius:18px;}
-    .srail{perspective:none;}
-    .srows .scard,.srows .strack .scard:nth-child(even){transform:none;}
+  .dcard-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    display:flex;flex-direction:column;border-radius:18px;padding:1.5rem 1.3rem;overflow:hidden;
+    background:linear-gradient(165deg,rgba(56,189,248,.08),rgba(255,255,255,.03) 45%,rgba(255,255,255,.02));
+    border:1px solid rgba(56,189,248,.16);}
+  .dcard-back{transform:rotateY(180deg);justify-content:center;
+    background:linear-gradient(165deg,rgba(56,189,248,.16),rgba(56,189,248,.05));
+    border-color:rgba(56,189,248,.4);}
+  .dcard-face h4{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--text);
+    margin:0 0 .45rem;line-height:1.25;}
+  .dcard-face p{color:var(--text2);font-size:.84rem;line-height:1.62;margin:0;}
+  .dcard-front .scard-icon-tile{margin-bottom:.9rem;}
+  .dcard-front .stag{margin-bottom:.7rem;}
+  .dcard-more{margin-top:auto;padding-top:.9rem;font-size:.71rem;letter-spacing:1.4px;
+    text-transform:uppercase;color:var(--accent3);opacity:.6;}
+  .dcard-back-tag{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;
+    color:var(--accent3);margin-bottom:.6rem;}
+  .dcard-cta{margin-top:1.1rem;align-self:flex-start;background:rgba(56,189,248,.16);
+    color:var(--accent3);border:1px solid rgba(56,189,248,.45);border-radius:9px;
+    padding:.55rem 1rem;font-size:.8rem;font-family:var(--sans);cursor:pointer;transition:all .2s;}
+  .dcard-cta:hover{background:rgba(56,189,248,.28);color:#fff;}
+
+  .deck-dots{display:flex;gap:.35rem;justify-content:center;margin-top:.9rem;}
+  .ddot{width:22px;height:3px;border-radius:2px;border:none;padding:0;cursor:pointer;
+    background:rgba(255,255,255,.16);transition:background .3s;}
+  .ddot.on{background:linear-gradient(90deg,var(--accent3),var(--accent));}
+
+  @media(max-width:640px){
+    .deckgrid{grid-template-columns:1fr;gap:1.75rem;}
+    .deck:nth-child(2n),.deck:nth-child(4n){margin-top:0;}
+    .deck-stage{height:284px;perspective:none;}
+    .dcard{transition:opacity .45s ease;}
+    .dcard,.dcard.out,.dcard.on.flip{transform:none;}
+    .dcard-back{transform:none;}
   }
-  /* Motion off: stop the drift and hand the lane back to the reader to swipe. */
   @media(prefers-reduced-motion:reduce){
-    .strack{animation:none;width:auto;}
-    .srail{overflow-x:auto;scrollbar-width:none;-webkit-mask-image:none;mask-image:none;}
-    .srail::-webkit-scrollbar{display:none;}
+    .dcard,.dcard.out,.dcard.on.flip{transition:opacity .3s ease;transform:none;}
+    .dcard-back{transform:none;}
   }
 </style>
 <section id="services" class="section-pad surface-s">
@@ -967,305 +973,427 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
         <button class="tab" onclick="jumpRow(\'marketing\',this)" data-filter="marketing">Marketing</button>
       </div>
     </div>
-    <div class="srows" id="servicesGrid">
-    <div class="srow reveal" id="row-creator">
-      <div class="srow-head">
-        <div class="srow-art" aria-hidden="true"><span>01</span></div>
-        <div class="srow-text">
-          <h2>Creators</h2>
-          <p>Publishing, replies and the weekly send — handled while you make the next thing.</p>
+    <div class="deckgrid" id="servicesGrid">
+      <div class="deck reveal" id="row-creator" data-cat="creator">
+        <div class="deck-head"><span class="deck-n">01</span><div><h3>Creators</h3><p>Publishing, replies and the weekly send.</p></div></div>
+        <div class="deck-stage" tabindex="0" aria-label="Creators services, turns automatically">
+          <article class="dcard on" data-i="0">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+              <div class="stag tag-cr">Creator</div>
+              <h4>Content Repurposer</h4>
+              <p>YouTube link → Twitter thread, LinkedIn post & Instagram caption in your voice — fully automatic.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Creators</div>
+              <h4>Content Repurposer</h4>
+              <p>YouTube link → Twitter thread, LinkedIn post & Instagram caption in your voice — fully automatic.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="1">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+              <div class="stag tag-cr">Creator</div>
+              <h4>Auto DM Responder</h4>
+              <p>AI replies to your DMs and comments 24/7 in your tone. Never miss a fan or lead again.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Creators</div>
+              <h4>Auto DM Responder</h4>
+              <p>AI replies to your DMs and comments 24/7 in your tone. Never miss a fan or lead again.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="2">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div class="stag tag-cr">Creator</div>
+              <h4>Newsletter Writer Agent</h4>
+              <p>Pulls your content & trending topics → drafts your weekly newsletter, ready to send.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Creators</div>
+              <h4>Newsletter Writer Agent</h4>
+              <p>Pulls your content & trending topics → drafts your weekly newsletter, ready to send.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
         </div>
+        <div class="deck-dots"><button type="button" class="ddot on" data-i="0" aria-label="Content Repurposer"></button><button type="button" class="ddot" data-i="1" aria-label="Auto DM Responder"></button><button type="button" class="ddot" data-i="2" aria-label="Newsletter Writer Agent"></button></div>
       </div>
-      <div class="srail">
-        <div class="strack" style="--dur:126s">
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="stag tag-cr">Creator</div><h4>Content Repurposer</h4><p>YouTube link → Twitter thread, LinkedIn post & Instagram caption in your voice — fully automatic.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="stag tag-cr">Creator</div><h4>Auto DM Responder</h4><p>AI replies to your DMs and comments 24/7 in your tone. Never miss a fan or lead again.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-cr">Creator</div><h4>Newsletter Writer Agent</h4><p>Pulls your content & trending topics → drafts your weekly newsletter, ready to send.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="stag tag-cr">Creator</div><h4>Content Repurposer</h4><p>YouTube link → Twitter thread, LinkedIn post & Instagram caption in your voice — fully automatic.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="stag tag-cr">Creator</div><h4>Auto DM Responder</h4><p>AI replies to your DMs and comments 24/7 in your tone. Never miss a fan or lead again.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-cr">Creator</div><h4>Newsletter Writer Agent</h4><p>Pulls your content & trending topics → drafts your weekly newsletter, ready to send.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="stag tag-cr">Creator</div><h4>Content Repurposer</h4><p>YouTube link → Twitter thread, LinkedIn post & Instagram caption in your voice — fully automatic.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="stag tag-cr">Creator</div><h4>Auto DM Responder</h4><p>AI replies to your DMs and comments 24/7 in your tone. Never miss a fan or lead again.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-cr">Creator</div><h4>Newsletter Writer Agent</h4><p>Pulls your content & trending topics → drafts your weekly newsletter, ready to send.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="stag tag-cr">Creator</div><h4>Content Repurposer</h4><p>YouTube link → Twitter thread, LinkedIn post & Instagram caption in your voice — fully automatic.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="stag tag-cr">Creator</div><h4>Auto DM Responder</h4><p>AI replies to your DMs and comments 24/7 in your tone. Never miss a fan or lead again.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-cr">Creator</div><h4>Newsletter Writer Agent</h4><p>Pulls your content & trending topics → drafts your weekly newsletter, ready to send.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="stag tag-cr">Creator</div><h4>Content Repurposer</h4><p>YouTube link → Twitter thread, LinkedIn post & Instagram caption in your voice — fully automatic.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="stag tag-cr">Creator</div><h4>Auto DM Responder</h4><p>AI replies to your DMs and comments 24/7 in your tone. Never miss a fan or lead again.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-cr">Creator</div><h4>Newsletter Writer Agent</h4><p>Pulls your content & trending topics → drafts your weekly newsletter, ready to send.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="stag tag-cr">Creator</div><h4>Content Repurposer</h4><p>YouTube link → Twitter thread, LinkedIn post & Instagram caption in your voice — fully automatic.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="stag tag-cr">Creator</div><h4>Auto DM Responder</h4><p>AI replies to your DMs and comments 24/7 in your tone. Never miss a fan or lead again.</p></div>
-        <div class="scard neon-click" data-cat="creator"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-cr">Creator</div><h4>Newsletter Writer Agent</h4><p>Pulls your content & trending topics → drafts your weekly newsletter, ready to send.</p></div>
+      <div class="deck reveal" id="row-startup" data-cat="startup">
+        <div class="deck-head"><span class="deck-n">02</span><div><h3>Startups</h3><p>Leads qualified, competitors watched, notes written.</p></div></div>
+        <div class="deck-stage" tabindex="0" aria-label="Startups services, turns automatically">
+          <article class="dcard on" data-i="0">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="stag tag-st">Startup</div>
+              <h4>Lead Qualification Bot</h4>
+              <p>Form → AI qualifies lead → personalised email → books a call. Fully hands-free end to end.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Startups</div>
+              <h4>Lead Qualification Bot</h4>
+              <p>Form → AI qualifies lead → personalised email → books a call. Fully hands-free end to end.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="1">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              <div class="stag tag-st">Startup</div>
+              <h4>Competitor Monitor</h4>
+              <p>Tracks competitor websites, pricing, and socials daily. Instant alerts when anything changes.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Startups</div>
+              <h4>Competitor Monitor</h4>
+              <p>Tracks competitor websites, pricing, and socials daily. Instant alerts when anything changes.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="2">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+              <div class="stag tag-st">Startup</div>
+              <h4>Meeting Summariser</h4>
+              <p>Records calls → writes summary + action items → drops into Notion, Slack, or CRM automatically.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Startups</div>
+              <h4>Meeting Summariser</h4>
+              <p>Records calls → writes summary + action items → drops into Notion, Slack, or CRM automatically.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
         </div>
+        <div class="deck-dots"><button type="button" class="ddot on" data-i="0" aria-label="Lead Qualification Bot"></button><button type="button" class="ddot" data-i="1" aria-label="Competitor Monitor"></button><button type="button" class="ddot" data-i="2" aria-label="Meeting Summariser"></button></div>
       </div>
-    </div>
-    <div class="srow reveal" id="row-startup">
-      <div class="srow-head">
-        <div class="srow-art" aria-hidden="true"><span>02</span></div>
-        <div class="srow-text">
-          <h2>Startups</h2>
-          <p>Qualifying leads, watching competitors, and never writing meeting notes again.</p>
+      <div class="deck reveal" id="row-biz" data-cat="biz">
+        <div class="deck-head"><span class="deck-n">03</span><div><h3>Small Business</h3><p>The front desk, the reviews and the posting.</p></div></div>
+        <div class="deck-stage" tabindex="0" aria-label="Small Business services, turns automatically">
+          <article class="dcard on" data-i="0">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div>
+              <div class="stag tag-bz">Small Biz</div>
+              <h4>AI Receptionist</h4>
+              <p>WhatsApp or website bot that books appointments, answers FAQs, and captures leads 24/7.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Small Business</div>
+              <h4>AI Receptionist</h4>
+              <p>WhatsApp or website bot that books appointments, answers FAQs, and captures leads 24/7.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="1">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+              <div class="stag tag-bz">Small Biz</div>
+              <h4>Review Responder</h4>
+              <p>Monitors Google reviews and drafts personalised responses to every new review instantly.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Small Business</div>
+              <h4>Review Responder</h4>
+              <p>Monitors Google reviews and drafts personalised responses to every new review instantly.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="2">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+              <div class="stag tag-bz">Small Biz</div>
+              <h4>Social Media Autopilot</h4>
+              <p>Approve ideas once a week. AI writes, schedules, and posts across all platforms automatically.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Small Business</div>
+              <h4>Social Media Autopilot</h4>
+              <p>Approve ideas once a week. AI writes, schedules, and posts across all platforms automatically.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
         </div>
+        <div class="deck-dots"><button type="button" class="ddot on" data-i="0" aria-label="AI Receptionist"></button><button type="button" class="ddot" data-i="1" aria-label="Review Responder"></button><button type="button" class="ddot" data-i="2" aria-label="Social Media Autopilot"></button></div>
       </div>
-      <div class="srail">
-        <div class="strack rev" style="--dur:126s">
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="stag tag-st">Startup</div><h4>Lead Qualification Bot</h4><p>Form → AI qualifies lead → personalised email → books a call. Fully hands-free end to end.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="stag tag-st">Startup</div><h4>Competitor Monitor</h4><p>Tracks competitor websites, pricing, and socials daily. Instant alerts when anything changes.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="stag tag-st">Startup</div><h4>Meeting Summariser</h4><p>Records calls → writes summary + action items → drops into Notion, Slack, or CRM automatically.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="stag tag-st">Startup</div><h4>Lead Qualification Bot</h4><p>Form → AI qualifies lead → personalised email → books a call. Fully hands-free end to end.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="stag tag-st">Startup</div><h4>Competitor Monitor</h4><p>Tracks competitor websites, pricing, and socials daily. Instant alerts when anything changes.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="stag tag-st">Startup</div><h4>Meeting Summariser</h4><p>Records calls → writes summary + action items → drops into Notion, Slack, or CRM automatically.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="stag tag-st">Startup</div><h4>Lead Qualification Bot</h4><p>Form → AI qualifies lead → personalised email → books a call. Fully hands-free end to end.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="stag tag-st">Startup</div><h4>Competitor Monitor</h4><p>Tracks competitor websites, pricing, and socials daily. Instant alerts when anything changes.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="stag tag-st">Startup</div><h4>Meeting Summariser</h4><p>Records calls → writes summary + action items → drops into Notion, Slack, or CRM automatically.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="stag tag-st">Startup</div><h4>Lead Qualification Bot</h4><p>Form → AI qualifies lead → personalised email → books a call. Fully hands-free end to end.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="stag tag-st">Startup</div><h4>Competitor Monitor</h4><p>Tracks competitor websites, pricing, and socials daily. Instant alerts when anything changes.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="stag tag-st">Startup</div><h4>Meeting Summariser</h4><p>Records calls → writes summary + action items → drops into Notion, Slack, or CRM automatically.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="stag tag-st">Startup</div><h4>Lead Qualification Bot</h4><p>Form → AI qualifies lead → personalised email → books a call. Fully hands-free end to end.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="stag tag-st">Startup</div><h4>Competitor Monitor</h4><p>Tracks competitor websites, pricing, and socials daily. Instant alerts when anything changes.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="stag tag-st">Startup</div><h4>Meeting Summariser</h4><p>Records calls → writes summary + action items → drops into Notion, Slack, or CRM automatically.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="stag tag-st">Startup</div><h4>Lead Qualification Bot</h4><p>Form → AI qualifies lead → personalised email → books a call. Fully hands-free end to end.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="stag tag-st">Startup</div><h4>Competitor Monitor</h4><p>Tracks competitor websites, pricing, and socials daily. Instant alerts when anything changes.</p></div>
-        <div class="scard neon-click" data-cat="startup"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="stag tag-st">Startup</div><h4>Meeting Summariser</h4><p>Records calls → writes summary + action items → drops into Notion, Slack, or CRM automatically.</p></div>
+      <div class="deck reveal" id="row-enterprise" data-cat="enterprise">
+        <div class="deck-head"><span class="deck-n">04</span><div><h3>Enterprise</h3><p>Onboarding, contracts, and buried knowledge.</p></div></div>
+        <div class="deck-stage" tabindex="0" aria-label="Enterprise services, turns automatically">
+          <article class="dcard on" data-i="0">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div class="stag tag-en">Enterprise</div>
+              <h4>HR Onboarding Agent</h4>
+              <p>New hire triggers full pipeline — sends docs, books meetings, sets up accounts, notifies teams.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Enterprise</div>
+              <h4>HR Onboarding Agent</h4>
+              <p>New hire triggers full pipeline — sends docs, books meetings, sets up accounts, notifies teams.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="1">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+              <div class="stag tag-en">Enterprise</div>
+              <h4>Contract Analyser</h4>
+              <p>Upload any PDF → AI flags risks, key dates, obligations, and unusual clauses in 30 seconds.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Enterprise</div>
+              <h4>Contract Analyser</h4>
+              <p>Upload any PDF → AI flags risks, key dates, obligations, and unusual clauses in 30 seconds.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="2">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+              <div class="stag tag-en">Enterprise</div>
+              <h4>Internal Knowledge Bot</h4>
+              <p>Chat with your own company docs, SOPs, and wikis. Instant answers without searching folders.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Enterprise</div>
+              <h4>Internal Knowledge Bot</h4>
+              <p>Chat with your own company docs, SOPs, and wikis. Instant answers without searching folders.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
         </div>
+        <div class="deck-dots"><button type="button" class="ddot on" data-i="0" aria-label="HR Onboarding Agent"></button><button type="button" class="ddot" data-i="1" aria-label="Contract Analyser"></button><button type="button" class="ddot" data-i="2" aria-label="Internal Knowledge Bot"></button></div>
       </div>
-    </div>
-    <div class="srow reveal" id="row-biz">
-      <div class="srow-head">
-        <div class="srow-art" aria-hidden="true"><span>03</span></div>
-        <div class="srow-text">
-          <h2>Small Business</h2>
-          <p>The front desk, the reviews and the posting — running without a hire.</p>
+      <div class="deck reveal" id="row-health" data-cat="health">
+        <div class="deck-head"><span class="deck-n">05</span><div><h3>Healthcare</h3><p>Bookings off the phone queue; reports in plain words.</p></div></div>
+        <div class="deck-stage" tabindex="0" aria-label="Healthcare services, turns automatically">
+          <article class="dcard on" data-i="0">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+              <div class="stag tag-he">Healthcare</div>
+              <h4>Appointment Booking Bot</h4>
+              <p>Patients book, reschedule, and get reminders via WhatsApp. Zero receptionist time needed.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Healthcare</div>
+              <h4>Appointment Booking Bot</h4>
+              <p>Patients book, reschedule, and get reminders via WhatsApp. Zero receptionist time needed.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="1">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div>
+              <div class="stag tag-he">Healthcare</div>
+              <h4>Medical Report Summariser</h4>
+              <p>Complex reports → plain-language summaries for patients or staff in seconds.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Healthcare</div>
+              <h4>Medical Report Summariser</h4>
+              <p>Complex reports → plain-language summaries for patients or staff in seconds.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
         </div>
+        <div class="deck-dots"><button type="button" class="ddot on" data-i="0" aria-label="Appointment Booking Bot"></button><button type="button" class="ddot" data-i="1" aria-label="Medical Report Summariser"></button></div>
       </div>
-      <div class="srail">
-        <div class="strack" style="--dur:126s">
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>AI Receptionist</h4><p>WhatsApp or website bot that books appointments, answers FAQs, and captures leads 24/7.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Review Responder</h4><p>Monitors Google reviews and drafts personalised responses to every new review instantly.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Social Media Autopilot</h4><p>Approve ideas once a week. AI writes, schedules, and posts across all platforms automatically.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>AI Receptionist</h4><p>WhatsApp or website bot that books appointments, answers FAQs, and captures leads 24/7.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Review Responder</h4><p>Monitors Google reviews and drafts personalised responses to every new review instantly.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Social Media Autopilot</h4><p>Approve ideas once a week. AI writes, schedules, and posts across all platforms automatically.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>AI Receptionist</h4><p>WhatsApp or website bot that books appointments, answers FAQs, and captures leads 24/7.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Review Responder</h4><p>Monitors Google reviews and drafts personalised responses to every new review instantly.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Social Media Autopilot</h4><p>Approve ideas once a week. AI writes, schedules, and posts across all platforms automatically.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>AI Receptionist</h4><p>WhatsApp or website bot that books appointments, answers FAQs, and captures leads 24/7.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Review Responder</h4><p>Monitors Google reviews and drafts personalised responses to every new review instantly.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Social Media Autopilot</h4><p>Approve ideas once a week. AI writes, schedules, and posts across all platforms automatically.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>AI Receptionist</h4><p>WhatsApp or website bot that books appointments, answers FAQs, and captures leads 24/7.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Review Responder</h4><p>Monitors Google reviews and drafts personalised responses to every new review instantly.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Social Media Autopilot</h4><p>Approve ideas once a week. AI writes, schedules, and posts across all platforms automatically.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>AI Receptionist</h4><p>WhatsApp or website bot that books appointments, answers FAQs, and captures leads 24/7.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Review Responder</h4><p>Monitors Google reviews and drafts personalised responses to every new review instantly.</p></div>
-        <div class="scard neon-click" data-cat="biz"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="stag tag-bz">Small Biz</div><h4>Social Media Autopilot</h4><p>Approve ideas once a week. AI writes, schedules, and posts across all platforms automatically.</p></div>
+      <div class="deck reveal" id="row-edu" data-cat="edu">
+        <div class="deck-head"><span class="deck-n">06</span><div><h3>Education</h3><p>Student questions at midnight; feedback that arrives fast.</p></div></div>
+        <div class="deck-stage" tabindex="0" aria-label="Education services, turns automatically">
+          <article class="dcard on" data-i="0">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+              <div class="stag tag-ed">Education</div>
+              <h4>Doubt-Solving Bot</h4>
+              <p>AI tutor trained on your curriculum answers student questions 24/7 with structured explanations.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Education</div>
+              <h4>Doubt-Solving Bot</h4>
+              <p>AI tutor trained on your curriculum answers student questions 24/7 with structured explanations.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="1">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+              <div class="stag tag-ed">Education</div>
+              <h4>Assignment Feedback AI</h4>
+              <p>Students submit work → AI gives structured, rubric-based feedback within seconds.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Education</div>
+              <h4>Assignment Feedback AI</h4>
+              <p>Students submit work → AI gives structured, rubric-based feedback within seconds.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
         </div>
+        <div class="deck-dots"><button type="button" class="ddot on" data-i="0" aria-label="Doubt-Solving Bot"></button><button type="button" class="ddot" data-i="1" aria-label="Assignment Feedback AI"></button></div>
       </div>
-    </div>
-    <div class="srow reveal" id="row-enterprise">
-      <div class="srow-head">
-        <div class="srow-art" aria-hidden="true"><span>04</span></div>
-        <div class="srow-text">
-          <h2>Enterprise</h2>
-          <p>Onboarding, contracts, and the internal knowledge nobody can ever find.</p>
+      <div class="deck reveal" id="row-realestate" data-cat="realestate">
+        <div class="deck-head"><span class="deck-n">07</span><div><h3>Real Estate</h3><p>Enquiries qualified before you call.</p></div></div>
+        <div class="deck-stage" tabindex="0" aria-label="Real Estate services, turns automatically">
+          <article class="dcard on" data-i="0">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <div class="stag tag-re">Real Estate</div>
+              <h4>Property Lead Qualifier</h4>
+              <p>Website visitors → AI qualifies buyer vs renter vs investor → routes to right agent automatically.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Real Estate</div>
+              <h4>Property Lead Qualifier</h4>
+              <p>Website visitors → AI qualifies buyer vs renter vs investor → routes to right agent automatically.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="1">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+              <div class="stag tag-re">Real Estate</div>
+              <h4>Property Description Writer</h4>
+              <p>Input specs and photos → AI writes SEO-optimised listings for all portals instantly.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Real Estate</div>
+              <h4>Property Description Writer</h4>
+              <p>Input specs and photos → AI writes SEO-optimised listings for all portals instantly.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
         </div>
+        <div class="deck-dots"><button type="button" class="ddot on" data-i="0" aria-label="Property Lead Qualifier"></button><button type="button" class="ddot" data-i="1" aria-label="Property Description Writer"></button></div>
       </div>
-      <div class="srail">
-        <div class="strack rev" style="--dur:126s">
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="stag tag-en">Enterprise</div><h4>HR Onboarding Agent</h4><p>New hire triggers full pipeline — sends docs, books meetings, sets up accounts, notifies teams.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Contract Analyser</h4><p>Upload any PDF → AI flags risks, key dates, obligations, and unusual clauses in 30 seconds.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Internal Knowledge Bot</h4><p>Chat with your own company docs, SOPs, and wikis. Instant answers without searching folders.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="stag tag-en">Enterprise</div><h4>HR Onboarding Agent</h4><p>New hire triggers full pipeline — sends docs, books meetings, sets up accounts, notifies teams.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Contract Analyser</h4><p>Upload any PDF → AI flags risks, key dates, obligations, and unusual clauses in 30 seconds.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Internal Knowledge Bot</h4><p>Chat with your own company docs, SOPs, and wikis. Instant answers without searching folders.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="stag tag-en">Enterprise</div><h4>HR Onboarding Agent</h4><p>New hire triggers full pipeline — sends docs, books meetings, sets up accounts, notifies teams.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Contract Analyser</h4><p>Upload any PDF → AI flags risks, key dates, obligations, and unusual clauses in 30 seconds.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Internal Knowledge Bot</h4><p>Chat with your own company docs, SOPs, and wikis. Instant answers without searching folders.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="stag tag-en">Enterprise</div><h4>HR Onboarding Agent</h4><p>New hire triggers full pipeline — sends docs, books meetings, sets up accounts, notifies teams.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Contract Analyser</h4><p>Upload any PDF → AI flags risks, key dates, obligations, and unusual clauses in 30 seconds.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Internal Knowledge Bot</h4><p>Chat with your own company docs, SOPs, and wikis. Instant answers without searching folders.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="stag tag-en">Enterprise</div><h4>HR Onboarding Agent</h4><p>New hire triggers full pipeline — sends docs, books meetings, sets up accounts, notifies teams.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Contract Analyser</h4><p>Upload any PDF → AI flags risks, key dates, obligations, and unusual clauses in 30 seconds.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Internal Knowledge Bot</h4><p>Chat with your own company docs, SOPs, and wikis. Instant answers without searching folders.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="stag tag-en">Enterprise</div><h4>HR Onboarding Agent</h4><p>New hire triggers full pipeline — sends docs, books meetings, sets up accounts, notifies teams.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Contract Analyser</h4><p>Upload any PDF → AI flags risks, key dates, obligations, and unusual clauses in 30 seconds.</p></div>
-        <div class="scard neon-click" data-cat="enterprise"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="stag tag-en">Enterprise</div><h4>Internal Knowledge Bot</h4><p>Chat with your own company docs, SOPs, and wikis. Instant answers without searching folders.</p></div>
+      <div class="deck reveal" id="row-ecom" data-cat="ecom">
+        <div class="deck-head"><span class="deck-n">08</span><div><h3>E-commerce</h3><p>Catalogue copy at scale; order questions answered.</p></div></div>
+        <div class="deck-stage" tabindex="0" aria-label="E-commerce services, turns automatically">
+          <article class="dcard on" data-i="0">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+              <div class="stag tag-ec">E-commerce</div>
+              <h4>Product Description Generator</h4>
+              <p>Upload product image + basic info → AI writes SEO-rich descriptions for all listings.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">E-commerce</div>
+              <h4>Product Description Generator</h4>
+              <p>Upload product image + basic info → AI writes SEO-rich descriptions for all listings.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="1">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div class="stag tag-ec">E-commerce</div>
+              <h4>Order Tracking Bot</h4>
+              <p>Customers ask about orders on WhatsApp → AI replies instantly with live status.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">E-commerce</div>
+              <h4>Order Tracking Bot</h4>
+              <p>Customers ask about orders on WhatsApp → AI replies instantly with live status.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
         </div>
+        <div class="deck-dots"><button type="button" class="ddot on" data-i="0" aria-label="Product Description Generator"></button><button type="button" class="ddot" data-i="1" aria-label="Order Tracking Bot"></button></div>
       </div>
-    </div>
-    <div class="srow reveal" id="row-health">
-      <div class="srow-head">
-        <div class="srow-art" aria-hidden="true"><span>05</span></div>
-        <div class="srow-text">
-          <h2>Healthcare</h2>
-          <p>Bookings off the phone queue, and reports in language patients understand.</p>
+      <div class="deck reveal" id="row-legal" data-cat="legal">
+        <div class="deck-head"><span class="deck-n">09</span><div><h3>Legal</h3><p>Contract risk surfaced; intake taken up front.</p></div></div>
+        <div class="deck-stage" tabindex="0" aria-label="Legal services, turns automatically">
+          <article class="dcard on" data-i="0">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+              <div class="stag tag-le">Legal</div>
+              <h4>Contract Risk Analyser</h4>
+              <p>Upload any contract → AI highlights risks, missing clauses, and unusual terms immediately.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Legal</div>
+              <h4>Contract Risk Analyser</h4>
+              <p>Upload any contract → AI highlights risks, missing clauses, and unusual terms immediately.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="1">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div>
+              <div class="stag tag-le">Legal</div>
+              <h4>Client Intake Bot</h4>
+              <p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Legal</div>
+              <h4>Client Intake Bot</h4>
+              <p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
         </div>
+        <div class="deck-dots"><button type="button" class="ddot on" data-i="0" aria-label="Contract Risk Analyser"></button><button type="button" class="ddot" data-i="1" aria-label="Client Intake Bot"></button></div>
       </div>
-      <div class="srail">
-        <div class="strack" style="--dur:112s">
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Appointment Booking Bot</h4><p>Patients book, reschedule, and get reminders via WhatsApp. Zero receptionist time needed.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Medical Report Summariser</h4><p>Complex reports → plain-language summaries for patients or staff in seconds.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Appointment Booking Bot</h4><p>Patients book, reschedule, and get reminders via WhatsApp. Zero receptionist time needed.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Medical Report Summariser</h4><p>Complex reports → plain-language summaries for patients or staff in seconds.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Appointment Booking Bot</h4><p>Patients book, reschedule, and get reminders via WhatsApp. Zero receptionist time needed.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Medical Report Summariser</h4><p>Complex reports → plain-language summaries for patients or staff in seconds.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Appointment Booking Bot</h4><p>Patients book, reschedule, and get reminders via WhatsApp. Zero receptionist time needed.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Medical Report Summariser</h4><p>Complex reports → plain-language summaries for patients or staff in seconds.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Appointment Booking Bot</h4><p>Patients book, reschedule, and get reminders via WhatsApp. Zero receptionist time needed.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Medical Report Summariser</h4><p>Complex reports → plain-language summaries for patients or staff in seconds.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Appointment Booking Bot</h4><p>Patients book, reschedule, and get reminders via WhatsApp. Zero receptionist time needed.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Medical Report Summariser</h4><p>Complex reports → plain-language summaries for patients or staff in seconds.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Appointment Booking Bot</h4><p>Patients book, reschedule, and get reminders via WhatsApp. Zero receptionist time needed.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Medical Report Summariser</h4><p>Complex reports → plain-language summaries for patients or staff in seconds.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Appointment Booking Bot</h4><p>Patients book, reschedule, and get reminders via WhatsApp. Zero receptionist time needed.</p></div>
-        <div class="scard neon-click" data-cat="health"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><div class="stag tag-he">Healthcare</div><h4>Medical Report Summariser</h4><p>Complex reports → plain-language summaries for patients or staff in seconds.</p></div>
+      <div class="deck reveal" id="row-finance" data-cat="finance">
+        <div class="deck-head"><span class="deck-n">10</span><div><h3>Finance</h3><p>Reports on schedule; clients updated unprompted.</p></div></div>
+        <div class="deck-stage" tabindex="0" aria-label="Finance services, turns automatically">
+          <article class="dcard on" data-i="0">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <div class="stag tag-fi">Finance</div>
+              <h4>Financial Report Automator</h4>
+              <p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Finance</div>
+              <h4>Financial Report Automator</h4>
+              <p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
+          <article class="dcard" data-i="1">
+            <div class="dcard-face dcard-front">
+              <div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div class="stag tag-fi">Finance</div>
+              <h4>Client Update Bot</h4>
+              <p>Detects account changes → drafts and sends personalised client emails automatically.</p>
+              <span class="dcard-more">Tap for details</span>
+            </div>
+            <div class="dcard-face dcard-back">
+              <div class="dcard-back-tag">Finance</div>
+              <h4>Client Update Bot</h4>
+              <p>Detects account changes → drafts and sends personalised client emails automatically.</p>
+              <button type="button" class="dcard-cta" onclick="event.stopPropagation();openConsultation()">Talk to us about this &rarr;</button>
+            </div>
+          </article>
         </div>
+        <div class="deck-dots"><button type="button" class="ddot on" data-i="0" aria-label="Financial Report Automator"></button><button type="button" class="ddot" data-i="1" aria-label="Client Update Bot"></button></div>
       </div>
-    </div>
-    <div class="srow reveal" id="row-edu">
-      <div class="srow-head">
-        <div class="srow-art" aria-hidden="true"><span>06</span></div>
-        <div class="srow-text">
-          <h2>Education</h2>
-          <p>Student questions answered at midnight; assignment feedback that arrives fast.</p>
-        </div>
-      </div>
-      <div class="srail">
-        <div class="strack rev" style="--dur:112s">
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="stag tag-ed">Education</div><h4>Doubt-Solving Bot</h4><p>AI tutor trained on your curriculum answers student questions 24/7 with structured explanations.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="stag tag-ed">Education</div><h4>Assignment Feedback AI</h4><p>Students submit work → AI gives structured, rubric-based feedback within seconds.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="stag tag-ed">Education</div><h4>Doubt-Solving Bot</h4><p>AI tutor trained on your curriculum answers student questions 24/7 with structured explanations.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="stag tag-ed">Education</div><h4>Assignment Feedback AI</h4><p>Students submit work → AI gives structured, rubric-based feedback within seconds.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="stag tag-ed">Education</div><h4>Doubt-Solving Bot</h4><p>AI tutor trained on your curriculum answers student questions 24/7 with structured explanations.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="stag tag-ed">Education</div><h4>Assignment Feedback AI</h4><p>Students submit work → AI gives structured, rubric-based feedback within seconds.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="stag tag-ed">Education</div><h4>Doubt-Solving Bot</h4><p>AI tutor trained on your curriculum answers student questions 24/7 with structured explanations.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="stag tag-ed">Education</div><h4>Assignment Feedback AI</h4><p>Students submit work → AI gives structured, rubric-based feedback within seconds.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="stag tag-ed">Education</div><h4>Doubt-Solving Bot</h4><p>AI tutor trained on your curriculum answers student questions 24/7 with structured explanations.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="stag tag-ed">Education</div><h4>Assignment Feedback AI</h4><p>Students submit work → AI gives structured, rubric-based feedback within seconds.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="stag tag-ed">Education</div><h4>Doubt-Solving Bot</h4><p>AI tutor trained on your curriculum answers student questions 24/7 with structured explanations.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="stag tag-ed">Education</div><h4>Assignment Feedback AI</h4><p>Students submit work → AI gives structured, rubric-based feedback within seconds.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="stag tag-ed">Education</div><h4>Doubt-Solving Bot</h4><p>AI tutor trained on your curriculum answers student questions 24/7 with structured explanations.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="stag tag-ed">Education</div><h4>Assignment Feedback AI</h4><p>Students submit work → AI gives structured, rubric-based feedback within seconds.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="stag tag-ed">Education</div><h4>Doubt-Solving Bot</h4><p>AI tutor trained on your curriculum answers student questions 24/7 with structured explanations.</p></div>
-        <div class="scard neon-click" data-cat="edu"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="stag tag-ed">Education</div><h4>Assignment Feedback AI</h4><p>Students submit work → AI gives structured, rubric-based feedback within seconds.</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="srow reveal" id="row-realestate">
-      <div class="srow-head">
-        <div class="srow-art" aria-hidden="true"><span>07</span></div>
-        <div class="srow-text">
-          <h2>Real Estate</h2>
-          <p>Enquiries qualified before you call, listings written before you ask.</p>
-        </div>
-      </div>
-      <div class="srail">
-        <div class="strack" style="--dur:112s">
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Lead Qualifier</h4><p>Website visitors → AI qualifies buyer vs renter vs investor → routes to right agent automatically.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Description Writer</h4><p>Input specs and photos → AI writes SEO-optimised listings for all portals instantly.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Lead Qualifier</h4><p>Website visitors → AI qualifies buyer vs renter vs investor → routes to right agent automatically.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Description Writer</h4><p>Input specs and photos → AI writes SEO-optimised listings for all portals instantly.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Lead Qualifier</h4><p>Website visitors → AI qualifies buyer vs renter vs investor → routes to right agent automatically.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Description Writer</h4><p>Input specs and photos → AI writes SEO-optimised listings for all portals instantly.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Lead Qualifier</h4><p>Website visitors → AI qualifies buyer vs renter vs investor → routes to right agent automatically.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Description Writer</h4><p>Input specs and photos → AI writes SEO-optimised listings for all portals instantly.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Lead Qualifier</h4><p>Website visitors → AI qualifies buyer vs renter vs investor → routes to right agent automatically.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Description Writer</h4><p>Input specs and photos → AI writes SEO-optimised listings for all portals instantly.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Lead Qualifier</h4><p>Website visitors → AI qualifies buyer vs renter vs investor → routes to right agent automatically.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Description Writer</h4><p>Input specs and photos → AI writes SEO-optimised listings for all portals instantly.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Lead Qualifier</h4><p>Website visitors → AI qualifies buyer vs renter vs investor → routes to right agent automatically.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Description Writer</h4><p>Input specs and photos → AI writes SEO-optimised listings for all portals instantly.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Lead Qualifier</h4><p>Website visitors → AI qualifies buyer vs renter vs investor → routes to right agent automatically.</p></div>
-        <div class="scard neon-click" data-cat="realestate"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="stag tag-re">Real Estate</div><h4>Property Description Writer</h4><p>Input specs and photos → AI writes SEO-optimised listings for all portals instantly.</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="srow reveal" id="row-ecom">
-      <div class="srow-head">
-        <div class="srow-art" aria-hidden="true"><span>08</span></div>
-        <div class="srow-text">
-          <h2>E-commerce</h2>
-          <p>Catalogue copy at scale, and order questions answered without a ticket.</p>
-        </div>
-      </div>
-      <div class="srail">
-        <div class="strack rev" style="--dur:112s">
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Product Description Generator</h4><p>Upload product image + basic info → AI writes SEO-rich descriptions for all listings.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Order Tracking Bot</h4><p>Customers ask about orders on WhatsApp → AI replies instantly with live status.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Product Description Generator</h4><p>Upload product image + basic info → AI writes SEO-rich descriptions for all listings.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Order Tracking Bot</h4><p>Customers ask about orders on WhatsApp → AI replies instantly with live status.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Product Description Generator</h4><p>Upload product image + basic info → AI writes SEO-rich descriptions for all listings.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Order Tracking Bot</h4><p>Customers ask about orders on WhatsApp → AI replies instantly with live status.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Product Description Generator</h4><p>Upload product image + basic info → AI writes SEO-rich descriptions for all listings.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Order Tracking Bot</h4><p>Customers ask about orders on WhatsApp → AI replies instantly with live status.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Product Description Generator</h4><p>Upload product image + basic info → AI writes SEO-rich descriptions for all listings.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Order Tracking Bot</h4><p>Customers ask about orders on WhatsApp → AI replies instantly with live status.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Product Description Generator</h4><p>Upload product image + basic info → AI writes SEO-rich descriptions for all listings.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Order Tracking Bot</h4><p>Customers ask about orders on WhatsApp → AI replies instantly with live status.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Product Description Generator</h4><p>Upload product image + basic info → AI writes SEO-rich descriptions for all listings.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Order Tracking Bot</h4><p>Customers ask about orders on WhatsApp → AI replies instantly with live status.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Product Description Generator</h4><p>Upload product image + basic info → AI writes SEO-rich descriptions for all listings.</p></div>
-        <div class="scard neon-click" data-cat="ecom"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="stag tag-ec">E-commerce</div><h4>Order Tracking Bot</h4><p>Customers ask about orders on WhatsApp → AI replies instantly with live status.</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="srow reveal" id="row-legal">
-      <div class="srow-head">
-        <div class="srow-art" aria-hidden="true"><span>09</span></div>
-        <div class="srow-text">
-          <h2>Legal</h2>
-          <p>Contract risk surfaced in seconds; intake taken before the first meeting.</p>
-        </div>
-      </div>
-      <div class="srail">
-        <div class="strack" style="--dur:112s">
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="stag tag-le">Legal</div><h4>Contract Risk Analyser</h4><p>Upload any contract → AI highlights risks, missing clauses, and unusual terms immediately.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="stag tag-le">Legal</div><h4>Client Intake Bot</h4><p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="stag tag-le">Legal</div><h4>Contract Risk Analyser</h4><p>Upload any contract → AI highlights risks, missing clauses, and unusual terms immediately.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="stag tag-le">Legal</div><h4>Client Intake Bot</h4><p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="stag tag-le">Legal</div><h4>Contract Risk Analyser</h4><p>Upload any contract → AI highlights risks, missing clauses, and unusual terms immediately.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="stag tag-le">Legal</div><h4>Client Intake Bot</h4><p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="stag tag-le">Legal</div><h4>Contract Risk Analyser</h4><p>Upload any contract → AI highlights risks, missing clauses, and unusual terms immediately.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="stag tag-le">Legal</div><h4>Client Intake Bot</h4><p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="stag tag-le">Legal</div><h4>Contract Risk Analyser</h4><p>Upload any contract → AI highlights risks, missing clauses, and unusual terms immediately.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="stag tag-le">Legal</div><h4>Client Intake Bot</h4><p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="stag tag-le">Legal</div><h4>Contract Risk Analyser</h4><p>Upload any contract → AI highlights risks, missing clauses, and unusual terms immediately.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="stag tag-le">Legal</div><h4>Client Intake Bot</h4><p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="stag tag-le">Legal</div><h4>Contract Risk Analyser</h4><p>Upload any contract → AI highlights risks, missing clauses, and unusual terms immediately.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="stag tag-le">Legal</div><h4>Client Intake Bot</h4><p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="stag tag-le">Legal</div><h4>Contract Risk Analyser</h4><p>Upload any contract → AI highlights risks, missing clauses, and unusual terms immediately.</p></div>
-        <div class="scard neon-click" data-cat="legal"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="stag tag-le">Legal</div><h4>Client Intake Bot</h4><p>New enquiry → AI collects case details, qualifies the client, books with the right lawyer.</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="srow reveal" id="row-finance">
-      <div class="srow-head">
-        <div class="srow-art" aria-hidden="true"><span>10</span></div>
-        <div class="srow-text">
-          <h2>Finance</h2>
-          <p>Reports built on schedule, clients updated without anyone chasing.</p>
-        </div>
-      </div>
-      <div class="srail">
-        <div class="strack rev" style="--dur:112s">
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Financial Report Automator</h4><p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Client Update Bot</h4><p>Detects account changes → drafts and sends personalised client emails automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Financial Report Automator</h4><p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Client Update Bot</h4><p>Detects account changes → drafts and sends personalised client emails automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Financial Report Automator</h4><p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Client Update Bot</h4><p>Detects account changes → drafts and sends personalised client emails automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Financial Report Automator</h4><p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Client Update Bot</h4><p>Detects account changes → drafts and sends personalised client emails automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Financial Report Automator</h4><p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Client Update Bot</h4><p>Detects account changes → drafts and sends personalised client emails automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Financial Report Automator</h4><p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Client Update Bot</h4><p>Detects account changes → drafts and sends personalised client emails automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Financial Report Automator</h4><p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Client Update Bot</h4><p>Detects account changes → drafts and sends personalised client emails automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Financial Report Automator</h4><p>Pulls data from accounting tools → generates formatted weekly & monthly reports automatically.</p></div>
-        <div class="scard neon-click" data-cat="finance"><div class="scard-icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="stag tag-fi">Finance</div><h4>Client Update Bot</h4><p>Detects account changes → drafts and sends personalised client emails automatically.</p></div>
-        </div>
-      </div>
-    </div>
     </div>
 
     <!-- ML/DL/AI Services We Build -->
@@ -1311,14 +1439,65 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   </div>
 </section>
 <script>
-/* Filter tabs became lane jumps once the grid turned into rows. */
+/* SERVICE DECKS - each turns to the next card on its own timer, holds while the
+   reader is on it, and flips to a detail face when clicked. */
+(function initDecks(){
+  var TURN = 4600;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.deck').forEach(function(deck, di){
+    var stage = deck.querySelector('.deck-stage');
+    var cards = Array.prototype.slice.call(deck.querySelectorAll('.dcard'));
+    var dots  = Array.prototype.slice.call(deck.querySelectorAll('.ddot'));
+    if (!stage || !cards.length) return;
+    var idx = 0, held = false, seen = false, timer = null;
+
+    function show(next){
+      next = (next + cards.length) % cards.length;
+      if (next === idx) return;
+      cards[idx].classList.remove('on', 'flip');
+      cards[idx].classList.add('out');
+      idx = next;
+      cards[idx].classList.remove('out');
+      cards[idx].classList.add('on');
+      dots.forEach(function(d, i){ d.classList.toggle('on', i === idx); });
+    }
+    function tick(){ if (!held) show(idx + 1); }
+    function start(){
+      if (timer || reduced || cards.length < 2 || !seen) return;
+      timer = setInterval(tick, TURN + di * 220);   // offset so decks never turn in unison
+    }
+    function stop(){ if (timer){ clearInterval(timer); timer = null; } }
+
+    ['mouseenter','focusin','touchstart'].forEach(function(e){
+      stage.addEventListener(e, function(){ held = true; }, {passive:true}); });
+    ['mouseleave','focusout','touchend','touchcancel'].forEach(function(e){
+      stage.addEventListener(e, function(){ held = false; }, {passive:true}); });
+
+    stage.addEventListener('click', function(){ cards[idx].classList.toggle('flip'); });
+    stage.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); cards[idx].classList.toggle('flip'); }
+      else if (e.key === 'ArrowRight'){ show(idx + 1); }
+      else if (e.key === 'ArrowLeft'){ show(idx - 1); }
+    });
+    dots.forEach(function(d, i){
+      d.addEventListener('click', function(e){ e.stopPropagation(); show(i); }); });
+
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){ seen = e.isIntersecting; seen ? start() : stop(); });
+      }, { threshold: 0.35 }).observe(deck);
+    } else { seen = true; start(); }
+  });
+})();
+
+/* Category tabs jump to a deck. */
 function jumpRow(cat, btn){
-  document.querySelectorAll('.filter-tabs .tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.filter-tabs .tab').forEach(function(t){ t.classList.remove('active'); });
   if (btn) btn.classList.add('active');
-  const target = cat === 'all'
-    ? document.getElementById('servicesGrid')
-    : document.getElementById('row-' + cat);
-  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  var el = cat === 'all' ? document.getElementById('servicesGrid')
+                         : document.getElementById('row-' + cat);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 </script>
 
