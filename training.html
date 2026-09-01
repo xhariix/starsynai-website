@@ -158,7 +158,7 @@ gtag('config', 'G-5E94DWD6KF');
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --bg1:#07101e;--bg2:#0a1628;--bg3:#0d2137;
+  --bg1:#0a0e14;--bg2:#101620;--bg3:#151c26;
   --surface:rgba(255,255,255,0.05);--surface2:rgba(255,255,255,0.08);
   --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.16);
   --accent:#38bdf8;--accent2:#06b6d4;--accent3:#67e8f9;
@@ -172,7 +172,7 @@ gtag('config', 'G-5E94DWD6KF');
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;background-color:#020613;}
-body{font-family:var(--sans);animation:pageFadeIn 0.4s ease-out forwards;background:linear-gradient(145deg,#091325 0%,#020613 60%,#000000 100%);color:var(--text);overflow-x:clip;min-height:100vh;}
+body{font-family:var(--sans);animation:pageFadeIn 0.4s ease-out forwards;background:linear-gradient(145deg,#0d1219 0%,#05070a 60%,#000000 100%);color:var(--text);overflow-x:clip;min-height:100vh;}
 @keyframes pageFadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes fadeUp{0%{opacity:0;transform:translateY(30px);}100%{opacity:1;transform:translateY(0);}}
 @keyframes fadeDown{0%{opacity:0;transform:translateY(-30px);}100%{opacity:1;transform:translateY(0);}}
@@ -391,8 +391,7 @@ footer{border-top:1px solid rgba(56,189,248,0.08);margin-top:4rem;}
 .faq-item.open .faq-icon{transform:rotate(45deg);}
 .faq-item.open{border-color:rgba(56,189,248,0.28);}
 </style>
-<!-- LIGHT THEME EXPERIMENT — delete this one line to go back to the dark site -->
-<link rel="stylesheet" href="/assets/css/light.css"/>
+
 <!-- Cal.com Popup Embed -->
 <script type="text/javascript">
 (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["-queue", namespace, ar]);}else{p(cal, ar);} return; } p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init");

@@ -48,7 +48,7 @@ gtag('config', 'G-5E94DWD6KF');
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --bg1:#07101e;--bg2:#0a1628;--bg3:#0d2137;
+  --bg1:#0a0e14;--bg2:#101620;--bg3:#151c26;
   --surface:rgba(255,255,255,0.05);--surface2:rgba(255,255,255,0.08);
   --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.16);
   --accent:#38bdf8;--accent2:#06b6d4;--accent3:#67e8f9;
@@ -62,7 +62,7 @@ gtag('config', 'G-5E94DWD6KF');
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;background-color:#020613;}
-body{font-family:var(--sans);animation: pageFadeIn 0.4s ease-out forwards;background:linear-gradient(145deg, #091325 0%, #020613 60%, #000000 100%);color:var(--text);overflow-x:clip;min-height:100vh;}
+body{font-family:var(--sans);animation: pageFadeIn 0.4s ease-out forwards;background:linear-gradient(145deg, #0d1219 0%, #05070a 60%, #000000 100%);color:var(--text);overflow-x:clip;min-height:100vh;}
 @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* INJECTED ANIMATIONS */
@@ -72,9 +72,9 @@ body{font-family:var(--sans);animation: pageFadeIn 0.4s ease-out forwards;backgr
 /* SECTION BACKGROUND ANIMATIONS */
 section { position: relative; }
 .section-pad { overflow: hidden; }
-.bg-orbs { position:absolute; inset:0; z-index:0; pointer-events:none; background-image: url('data:image/svg+xml;utf8,<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg"><g stroke="%2338bdf8" fill="%2338bdf8" opacity="0.12"><circle cx="40" cy="40" r="1.5"/><circle cx="180" cy="120" r="1"/><circle cx="340" cy="60" r="1.5"/><circle cx="90" cy="220" r="1"/><circle cx="240" cy="240" r="1.5"/><circle cx="360" cy="220" r="1"/><circle cx="130" cy="360" r="1.5"/><circle cx="310" cy="340" r="1"/><line x1="40" y1="40" x2="180" y2="120" stroke-width="0.3"/><line x1="180" y1="120" x2="340" y2="60" stroke-width="0.3"/><line x1="180" y1="120" x2="240" y2="240" stroke-width="0.3"/><line x1="40" y1="40" x2="90" y2="220" stroke-width="0.3"/><line x1="90" y1="220" x2="130" y2="360" stroke-width="0.3"/><line x1="90" y1="220" x2="240" y2="240" stroke-width="0.3"/><line x1="240" y1="240" x2="130" y2="360" stroke-width="0.3"/><line x1="240" y1="240" x2="360" y2="220" stroke-width="0.3"/><line x1="240" y1="240" x2="310" y2="340" stroke-width="0.3"/><line x1="340" y1="60" x2="360" y2="220" stroke-width="0.3"/></g><g stroke="%2338bdf8" fill="none" opacity="0.08" stroke-width="0.3"><circle cx="40" cy="40" r="6"/><circle cx="240" cy="240" r="8"/><circle cx="130" cy="360" r="5"/></g></svg>'); background-size: 400px 400px; animation: driftOrbs 30s linear infinite alternate; }
-.bg-streams { position:absolute; inset:0; z-index:0; pointer-events:none; background:linear-gradient(180deg, transparent, rgba(56,189,248,0.03), transparent); background-size: 100% 200%; animation: streamFall 10s linear infinite; }
-.bg-radar { position:absolute; inset:0; z-index:0; pointer-events:none; background-image: url('data:image/svg+xml;utf8,<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><g stroke="%2338bdf8" fill="none" opacity="0.12" stroke-width="0.8"><circle cx="100" cy="100" r="30"/><circle cx="100" cy="100" r="60"/><circle cx="100" cy="100" r="90"/><line x1="100" y1="10" x2="100" y2="190"/><line x1="10" y1="100" x2="190" y2="100"/><line x1="36" y1="36" x2="164" y2="164"/><line x1="164" y1="36" x2="36" y2="164"/></g><g fill="%2338bdf8" opacity="0.2"><circle cx="100" cy="10" r="2.5"/><circle cx="100" cy="190" r="2.5"/><circle cx="10" cy="100" r="2.5"/><circle cx="190" cy="100" r="2.5"/><circle cx="100" cy="40" r="2"/><circle cx="100" cy="160" r="2"/><circle cx="40" cy="100" r="2"/><circle cx="160" cy="100" r="2"/></g></svg>'); background-size: 80px 80px; animation: radarPulse 15s linear infinite; }
+.bg-orbs { position:absolute; inset:0; z-index:0; pointer-events:none; opacity:0.55; background-image: url('data:image/svg+xml;utf8,<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg"><g stroke="%2338bdf8" fill="%2338bdf8" opacity="0.12"><circle cx="40" cy="40" r="1.5"/><circle cx="180" cy="120" r="1"/><circle cx="340" cy="60" r="1.5"/><circle cx="90" cy="220" r="1"/><circle cx="240" cy="240" r="1.5"/><circle cx="360" cy="220" r="1"/><circle cx="130" cy="360" r="1.5"/><circle cx="310" cy="340" r="1"/><line x1="40" y1="40" x2="180" y2="120" stroke-width="0.3"/><line x1="180" y1="120" x2="340" y2="60" stroke-width="0.3"/><line x1="180" y1="120" x2="240" y2="240" stroke-width="0.3"/><line x1="40" y1="40" x2="90" y2="220" stroke-width="0.3"/><line x1="90" y1="220" x2="130" y2="360" stroke-width="0.3"/><line x1="90" y1="220" x2="240" y2="240" stroke-width="0.3"/><line x1="240" y1="240" x2="130" y2="360" stroke-width="0.3"/><line x1="240" y1="240" x2="360" y2="220" stroke-width="0.3"/><line x1="240" y1="240" x2="310" y2="340" stroke-width="0.3"/><line x1="340" y1="60" x2="360" y2="220" stroke-width="0.3"/></g><g stroke="%2338bdf8" fill="none" opacity="0.08" stroke-width="0.3"><circle cx="40" cy="40" r="6"/><circle cx="240" cy="240" r="8"/><circle cx="130" cy="360" r="5"/></g></svg>'); background-size: 400px 400px; animation: driftOrbs 30s linear infinite alternate; }
+.bg-streams { position:absolute; inset:0; z-index:0; pointer-events:none; opacity:0.55; background:linear-gradient(180deg, transparent, rgba(56,189,248,0.03), transparent); background-size: 100% 200%; animation: streamFall 10s linear infinite; }
+.bg-radar { position:absolute; inset:0; z-index:0; pointer-events:none; opacity:0.55; background-image: url('data:image/svg+xml;utf8,<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><g stroke="%2338bdf8" fill="none" opacity="0.12" stroke-width="0.8"><circle cx="100" cy="100" r="30"/><circle cx="100" cy="100" r="60"/><circle cx="100" cy="100" r="90"/><line x1="100" y1="10" x2="100" y2="190"/><line x1="10" y1="100" x2="190" y2="100"/><line x1="36" y1="36" x2="164" y2="164"/><line x1="164" y1="36" x2="36" y2="164"/></g><g fill="%2338bdf8" opacity="0.2"><circle cx="100" cy="10" r="2.5"/><circle cx="100" cy="190" r="2.5"/><circle cx="10" cy="100" r="2.5"/><circle cx="190" cy="100" r="2.5"/><circle cx="100" cy="40" r="2"/><circle cx="100" cy="160" r="2"/><circle cx="40" cy="100" r="2"/><circle cx="160" cy="100" r="2"/></g></svg>'); background-size: 80px 80px; animation: radarPulse 15s linear infinite; }
 
 @keyframes driftOrbs { 0% { transform: scale(1) translateY(0); } 100% { transform: scale(1.1) translateY(-60px); } }
 @keyframes streamFall { 0% { background-position: 0 -100%; } 100% { background-position: 0 200%; } }
@@ -626,8 +626,7 @@ footer{background:rgba(3,8,18,0.99);border-top:1px solid rgba(56,189,248,0.07);p
   .case-inner { padding: 2rem; margin: 3rem auto; width: 95%; }
 }
 </style>
-<!-- LIGHT THEME EXPERIMENT — delete this one line to go back to the dark site -->
-<link rel="stylesheet" href="/assets/css/light.css"/>
+
 <!-- Three.js + GSAP CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
