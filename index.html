@@ -280,7 +280,20 @@ section{position:relative;z-index:1;}
 
 /* LOGO BAR */
 .logo-bar{padding:2.5rem 3rem;border-bottom:1px solid rgba(56,189,248,0.06);}
-.logo-bar p{text-align:center;color:var(--text3);font-size:.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1.75rem;}
+.logo-bar .logo-bar-label{text-align:center;color:var(--text3);font-size:.72rem;font-weight:600;
+  letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1.75rem;}
+/* Short statement above the tool strip. */
+.tools-intro{display:flex;flex-direction:column;align-items:center;gap:.75rem;
+  text-align:center;margin-bottom:2.5rem;}
+.tools-intro h2{font-family:var(--serif);font-size:clamp(1.35rem,2.6vw,2rem);font-weight:700;
+  color:var(--text);letter-spacing:-.4px;line-height:1.2;margin:0;}
+.tools-intro h2 em{font-style:normal;background:linear-gradient(135deg,var(--accent3),#a5f3fc);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.tools-intro p{color:var(--text2);font-size:.95rem;line-height:1.6;max-width:46ch;margin:0;}
+.tools-cta{display:inline-flex;align-items:center;gap:.45rem;margin-top:.35rem;cursor:pointer;
+  background:none;border:none;font-family:var(--sans);font-size:.88rem;color:var(--accent3);
+  border-bottom:1px solid rgba(56,189,248,.35);padding:0 0 .18rem;transition:all .2s;}
+.tools-cta:hover{color:var(--neon);border-bottom-color:var(--neon);gap:.7rem;}
 .logos-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
 .tool-logo{width:64px;height:64px;border-radius:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(56,189,248,0.14);display:flex;align-items:center;justify-content:center;transition:all .25s;box-shadow:var(--sh);}
 .tool-logo:hover{background:rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.38);box-shadow:var(--glow);transform:translateY(-2px);}
@@ -1615,12 +1628,22 @@ else initHeroStar();
     .scale-cap{text-align:center;}
     /* vertical on phones: the rail runs down the left through every tier */
     .scale-tiers{grid-template-columns:1fr;gap:0;}
-    .tier{text-align:left;padding:0 0 1.5rem 2.4rem;}
+    /* Stepped diagonal: each tier indents further, so the run from Students to
+       Enterprise climbs across the screen instead of dropping straight down. */
+    .tier{text-align:left;padding:0 0 1.6rem 2.4rem;}
+    .tier:nth-child(2){margin-left:9%;}
+    .tier:nth-child(3){margin-left:18%;}
+    .tier:nth-child(4){margin-left:27%;}
     .tier:last-child{padding-bottom:0;}
     .rail,.dot,.dot-them{display:none;}
     .tier::before{content:'';position:absolute;left:5px;top:.45rem;width:9px;height:9px;border-radius:50%;
       background:var(--bg1);border:2px solid var(--accent3);box-shadow:0 0 8px rgba(56,189,248,.5);}
-    .tier::after{content:'';position:absolute;left:9px;top:1.1rem;bottom:0;width:1px;background:rgba(56,189,248,.3);}
+    /* connector drawn as a diagonal across the gap to the next dot */
+    .tier::after{content:'';position:absolute;left:9px;top:1.05rem;bottom:-.1rem;width:9%;
+      background:linear-gradient(to bottom right,transparent calc(50% - .6px),
+        rgba(56,189,248,.34) calc(50% - .6px),rgba(56,189,248,.34) calc(50% + .6px),
+        transparent calc(50% + .6px));}
+    .tier:nth-child(4)::after{display:none;}
     .tier:last-child::after{display:none;}
     .rail-key{justify-content:flex-start;margin-top:1.9rem;}
   .key.them{display:none;}          /* its rail is not drawn in the vertical layout */
@@ -1720,11 +1743,12 @@ else initHeroStar();
 <div class="logo-bar reveal">
   <div class="container">
     <!-- Description line above tools -->
-    <div style="text-align:center;margin-bottom:2rem;padding:1.5rem 1rem;background:rgba(56,189,248,0.03);border:1px solid rgba(56,189,248,0.07);border-radius:14px;">
-      <p style="font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--text);margin-bottom:.4rem;letter-spacing:-.2px;">We help businesses eliminate manual work through intelligent automation.</p>
-      <p style="color:var(--text2);font-size:.92rem;line-height:1.75;max-width:640px;margin:0 auto;">From solo creators to enterprise teams — we build AI-powered workflows using the world's best tools, so your business runs smarter, faster, and with less effort. Any doubt about what automation can do for you? <a href="#" onclick="openConsultation()" style="color:var(--accent3);text-decoration:none;font-weight:500;">Get a free consultation →</a></p>
+    <div class="tools-intro">
+      <h2>We take the manual work <em>off your desk</em>.</h2>
+      <p>AI workflows built on the tools your team already uses.</p>
+      <button type="button" class="tools-cta" onclick="openConsultation()">Get a free consultation &rarr;</button>
     </div>
-    <p style="text-align:center;color:var(--text3);font-size:.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1.25rem;">Tools & Platforms We Work With</p>
+    <p class="logo-bar-label" style="margin-bottom:1.25rem;">Tools & Platforms We Work With</p>
     <div class="logos-row">
       <div class="tool-logo neon-click" title="n8n"><svg viewBox="0 0 40 40" fill="none"><circle cx="10" cy="20" r="4" stroke="#67e8f9" stroke-width="1.5"/><circle cx="30" cy="10" r="4" stroke="#67e8f9" stroke-width="1.5"/><circle cx="30" cy="30" r="4" stroke="#67e8f9" stroke-width="1.5"/><line x1="14" y1="18" x2="26" y2="12" stroke="#67e8f9" stroke-width="1.5"/><line x1="14" y1="22" x2="26" y2="28" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
       <div class="tool-logo neon-click" title="OpenAI GPT-4"><svg viewBox="0 0 40 40" fill="none"><polygon points="20,5 33,12.5 33,27.5 20,35 7,27.5 7,12.5" stroke="#67e8f9" stroke-width="1.5"/><circle cx="20" cy="20" r="5" stroke="#67e8f9" stroke-width="1.5"/></svg></div>
