@@ -1612,6 +1612,7 @@ else initHeroStar();
   .dot-them{position:absolute;top:2.15rem;width:8px;height:8px;border-radius:50%;transform:translate(-50%,-3px);
     background:var(--bg1);border:1.5px solid rgba(255,255,255,.3);box-shadow:none;}
   .dot-them.t3{left:62.5%;} .dot-them.t4{left:87.5%;}
+  .tier-dot,.scale-diag{display:none;}   /* phone-only; desktop uses the rails above */
   .tier-them{display:none;}
   .rail-key{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:2.6rem;padding-top:1.2rem;border-top:1px solid var(--border);}
   .key{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--text2);}
@@ -1636,14 +1637,11 @@ else initHeroStar();
     .tier:nth-child(4){margin-left:27%;}
     .tier:last-child{padding-bottom:0;}
     .rail,.dot,.dot-them{display:none;}
-    .tier::before{content:'';position:absolute;left:5px;top:.45rem;width:9px;height:9px;border-radius:50%;
+    .tier-dot{display:block;position:absolute;left:5px;top:.45rem;width:9px;height:9px;border-radius:50%;
       background:var(--bg1);border:2px solid var(--accent3);box-shadow:0 0 8px rgba(56,189,248,.5);}
-    /* connector drawn as a diagonal across the gap to the next dot */
-    .tier::after{content:'';position:absolute;left:9px;top:1.05rem;bottom:-.1rem;width:9%;
-      background:linear-gradient(to bottom right,transparent calc(50% - .6px),
-        rgba(56,189,248,.34) calc(50% - .6px),rgba(56,189,248,.34) calc(50% + .6px),
-        transparent calc(50% + .6px));}
-    .tier:nth-child(4)::after{display:none;}
+    .scale-diag{display:block;position:absolute;inset:0;width:100%;height:100%;
+      pointer-events:none;z-index:0;overflow:visible;}
+    .tier::after{display:none;}   /* the run is drawn in .scale-diag instead */
     .tier:last-child::after{display:none;}
     .rail-key{justify-content:flex-start;margin-top:1.9rem;}
   .key.them{display:none;}          /* its rail is not drawn in the vertical layout */
@@ -1670,11 +1668,12 @@ else initHeroStar();
           <div class="rail rail-them"></div>
           <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="dot d4"></span>
           <span class="dot-them t3"></span><span class="dot-them t4"></span>
-          <div class="scale-tiers">
-            <div class="tier"><div class="tier-name">Students</div><div class="tier-note">Learning to build</div></div>
-            <div class="tier"><div class="tier-name">Solo creators</div><div class="tier-note">Working alone</div></div>
-            <div class="tier"><div class="tier-name">Small teams</div><div class="tier-note">Shipping fast</div><div class="tier-them">Most AI studios start about here</div></div>
-            <div class="tier"><div class="tier-name">Enterprise</div><div class="tier-note">Rolling out wide</div></div>
+          <svg class="scale-diag" aria-hidden="true" preserveAspectRatio="none"></svg>
+        <div class="scale-tiers">
+            <div class="tier"><span class="tier-dot" aria-hidden="true"></span><div class="tier-name">Students</div><div class="tier-note">Learning to build</div></div>
+            <div class="tier"><span class="tier-dot" aria-hidden="true"></span><div class="tier-name">Solo creators</div><div class="tier-note">Working alone</div></div>
+            <div class="tier"><span class="tier-dot" aria-hidden="true"></span><div class="tier-name">Small teams</div><div class="tier-note">Shipping fast</div><div class="tier-them">Most AI studios start about here</div></div>
+            <div class="tier"><span class="tier-dot" aria-hidden="true"></span><div class="tier-name">Enterprise</div><div class="tier-note">Rolling out wide</div></div>
           </div>
         </div>
         <div class="rail-key">
@@ -1686,6 +1685,44 @@ else initHeroStar();
     </div>
   </div>
 </section>
+<script>
+/* Reach scale on phones: the tiers step right, and their heights differ, so the
+   run between dots is measured and drawn rather than approximated in CSS. */
+(function initDiagonal(){
+  var track = document.querySelector('.scale-track');
+  var svg   = document.querySelector('.scale-diag');
+  if (!track || !svg) return;
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function draw(){
+    if (!window.matchMedia('(max-width: 860px)').matches){ svg.innerHTML = ''; return; }
+    var dots = Array.prototype.slice.call(track.querySelectorAll('.tier-dot'));
+    if (dots.length < 2) return;
+    var box = track.getBoundingClientRect();
+    svg.setAttribute('viewBox', '0 0 ' + Math.round(box.width) + ' ' + Math.round(box.height));
+    var pts = dots.map(function(d){
+      var r = d.getBoundingClientRect();
+      return { x: r.left - box.left + r.width / 2, y: r.top - box.top + r.height / 2 };
+    });
+    var d = '';
+    for (var i = 0; i < pts.length - 1; i++){
+      var a = pts[i], b = pts[i + 1];
+      // stop short of each dot so the line meets the ring, not its centre
+      var dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy) || 1;
+      var pad = 9;
+      d += 'M ' + (a.x + dx / len * pad).toFixed(1) + ' ' + (a.y + dy / len * pad).toFixed(1) +
+           ' L ' + (b.x - dx / len * pad).toFixed(1) + ' ' + (b.y - dy / len * pad).toFixed(1) + ' ';
+    }
+    svg.innerHTML = '<path d="' + d + '" fill="none" stroke="rgba(56,189,248,.38)" ' +
+                    'stroke-width="1.4" stroke-linecap="round"/>';
+  }
+
+  draw();
+  window.addEventListener('resize', function(){ clearTimeout(draw._t); draw._t = setTimeout(draw, 150); }, {passive:true});
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+  window.addEventListener('load', draw);
+})();
+</script>
 
 
 <!-- TRUST BAR -->
