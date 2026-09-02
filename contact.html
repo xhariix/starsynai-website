@@ -412,6 +412,15 @@ section{position:relative;z-index:1;}
 .contact-form-box{background:rgba(6,14,27,0.7);border:1px solid rgba(56,189,248,0.12);border-radius:var(--rl);padding:2rem;}
 .form-group{margin-bottom:1.25rem;}
 .form-group label{display:block;font-size:.78rem;font-weight:500;color:var(--text3);margin-bottom:.5rem;letter-spacing:.5px;text-transform:uppercase;}
+/* Shown only when no destination accepted the message. */
+.form-failed{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.28);
+  border-radius:12px;padding:1.25rem 1.4rem;margin-bottom:1.25rem;}
+.form-failed h4{font-family:var(--serif);font-size:1.02rem;color:var(--gold);margin:0 0 .4rem;}
+.form-failed p{color:var(--text2);font-size:.86rem;line-height:1.6;margin:0 0 .9rem;}
+.form-failed-actions{display:flex;flex-wrap:wrap;gap:.6rem;}
+.form-failed-actions a{font-size:.84rem;color:var(--accent3);border:1px solid rgba(56,189,248,.32);
+  border-radius:8px;padding:.45rem .85rem;text-decoration:none;transition:all .2s;}
+.form-failed-actions a:hover{background:rgba(56,189,248,.12);border-color:var(--accent3);}
 .form-group input,.form-group select,.form-group textarea{width:100%;background-color:rgba(255,255,255,0.05);background-image:linear-gradient(to right,var(--accent3),var(--neon));background-size:0 2px;background-position:0 100%;background-repeat:no-repeat;border:1px solid rgba(56,189,248,0.12);border-radius:8px;padding:.7rem 1rem;color:var(--text);font-family:var(--sans);font-size:.875rem;transition:background-size .45s cubic-bezier(0.16,1,0.3,1),border-color .2s,box-shadow .2s;outline:none;}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(56,189,248,0.4);background-size:100% 2px;box-shadow:0 0 0 3px rgba(56,189,248,0.06),0 4px 20px rgba(0,245,255,0.08);}
 .form-group select option{background:#0d2137;color:var(--text);}
@@ -966,6 +975,14 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
           </div>
           <button type="submit" class="btn-submit" id="submitBtn">Send Message & Book Call →</button>
         </form>
+        <div class="form-failed" id="formFailed" style="display:none;">
+          <h4>That didn&rsquo;t go through</h4>
+          <p>Something on our side stopped the message from sending. Please reach us directly &mdash; we will reply the same way.</p>
+          <div class="form-failed-actions">
+            <a href="mailto:starsynaiindia@gmail.com">starsynaiindia@gmail.com</a>
+            <a href="https://wa.me/917867838938" target="_blank" rel="noopener noreferrer">WhatsApp us</a>
+          </div>
+        </div>
         <div class="form-success" id="formSuccess">
           <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           <h4>Message Sent!</h4>
@@ -1199,8 +1216,9 @@ async function notifyFormspree(data) {
   try {
     const fd = new FormData();
     Object.entries(data).forEach(([k,v]) => fd.append(k, v || ''));
-    await fetch('https://formspree.io/f/xwvwkkpk', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
-  } catch(e) {}
+    const res = await fetch('https://formspree.io/f/xwvwkkpk', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
+    return res.ok;
+  } catch(e) { return false; }
 }
 
 // =============================================
@@ -1233,9 +1251,19 @@ if (cf) cf.addEventListener('submit', async function(e) {
     saveToSupabase('contacts', data),
     notifyFormspree(data)
   ]);
-  // Show success if either saved (Formspree is the reliable backup)
-  document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
+
+  if (sb || fp) {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    return;
+  }
+
+  // Nothing accepted it. Saying 'sent' here loses the enquiry silently, so
+  // hand the visitor a route that does not depend on our backend.
+  btn.textContent = 'Send Message & Book Call →';
+  btn.disabled = false;
+  const box = document.getElementById('formFailed');
+  if (box) box.style.display = 'block';
 });
 
 // =============================================
