@@ -900,21 +900,23 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     margin:0 0 .12rem;line-height:1.2;}
   .deck-head p{color:var(--text3);font-size:.78rem;line-height:1.45;margin:0;}
 
-  .deck-stage{position:relative;perspective:1200px;height:300px;cursor:pointer;
-    border-radius:18px;outline:none;}
+  .deck-stage{position:relative;display:grid;perspective:1200px;min-height:300px;
+    cursor:pointer;border-radius:18px;outline:none;}
   .deck-stage:focus-visible{box-shadow:0 0 0 2px var(--accent3);}
-  .dcard{position:absolute;inset:0;transform-style:preserve-3d;
+  .dcard{grid-area:1/1;position:relative;transform-style:preserve-3d;
     transform:rotateY(-104deg);opacity:0;pointer-events:none;
     transition:transform .85s cubic-bezier(.4,.05,.2,1),opacity .5s ease;}
   .dcard.on{transform:rotateY(0deg);opacity:1;pointer-events:auto;}
   .dcard.out{transform:rotateY(104deg);opacity:0;}
   .dcard.on.flip{transform:rotateY(180deg);}
 
-  .dcard-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
-    display:flex;flex-direction:column;border-radius:18px;padding:1.5rem 1.3rem;overflow:hidden;
+  .dcard-face{backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    display:flex;flex-direction:column;border-radius:18px;padding:1.5rem 1.3rem;
     background:linear-gradient(165deg,rgba(56,189,248,.08),rgba(255,255,255,.03) 45%,rgba(255,255,255,.02));
     border:1px solid rgba(56,189,248,.16);}
-  .dcard-back{transform:rotateY(180deg);justify-content:center;
+  .dcard-front{position:relative;min-height:300px;transition:opacity .35s ease;}   /* sets the card height */
+  .dcard-back{position:absolute;inset:0;}
+  .dcard-back{transform:rotateY(180deg);justify-content:center;overflow:auto;
     background:linear-gradient(165deg,rgba(56,189,248,.16),rgba(56,189,248,.05));
     border-color:rgba(56,189,248,.4);}
   .dcard-face h4{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--text);
@@ -939,14 +941,19 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
   @media(max-width:640px){
     .deckgrid{grid-template-columns:1fr;gap:1.75rem;}
     .deck:nth-child(2n),.deck:nth-child(4n){margin-top:0;}
-    .deck-stage{height:284px;perspective:none;}
+    .deck-stage{min-height:0;perspective:none;}
+    .dcard-front{min-height:262px;}
     .dcard{transition:opacity .45s ease;}
     .dcard,.dcard.out,.dcard.on.flip{transform:none;}
-    .dcard-back{transform:none;}
+    .dcard-back{transform:none;opacity:0;pointer-events:none;transition:opacity .35s ease;}
+    .dcard.on.flip .dcard-back{opacity:1;pointer-events:auto;}
+    .dcard.on.flip .dcard-front{opacity:0;}
   }
   @media(prefers-reduced-motion:reduce){
     .dcard,.dcard.out,.dcard.on.flip{transition:opacity .3s ease;transform:none;}
-    .dcard-back{transform:none;}
+    .dcard-back{transform:none;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+    .dcard.on.flip .dcard-back{opacity:1;pointer-events:auto;}
+    .dcard.on.flip .dcard-front{opacity:0;}
   }
 </style>
 <section id="services" class="section-pad surface-s">
