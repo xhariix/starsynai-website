@@ -1597,21 +1597,22 @@ else initHeroStar();
   .scale{position:relative;}
   .scale-cap{font-size:.68rem;letter-spacing:2.4px;text-transform:uppercase;color:var(--text3);margin-bottom:1.6rem;}
   .scale-track{position:relative;padding-top:.5rem;}
-  .scale-tiers{display:grid;grid-template-columns:repeat(4,1fr);}
+  .scale-tiers{display:grid;grid-template-columns:repeat(6,1fr);}
   .tier{text-align:center;position:relative;padding-top:2.9rem;}
   .tier-name{font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--text);line-height:1.2;}
   .tier-note{font-size:.72rem;color:var(--text3);margin-top:.25rem;line-height:1.4;}
   /* rails sit above the tier labels */
   .rail{position:absolute;height:2px;border-radius:2px;}
-  .rail-ours{left:12.5%;right:12.5%;top:1.15rem;
+  .rail-ours{left:8.33%;right:8.33%;top:1.15rem;
     background:linear-gradient(90deg,var(--accent3),var(--accent));box-shadow:0 0 14px rgba(56,189,248,.35);}
-  .rail-them{left:62.5%;right:12.5%;top:2.15rem;background:rgba(255,255,255,.14);}
+  .rail-them{left:58.33%;right:8.33%;top:2.15rem;background:rgba(255,255,255,.14);}
   .dot{position:absolute;top:1.15rem;width:11px;height:11px;border-radius:50%;transform:translate(-50%,-4.5px);
     background:var(--bg1);border:2px solid var(--accent3);box-shadow:0 0 10px rgba(56,189,248,.5);}
-  .dot.d1{left:12.5%;} .dot.d2{left:37.5%;} .dot.d3{left:62.5%;} .dot.d4{left:87.5%;}
+  .dot.d1{left:8.33%;} .dot.d2{left:25%;} .dot.d3{left:41.67%;}
+  .dot.d4{left:58.33%;} .dot.d5{left:75%;} .dot.d6{left:91.67%;}
   .dot-them{position:absolute;top:2.15rem;width:8px;height:8px;border-radius:50%;transform:translate(-50%,-3px);
     background:var(--bg1);border:1.5px solid rgba(255,255,255,.3);box-shadow:none;}
-  .dot-them.t3{left:62.5%;} .dot-them.t4{left:87.5%;}
+  .dot-them.t4{left:58.33%;} .dot-them.t5{left:75%;} .dot-them.t6{left:91.67%;}
   .tier-dot,.scale-diag{display:none;}   /* phone-only; desktop uses the rails above */
   .tier-them{display:none;}
   .rail-key{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:2.6rem;padding-top:1.2rem;border-top:1px solid var(--border);}
@@ -1629,12 +1630,19 @@ else initHeroStar();
     .scale-cap{text-align:center;}
     /* vertical on phones: the rail runs down the left through every tier */
     .scale-tiers{grid-template-columns:1fr;gap:0;}
-    /* Stepped diagonal: each tier indents further, so the run from Students to
-       Enterprise climbs across the screen instead of dropping straight down. */
-    .tier{text-align:left;padding:0 0 1.6rem 2.4rem;}
-    .tier:nth-child(2){margin-left:9%;}
-    .tier:nth-child(3){margin-left:18%;}
-    .tier:nth-child(4){margin-left:27%;}
+    /* The trace crosses the full width. Dots march left to right; the label sits
+       to the right of its dot for the first half and flips to the left for the
+       second, so nothing runs off the edge and no side is left empty. */
+    .tier{text-align:left;padding:0 0 1.5rem 0;margin:0;}
+    .tier-dot{left:auto;}
+    .tier:nth-child(1){padding-left:9%;}   .tier:nth-child(1) .tier-dot{left:1%;}
+    .tier:nth-child(2){padding-left:26%;}  .tier:nth-child(2) .tier-dot{left:18%;}
+    .tier:nth-child(3){padding-left:43%;}  .tier:nth-child(3) .tier-dot{left:35%;}
+    .tier:nth-child(4){padding-right:44%;text-align:right;} .tier:nth-child(4) .tier-dot{left:60%;}
+    .tier:nth-child(5){padding-right:26%;text-align:right;} .tier:nth-child(5) .tier-dot{left:78%;}
+    .tier:nth-child(6){padding-right:9%;text-align:right;}  .tier:nth-child(6) .tier-dot{left:95%;}
+    .tier:nth-child(n+4) .tier-them{border-left:none;border-right:2px solid rgba(255,255,255,.16);
+      padding-left:0;padding-right:.6rem;}
     .tier:last-child{padding-bottom:0;}
     .rail,.dot,.dot-them{display:none;}
     .tier-dot{display:block;position:absolute;left:5px;top:.45rem;width:9px;height:9px;border-radius:50%;
@@ -1666,13 +1674,16 @@ else initHeroStar();
         <div class="scale-track">
           <div class="rail rail-ours"></div>
           <div class="rail rail-them"></div>
-          <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="dot d4"></span>
-          <span class="dot-them t3"></span><span class="dot-them t4"></span>
+          <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
+          <span class="dot d4"></span><span class="dot d5"></span><span class="dot d6"></span>
+          <span class="dot-them t4"></span><span class="dot-them t5"></span><span class="dot-them t6"></span>
           <svg class="scale-diag" aria-hidden="true" preserveAspectRatio="none"></svg>
         <div class="scale-tiers">
             <div class="tier"><span class="tier-dot" aria-hidden="true"></span><div class="tier-name">Students</div><div class="tier-note">Learning to build</div></div>
             <div class="tier"><span class="tier-dot" aria-hidden="true"></span><div class="tier-name">Solo creators</div><div class="tier-note">Working alone</div></div>
-            <div class="tier"><span class="tier-dot" aria-hidden="true"></span><div class="tier-name">Small teams</div><div class="tier-note">Shipping fast</div><div class="tier-them">Most AI studios start about here</div></div>
+            <div class="tier"><span class="tier-dot" aria-hidden="true"></span><div class="tier-name">Small teams</div><div class="tier-note">Shipping fast</div></div>
+            <div class="tier"><span class="tier-dot" aria-hidden="true"></span><div class="tier-name">Studios &amp; agencies</div><div class="tier-note">Client work at pace</div><div class="tier-them">Most AI studios start about here</div></div>
+            <div class="tier"><span class="tier-dot" aria-hidden="true"></span><div class="tier-name">Growing companies</div><div class="tier-note">Scaling the system</div></div>
             <div class="tier"><span class="tier-dot" aria-hidden="true"></span><div class="tier-name">Enterprise</div><div class="tier-note">Rolling out wide</div></div>
           </div>
         </div>

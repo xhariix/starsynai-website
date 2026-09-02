@@ -344,6 +344,15 @@ section{position:relative;z-index:1;}
 .dur-price{font-size:.82rem;color:var(--accent3);font-weight:500;margin-bottom:.4rem;}
 .dur-desc{color:var(--text3);font-size:.75rem;line-height:1.5;}
 
+/* About hero mark — same lock-up as the home hero. */
+.about-mark{position:relative;margin:0 auto .4rem;z-index:1;
+  width:clamp(120px,13vw,178px);height:clamp(120px,13vw,178px);pointer-events:none;}
+#aboutHeroCanvas{position:relative;z-index:1;width:100%;height:100%;display:block;}
+.about-syn{position:absolute;left:50%;top:87%;transform:translate(-50%,-50%);z-index:0;
+  font-family:var(--serif);font-weight:700;letter-spacing:2px;line-height:1;
+  font-size:clamp(1.9rem,4.4vw,3.2rem);color:var(--accent3);opacity:.22;
+  will-change:transform,opacity;}
+@media(max-width:700px){.about-mark{width:clamp(104px,27vw,140px);height:clamp(104px,27vw,140px);}}
 /* ABOUT HERO — GROUP DISCUSSION LAYOUT */
 .about-group-img{position:relative;border-radius:var(--rl);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6px;aspect-ratio:16/10;max-height:420px;}
 .about-group-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(2,6,19,0.6));pointer-events:none;border-radius:var(--rl);z-index:1;}
@@ -884,13 +893,16 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 
 
 <!-- ABOUT HERO — 3D SPIRAL NET -->
-<div id="about-hero-wrap" style="position:relative;height:480px;overflow:hidden;display:flex;align-items:center;justify-content:center;padding-top:80px;background:linear-gradient(180deg,#020613 0%,#071020 100%);">
-  <canvas id="aboutHeroCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block;"></canvas>
+<div id="about-hero-wrap" style="position:relative;min-height:560px;overflow:hidden;display:flex;align-items:center;justify-content:center;padding-top:80px;background:linear-gradient(180deg,#020613 0%,#071020 100%);">
   <!-- radial fade so edges dissolve into page bg -->
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(2,6,19,0.55) 0%,rgba(2,6,19,0.74) 38%,rgba(2,6,19,0.93) 74%);z-index:1;pointer-events:none;"></div>
   <!-- bottom fade to merge with section below -->
   <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,#020613);z-index:2;pointer-events:none;"></div>
   <div style="position:relative;z-index:3;text-align:center;padding:2rem 2rem 0;" class="reveal"><div aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(760px,92vw);height:300px;pointer-events:none;z-index:-1;background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(2,6,19,0.80) 0%,rgba(2,6,19,0.55) 55%,transparent 78%);filter:blur(6px);"></div>
+    <div class="about-mark" aria-hidden="true">
+      <span class="about-syn" id="aboutSyn">syn</span>
+      <canvas id="aboutHeroCanvas"></canvas>
+    </div>
     <div class="eyebrow"><div class="eyebrow-line"></div>About Us</div>
     <h1 class="section-title" style="margin-top:1rem;font-size:clamp(2.4rem,5vw,3.8rem);">About <span class="grad-text">StarSyn AI</span></h1>
     <p style="color:var(--text2);font-size:1rem;max-width:520px;margin:1rem auto 0;line-height:1.8;">India's leading AI automation studio — building intelligent agents for creators, startups and enterprises worldwide.</p>
@@ -1297,62 +1309,84 @@ document.querySelectorAll('.neon-click').forEach(el => {
 });
 
 // =============================================
-// ABOUT HERO — 3D SPIRAL NET (Three.js)
+// ABOUT HERO — the logo star, same mark as the home hero
 // =============================================
-(function() {
+function initAboutStar(){
   const canvas = document.getElementById('aboutHeroCanvas');
   if (!canvas || typeof THREE === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  function setSize() {
-    const W = canvas.clientWidth, H = canvas.clientHeight;
-    renderer.setSize(W, H, false);
-    camera.aspect = W / H;
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+  camera.position.set(0, 0, 5.2);
+
+  // the nav logo's own points, recentred and flipped out of SVG space
+  const pts = [[19,4],[21.5,13],[31,13],[23.5,18.5],[26,27.5],[19,22],[12,27.5],[14.5,18.5],[7,13],[16.5,13]];
+  const shape = new THREE.Shape();
+  pts.forEach(([x, y], i) => {
+    const px = (x - 19) / 13, py = (19 - y) / 13;
+    i ? shape.lineTo(px, py) : shape.moveTo(px, py);
+  });
+  shape.closePath();
+
+  const geo = new THREE.ExtrudeGeometry(shape, {
+    depth: 0.24, bevelEnabled: true, bevelThickness: 0.05,
+    bevelSize: 0.045, bevelSegments: 3, curveSegments: 6
+  });
+  geo.center();
+
+  const star = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
+    color: 0x0e2a3d, metalness: 0.85, roughness: 0.28,
+    emissive: 0x0b3f56, emissiveIntensity: 0.55
+  }));
+  scene.add(star);
+  star.add(new THREE.LineSegments(
+    new THREE.EdgesGeometry(geo, 28),
+    new THREE.LineBasicMaterial({ color: 0x67e8f9, transparent: true, opacity: 0.75 })
+  ));
+
+  scene.add(new THREE.AmbientLight(0x88ccff, 0.55));
+  const key = new THREE.DirectionalLight(0x9fe8ff, 1.5); key.position.set(2, 3, 4); scene.add(key);
+  const rim = new THREE.DirectionalLight(0x38bdf8, 1.1); rim.position.set(-3, -1, 2); scene.add(rim);
+
+  const syn = document.getElementById('aboutSyn');
+
+  function size(){
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
     camera.updateProjectionMatrix();
   }
+  size();
+  window.addEventListener('resize', size, { passive: true });
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
-  camera.position.set(0, 0, 4.2);
-
-  // Outer spiral net — high-detail geodesic sphere
-  const icoGeo = new THREE.IcosahedronGeometry(1.55, 4);
-  const icoWire = new THREE.WireframeGeometry(icoGeo);
-  const icoMat = new THREE.LineBasicMaterial({ color: 0x38bdf8, opacity: 0.28, transparent: true });
-  const icoMesh = new THREE.LineSegments(icoWire, icoMat);
-  scene.add(icoMesh);
-
-  // Inner torus knot — the "spiral" element
-  const knotGeo = new THREE.TorusKnotGeometry(0.72, 0.065, 140, 14);
-  const knotWire = new THREE.WireframeGeometry(knotGeo);
-  const knotMat = new THREE.LineBasicMaterial({ color: 0x00f5ff, opacity: 0.42, transparent: true });
-  const knotMesh = new THREE.LineSegments(knotWire, knotMat);
-  scene.add(knotMesh);
-
-  // Subtle mid-ring
-  const ringGeo = new THREE.TorusGeometry(1.1, 0.008, 4, 80);
-  const ringMat = new THREE.MeshBasicMaterial({ color: 0x67e8f9, transparent: true, opacity: 0.4 });
-  const ring = new THREE.Mesh(ringGeo, ringMat);
-  ring.rotation.x = Math.PI * 0.35;
-  scene.add(ring);
-
-  setSize();
-  window.addEventListener('resize', setSize);
-
-  let f = 0;
-  (function animate() {
-    requestAnimationFrame(animate);
-    f++;
-    icoMesh.rotation.y = f * 0.0025;
-    icoMesh.rotation.x = f * 0.0009;
-    knotMesh.rotation.y = -f * 0.004;
-    knotMesh.rotation.z =  f * 0.0018;
-    ring.rotation.z = f * 0.003;
+  let raf = null, visible = true;
+  function frame(){
+    raf = requestAnimationFrame(frame);
+    star.rotation.y += 0.011;
+    star.rotation.x = Math.sin(star.rotation.y * 0.5) * 0.12;
     renderer.render(scene, camera);
-  })();
-})();
+    if (syn){
+      // kept off a raw cos so the word never collapses edge-on
+      const c = Math.cos(star.rotation.y);
+      syn.style.transform = 'translate(-50%,-50%) scaleX(' + (0.82 + c * 0.18).toFixed(3) + ')';
+      syn.style.opacity = (0.16 + Math.abs(c) * 0.08).toFixed(3);
+    }
+  }
+  function run(){ if (!raf && visible) frame(); }
+  function halt(){ if (raf){ cancelAnimationFrame(raf); raf = null; } }
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; visible ? run() : halt(); }),
+      { threshold: 0 }).observe(canvas);
+  }
+  run();
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAboutStar);
+else initAboutStar();
 
 // =============================================
 // SCROLL REVEAL
