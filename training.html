@@ -549,6 +549,7 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
     </p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .7s .4s ease both;">
       <button class="btn-primary" style="padding:.85rem 2rem;font-size:.95rem;" onclick="openConsultation()">Plan a Session for Your Team &rarr;</button>
+      <button class="btn-ghost" style="padding:.85rem 2rem;font-size:.95rem;" onclick="scrollToId('process')">How We Work</button>
       <button class="btn-ghost" style="padding:.85rem 2rem;font-size:.95rem;" onclick="scrollToId('formats')">See the Formats</button>
     </div>
   </div>
@@ -644,31 +645,73 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 </section>
 
 <!-- HOW A PROGRAMME RUNS -->
-<section class="section-pad surface-s">
-  <div class="bg-radar"></div>
+<style>
+.flow{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;}
+.flow::before{content:'';position:absolute;top:26px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,rgba(56,189,248,.06),rgba(56,189,248,.42),rgba(74,222,128,.42),rgba(74,222,128,.06));z-index:0;}
+.fstep{position:relative;z-index:1;background:rgba(6,14,27,.82);border:1px solid rgba(56,189,248,.13);border-radius:16px;padding:1.7rem 1.4rem 1.5rem;transition:border-color .25s,transform .25s;}
+.fstep:hover{border-color:rgba(56,189,248,.36);transform:translateY(-3px);}
+.fstep:last-child{border-color:rgba(74,222,128,.22);}
+.fstep:last-child:hover{border-color:rgba(74,222,128,.45);}
+.fnode{width:52px;height:52px;border-radius:50%;background:rgba(6,14,27,.98);border:1.5px solid rgba(56,189,248,.34);display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;}
+.fstep:last-child .fnode{border-color:rgba(74,222,128,.42);}
+.fnode svg{width:23px;height:23px;stroke:var(--accent3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.fstep:last-child .fnode svg{stroke:#4ade80;}
+.fstep .fnum{display:block;text-align:center;font-size:.63rem;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem;}
+.fstep h3{text-align:center;font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.55rem;line-height:1.32;}
+.fstep p{font-size:.86rem;line-height:1.68;color:var(--text2);}
+.fstep .fout{display:block;margin-top:.9rem;padding-top:.75rem;border-top:1px solid rgba(255,255,255,.06);font-size:.76rem;line-height:1.55;color:var(--text3);}
+.fstep .fout b{color:var(--accent3);font-weight:600;}
+.fstep:last-child .fout b{color:#4ade80;}
+@media(max-width:1000px){.flow{grid-template-columns:repeat(2,1fr);}.flow::before{display:none;}}
+@media(max-width:560px){.flow{grid-template-columns:1fr;}}
+</style>
+<section class="section-pad surface-s" id="process">
+  <div class="bg-orbs"></div>
   <div class="container">
-    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 3rem;">
+    <div class="reveal" style="text-align:center;max-width:720px;margin:0 auto 3rem;">
       <div class="eyebrow" style="justify-content:center;"><div class="eyebrow-line"></div>The Method<div class="eyebrow-line"></div></div>
       <h2 class="section-title">How a Programme Runs</h2>
+      <p class="section-sub" style="margin:1rem auto 0;">Four stages, in this order, every time. We never arrive with a fixed deck &mdash; we find out what your week actually looks like first, then design around it.</p>
     </div>
-    <div class="reveal" style="background:rgba(56,189,248,0.04);border:1px solid rgba(56,189,248,0.1);border-radius:16px;padding:2.4rem;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;">
-        <div>
-          <div style="font-family:var(--serif);font-size:1.7rem;font-weight:700;color:var(--accent3);line-height:1;margin-bottom:.7rem;">01</div>
-          <h3 style="font-size:1.05rem;color:var(--text);margin-bottom:.5rem;">We map the real week</h3>
-          <p style="color:var(--text2);font-size:.9rem;line-height:1.68;">A short discovery with your leads to find where hours actually disappear &mdash; before anyone opens a tool. You get a written list of the workflows worth attacking first.</p>
-        </div>
-        <div>
-          <div style="font-family:var(--serif);font-size:1.7rem;font-weight:700;color:var(--accent3);line-height:1;margin-bottom:.7rem;">02</div>
-          <h3 style="font-size:1.05rem;color:var(--text);margin-bottom:.5rem;">Hands-on sessions</h3>
-          <p style="color:var(--text2);font-size:.9rem;line-height:1.68;">Live, practical workshops in ChatGPT, Claude, Copilot, n8n and whatever else you already run. Everyone builds during the session &mdash; nobody just watches slides.</p>
-        </div>
-        <div>
-          <div style="font-family:var(--serif);font-size:1.7rem;font-weight:700;color:var(--accent3);line-height:1;margin-bottom:.7rem;">03</div>
-          <h3 style="font-size:1.05rem;color:var(--text);margin-bottom:.5rem;">We leave it running</h3>
-          <p style="color:var(--text2);font-size:.9rem;line-height:1.68;">You keep the working workflows, a written playbook for your team, and a follow-up window for questions once it hits real deadlines.</p>
-        </div>
+
+    <div class="flow reveal" style="margin-bottom:2.2rem;">
+
+      <div class="fstep">
+        <div class="fnode"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v3l2 1.5"/></svg></div>
+        <span class="fnum">Stage 01</span>
+        <h3>We Understand<br/>Your Needs</h3>
+        <p>A short discovery with your leads and the people doing the work &mdash; before anyone opens a tool. Where do hours actually disappear, what has been tried already, what data can and cannot leave the building.</p>
+        <span class="fout"><b>You get:</b> a written list of the workflows worth attacking first, with the effort and the payback beside each one.</span>
       </div>
+
+      <div class="fstep">
+        <div class="fnode"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4a2 2 0 0 1 2 2V14"/><path d="M6.5 10v4a2 2 0 0 0 2 2H14"/></svg></div>
+        <span class="fnum">Stage 02</span>
+        <h3>We Design the<br/>AI System</h3>
+        <p>We architect the actual system for those workflows &mdash; the tools, the prompts, the automations, the human checkpoints and the guardrails. Built on the stack you already pay for wherever it will do the job.</p>
+        <span class="fout"><b>You get:</b> the design in writing &mdash; what gets automated, what stays human, what it will cost to run.</span>
+      </div>
+
+      <div class="fstep">
+        <div class="fnode"><svg viewBox="0 0 24 24"><path d="M12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/><path d="M22 9v5"/></svg></div>
+        <span class="fnum">Stage 03</span>
+        <h3>We Make Your Team<br/>Proficient</h3>
+        <p>Live, hands-on sessions where your people build the system themselves rather than watch slides about it. They keep going until they can run it, break it, fix it and explain it to a colleague without us in the room.</p>
+        <span class="fout"><b>You get:</b> working automations, role-specific prompt libraries, and a written playbook your team owns.</span>
+      </div>
+
+      <div class="fstep">
+        <div class="fnode"><svg viewBox="0 0 24 24"><path d="M20.5 7.5 10 18l-5.5-5.5"/><path d="M14 4.5 9.5 9"/></svg></div>
+        <span class="fnum">Stage 04</span>
+        <h3>Client Satisfaction<br/>&amp; Handover</h3>
+        <p>We measure the before and after on the workflows we picked in stage one, name an owner inside your team for each one, and stay reachable while it meets real deadlines for the first time.</p>
+        <span class="fout"><b>You get:</b> a measured result, a named owner per workflow, and a support window after handover.</span>
+      </div>
+
+    </div>
+
+    <div class="reveal" style="text-align:center;">
+      <p style="color:var(--text3);font-size:.87rem;max-width:640px;margin:0 auto;line-height:1.7;">Nothing gets built before stage one is signed off, and nothing gets called finished until stage four has a number against it. If a workflow turns out not to be worth automating, we will tell you that instead of building it.</p>
     </div>
   </div>
 </section>

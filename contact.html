@@ -87,11 +87,14 @@ section { position: relative; }
 .section-pad { overflow: hidden; }
 .bg-orbs { position:absolute; inset:0; z-index:0; pointer-events:none; opacity:0.55; background-image: url('data:image/svg+xml;utf8,<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg"><g stroke="%2338bdf8" fill="%2338bdf8" opacity="0.12"><circle cx="40" cy="40" r="1.5"/><circle cx="180" cy="120" r="1"/><circle cx="340" cy="60" r="1.5"/><circle cx="90" cy="220" r="1"/><circle cx="240" cy="240" r="1.5"/><circle cx="360" cy="220" r="1"/><circle cx="130" cy="360" r="1.5"/><circle cx="310" cy="340" r="1"/><line x1="40" y1="40" x2="180" y2="120" stroke-width="0.3"/><line x1="180" y1="120" x2="340" y2="60" stroke-width="0.3"/><line x1="180" y1="120" x2="240" y2="240" stroke-width="0.3"/><line x1="40" y1="40" x2="90" y2="220" stroke-width="0.3"/><line x1="90" y1="220" x2="130" y2="360" stroke-width="0.3"/><line x1="90" y1="220" x2="240" y2="240" stroke-width="0.3"/><line x1="240" y1="240" x2="130" y2="360" stroke-width="0.3"/><line x1="240" y1="240" x2="360" y2="220" stroke-width="0.3"/><line x1="240" y1="240" x2="310" y2="340" stroke-width="0.3"/><line x1="340" y1="60" x2="360" y2="220" stroke-width="0.3"/></g><g stroke="%2338bdf8" fill="none" opacity="0.08" stroke-width="0.3"><circle cx="40" cy="40" r="6"/><circle cx="240" cy="240" r="8"/><circle cx="130" cy="360" r="5"/></g></svg>'); background-size: 400px 400px; animation: driftOrbs 30s linear infinite alternate; }
 .bg-streams { position:absolute; inset:0; z-index:0; pointer-events:none; opacity:0.55; background:linear-gradient(180deg, transparent, rgba(56,189,248,0.03), transparent); background-size: 100% 200%; animation: streamFall 10s linear infinite; }
-.bg-radar { position:absolute; inset:0; z-index:0; pointer-events:none; opacity:0.55; background-image: url('data:image/svg+xml;utf8,<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><g stroke="%2338bdf8" fill="none" opacity="0.12" stroke-width="0.8"><circle cx="100" cy="100" r="30"/><circle cx="100" cy="100" r="60"/><circle cx="100" cy="100" r="90"/><line x1="100" y1="10" x2="100" y2="190"/><line x1="10" y1="100" x2="190" y2="100"/><line x1="36" y1="36" x2="164" y2="164"/><line x1="164" y1="36" x2="36" y2="164"/></g><g fill="%2338bdf8" opacity="0.2"><circle cx="100" cy="10" r="2.5"/><circle cx="100" cy="190" r="2.5"/><circle cx="10" cy="100" r="2.5"/><circle cx="190" cy="100" r="2.5"/><circle cx="100" cy="40" r="2"/><circle cx="100" cy="160" r="2"/><circle cx="40" cy="100" r="2"/><circle cx="160" cy="100" r="2"/></g></svg>'); background-size: 80px 80px; animation: radarPulse 15s linear infinite; }
+.bg-radar { position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; opacity:0.3; }
+.bg-radar::before { content:''; position:absolute; inset:-18%; background-image: url('data:image/svg+xml;utf8,<svg width="260" height="260" xmlns="http://www.w3.org/2000/svg"><g stroke="%2338bdf8" stroke-width="0.5" opacity="0.16"><line x1="20" y1="30" x2="80" y2="15"/><line x1="80" y1="15" x2="140" y2="40"/><line x1="140" y1="40" x2="200" y2="20"/><line x1="200" y1="20" x2="245" y2="70"/><line x1="20" y1="30" x2="35" y2="90"/><line x1="80" y1="15" x2="100" y2="100"/><line x1="140" y1="40" x2="165" y2="95"/><line x1="200" y1="20" x2="225" y2="130"/><line x1="35" y1="90" x2="100" y2="100"/><line x1="100" y1="100" x2="165" y2="95"/><line x1="165" y1="95" x2="225" y2="130"/><line x1="35" y1="90" x2="15" y2="170"/><line x1="100" y1="100" x2="75" y2="190"/><line x1="165" y1="95" x2="150" y2="175"/><line x1="225" y1="130" x2="210" y2="200"/><line x1="15" y1="170" x2="75" y2="190"/><line x1="75" y1="190" x2="150" y2="175"/><line x1="150" y1="175" x2="210" y2="200"/><line x1="210" y1="200" x2="245" y2="235"/><line x1="15" y1="170" x2="60" y2="245"/><line x1="75" y1="190" x2="130" y2="230"/><line x1="150" y1="175" x2="190" y2="250"/><line x1="60" y1="245" x2="130" y2="230"/><line x1="130" y1="230" x2="190" y2="250"/></g><g fill="%2338bdf8" opacity="0.24"><circle cx="20" cy="30" r="1.5"/><circle cx="80" cy="15" r="1.5"/><circle cx="140" cy="40" r="2"/><circle cx="200" cy="20" r="1.5"/><circle cx="245" cy="70" r="1.5"/><circle cx="35" cy="90" r="1.5"/><circle cx="100" cy="100" r="2"/><circle cx="165" cy="95" r="1.5"/><circle cx="225" cy="130" r="1.5"/><circle cx="15" cy="170" r="1.5"/><circle cx="75" cy="190" r="2"/><circle cx="150" cy="175" r="1.5"/><circle cx="210" cy="200" r="1.5"/><circle cx="245" cy="235" r="1.5"/><circle cx="60" cy="245" r="1.5"/><circle cx="130" cy="230" r="2"/><circle cx="190" cy="250" r="1.5"/></g></svg>'); background-size: 260px 260px; animation: neuronDrift 130s ease-in-out infinite alternate; will-change: transform; }
+
 
 @keyframes driftOrbs { 0% { transform: scale(1) translateY(0); } 100% { transform: scale(1.1) translateY(-60px); } }
 @keyframes streamFall { 0% { background-position: 0 -100%; } 100% { background-position: 0 200%; } }
-@keyframes radarPulse { 0% { background-size: 30px 30px; opacity: 0; } 50% { opacity: 1; } 100% { background-size: 200px 200px; opacity: 0; } }
+@keyframes neuronDrift { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(-56px,-42px,0) scale(1.18); } }
+@media (prefers-reduced-motion: reduce) { .bg-radar::before { animation: none; } }
 
 /* PORTFOLIO HOVER OVERLAY */
 .pcard, .ml-pcard { position: relative; overflow: hidden; cursor: pointer; }
@@ -1072,51 +1075,15 @@ Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view","css
 <script>
 /*
   ╔══════════════════════════════════════════════════════════════╗
-  ║  STARSYN AI — SUPABASE SETUP (run this SQL once)           ║
-  ║  Go to: supabase.com/dashboard/project/xgbgpguneoywbexhdvpx ║
-  ║  → SQL Editor → New Query → Paste all below → Run           ║
-  ╠══════════════════════════════════════════════════════════════╣
+  ║  STARSYN AI — SUPABASE SETUP                                 ║
   ║                                                              ║
-  ║  create table if not exists contacts (                       ║
-  ║    id uuid default gen_random_uuid() primary key,            ║
-  ║    first_name text, last_name text, email text,              ║
-  ║    phone text, interest text, message text,                  ║
-  ║    user_email text, created_at timestamptz                   ║
-  ║  );                                                          ║
+  ║  The schema lives in ONE place: supabase-setup.sql in the     ║
+  ║  project root. Paste that whole file into the SQL Editor at  ║
+  ║  supabase.com/dashboard/project/xgbgpguneoywbexhdvpx         ║
+  ║  → SQL Editor → New Query → Run. Safe to run more than once. ║
   ║                                                              ║
-  ║  create table if not exists newsletter_subscribers (         ║
-  ║    id uuid default gen_random_uuid() primary key,            ║
-  ║    email text, source text, created_at timestamptz           ║
-  ║  );                                                          ║
-  ║                                                              ║
-  ║  create table if not exists visitors (                       ║
-  ║    id uuid default gen_random_uuid() primary key,            ║
-  ║    email text, name text, event text,                        ║
-  ║    created_at timestamptz                                    ║
-  ║  );                                                          ║
-  ║                                                              ║
-  ║  create table if not exists page_visits (                    ║
-  ║    id uuid default gen_random_uuid() primary key,            ║
-  ║    referrer text, url text, user_agent text,                 ║
-  ║    created_at timestamptz                                    ║
-  ║  );                                                          ║
-  ║                                                              ║
-  ║  -- Enable inserts from your website (public anon key):      ║
-  ║  alter table contacts enable row level security;             ║
-  ║  alter table newsletter_subscribers enable row level         ║
-  ║    security;                                                  ║
-  ║  alter table visitors enable row level security;             ║
-  ║  alter table page_visits enable row level security;          ║
-  ║                                                              ║
-  ║  create policy "allow_insert" on contacts                    ║
-  ║    for insert with check (true);                             ║
-  ║  create policy "allow_insert" on newsletter_subscribers      ║
-  ║    for insert with check (true);                             ║
-  ║  create policy "allow_insert" on visitors                    ║
-  ║    for insert with check (true);                             ║
-  ║  create policy "allow_insert" on page_visits                 ║
-  ║    for insert with check (true);                             ║
-  ║                                                              ║
+  ║  Do not copy schema into this comment again — a second copy  ║
+  ║  drifts out of date and creates wrong-shaped tables.         ║
   ╚══════════════════════════════════════════════════════════════╝
 */
 // =============================================

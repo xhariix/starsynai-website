@@ -30,6 +30,21 @@ create table if not exists public.newsletter_subscribers (
   created_at  timestamptz not null default now()
 );
 
+-- ---------- academy brochure downloads, sample-class and enrolment leads ----------
+create table if not exists public.academy_leads (
+  id          bigint generated always as identity primary key,
+  name        text,
+  email       text,
+  whatsapp    text,
+  who         text,   -- student / professional / developer / founder ...
+  programme   text,   -- which programme they picked in the form
+  task        text,   -- the recurring task they would bring
+  intent      text,   -- curriculum | catalogue | sample | enrol
+  cohort      text,   -- the cohort that was being advertised at the time
+  source      text,
+  created_at  timestamptz not null default now()
+);
+
 -- ---------- lightweight analytics ----------
 create table if not exists public.page_visits (
   id          bigint generated always as identity primary key,
@@ -48,6 +63,7 @@ create table if not exists public.visitors (
 -- ---------- lock them down ----------
 alter table public.contacts               enable row level security;
 alter table public.newsletter_subscribers enable row level security;
+alter table public.academy_leads          enable row level security;
 alter table public.page_visits            enable row level security;
 alter table public.visitors               enable row level security;
 
@@ -58,6 +74,10 @@ create policy "anon can insert" on public.contacts
 
 drop policy if exists "anon can insert" on public.newsletter_subscribers;
 create policy "anon can insert" on public.newsletter_subscribers
+  for insert to anon with check (true);
+
+drop policy if exists "anon can insert" on public.academy_leads;
+create policy "anon can insert" on public.academy_leads
   for insert to anon with check (true);
 
 drop policy if exists "anon can insert" on public.page_visits;
@@ -79,3 +99,5 @@ create index if not exists newsletter_created_at_idx
   on public.newsletter_subscribers (created_at desc);
 create index if not exists page_visits_created_at_idx
   on public.page_visits (created_at desc);
+create index if not exists academy_leads_created_at_idx
+  on public.academy_leads (created_at desc);

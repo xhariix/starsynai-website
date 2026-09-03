@@ -3,3 +3,6 @@ desktop.ini
 *.py
 fix-js.js
 .claude/
+
+# Academy brochures are published on the site
+!assets/docs/*.pdf
